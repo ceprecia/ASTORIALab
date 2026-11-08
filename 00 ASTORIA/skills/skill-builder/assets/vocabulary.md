@@ -273,7 +273,7 @@ template_purposes:
   "Teaching Class Template.md": "One college teaching offering for an instructor, TA, or grader, with approved sources, responsibilities, and course resources."
   "Projects Template.md": "A nonresearch project MOC with headings and navigation in the selected or verified form. Its illustrated opening callouts are the fallback when navigation is open."
   "Research Project Template.md": "A research project MOC; omit unused sections."
-  "engineering_REA_template.md": "A flexible engineering and reverse engineering MOC: Start Here, an evidence-led workbench, Research Log, and AI Notes last."
+  "engineering_REA_template.md": "A flexible engineering and reverse engineering MOC: Start Here, an evidence-led workbench, Research Log, and an optional technical continuity section."
   "agents_draft_template.md": "The few-line `AGENTS.md` a starter vault ships with; replaced at the end of setup."
   "agents_loader_template.md": "The full vault-root `AGENTS.md` loader written by setup-my-vault."
   "global_codex_agents_template.md": "Source for a short `AGENTS.md` in an external workspace that points at `me.md`."

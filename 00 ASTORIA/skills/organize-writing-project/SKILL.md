@@ -59,9 +59,11 @@ Examples establish writing patterns, not current official requirements.
 8. Recommend the next bounded assignments to writing-coordinator, including
    sources, output location, desired completion condition and responsible
    domain owner for missing technical content.
-9. If saving is requested, update the existing owning MOC section or existing
-   section table. Keep chat IDs and technical tracking in its AI Notes per
-   `me.md`. Use capture skills for Research Log entries.
+9. When saving the organizer is authorized, update the existing organizer at
+   the verified location selected for the task or established by the applicable
+   project placement policy. Save chat IDs and technical tracking only when
+   that continuity update is authorized, using the selected or configured
+   continuity location. Use capture skills for requested Research Log entries.
 
 ## Outputs
 

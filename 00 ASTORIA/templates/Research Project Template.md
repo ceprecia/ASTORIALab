@@ -13,7 +13,7 @@ doi:
 
 <!--
 AI instructions for applying or updating this template:
-- Properties: fill only what the user or the project's own records state, and leave the rest empty rather than guessing. `project_type` is one short value (for example empirical, pilot, methods, review, or meta-analysis). `keywords` is a list of the manuscript keywords, as they would appear in a paper. `irb_number` and `grant_number` are the protocol and funding or account numbers; do not repeat them in the Start Here callouts. `preregistration` is a link to the registration or preprint (OSF, bioRxiv, or similar). `doi` is the published article's DOI, added once the paper is out. Paths and environments never go in properties; they belong in AI Notes.
+- Properties: fill only what the user or the project's own records state, and leave the rest empty rather than guessing. `project_type` is one short value (for example empirical, pilot, methods, review, or meta-analysis). `keywords` is a list of the manuscript keywords, as they would appear in a paper. `irb_number` and `grant_number` are the protocol and funding or account numbers; do not repeat them in the Start Here callouts. `preregistration` is a link to the registration or preprint (OSF, bioRxiv, or similar). `doi` is the published article's DOI, added once the paper is out. Keep technical paths and environment details out of these descriptive properties. Retain a verified `workspace:` property. Add or update that property only when the task or applicable project policy authorizes the edit. Save other technical paths and environments only when authorized at the verified location selected for the task or established by the applicable project continuity policy.
 - Treat this as a flexible starting point. Add, rename, reorder, or omit first-level (#) sections and their subsections when the project needs it; Research Workbench is not the only possible content section. Do not invent content or add empty sections to fill the template.
 - Follow the recipient's confirmed heading and callout preference when creating a note. Keep the illustrated emoji for the template style. If the recipient wants emoji freely, choose one distinct, relevant icon for each level-one (#) and level-two (##) section and apply the same style to the callout titles. Keep level three and below plain. Research Log entry headings stay plain dates in every style because Calendar embeds use their exact heading text.
 - For the plain style, remove the leading decorative emoji and its following space from each copied heading, callout title and navigation label, including the Research Questions label and optional folder-link labels. Preserve heading levels, wording, callout types, placement, and folder-link destinations. For example, use `# Research Workbench` with `[Research Workbench](#research-workbench)`, `## Literature and Theory` with `[Literature and Theory](#literature-and-theory)`, and `> [!example] Explore this project`. For each remaining navigation target, replace the illustrated fragment with the fragment for the exact rendered heading and verify the link.
@@ -77,7 +77,7 @@ AI instructions for applying or updating this template:
 ## 🧮 Analysis
 
 *Analysis plan and methods: models, preprocessing, statistics, and links to the scripts that run them.*
-<!-- Distinguish planned from completed analyses. Script paths and environments go in AI Notes. -->
+<!-- Distinguish planned from completed analyses. Record script paths and environments only when authorized, at the selected or configured technical continuity location. Use AI Notes when that location is selected. -->
 
 ## 📊 Results
 
@@ -88,7 +88,7 @@ AI instructions for applying or updating this template:
 
 # 🗓️ Research Log
 
-*Keep project captures in the owning Research Log and follow the selected or verified log order.*
+*Route authorized project captures through the owning capture skill to the selected capture owner or the owner established by the applicable capture policy. When the Research Log is that owner, follow the selected or verified log order.*
 <!-- Follow the authorized capture choice, then the verified project or recipient capture policy. When the Research Log is the selected owner, keep the single original progress or quick-capture entry there in ordinary foldable Markdown. Follow the selected or applicable verified log order and preserve existing entry headings and exact capture targets. For a new log whose order remains open, use newest-first as the fallback. Use a unique full-date (YYYY-MM-DD) entry heading, adding a time or topic when needed, and preserve inherited groupings and date spans. When the chosen capture policy includes a Calendar index, use !`[[full vault-relative MOC path#unique heading]]` for the exact original entry, date or period. Keep original text and inline metadata in their owner, and add Calendar aggregates only for a selected index. Preserve MOC frontmatter, existing wording and records. Avoid parallel copies or per-entry frontmatter. -->
 
 ---

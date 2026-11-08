@@ -97,7 +97,7 @@ Circuit Builder remains the board-construction specialist under a verified plan:
 4. Fit and test findings return to the responsible creator. For combined mounting/packaging claims, the coordinator supplies current saved geometry, delivered exports/views and source/interface evidence; Fit Review returns support/retention, wiring, motion and assembly/service findings or explains inapplicable topics. The creator corrects the affected artifact; an independent reviewer checks the consequential result. The coordinator propagates a changed decision to every affected active assignment without requiring the user to relay it.
 5. Companion reconciles the whole design and explains what is established, unfinished and useful next. Export/mesh/hash checks establish artifact properties, not functional completeness or physical fit. Exploratory mockups and fit-test exports may finish with named incomplete interfaces; do not turn a partial clearance result into whole-assembly acceptance. Continue authorized corrections without adding approval rounds.
 
-Keep current project context and chat/role mappings in the existing MOC's AI Notes. Return specialist deliverables in the requested form and use the authorized destination for any files. Assembly Builder owns the requested complete construction walkthrough. Use the capture skills for the Research Log. Do not create parallel project hubs, copied instruction files or per-agent status systems.
+When saving continuity information is in scope, use the location selected by the recipient or the applicable project continuity policy for useful project context and chat/role mappings. Return specialist deliverables in the requested form and use the authorized destination for any files. Assembly Builder owns the requested complete construction walkthrough. Use the capture skills for the Research Log. Do not create parallel project hubs, copied instruction files or per-agent status systems.
 
 ## Shared writing assistance
 
@@ -207,6 +207,6 @@ Every assignment includes the exact skill path, current project/MOC, engineering
 2. The coordinator refreshes only relevant context, gives affected owners their assignments, and sequences shared-file changes.
 3. Specialists return the result, changed artifacts/interfaces, checks performed and limits, unresolved questions and next owner/action.
 4. The responsible creator corrects an identified mismatch and another appropriate specialist checks the consequential result. The companion explains the combined state.
-5. Keep only useful current assignments and technical context in the project's existing AI Notes. Use the capture skills for requested Research Log updates.
+5. When saving continuity information is in scope, keep only the assignments and technical context needed to resume work. Use the location selected by the recipient or the applicable project continuity policy. Use the capture skills for requested Research Log updates.
 
 A request such as “The motor changes, please reassess the affected design” can change mechanism, mounting, wiring, power, sensing and control assumptions. Revisit those dependencies rather than preserving an obsolete choice. A documentation-only repair should preserve completed hardware unless a concrete defect calls for a change.

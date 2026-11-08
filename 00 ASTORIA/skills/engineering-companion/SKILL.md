@@ -48,7 +48,7 @@ Own device development, hardware reverse engineering, build recovery and integra
    simulation and physical measurements distinct, and reconsider the arrangement
    when local revisions fail to resolve a common interface problem.
 7. **Report established completion.** Lead with the result, actual worker/chat state and why it follows. Distinguish inspected, calculated, rendered, compiled, run and measured evidence. Explain remaining uncertainty and the next useful action; a created chat is not completed engineering work.
-8. **Keep continuity with its owner.** Maintain useful project/team context and the current routing choice within the existing MOC's AI Notes when authorized. Save deliverables with their owner and use capture skills for the Research Log. Report checks in the requested deliverable or under the recipient's reporting policy. Preserve the existing project owner; do not create another hub or save additional records without authorization.
+8. **Keep continuity with its owner.** When saving continuity information is authorized, keep useful project and team context and the current routing choice at the location selected by the recipient or the applicable project continuity policy. Save authorized deliverables with their owner and use capture skills for authorized Research Log updates. Report checks in the requested deliverable or under the recipient's reporting policy. Preserve the existing project owner; do not create another hub or save additional records without authorization.
 
 ## Team Choice
 

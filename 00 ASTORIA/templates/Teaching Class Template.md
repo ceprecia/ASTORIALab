@@ -32,8 +32,11 @@ STRUCTURE
   for the receiving app and operating system. Keep the folder in the existing
   course-file grouping rather than creating another property or file index.
 - Keep only useful, populated sections. Rename/group them to match the course.
-  AI Notes stays last, with source/version context and requested continuity, not
-  Study Planner's recall queue, lesson progress, or an automatically saved audit.
+  When the selected layout retains AI Notes and leaves its order open, place it
+  last. Save source/version context and requested continuity only when authorized,
+  at the verified location selected for the task or established by the applicable
+  project continuity policy. Keep Study Planner's recall queue, lesson progress,
+  and automatically saved audits separate.
 
 CONTENT
 - Syllabus and Course Sources: link the verified approved syllabus in the selected

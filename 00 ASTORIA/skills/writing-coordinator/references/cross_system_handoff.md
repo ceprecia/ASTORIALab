@@ -67,4 +67,4 @@ Internal subagents receive the same bounded contract. They can carry out authori
 
 ## Completion
 
-Return to the original owner with the text, source revision, technical acceptance state, writing checks, unresolved questions and next action. Completion of the writing service does not complete the underlying experiment, device validation, application or external delivery. Maintain only useful authorized mapping in the existing MOC; no new cross-system tracker.
+Return to the original owner with the text, source revision, technical acceptance state, writing checks, unresolved questions and next action. Completion of the writing service does not complete the underlying experiment, device validation, application or external delivery. Save only useful mapping when authorized, at the verified location selected for the task or established by the applicable project continuity policy. Keep the original owner and avoid a new cross-system tracker.

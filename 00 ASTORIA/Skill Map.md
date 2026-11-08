@@ -3,6 +3,7 @@ related:
   - "[[me]]"
 created: 2026-01-01
 updated: 2026-11-02
+astoria_version: "1.1.0"
 ---
 This is the active skill registry for the user's AI system. Every skill is a folder, `00 ASTORIA/skills/<name>/SKILL.md`, on the Agent Skills standard; the registry below is generated from the skills' frontmatter by `00 ASTORIA/skills/skills-janitor/scripts/build_views.py` and is never edited by hand. The full sortable table is the Base in [Skills](Skills.md).
 
@@ -46,6 +47,7 @@ This is the active skill registry for the user's AI system. Every skill is a fol
 ![ASTORIA System Builder](assets/banner_system_builder.png)
 
 [ASTORIA System Builder](systems/ASTORIA%20System%20Builder.md): Set up and maintain the AI system.
+- [astoria-updater](skills/astoria-updater/SKILL.md): Updates an existing ASTORIA vault from a separate starter release. Triggers: update my astoria, upgrade my astoria vault.
 - [me-builder](skills/me-builder/SKILL.md): Creates or refreshes the user's root me.md. Triggers: build my me.md, refresh my me.md, update my preferences in me.md, who am I according to my vault.
 - [paper-to-skill](skills/paper-to-skill/SKILL.md): Extracts source-grounded reusable content from one user-supplied paper or a small bounded paper set into a chat-only evidence pack for Skill Builder. Triggers: skill from this paper, extract a skill from these papers, turn this paper into a skill.
 - [repo-to-skill](skills/repo-to-skill/SKILL.md): Extracts source-grounded reusable content from one exact repository state into a chat-only evidence pack for one candidate skill. Triggers: skill from this repo, extract a skill from this codebase, turn this repository into a skill.

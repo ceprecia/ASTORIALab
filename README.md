@@ -4,6 +4,8 @@
 
 **Adaptable Scientific Toolkit for Organized Research with Interchangeable Agents.**
 
+**ASTORIA version:** 1.1.0
+
 Make your research workspace feel like yours. Shape the toolkit around your work, keep your research connected, and bring along the AI assistant you prefer.
 
 ## Why an Adaptable Scientific Toolkit?
@@ -38,23 +40,19 @@ After setup, ask a different assistant to read your me.md for vault-wide context
 
 ## Get started
 
-1. **Download:** [Download the ASTORIA starter vault ZIP](https://github.com/ceprecia/ASTORIALab/releases/download/v1.0.0/ASTORIA-starter-vault-v0.1.0.zip), then extract it.
+1. Download the starter vault ZIP from [ASTORIA Releases](https://github.com/ceprecia/ASTORIALab/releases) and extract it. You can leave the folder in Downloads while updating.
 
-2. **Open** the extracted folder in Obsidian using **Open folder as vault**, or use your file manager and a Markdown editor.
+2. Open the extracted folder in your assistant and say:
 
-> [!Tip]
-> **Using an existing Obsidian vault?** Copy the extracted `00 ASTORIA/` folder and `AGENTS.md` directly into your existing vault's root, the top-level folder you open in Obsidian. If either already exists there, keep your current files and review how to combine the setups before proceeding.
+> Read this folder’s `AGENTS.md` and start ASTORIA.
 
-3. Give your AI assistant access to the vault you plan to use.
+3. Choose **first-time setup** or **update an existing vault**.
 
-> [!Tip]
-> Creating a project in your AI assistant can help it keep access to your vault.
+**First-time setup.** Open the extracted folder in Obsidian using **Open folder as vault**, or use a Markdown editor. To add ASTORIA to an Obsidian vault for the first time, show the assistant that vault. Review where to put `00 ASTORIA/` and how to handle any existing `AGENTS.md` before setup.
 
-4. Copy this request into your AI assistant:
+**Update.** Choose your working vault when asked. If your chat is already open on that vault, point it to the release ZIP or extracted folder. For older vaults, ask the assistant to read `00 ASTORIA/skills/astoria-updater/SKILL.md` from the extracted release. Review the proposed changes before approving the update.
 
-> Read this vault’s root AGENTS.md and follow Setup My Vault in the ASTORIA System Builder. Guide me through the steps in order.
-
-Setup My Vault starts with a series of setup questions and the default layout. Tell your assistant what you work on, which tools you use, and how you like to work. Review its summary, choose your folders and any optional research toolkit, then confirm the build plan. 
+For first-time setup, tell the assistant what you work on, which tools you use, and how you like to work. It gives you a short PARA example. Review its summary, choose folders and any optional research toolkit, then confirm the build plan.
 
 None of this information is sent back to the github project. Your preferences are kept locally in your vault. Note that some AI Agent models may share data to parent companies to train their models. For a full private experience consider a local LLM.
 

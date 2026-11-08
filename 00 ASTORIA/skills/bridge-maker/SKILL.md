@@ -74,8 +74,8 @@ a workflow-type field, or a research-routing fragment. A known workspace
 without an `AGENTS.md` is an unconfigured bridge, not an instruction to
 create one unless the request includes that action.
 
-For a requested creation, include the MOC writing default below in every new
-project bridge. Add only the project-specific instructions needed for the
+For a requested creation, include the MOC and continuity policy paragraph
+below in each new project bridge. Add only the project-specific instructions needed for the
 user's stated task. Do not invent
 scientific settings, safety rules, approval gates, a project history,
 or a copied list of skills.
@@ -87,9 +87,10 @@ For a requested update:
   task-relevant pointers, and optional research fragments unless the user asks
   to change them.
 - Keep project notes, maps and profiles out of required startup reads. Add or
-  repair the conditional AI Notes pointer using the verified heading and path
-  below. Update MOC writing instructions only when the requested change covers
-  them. The central `me.md` supplies skill discovery.
+  repair a continuity pointer only when the requested scope covers it and the
+  selected or configured location is verified. Update MOC writing instructions
+  only when the requested change covers them. The central `me.md` supplies skill
+  discovery.
 - Existing optional research routing may remain. Copy it from the template
   only when the user explicitly requests that routing; do not add it merely
   because a workspace contains research.
@@ -116,26 +117,30 @@ If that file cannot be read, report the problem before accessing or changing
 The user's files. Before creating or moving a file, verify its destination against
 `me.md` and applicable project instructions.
 
-Follow the MOC conventions in `me.md`. When the project has an owning MOC,
-keep authorized agent-written project memory and context in its final AI Notes
-section, using the selected heading style. Edit other MOC sections only when
-the user explicitly requests that change.
+Follow the MOC conventions in `me.md`. Save project memory and technical
+context only when authorized, at the verified location selected for the task
+or established by the applicable project continuity policy. When that
+location is AI Notes, use its verified heading. Edit other MOC sections only
+when the user explicitly requests that change.
 
-Project MOC: `[verified vault-relative MOC path]`. Read `[exact AI Notes heading]`
-when the task needs project continuity or technical details.
+Project MOC: `[verified vault-relative MOC path]`.
+Continuity: `[verified vault-relative path and exact heading, when applicable]`.
+Read relevant entries only when the task needs continuity or technical details.
 ```
 
-Include the MOC writing paragraph in each new bridge. For an external
-workspace, use the paragraph in the marked global fragment once.
+Include the MOC and continuity policy paragraph in each new bridge. For an
+external workspace, use the paragraph in the marked global fragment once.
 
-Add the separate pointer paragraph when the owning MOC and its final
-level-one AI Notes heading are verified. Check the vault-relative path
-against the actual entries, including spelling and case. Check the heading
-outline and use the exact rendered heading. Ignore headings inside examples
-and comments. If either target is missing, unreadable or ambiguous, report
-the unresolved pointer, omit it from a new bridge and preserve existing
-instructions on an update. Keep technical paths and environments in AI Notes.
-Read that section only when the task needs its details.
+Include an owning MOC pointer when relevant and verified. Add a separate
+continuity pointer only when the requested bridge scope includes it and the
+recipient or applicable project policy identifies its location. Verify each
+vault-relative path against actual entries, including spelling and case.
+When the location is a section, use the exact rendered heading, including
+AI Notes when selected. Ignore headings inside examples and comments. If a
+target is missing, unreadable or ambiguous, report the unresolved pointer,
+omit it from a new bridge and preserve existing instructions on an update.
+Read technical paths and environments only as needed from their verified
+continuity location.
 
 Append necessary project-specific instructions only when supplied or already
 approved. Do not append empty sections or a standard project-context scaffold.

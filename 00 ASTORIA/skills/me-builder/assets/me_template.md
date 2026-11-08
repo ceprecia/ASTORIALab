@@ -61,7 +61,7 @@ This is your briefing on who I am, how I think, and how to interact with me.
 
 - **Records and context:** Preserve existing records and the owner's organization. Read the context needed for the current task and identify unavailable sources.
 - **Saved content:** Follow the requested scope and recipient's capture policy. Preserve source attribution and distinguish current decisions from historical context.
-- **MOC use:** Use the owning map for navigation and continuity. Follow its existing structure and the recipient's chosen reading and maintenance conventions.
+- **MOC use:** Use the owning map for navigation. Follow its existing structure and the recipient's chosen reading and maintenance conventions. For continuity, use the verified location selected for the task or established by the applicable project continuity policy. Save only when authorized.
 - {{capture_line}}
 
 ## Conventions

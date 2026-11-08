@@ -160,7 +160,7 @@ Click **Preview**. You should see 12 rows. If the preview shows 12 rows, click *
 ## Boundaries
 
 - Apply the same workflow to any requested project domain; do not impose research-specific sections, fields or method choices.
-- AI Notes remain the AI's technical working area. Include only user-selected material in the curated protocol; operator commands are never a mandatory protocol component.
+- Keep authorized technical working records at the selected or configured continuity location. Include only user-selected material in the curated protocol; operator commands are never a mandatory protocol component.
 - Document established behavior accurately. Make unfinished portions visible when the user chooses to retain them; do not invent missing procedures or silently settle substantive choices.
 - Present draft text and placement decisions in the current task's requested form or under the recipient's existing reporting policy. Leave the files unchanged until publication is authorized. There are exactly two substantive review gates; the final publication question is a short write decision, not another detailed review.
 - Publishing a protocol does not automatically create a Research Log entry, Calendar capture, separate protocol file or additional technical record. Those require their own requested scope.

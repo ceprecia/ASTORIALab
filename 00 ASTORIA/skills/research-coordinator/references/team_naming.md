@@ -44,8 +44,8 @@ separate chat or ID. Several chats may use the same skill.
   available. For a new worker use the next unused number above the highest
   assigned project number.
   Pad to at least two digits; 99 is followed by 100. Do not recycle gaps.
-- Check the live project chat inventory and any authorized existing MOC team
-  mapping before allocation. Reuse a suitable authorized chat and retain its
+- Check the live project chat inventory and any authorized team mapping at
+  the verified continuity location before allocation. Reuse a suitable authorized chat and retain its
   ID and established title. Do not rename legacy chats as part of allocation.
 - The original project lead coordinator is the one allocation owner for the
   scoped team. Borrowing/lending coordinators request reservations from it and
@@ -62,8 +62,10 @@ separate chat or ID. Several chats may use the same skill.
   If binding is unavailable, leave persistent chat ID allocation pending rather
   than guessing a project. Internal work follows the applicable execution
   contract; naming alone does not establish a dispatch workflow.
-- Keep only useful authorized role/skill, chat/host ID, scope, owned outputs and
-  state in the existing MOC's AI Notes. Prefixes and rules stay here, not copied
+- When a continuity update is authorized, keep only the role, skill, chat or
+  host ID, scope, owned outputs and state needed to resume. Use the verified
+  location selected for the task or established by the applicable project
+  continuity policy. Prefixes and rules stay here, not copied
   into each project. Creating or naming a chat does not authorize scientific
   execution, saving, external contact or publication beyond the current scope.
 

@@ -23,6 +23,31 @@ This system helps you set up the vault, write your working instructions, and mai
 
 Builders create or refresh the files they own. Janitors check the matching files for drift. Setup brings those steps together in one conversation.
 
+## Start ASTORIA
+
+Open the extracted starter folder in your assistant and ask it to read
+`AGENTS.md`. Choose **first-time setup** or **update an existing vault**.
+For first-time setup, use Setup My Vault in the folder you have chosen to
+work in. It shows a short PARA example fitted to your work before you
+choose the structure.
+
+For an update, use [ASTORIA Updater](../skills/astoria-updater/SKILL.md).
+
+- **Opened the new download?** Leave it in Downloads if you like. Tell the
+  assistant which existing vault you want to update. Choose the folder in
+  the assistant or provide its name and folder path.
+- **Opened your working vault?** Point the assistant to the new ZIP or
+  extracted folder. It can be in Downloads. If your vault predates the
+  updater, ask the assistant to read
+  `00 ASTORIA/skills/astoria-updater/SKILL.md` from the extracted release.
+
+The assistant identifies the version in `00 ASTORIA/version.json` when
+present and shows both folders before previewing changes. The downloaded
+package supplies the update and the existing vault receives the approved
+changes. The preview shows which shipped files can change and where local
+edits need a decision. Keep your working vault's notes, themes, settings,
+and custom skills. You can keep Obsidian open on that vault throughout.
+
 ---
 
 ## PARA in the vault
@@ -31,6 +56,11 @@ Builders create or refresh the files they own. Janitors check the matching files
 - **Areas** are responsibilities maintained over time, such as teaching or degree administration.
 - **Resources** are reusable references organized by topic, such as statistics guides, papers, or coding notes.
 - **Archive** holds inactive material from the other categories for future reference and provenance.
+
+For example, completing a survey pilot is a Project, ongoing team onboarding
+is an Area, survey design references go in Resources, and a completed pilot
+goes in Archive. Use examples suited to the work the user describes when
+explaining how to choose a layout.
 
 Each Project or Area has one MOC and one `AGENTS.md`. Use one top-level `files/` folder for local working material. A documented external workspace satisfies the working-files requirement. Folder Janitor reports missing entries and can offer to set them up on request. Keep useful subfolders and established operational layouts. Resources uses its own topic structure and generally stays outside routine folder cleanup.
 
@@ -61,6 +91,7 @@ Helpers:
 When to use:
 
 - A fresh copy of the starter vault: "set up my vault".
+- An existing ASTORIA vault and a new release: "update my ASTORIA".
 - A preference changed: "update my me file" (me-builder).
 - Folders, templates, or workspaces changed: "refresh the vault map" (vault-builder), then "audit the vault map" (vault-janitor) when in doubt.
 - A repeatable workflow is worth keeping: "let's make a skill" (skill-builder), or "turn this paper into a skill", "turn this repository into a skill".

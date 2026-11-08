@@ -39,7 +39,7 @@ Run internally within Engineering Companion's chat. Route substantive engineerin
 
    Route combined mounting/packaging claims to Fit Review with the current saved model, delivered exports/views, source references, support/retention method, wiring geometry or reservations, required motion and installation states. Obtain missing interface evidence from CAD, wiring or mechanism owners. Receive findings for support/retention, wiring, motion and assembly/service, including incomplete functions and inapplicable topics. A narrowly scoped static review cannot silently replace the whole-assembly question. Propagate changed findings to the creator and assembly owner, then receive the affected correction independently.
 7. **Correct and receive interfaces.** Give exact discrepancies to their creator, then independently check consequential changes. Carry changed decisions to every affected active assignment and receiving owner without making the user relay them. Preserve unrelated completed work and keep one writer per mutable artifact.
-8. **Return to the companion.** Summarize results, actual worker IDs/states, changed interfaces, checks, uncertainty and next owners/actions. Return technical tradeoffs to the companion. Maintain only useful role/skill, routing choice/scope, worker/chat ID/host, goal, owned files and state in the existing MOC's AI Notes when authorized.
+8. **Return to the companion.** Summarize results, actual worker IDs/states, changed interfaces, checks, uncertainty and next owners/actions. Return technical tradeoffs to the companion. For an authorized continuity update, keep only the role and skill, routing choice and scope, worker or chat ID and host, goal, owned files and state needed to resume work. Use the location selected by the recipient or the applicable project continuity policy.
 
 ## Execution Modes
 
@@ -93,7 +93,7 @@ Generated from skill frontmatter by `skills-janitor/scripts/build_views.py`. Eac
 
 - Concrete specialist assignments and actual worker results returned to Engineering Companion.
 - Created/reused project chat IDs or internal subagent states, skill/source inputs actually used and the scoped routing choice.
-- Minimal current context in the existing MOC when authorized; no second hub or separate status registry.
+- When a continuity update is authorized, save only the context needed to resume work in the location selected by the recipient or the applicable project continuity policy. Keep the existing project owner and avoid a second hub or separate status registry.
 
 ## Boundaries
 

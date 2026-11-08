@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """build_views.py: regenerate the Skill Map registry and configured coordinator catalogs
-from skill frontmatter. Writes only between the marker comments.
+from skill frontmatter. Also mirrors version.json in the Skill Map properties.
 
 Usage: python3 build_views.py [--vault PATH] [--check]
 --check prints what would change and exits 1 if any view is stale.
 """
+import json
 import os, re, sys
 from urllib.parse import quote
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -234,6 +235,32 @@ def render_links(text, document, vault, vocab):
     return rendered
 
 
+def with_astoria_version(text, vault):
+    """Mirror the version record in the map, preserving other frontmatter."""
+    path = os.path.join(vault, "00 ASTORIA", "version.json")
+    if not os.path.lexists(path):
+        return text
+    if os.path.islink(path):
+        raise ValueError("version.json must be a regular file in the vault")
+    with open(path, encoding="utf-8") as record:
+        data = json.load(record)
+    version = data.get("version") if isinstance(data, dict) else None
+    if not isinstance(version, str) or not re.fullmatch(r"(?:0|[1-9][0-9]*)(?:\.(?:0|[1-9][0-9]*)){2}", version):
+        raise ValueError("version.json must provide a version in major.minor.patch form")
+    frontmatter = re.match(r"\A---\n(.*?)^---(?=\n|$)", text, re.M | re.S)
+    if frontmatter is None:
+        raise ValueError("the Skill Map is missing its YAML properties")
+    properties = frontmatter.group(1)
+    key = re.compile(r"^astoria_version:[^\n]*\n", re.M)
+    if len(key.findall(properties)) > 1:
+        raise ValueError("the Skill Map has more than one astoria_version property")
+    line = "astoria_version: %s\n" % json.dumps(version)
+    updated, count = key.subn(line, properties)
+    if not count:
+        updated += line
+    return text[:frontmatter.start(1)] + updated + text[frontmatter.end(1):]
+
+
 def main(argv):
     vault = sk.vault_from_argv(argv)
     check = "--check" in argv
@@ -260,6 +287,10 @@ def main(argv):
         new = sk.replace_between(new, "systems", navigation)
         if new is None:
             print("Skill Map has invalid systems markers"); return 2
+    try:
+        new = with_astoria_version(new, vault)
+    except (OSError, ValueError) as error:
+        print("Invalid ASTORIA version: %s" % error); return 2
     if new != text:
         stale.append(sk.MAP_REL)
         if not check:

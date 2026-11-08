@@ -68,7 +68,7 @@ capture completed work under the chosen capture preference.
 
 - Discover the selected helpers through the generated Skill Map Capture and Writing Helpers group. Use their canonical skills, without copied folders or a second helper catalog.
 - Preserve Write Protocol's existing overview selection, detailed review and publication rules. A completed worker result alone does not authorize a protocol insertion.
-- Use the selected capture helper for the requested log; useful authorized team IDs/state belong only in the existing MOC AI Notes. Do not create a team registry, new hub or automatic progress file.
+- Use the selected capture helper for the requested log. Record useful team IDs and state only when authorized, at the verified location selected for the task or established by the applicable project continuity policy. Do not create a team registry, new hub or automatic progress file.
 
 ## Methods writing across domain owners
 

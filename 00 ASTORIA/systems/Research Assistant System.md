@@ -67,8 +67,10 @@ Fixed prefixes and project-wide numbering live only in
 `00 ASTORIA/skills/research-coordinator/references/team_naming.md`. The generated
 Capture and Writing Helpers group in [Skill Map](../Skill%20Map.md) is the shared helper catalog:
 curated protocols, progress capture and other support remain distinct workflows
-with one canonical skill each. Existing MOC AI Notes hold only useful authorized
-team/technical continuity; no separate team tracker or copied catalog is needed.
+with one canonical skill each. Save useful team and technical continuity only when authorized, at the verified
+location selected for the task or established by the applicable project
+continuity policy. Keep the existing owner and avoid a separate team tracker
+or copied catalog.
 
 [PhD and Career System](PhD%20and%20Career%20System.md) owns career and mentoring support through PhD
 Companion and its own internal Coordinator, and can request bounded research support.

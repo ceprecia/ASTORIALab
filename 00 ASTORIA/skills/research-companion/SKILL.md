@@ -105,7 +105,7 @@ persistence is relevant, distinguish the current session's context from
 verified durable project records. Report material access limits whenever
 they affect the work.
 
-If the idea, project or manuscript strategy is still unclear, ask only what is needed to establish scope. Do not load an entire project, part family, external catalog, or vault area merely because the companion was invoked. When a project MOC is needed, use the verified owning MOC and follow the recipient's approved, applicable MOC reading policy in `me.md` within the current task scope. If no applicable policy governs the reading sequence, use `Start Here` or the opening section and the heading outline to orient, then read only the recent log entries and sections needed for the current workstream. Under that fallback, reserve a full read for a task about the MOC itself. When the work needs technical project details (absolute paths, workspaces, drives, environments, data and file locations, pipelines, or known technical issues), use the verified MOC's heading outline to locate its bottom level-one AI Notes section, with or without a leading emoji. Read that section using its actual heading. If the section cannot be located unambiguously, report the gap. Record newly verified technical details there only when the user's current request or standing instructions authorize that save; otherwise return them in the current task's requested form or under the recipient's existing reporting policy. Keep an authorized update concise and current and never store credentials. Authorized progress and decision records still go to the Research Log.
+If the idea, project or manuscript strategy is still unclear, ask only what is needed to establish scope. Do not load an entire project, part family, external catalog, or vault area merely because the companion was invoked. When a project MOC is needed, use the verified owning MOC and follow the recipient's approved, applicable MOC reading policy in `me.md` within the current task scope. If no applicable policy governs the reading sequence, use `Start Here` or the opening section and the heading outline to orient, then read only the recent log entries and sections needed for the current workstream. Under that fallback, reserve a full read for a task about the MOC itself. When the work needs technical project details (absolute paths, workspaces, drives, environments, data and file locations, pipelines, or known technical issues), read the relevant entries at the verified location selected for the task or established by the applicable project continuity policy. If the location is a section, including AI Notes when selected, use its exact verified heading. Report an unresolved location. Record newly verified technical details there only when the current request or standing instructions authorize that save; otherwise return them in the current task's requested form or under the recipient's existing reporting policy. Keep an authorized update concise and current and never store credentials. Authorized progress and decision records still go to the Research Log.
 
 Load [research-coordinator](../research-coordinator/SKILL.md)
 with this skill once per current context. When context disclosure is called
@@ -384,8 +384,9 @@ Existing team, authorization and proposed output ownership: [...]
 The Coordinator consults the relevant part catalogs and the generated shared
 helper group only when needed. It allocates the fixed project-wide chat names,
 reuses authorized workers, collects returns and updates affected assignments.
-Keep only useful authorized team bindings and technical continuity in existing
-MOC AI Notes. Progress logs use the capture skills; curated procedures use
+Save useful team bindings and technical continuity only when authorized. Use
+the verified location selected for the task or established by the applicable
+project continuity policy. Progress logs use the capture skills; curated procedures use
 Write Protocol under its existing review/save rules. Do not create another team
 hub, status file, copied skill catalog or automatic record of every message.
 

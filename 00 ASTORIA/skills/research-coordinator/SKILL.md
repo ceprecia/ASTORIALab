@@ -38,7 +38,7 @@ Load only what the current assignment needs:
 
 1. Applicable `AGENTS.md`, `me` (created during setup), current user request and task-relevant live artifacts.
 2. `./references/research_contract.md` for human control, scientific standards and the exact five-part table.
-3. Relevant context from the verified project MOC when history, decisions or a return point matter. Follow the recipient's approved, applicable MOC reading policy in `me.md` within the current task scope. If no applicable policy governs the reading sequence, use `Start Here` or the opening section and the heading outline to orient, then read only the recent log entries and sections needed for the task. Under that fallback, reserve a full read for a task about the MOC itself. Consult at most the newest relevant project-tagged capture if continuity still lacks needed evidence.
+3. Relevant context from the verified project MOC when history, decisions or a return point matter. Follow the recipient's approved, applicable MOC reading policy in `me.md` within the current task scope. If no applicable policy governs the reading sequence, use `Start Here` or the opening section and the heading outline to orient, then read only the recent log entries and sections needed for the task. Under that fallback, reserve a full read for a task about the MOC itself. If continuity still lacks needed evidence, consult relevant captures or records at the verified location selected for the task or established by the applicable project continuity policy, within the approved reading scope.
 4. Exact installed skill metadata and the needed part coordinator catalog when discovery is required. A named matching skill can be verified directly. Consult several part catalogs only when separate requested lanes need them, never to load whole parts or families.
 5. `./references/team_naming.md` before proposing or assigning any team chat title or number. It is the only prefix/ID registry; never copy its table elsewhere.
 6. For shared support discovery, only the generated [Capture and Writing Helpers](../../Skill%20Map.md#-capture-and-writing-helpers) group, then the exact selected helper. Use the existing catalog across systems, not copied helper folders or a second capability list.
@@ -79,7 +79,7 @@ Explicit first-principles exploration, mathematical deconstruction, structural m
 
 ### 3. Bind, reuse and apply one scoped team choice
 
-Dedicated chats in the project containing the current companion chat are the recommended research-team mode. Verify that host project from current context and tool results; source-file locations and similar titles never choose the destination. Inspect relevant live and retained archived team inventory and any useful authorized MOC mapping. Reuse suitable authorized workers, preserve established identities and allocate new names centrally using `./references/team_naming.md`.
+Dedicated chats in the project containing the current companion chat are the recommended research-team mode. Verify that host project from current context and tool results; source-file locations and similar titles never choose the destination. Inspect relevant live and retained archived team inventory and any useful authorized mapping at the verified location selected for the task or established by the applicable project continuity policy. Reuse suitable authorized workers, preserve established identities and allocate new names centrally using `./references/team_naming.md`.
 
 If the user already requested the scoped team launch, or approved the proposed current-project team, carry that authorization through creation, kickoff and follow-ups for that scope. Otherwise have the companion ask one concise choice naming the concrete specialists, current project and specific goal, with dedicated chats recommended and internal skill-loaded subagents as the alternative. Wait for that answer before creating project chats. Do not infer authorization from silence, an unsubmitted option, quoted examples or a request to edit these instructions.
 
@@ -103,7 +103,7 @@ Collect the actual deliverable, skill/guides and sources used, checks, limitatio
 
 Return results, evidence, limitations, actual worker states and the workstream return points to Research Companion for synthesis. Do not start an unrequested next part, scientific operation, save or external action. Existing authorization continues for unfinished requested work and corrections within scope.
 
-Keep useful team role/skill, actual chat/host IDs, scope, owned outputs and state only in the existing MOC's AI Notes when that update is authorized. No new registry, hub, event log or automatic checkpoint. Use the canonical shared helper selected for a requested support task; its own source, review and save requirements remain in force. Capture helpers own Research Logs under the user's current capture preference. Write Protocol curates established work through its existing overview, detailed review and publication rules; a team result is not automatically a protocol.
+When a team continuity update is authorized, retain only the role, skill, actual chat or host IDs, scope, owned outputs and state needed to resume. Use the verified location selected for the task or established by the applicable project continuity policy. No new registry, hub, event log or automatic checkpoint. Use the canonical shared helper selected for a requested support task; its own source, review and save requirements remain in force. Capture helpers own Research Logs under the user's current capture preference. Write Protocol curates established work through its existing overview, detailed review and publication rules; a team result is not automatically a protocol.
 
 ## Assignment and Return Format
 
@@ -138,7 +138,7 @@ For cross-system work, carry the original owner, verified current project, exact
 
 - Concrete assignments and collected results returned to the invoking companion.
 - Verified project binding, created/reused host/chat IDs or internal worker states, actual skill/source use and remaining work.
-- Only useful authorized continuity in the existing MOC AI Notes; requested capture/protocol work through its canonical helper.
+- Useful continuity updates only when authorized, at the verified location selected for the task or established by the applicable project continuity policy. Use the canonical helper for requested capture or protocol work.
 
 ## Boundaries
 

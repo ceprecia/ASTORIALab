@@ -15,7 +15,7 @@ Distinguish observations and measurements, documented claims, inferred mechanism
 
 Keep callouts in Start Here and working content in ordinary, foldable Markdown. Update navigation whenever headings change. Replace italic prompts and the resources-folder placeholder when applying. The resources placeholder represents a complete verified folder link, not a new template automation.
 
-Link working files once in their owning section. Keep resource inventories, detailed source records, full paths, environments, and regeneration details concise and current in AI Notes, always last. Keep dated progress in Research Log through the existing capture workflows. Remove this comment from populated MOCs; keep it in the reusable template.
+Link working files once in their owning section. Keep authorized resource inventories, detailed source records, full paths, environments, and regeneration details concise and current at the verified location selected for the task or established by the applicable project continuity policy. For a new MOC using this template, use AI Notes as an illustrative fallback only when continuity placement is open. If the selected layout retains AI Notes and its order is open, place it last. Route authorized dated progress through the capture skill to the selected or configured capture owner. Remove this comment from populated MOCs; keep it in the reusable template.
 -->
 
 # 🧭 Start Here
@@ -138,7 +138,7 @@ Link working files once in their owning section. Keep resource inventories, deta
 - **Next action:** *The concrete inspection, measurement, analysis, or experiment that addresses it.*
 - **Needed input:** *A particular artifact, tool, specialist contribution, or unresolved decision, when relevant.*
 
-*Keep this short and current. Record engineering decisions with their rationale beside the affected model or deliverable, and reconsider them when useful. Capture meaningful changes in the Research Log.*
+*Keep this short and current. Record engineering decisions with their rationale beside the affected model or deliverable, and reconsider them when useful. Use the capture skill for authorized records of meaningful changes at the selected or configured capture location.*
 
 # 🗓️ Research Log
 

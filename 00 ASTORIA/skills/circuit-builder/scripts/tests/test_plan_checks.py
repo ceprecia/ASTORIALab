@@ -689,20 +689,39 @@ class FigureChecks(unittest.TestCase):
         self.assertIn("No probe locations supplied", text)
 
     def test_every_header_contact_purpose_survives_step_and_back_figures(self):
-        holes = ["A" + str(n) for n in range(1, 13)]
-        contacts = [{"pin": str(n), "hole": hole, "device": "Assigned device " + str(n),
-                     "function": "independent sensor supply branch", "net": "SHARED_SUPPLY",
-                     "voltage": "3.3 V"} for n, hole in enumerate(holes, 1)]
-        part = {"name": "Supply branches", "ref": "J1", "kind": "header", "holes": holes, "contacts": contacts}
+        # A staggered two-row service header for a bench audio monitor.
+        contact_map = [
+            ("L1", "A4", "Cue mixer", "receive left input from the patch panel", "CUE_LEFT", None),
+            ("L2", "A6", "Cue mixer", "receive right input from the patch panel", "CUE_RIGHT", None),
+            ("L3", "A8", "Monitor amplifier", "carry the left monitor line output", "MON_LEFT", None),
+            ("L4", "A10", "Monitor amplifier", "carry the right monitor line output", "MON_RIGHT", None),
+            ("L5", "A12", "Loopback jack", "send the test signal to the measurement interface", "TEST_SEND", None),
+            ("L6", "A14", "Loopback jack", "receive the signal from the measurement interface", "TEST_RETURN", None),
+            ("L7", "A16", "Panel shield", "terminate the cable screen at the chassis", "CHASSIS", None),
+            ("R1", "F5", "Mute pedal", "sense the isolated switch closure", "MUTE_SWITCH", None),
+            ("R2", "F7", "Mute pedal", "provide the isolated switch return", "MUTE_RETURN", None),
+            ("R3", "F9", "Selector panel", "read the selected monitor source", "SRC_STATUS", None),
+            ("R4", "F11", "Meter board", "drive the clipping indicator", "CLIP_INDICATOR", None),
+            ("R5", "F13", "Service port", "read the service identification contact", "SERVICE_ID", None),
+            ("R6", "F15", "Service lamp", "supply switched lamp power", "LAMP_PWR", "5 V"),
+            ("R7", "F17", "Service lamp", "provide the lamp current return", "LAMP_RETURN", None),
+        ]
+        contacts = [
+            {"pin": pin, "hole": hole, "device": device, "function": function, "net": net, "voltage": voltage}
+            for pin, hole, device, function, net, voltage in contact_map
+        ]
+        part = {"name": "Audio monitor service header", "ref": "J1", "kind": "header",
+                "holes": [contact["hole"] for contact in contacts], "contacts": contacts}
         plan = {"board": "permaproto_half", "parts": [part], "wires": [], "rails": {}}
-        for draw in [draw_build.draw_steps, draw_build.draw_back]:
-            text = self.capture(draw, plan, "unused.png", check_purpose_bounds=True)
-            text = " ".join(text.split())
-            for n, hole in enumerate(holes, 1):
-                self.assertIn("J1." + str(n) + " / " + hole, text)
-                self.assertIn("Assigned device " + str(n), text)
-            self.assertIn("independent sensor supply branch", text)
-            self.assertIn("3.3 V", text)
+        for draw in (draw_build.draw_steps, draw_build.draw_back):
+            with self.subTest(figure=draw.__name__):
+                text = self.capture(draw, plan, "unused.png", check_purpose_bounds=True)
+                text = " ".join(text.split())
+                for pin, hole, device, function, net, voltage in contact_map:
+                    label = f"J1.{pin} / {hole}: {device}; {function}"
+                    if voltage is not None:
+                        label += f"; {voltage}"
+                    self.assertIn(f"{label}; {net}", text)
 
     def test_rear_solder_points_follow_shared_actions_and_keep_exact_references(self):
         shared_name = "Wire fitting in frame"

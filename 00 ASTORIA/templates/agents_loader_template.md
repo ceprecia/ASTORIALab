@@ -11,6 +11,14 @@ keyword and read them in bounded chunks. Add one entry at the top only after an
 authorized system change when logging is within the role's scope. Follow the log
 callout and the record guidance in `me.md`.
 
+For **Start ASTORIA**, ask whether the user wants first-time setup or an
+update unless they already chose. This is a working vault. If the user wants
+first-time setup, ask which fresh starter folder to use. For a request to
+check for or apply an ASTORIA release, read
+`00 ASTORIA/skills/astoria-updater/SKILL.md` completely. Identify the working
+vault and the update package separately. If the working vault is open, ask for
+the release ZIP or extracted folder, such as one in Downloads.
+
 Reading order for skills:
 
 1. Follow the appropriate session core rule in `me.md` for substantive research or

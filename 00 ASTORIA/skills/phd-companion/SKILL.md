@@ -23,7 +23,7 @@ Handle academic mentoring, professional choices and workload priorities proporti
 
 ## Inputs
 
-Read this skill and phd-coordinator completely for a lead PhD session. Follow me.md's lead/worker loading distinction. When the PhD session needs context from the chosen MOC, use that verified note and follow the recipient's approved, applicable MOC reading policy in `me.md` within the current task scope. If no applicable policy governs the reading sequence, use `Start Here` or the opening section and the heading outline to orient, then read only the recent log entries and sections needed for the task. Under that fallback, reserve a full read for a task about the MOC itself. Use AI Notes for technical or team bindings only when needed. Existing records are context; current explicit choices and applicable source evidence govern.
+Read this skill and phd-coordinator completely for a lead PhD session. Follow me.md's lead/worker loading distinction. When the PhD session needs context from the chosen MOC, use that verified note and follow the recipient's approved, applicable MOC reading policy in `me.md` within the current task scope. If no applicable policy governs the reading sequence, use `Start Here` or the opening section and the heading outline to orient, then read only the recent log entries and sections needed for the task. Under that fallback, reserve a full read for a task about the MOC itself. When technical or team bindings are needed, read the relevant entries at the verified location selected for the task or established by the applicable project continuity policy. Existing records are context; current explicit choices and applicable source evidence govern.
 
 ## Steps
 

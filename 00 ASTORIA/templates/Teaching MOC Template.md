@@ -28,8 +28,11 @@ STRUCTURE
 - Build optional navigation from the actual sections in the selected order.
   A plain linked list can follow document order and include timeline terms
   when useful. Add a shared-resources section only for actual shared material.
-- AI Notes is last and holds only useful source/context details. It is not a
-  duplicate course directory or a study-progress system.
+- When the selected layout retains AI Notes and leaves its order open, place it
+  last. Save useful source and context details only when authorized, at the
+  verified location selected for the task or established by the applicable
+  project continuity policy. Keep course-directory and study-progress records
+  with their own workflows.
 
 LINKS AND UPDATES
 - Verify each course note and AGENTS.md exists before linking it. Update affected
