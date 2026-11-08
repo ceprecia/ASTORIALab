@@ -38,19 +38,19 @@ After setup, ask a different assistant to read your me.md for vault-wide context
 
 ## Get started
 
-1. **Download:** on GitHub, choose **Code → Download ZIP**, then extract it.
+1. **Download:** [Download the ASTORIA starter vault ZIP](https://github.com/ceprecia/ASTORIALab/releases/download/v1.0.0/ASTORIA-starter-vault-v0.1.0.zip), then extract it.
 
 2. **Open** the extracted folder in Obsidian using **Open folder as vault**, or use your file manager and a Markdown editor.
 
 > [!Tip]
-> If you already have an obsidian vault you can drag and drop the ASTORIA folder and AGENTS.md file into your existing vault
+> **Using an existing Obsidian vault?** Copy the extracted `00 ASTORIA/` folder and `AGENTS.md` directly into your existing vault's root, the top-level folder you open in Obsidian. If either already exists there, keep your current files and review how to combine the setups before proceeding.
 
-2. Give your AI agent (Codex, Claude, Ollama, etc) folder access to the extracted vault
+3. Give your AI assistant access to the vault you plan to use.
 
 > [!Tip]
-> Creating a "project" for your AI agent helps maintain access to your new vault
+> Creating a project in your AI assistant can help it keep access to your vault.
 
-3. Copy this request into your AI agent:
+4. Copy this request into your AI assistant:
 
 > Read this vault’s root AGENTS.md and follow Setup My Vault in the ASTORIA System Builder. Guide me through the steps in order.
 
