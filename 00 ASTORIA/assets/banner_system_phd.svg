@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- banner_system_phd.svg | Purpose: Editable PhD and Career System banner with an original cap and career path icon. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="220" viewBox="0 0 1800 220" role="img" aria-labelledby="banner-title">
+  <title id="banner-title">PhD and Career System</title>
+  <defs>
+    <linearGradient id="navy-background" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#152d42"/>
+      <stop offset="1" stop-color="#0d1d2b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Shared banner frame and dividers. -->
+  <rect x="1" y="1" width="1798" height="218" rx="14" fill="url(#navy-background)" stroke="#36576e" stroke-width="2"/>
+  <path d="M248 48V172" fill="none" stroke="#36576e" stroke-width="2"/>
+  <path d="M288 174H1728" fill="none" stroke="#29485d" stroke-width="2"/>
+
+  <!-- 2. Original graduation cap and ascending career path. -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M46 72L122 37L198 72L122 107Z" fill="#173b4d" stroke="#f5ecd3" stroke-width="5"/>
+    <path d="M79 88V112Q122 138 165 112V88" fill="none" stroke="#f5ecd3" stroke-width="5"/>
+    <path d="M122 72L198 72V124" fill="none" stroke="#79d6d0" stroke-width="4"/>
+    <circle cx="198" cy="132" r="6" fill="#79d6d0"/>
+    <path d="M60 180H100V161H139V143H181M173 135L181 143L173 151" fill="none" stroke="#79d6d0" stroke-width="5"/>
+    <circle cx="60" cy="180" r="6" fill="#f5ecd3"/>
+  </g>
+
+  <!-- 3. Live, editable banner title. -->
+  <text x="288" y="134" fill="#f5ecd3" font-family="Arial, sans-serif" font-size="66" font-weight="700">PhD and Career System</text>
+</svg>

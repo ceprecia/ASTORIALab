@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="820" viewBox="0 0 1160 820" role="img" aria-labelledby="title description">
+  <title id="title">ASTORIA layers around you</title>
+  <desc id="description">Five concentric layers place you and me.md at the center. Your preferences and judgment guide the work. Around the center are your vault of notes, sources and evidence, then portable workflows made of skills, maps and working instructions. These inner layers stay in files you own. AI assistants form the next layer and can be changed. Plugins, connectors and automation are optional extensions at the outside. The layers describe organization, not automatic access or actions.</desc>
+  <defs><style>
+    text {font-family:Arial,Helvetica,sans-serif;fill:#16364b}
+    .heading {font-size:32px;font-weight:700}
+    .body {font-size:26px;fill:#40596b}
+    .core {fill:#ffffff;text-anchor:middle}
+    .leader-halo {fill:none;stroke:#ffffff;stroke-width:7;stroke-linejoin:round;stroke-linecap:round}
+    .leader {fill:none;stroke:#738c9d;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+    .endpoint {fill:#ffffff;stroke:#607d90;stroke-width:2}
+  </style></defs>
+  <rect width="1160" height="820" fill="#ffffff"/>
+  <!-- The three inner layers are portable files; tools sit at the edge. -->
+  <g id="layers" stroke="#ffffff" stroke-width="3">
+    <circle cx="360" cy="410" r="322" fill="#CB625A" stroke="#b7c7d2" stroke-width="1.5"/>
+    <circle cx="360" cy="410" r="261" fill="#D9A03F"/>
+    <circle cx="360" cy="410" r="200" fill="#5CB9C2"/>
+    <circle cx="360" cy="410" r="139" fill="#0F7183"/>
+    <circle cx="360" cy="410" r="78" fill="#12334D"/>
+  </g>
+  <g aria-hidden="true">
+    <path d="M418 358 L626 170 H716" class="leader-halo"/>
+    <path d="M464 382 L668 300 H716" class="leader-halo"/>
+    <path d="M528 410 L668 430 H716" class="leader-halo"/>
+    <path d="M576 493 L668 560 H716" class="leader-halo"/>
+    <path d="M574 610 L668 690 H716" class="leader-halo"/>
+    <path d="M418 358 L626 170 H716" class="leader"/><circle cx="418" cy="358" r="5" class="endpoint"/>
+    <path d="M464 382 L668 300 H716" class="leader"/><circle cx="464" cy="382" r="5" class="endpoint"/>
+    <path d="M528 410 L668 430 H716" class="leader"/><circle cx="528" cy="410" r="5" class="endpoint"/>
+    <path d="M576 493 L668 560 H716" class="leader"/><circle cx="576" cy="493" r="5" class="endpoint"/>
+    <path d="M574 610 L668 690 H716" class="leader"/><circle cx="574" cy="610" r="5" class="endpoint"/>
+  </g>
+  <text x="360" y="408" class="core" font-size="44" font-weight="700">You</text>
+  <text x="360" y="444" class="core" font-size="28">me.md</text>
+  <g id="layer-labels">
+    <text x="742" y="158" class="heading">1 · You and me.md</text>
+    <text x="742" y="197" class="body">Your preferences and judgment</text>
+    <text x="742" y="288" class="heading">2 · Your vault</text>
+    <text x="742" y="327" class="body">Notes, sources and evidence</text>
+    <text x="742" y="418" class="heading">3 · Portable workflows</text>
+    <text x="742" y="457" class="body">Skills, maps and instructions</text>
+    <text x="742" y="548" class="heading">4 · AI assistants</text>
+    <text x="742" y="587" class="body">You choose or change the tool</text>
+    <text x="742" y="678" class="heading">5 · Optional extensions</text>
+    <text x="742" y="717" class="body">Plugins, connectors, automation</text>
+  </g>
+</svg>

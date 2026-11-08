@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title description">
+<title id="title">Switch assistant tools around the same saved files</title>
+<desc id="description">The same core holds me.md, saved project context, sources, skills and maps. Layer 4 shows assistant choices as plain text labels: ChatGPT / Codex, Claude and Hermes Agent. Arrows show switching the assistant while retaining the files. Layer 5 is the optional extensions ring. Continuing work requires suitable access to saved project files; unsaved chat state is not transferred and integrations are not certified.</desc>
+<defs><style>text{font-family:Arial,Helvetica,sans-serif}</style>
+<marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11 Z" fill="#0f7183"/></marker></defs>
+<rect width="1440" height="900" fill="white"/>
+<metadata>ASTORIA native SVG diagram, composed with AI assistance. Assistant names are plain typeset labels in original muted-color boxes; no provider artwork is embedded. Updated 2026-11-02.</metadata>
+<circle cx="460" cy="440" r="326" fill="none" stroke="#f3e6cb" stroke-width="28"/>
+<circle cx="460" cy="440" r="234" fill="none" stroke="#d5ecee" stroke-width="62"/>
+<circle cx="460" cy="440" r="116" fill="#f2f8fa" stroke="#12334d" stroke-width="5"/>
+<text x="460" y="392" font-size="28" font-weight="700" text-anchor="middle" fill="#16364b">Same files</text>
+<text x="460" y="430" font-size="22" font-weight="400" text-anchor="middle" fill="#40596b">me.md + rules</text>
+<text x="460" y="465" font-size="22" font-weight="400" text-anchor="middle" fill="#40596b">project + sources</text>
+<text x="460" y="500" font-size="22" font-weight="400" text-anchor="middle" fill="#40596b">skills + maps</text>
+<path d="M558.89 227.92 A234 234 0 0 1 691.72 407.43" stroke="#0f7183" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M594.22 631.68 A234 234 0 0 1 372.34 656.96" stroke="#0f7183" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M226.89 460.39 A234 234 0 0 1 315.94 255.61" stroke="#0f7183" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="295.0" y="156" width="330" height="100" rx="24" fill="#e7f0e8" stroke="#abc4b0" stroke-width="2.5"/>
+
+
+<text x="460.0" y="203" font-size="28" font-weight="700" text-anchor="middle" fill="#16364b">ChatGPT / Codex</text>
+<text x="460.0" y="235" font-size="21" font-weight="400" text-anchor="middle" fill="#40596b">OpenAI</text>
+<rect x="540.5" y="507" width="245" height="100" rx="24" fill="#f3e5df" stroke="#d7b3a4" stroke-width="2.5"/>
+
+<text x="663.0" y="554" font-size="28" font-weight="700" text-anchor="middle" fill="#16364b">Claude</text>
+<text x="663.0" y="586" font-size="21" font-weight="400" text-anchor="middle" fill="#40596b">Anthropic</text>
+<rect x="102.0" y="507" width="310" height="100" rx="24" fill="#f3ead7" stroke="#cbb58b" stroke-width="2.5"/>
+
+<text x="257.0" y="554" font-size="28" font-weight="700" text-anchor="middle" fill="#16364b">Hermes Agent</text>
+<text x="257.0" y="586" font-size="21" font-weight="400" text-anchor="middle" fill="#40596b">Nous Research</text>
+<circle cx="921" cy="288" r="28" fill="#0f7183" stroke="none" stroke-width="2"/>
+<text x="921" y="298" font-size="28" font-weight="700" text-anchor="middle" fill="white">4</text>
+<text x="967" y="298" font-size="36" font-weight="700" text-anchor="start" fill="#16364b">AI assistants</text>
+<text x="967" y="342" font-size="26" font-weight="400" text-anchor="start" fill="#40596b">Switch tools, keep your project.</text>
+<circle cx="921" cy="486" r="28" fill="#f3e6cb" stroke="#d7c29b" stroke-width="2"/>
+<text x="921" y="496" font-size="28" font-weight="700" text-anchor="middle" fill="#16364b">5</text>
+<text x="967" y="496" font-size="36" font-weight="700" text-anchor="start" fill="#16364b">Optional extensions</text>
+<text x="967" y="540" font-size="27" font-weight="400" text-anchor="start" fill="#40596b">Tools, plugins and connectors</text>
+<text x="967" y="577" font-size="27" font-weight="400" text-anchor="start" fill="#40596b">you choose for the task.</text>
+<path d="M862 650 H1350" stroke="#cedee6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="921" y="702" font-size="28" font-weight="700" text-anchor="start" fill="#16364b">Your core stays with you.</text>
+<text x="921" y="741" font-size="26" font-weight="400" text-anchor="start" fill="#40596b">The outer layers can change.</text>
+<text x="720" y="849" font-size="27" font-weight="600" text-anchor="middle" fill="#16364b">Give another assistant the same saved files to continue.</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title description">
+<title id="title">Four ways to organize your work</title>
+<desc id="description">Four separate ring segments surround Your work. Projects holds active goals. Areas covers ongoing responsibilities. Resources holds reusable references. Archive holds inactive material.</desc>
+<metadata>Original ASTORIA draft vector composition. Blue, teal, gold and coral follow the existing five-layer overview palette. No external artwork is used.</metadata>
+<defs><style>text{font-family:Arial,Helvetica,sans-serif}</style></defs>
+<rect width="1440" height="940" fill="white"/>
+<path d="M546.31 245.51 A276 276 0 0 1 893.69 245.51 L837.05 315.45 A186 186 0 0 0 602.95 315.45 Z" fill="#12334d"/>
+<path d="M934.49 286.31 A276 276 0 0 1 934.49 633.69 L864.55 577.05 A186 186 0 0 0 864.55 342.95 Z" fill="#0f7183"/>
+<path d="M893.69 674.49 A276 276 0 0 1 546.31 674.49 L602.95 604.55 A186 186 0 0 0 837.05 604.55 Z" fill="#d9a03f"/>
+<path d="M505.51 633.69 A276 276 0 0 1 505.51 286.31 L575.45 342.95 A186 186 0 0 0 575.45 577.05 Z" fill="#cb625a"/>
+<text x="720" y="476" font-size="46" font-weight="700" text-anchor="middle" fill="#16364b">Your work</text>
+<text x="720" y="80" font-size="36" font-weight="700" text-anchor="middle" fill="#16364b">Projects</text>
+<text x="720" y="119" font-size="26" font-weight="400" text-anchor="middle" fill="#40596b">Active goals</text>
+<text x="1072" y="447" font-size="36" font-weight="700" text-anchor="start" fill="#16364b">Areas</text>
+<text x="1072" y="486" font-size="26" font-weight="400" text-anchor="start" fill="#40596b">Ongoing responsibilities</text>
+<text x="720" y="821" font-size="36" font-weight="700" text-anchor="middle" fill="#16364b">Resources</text>
+<text x="720" y="860" font-size="26" font-weight="400" text-anchor="middle" fill="#40596b">Reusable references</text>
+<text x="368" y="447" font-size="36" font-weight="700" text-anchor="end" fill="#16364b">Archive</text>
+<text x="368" y="486" font-size="26" font-weight="400" text-anchor="end" fill="#40596b">Inactive material</text>
+</svg>

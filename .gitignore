@@ -1,0 +1,4 @@
+/.obsidian/
+.DS_Store
+**/.research_api.env
+.exporter_managed

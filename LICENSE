@@ -19,3 +19,248 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+# Third-party notices
+
+ASTORIA's original material is covered by the root MIT `LICENSE`. The following notices preserve upstream copyrights and permissions for adapted capability instructions. Individual skills retain source citations. Linked software, model weights, datasets and articles remain separate resources with their own terms.
+
+The adaptations integrate source material with ASTORIA's researcher-owned context, evidence checks, routing and organization. Source names below identify the cited projects; they do not imply that their software runtimes are included.
+
+## K-Dense scientific-agent-skills
+
+Source license: [K-Dense scientific-agent-skills license](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/LICENSE.md).
+
+Affected capabilities: `aeon`, `anndata`, `arboreto`, `bids`, `biopython`, `bulk-rnaseq`, `dask`, `deeptools`, `experimental-design`, `exploratory-data-analysis`, `geniml`, `gtars`, `histolab`, `matlab`, `networkx`, `neurokit2`, `neuropixels-spikeinterface`, `pathml`, `pathway-enrichment`, `polars`, `polars-bio`, `pydeseq2`, `pydicom`, `pymc`, `pysam`, `pytorch-lightning`, `research-grant-advisor`, `scanpy`, `scientific-brainstorming`, `scikit-learn`, `scvelo`, `scvi-tools`, `statistical-analysis`, `statistical-power`, `statsmodels`, `sympy`, `tiledbvcf`, `torch-geometric`, `transformers`, `umap-learn`, `zarr-python`.
+
+```text
+MIT License
+
+Copyright (c) 2025 K-Dense Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## NeuroClaw / NeuroDiscovery
+
+Source license: [NeuroClaw / NeuroDiscovery license](https://github.com/CUHK-AIM-Group/NeuroDiscovery/blob/main/LICENSE).
+
+Affected capabilities: `abcd-skill`, `abide-skill`, `adhd200-skill`, `adni-skill`, `aibl-skill`, `aomic-skill`, `asl-coordinator`, `bids-organizer`, `bnt`, `bold5000-skill`, `camcan-skill`, `cobre-skill`, `conn-tool`, `dcm2nii`, `dictlearning`, `dipy-tool`, `dmt-har-med-skill`, `dwi-coordinator`, `eeg-coordinator`, `experiment-controller`, `fmri-coordinator`, `fmriprep`, `freesurfer-tool`, `fsl-tool`, `glm`, `harmonization-tool`, `hbn-skill`, `hcpa-skill`, `hcpd-skill`, `hcpep-skill`, `hcppipeline-tool`, `hcpya-skill`, `hierarchical`, `ica`, `ixi-skill`, `kmeans`, `meg-coordinator`, `method-design`, `mnd-skill`, `mne-eeg-tool`, `mschallenge-skill`, `neurostorm`, `nibabel-skill`, `nifd-skill`, `nilearn-tool`, `nsd-skill`, `oasis-skill`, `pet-coordinator`, `pnc-skill`, `ppmi-skill`, `qsiprep-tool`, `rest-mneta-mdd-skill`, `run-models`, `seed-iv-skill`, `seed-vig-skill`, `smri-coordinator`, `spacenet`, `svm`, `tcp-skill`, `ucla-cnp-skill`, `wmh-segmentation`.
+
+The capability citations retain the historical project name NeuroClaw; the retrieved repository identifies it as NeuroDiscovery. The upstream URL was unavailable during independent rechecking; the preserved MIT notice follows.
+
+```text
+MIT License
+
+Copyright (c) 2026 zxcvb6958
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## Awesome Cognitive and Neuroscience Skills
+
+Source license: [Awesome Cognitive and Neuroscience Skills license](https://github.com/NeuroAIHub/awesome_cognitive_and_neuroscience_skills/blob/master/LICENSE).
+
+Affected capabilities: `alternative-uses-task-designer`, `bayesian-cognitive-model-builder`, `brain-connectivity-modeler`, `calcium-imaging-analysis-guide`, `cognitive-paradigm-design`, `cogsci-power-analysis`, `cogsci-statistics`, `deeplabcut`, `divergent-thinking-scoring`, `drift-diffusion-model`, `eeg-analysis-guide`, `eeg-paradigm-designer`, `eeg-preprocessing-pipeline-guide`, `erp-analysis`, `evidence-accumulation-selector`, `fmri-glm-analysis-guide`, `fmri-preprocessing-pipeline-guide`, `fmri-task-design-guide`, `fmriprep`, `infant-looking-time-designer`, `lesion-symptom-mapping-guide`, `mne-python-guide`, `netneurotools-guide`, `neural-decoding-analysis`, `neural-population-analysis-guide`, `neuroimaging-power-guide`, `neuroimaging-sample-size-calculator`, `neuropixels-spikeinterface`, `neuropsych-battery-selector`, `paper-to-skill`, `reading-time-analysis`, `repo-to-skill`, `self-paced-reading-designer`, `sentence-stimulus-norming`, `signal-detection-analysis`, `tom-task-selector`, `visual-search-array-generator`.
+
+```text
+MIT License
+
+Copyright (c) 2026 Awesome Cognitive Science Skills Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## Guided Learning Skill
+
+Source license: [Guided Learning Skill license](https://github.com/WSE-research/guided-learning-skill/blob/main/LICENSE).
+
+Affected capabilities: `study-planner`.
+
+```text
+MIT License
+
+Copyright (c) 2026 WSE Research Group, HTWK Leipzig
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## Anything to Course
+
+Source license: [Anything to Course license](https://github.com/lowwwbank/anything-to-course/blob/main/LICENSE).
+
+Affected capabilities: `study-enricher`, `study-planner`.
+
+```text
+MIT License
+
+Copyright (c) 2026 lowwwbank
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## Mindmap Skill
+
+Source license: [Mindmap Skill license](https://github.com/0x-man/mindmap-skill/blob/main/LICENSE).
+
+Affected capabilities: `mindmap`.
+
+```text
+MIT License
+
+Copyright (c) 2026 0x-man
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## Researcher Pack: paper-read
+
+Source license: [Researcher Pack: paper-read license](https://github.com/andrehuang/researcher-pack/blob/main/LICENSE).
+
+Affected capabilities: `research-summarizer`.
+
+```text
+MIT License
+
+Copyright (c) 2026 Haiwen Huang
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+```
+
+## Adapted fMRI quality-control paper
+
+Copyright © 2023 Provins, MacNicol, Seeley, Hagmann and Esteban.
+
+Provins, C., MacNicol, E., Seeley, S. H., Hagmann, P., & Esteban, O. (2023). Quality control in functional MRI studies with MRIQC and fMRIPrep. *Frontiers in Neuroimaging, 1*, 1073734. [Original publication](https://doi.org/10.3389/fnimg.2022.1073734). Licensed under [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/).
+
+`review-fmriprep-qc` adapts this work into a source-bounded QC-review workflow. Changes include ASTORIA routing, explicit researcher decisions, evidence/limitation fields and participant-specific execution checks. Preserve this credit, source and license link when redistributing that adaptation.
+
+## MIT Communication Lab writing adaptations
+
+- `write-introduction` adapts MIT NSE Communication Lab's [Journal Article: Introduction](https://mitcommlab.mit.edu/nse/commkit/journal-article-introduction/). Source contributors: Xinyao “Anna” Liang, Steve Jepeal and Marina Dang.
+- `write-discussion` adapts Broad Research Communication Lab's [Journal Article: Discussion](https://mitcommlab.mit.edu/broad/commkit/journal-article-discussion/), MIT Communication Lab. The page names Suzanne Jacobs and states that its content was adapted from an article originally created by the MIT Biological Engineering Communication Lab.
+
+Both sources identify their CommKit content as licensed under [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/). Preserve attribution, source and license links, identify adaptations, and retain the noncommercial condition for the sourced material. The root MIT license covers ASTORIA's original material; it does not override these source-specific terms.
+
+ASTORIA turns the source guidance into bounded Introduction and Discussion writing skills, adding user-owned argument/status, source verification, optional CERL/MEAL review when selected, separate review roles and cross-system handoffs. The capabilities retain their individual source citations. The source authors and institutions do not endorse ASTORIA through this adaptation.
+
+## Artwork and other sources
+
+The main banner and isometric system icons were generated with an image-generation tool. ASTORIA supplies the editable architecture/research diagrams and system-banner compositions. Method, documentation and writing references remain cited in the relevant capabilities and templates; their inclusion as references does not transfer ownership of the external works.
+
+The README diagrams (`agent_team`, `para_project`, `interchangeable_agents` and `system_toolkit`) are native SVG compositions with paired PNG renderings. The toolkit composition embeds eight existing generated system icons without changing their bytes; its graduation cap and ring shapes are native SVG artwork. The interchangeability illustration uses plain assistant names in original text cards; no provider logo artwork is bundled.
+
+## Assistant names
+
+OpenAI, Claude and Hermes Agent are used as identifying names in ASTORIA's original text cards. Names belong to their respective owners. No provider logo artwork is included, and no provider endorsement is implied.

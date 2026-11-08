@@ -1,0 +1,16 @@
+{
+  "name": "rea-local-build",
+  "version": "6.5.0-local.1",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@babel/parser": "8.0.4",
+    "@babel/types": "8.0.4",
+    "@jridgewell/trace-mapping": "0.3.31",
+    "canonicalize": "3.0.0",
+    "parse5": "8.0.1",
+    "semver": "7.8.5",
+    "zod": "4.4.3",
+    "esbuild": "0.25.12"
+  }
+}
