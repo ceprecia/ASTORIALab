@@ -23,23 +23,20 @@ This system helps you set up the vault, write your working instructions, and mai
 
 Builders create or refresh the files they own. Janitors check the matching files for drift. Setup brings those steps together in one conversation.
 
-## Start ASTORIA
+## Set up my vault
 
-Open the extracted starter folder in your assistant and ask it to read
-`AGENTS.md`. Choose **first-time setup** or **update an existing vault**.
-For first-time setup, use Setup My Vault in the folder you have chosen to
-work in. It shows a short PARA example fitted to your work before you
-choose the structure.
+Open the new download in your assistant and say **"Set up my vault."**
+You can use the same command from a working vault that already has this
+setup flow. Choose **first-time setup** or **update an existing vault**
+when asked. For first-time setup, the assistant shows a short PARA example
+before you choose your folder structure.
 
-For an update, use [ASTORIA Updater](../skills/astoria-updater/SKILL.md).
+If you choose to update, Setup My Vault hands off to
+[ASTORIA Updater](../skills/astoria-updater/SKILL.md) in the same chat.
 
-- **Opened the new download?** Leave it in Downloads if you like. Tell the
-  assistant which existing vault you want to update. Choose the folder in
-  the assistant or provide its name and folder path.
-- **Opened your working vault?** Point the assistant to the new ZIP or
-  extracted folder. It can be in Downloads. If your vault predates the
-  updater, ask the assistant to read
-  `00 ASTORIA/skills/astoria-updater/SKILL.md` from the extracted release.
+- **Opened the new download?** Tell the assistant which working vault to update.
+- **Opened your working vault?** Point the assistant to the new ZIP or extracted
+  folder. You can leave the download in Downloads.
 
 The assistant identifies the version in `00 ASTORIA/version.json` when
 present and shows both folders before previewing changes. The downloaded
@@ -84,14 +81,13 @@ Helpers:
 - [paper-to-skill](../skills/paper-to-skill/SKILL.md) and [repo-to-skill](../skills/repo-to-skill/SKILL.md) build an approved evidence pack from a paper or a pinned repository state and hand it to skill-builder.
 - [writing-style-builder](../skills/writing-style-builder/SKILL.md) reads supplied samples, creates or updates a registered writing-style profile directly, and tests it on sample drafts before reporting.
 - [skill-mount](../skills/skill-mount/SKILL.md) is an optional convenience for native discovery, keeping one copy in `00 ASTORIA/skills/`: relative symlinks in `.agents/skills/` (Codex) and `.claude/skills/` (Claude Code) for platforms that scan a folder, or pointer stubs for a registry platform. It runs only when requested and is not required for skill-file access, vault completion, or exporting a usable starter.
-- [setup-my-vault](../skills/setup-my-vault/SKILL.md) runs once per vault and calls the builders above.
+- [setup-my-vault](../skills/setup-my-vault/SKILL.md) calls the builders for first-time setup and hands off updates to ASTORIA Updater.
 
 ---
 
 When to use:
 
-- A fresh copy of the starter vault: "set up my vault".
-- An existing ASTORIA vault and a new release: "update my ASTORIA".
+- A fresh copy of the starter vault or a release to apply to an existing ASTORIA vault: "set up my vault".
 - A preference changed: "update my me file" (me-builder).
 - Folders, templates, or workspaces changed: "refresh the vault map" (vault-builder), then "audit the vault map" (vault-janitor) when in doubt.
 - A repeatable workflow is worth keeping: "let's make a skill" (skill-builder), or "turn this paper into a skill", "turn this repository into a skill".
@@ -111,7 +107,7 @@ The public package bundles selected skills, systems, templates and current share
 
 Good examples:
 
-- *"Set up my vault."* setup-my-vault verifies access, asks four short rounds of option questions, reads them back once, writes `me.md`, greets the user from the file, asks about structure and toolkit, reads back once more, builds, and closes with "what do you want to work on first?".
+- *"Set up my vault."* Choose first-time setup to go through the interview and build, or choose update to preview changes to your working vault.
 - *"Update my me.md with this preference."* me-builder reads the file, applies the smallest corresponding change, verifies it, and reports the change in the requested form or under the recipient's existing reporting policy.
 - *"Refresh the vault map, I moved the course files."* vault-builder rescans the folders, regenerates the five-section layout reference from the vocabulary and folder tree, and reports what changed.
 - *"Let's make a skill."* skill-builder asks what the skill does, what to call it, and where it fits, creates the folder, and regenerates the views.

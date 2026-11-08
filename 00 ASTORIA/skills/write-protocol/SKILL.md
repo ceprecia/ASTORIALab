@@ -11,7 +11,7 @@ metadata:
   system: Capture and Writing Helpers
   dependencies: ""
   created: "2026-10-27"
-  updated: "2026-11-01"
+  updated: "2026-11-08"
 ---
 
 # Write Protocol
@@ -39,7 +39,7 @@ Turn established work into a curated protocol the user can understand and use wi
 1. Follow `me.md` and applicable project instructions for context, writing conventions and placement.
 2. Read the scoped source material and requested MOC sections. Identify established steps, important explanations, reusable decisions and unfinished possibilities. Do not turn a planned or merely started operation into a demonstrated success.
 3. Compare the existing text with what the user wants to preserve. Distinguish a bounded insertion from a replacement or a wider protocol update.
-4. Prepare a task-oriented candidate outline. Use only the sections the subject needs; there is no mandatory protocol template. Keep dated session history and internal AI working material separate from the proposed human-facing protocol.
+4. Prepare a task-oriented candidate outline. For a pipeline, use the overview and numbered stages described below. For other protocols, use only the sections the task needs. Keep dated session history and internal AI working material separate from the proposed human-facing protocol.
 
 ### 2. Gate 1: Select the overview items
 
@@ -55,7 +55,7 @@ Present one consolidated detailed review for the selected content. For each affe
 - **Destination:** the exact MOC and heading hierarchy.
 - **Operation:** add, replace or merge, identifying the existing text that would change.
 - **Detail:** the proposed depth, explanations, choices and examples, with a brief recommendation where a choice remains open.
-- **Optional elements:** whether commands, setup instructions, diagrams, tables, screenshots or references belong in that section. Carry forward the user's existing choices.
+- **Optional elements:** whether commands, setup instructions, additional diagrams, tables, screenshots or references belong in that section. Include the required overview diagram when starting a new pipeline. Carry forward the user's existing choices.
 - **Proposed text:** the actual wording and any proposed diagrams or other selected elements that would be saved, grouped under the destination headings. An outline or promise of later writing is insufficient.
 
 Commands and setup instructions are optional user choices. Omit operator commands from the human-facing protocol unless the user selects them; do not automatically transfer AI Notes into it. A protocol can be complete at the user's chosen scope without command blocks.
@@ -79,7 +79,13 @@ Resolve concerns within this review phase. When the user requests a change, revi
 
 ## Protocol writing and print conventions
 
-Use these conventions for the proposed protocol body. They do not change the two review gates or make any optional element mandatory.
+Use these conventions for the proposed protocol body. They do not change the two review gates.
+
+### Format a pipeline protocol
+
+- Follow the nearest comparable pipeline in the owning MOC for heading depth and stage conventions. Place an `Overview` heading first, followed by numbered headings such as `Stage 1: Prepare inputs` and `Stage 2: Run the analysis` in workflow order. Retain established numbering when revising a pipeline.
+- In the overview, state the purpose, inputs, outputs, and current readiness. Every new pipeline must include at least one Mermaid diagram in its overview before the first stage. Show the main sequence and handoffs, and match the diagram's stage labels to the headings.
+- In each stage, give the actions and expected result. Place checks and review decisions within the stage they belong to unless the workflow treats review as a separate stage. Use the workflow order for stage numbers, even when script folders use a different numbering scheme.
 
 ### Build a readable task section
 
@@ -97,7 +103,7 @@ Use these conventions for the proposed protocol body. They do not change the two
 
 - Use semantic Markdown headings, short paragraphs, ordinary lists and restrained emphasis. Use bold for an important UI label or a brief local note, and inline code for filenames, paths, literal input or other technical strings. Do not reproduce the source documents' font changes, colored commands, empty headings or inconsistent numbering.
 - When commands are selected, introduce what the command accomplishes, put concise syntax in a fenced block and explain its expected result. Commands support the procedure; they do not replace the surrounding instructions. When commands are excluded, explain the user interaction without smuggling command lines into prose.
-- When visuals are selected, place the diagram or image beside the step it supports and add a brief description of what the reader should notice. Explain the essential action/result in text so the instruction does not depend on an uncaptioned screenshot. Preserve retained Mermaid diagrams and keep labels understandable without color.
+- Place selected visuals beside the steps they support. Keep the required pipeline diagram in the overview. Explain the essential action or result in text so the instruction does not depend on a rendered diagram. Preserve retained Mermaid diagrams and keep labels understandable without color.
 - Use tables for reference comparisons, mappings or settings with a genuine parallel structure, not as containers for long procedures. Keep columns and cell text narrow enough for a printed section.
 - Make the selected subsection understandable on its own: retain a meaningful heading, the necessary starting condition, concrete actions and a recognizable result. Replace dangling "as before," "above," "below" or "see AI Notes" references with the minimal needed context or a specifically named dependency. Do not duplicate the whole MOC to accomplish this.
 - Keep essential meaning in the text, not in hover text, collapsed callouts, color or links alone. A link can provide supplementary detail; the chosen printed section should still communicate its selected procedure.
@@ -174,6 +180,7 @@ Click **Preview**. You should see 12 rows. If the preview shows 12 rows, click *
 ## Checks
 
 - The current owner and exact target headings are established; the proposed changes fit those sections.
+- Each pipeline starts with an overview and numbered stages. For a new pipeline, verify that the overview contains a Mermaid diagram and that its stage labels match the headings.
 - Gate 1 selected the overview; Gate 2 showed actual text, exact placement, change operations and optional content choices.
 - The writing is useful without reconstructing the conversation and reflects the user's chosen depth. It uses task headings, brief context, direct actions and nearby results/examples, without becoming a script catalog or session log.
 - The selected subsection remains intelligible when printed alone; review labels, temporary status and unselected commands do not enter the protocol body. Selected tables, code and visuals fit the intended reading width. Inspect an actual rendered print preview when the task includes print-layout verification, and otherwise state the validation limit.

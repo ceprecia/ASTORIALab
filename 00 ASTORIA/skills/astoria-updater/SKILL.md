@@ -19,7 +19,7 @@ Preview and apply a release to the vault the user already works in.
 
 ## Purpose
 
-Own the update branch of Start ASTORIA. Use Setup My Vault for first-time setup.
+Own the update branch of Setup My Vault.
 Update the ASTORIA files in an existing vault and preserve the user's work.
 
 ## Inputs

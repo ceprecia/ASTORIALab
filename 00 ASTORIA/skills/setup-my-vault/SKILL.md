@@ -1,7 +1,8 @@
 ---
 name: setup-my-vault
 description: >-
-  One-time guided setup of a fresh ASTORIA vault. Owns the whole conversation:
+  Starts first-time setup or routes an existing ASTORIA vault to the updater.
+  For first-time setup, owns the whole conversation:
   a short orientation, the researcher interview as option questions, one
   read-back, the first me.md through me-builder, structure and toolkit choices
   with a second read-back, then one build run that creates the root folders,
@@ -16,20 +17,28 @@ description: >-
 metadata:
   level: skill
   system: ASTORIA System Builder
-  dependencies: me-builder, vault-builder, skills-janitor, vault-janitor, bridge-maker
+  dependencies: me-builder, vault-builder, skills-janitor, vault-janitor, bridge-maker, astoria-updater
   created: "2026-09-24"
-  updated: "2026-10-31"
+  updated: "2026-11-08"
 ---
 
 # Setup My Vault
 
-A new user opens the starter vault in an AI tool and says "set up my vault". This skill runs the whole setup in one conversation and then steps aside. It talks to the user; the builders and janitors it calls never do.
+**"Set up my vault"** is the entry point in either the new download or the
+working vault. Unless the user already chose, ask first: **Are you setting up
+ASTORIA for the first time or updating a vault you already use?**
 
-When called by **Start ASTORIA**, use the user's first-time setup choice and
-the confirmed folder. For an update request, hand off to
-`00 ASTORIA/skills/astoria-updater/SKILL.md` before the interview or any writes.
-If the chosen folder already has a completed ASTORIA setup, confirm whether
-The user wants an update there or first-time setup in a different folder.
+- **First-time setup:** Continue below in the confirmed setup folder. If the
+  current vault is already set up, ask which fresh folder to use. When setting
+  up in another Obsidian vault, verify that it has the starter's `00 ASTORIA/`
+  and review any existing root `AGENTS.md` before replacing it.
+- **Update an existing vault:** Read `00 ASTORIA/skills/astoria-updater/SKILL.md`
+  from the open folder and follow it before any setup interview or writes.
+  It locates the other folder and previews the update for approval.
+
+For "continue my setup", resume below without asking the entry question again.
+This skill talks to the user during setup; the builders and janitors it calls
+never do.
 
 ## State
 
