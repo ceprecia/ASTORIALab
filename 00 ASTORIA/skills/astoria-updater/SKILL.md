@@ -1,16 +1,16 @@
 ---
 name: astoria-updater
 description: >-
-  Updates an existing ASTORIA vault from a separate starter release. Identifies
-  the two folders, previews supported changes, and applies the approved changes
-  while keeping local work and settings. Triggers: update my astoria, upgrade my
-  astoria vault.
+  Updates an existing ASTORIA vault and follows up with two janitor audits and
+  an update recheck. Identifies both folders, previews changes, and applies
+  approved updates and audit repairs while keeping local work and settings.
+  Triggers: update my astoria, upgrade my astoria vault.
 metadata:
   level: skill
   system: ASTORIA System Builder
   dependencies: skills-janitor
   created: "2026-11-08"
-  updated: "2026-11-08"
+  updated: "2026-11-13"
 ---
 
 # ASTORIA Updater
@@ -21,6 +21,8 @@ Preview and apply a release to the vault the user already works in.
 
 Own the update branch of Setup My Vault.
 Update the ASTORIA files in an existing vault and preserve the user's work.
+Complete two audit passes in the same chat, with approval of proposed repairs
+after each audit. The audits start automatically after the update.
 
 ## Inputs
 
@@ -32,6 +34,8 @@ Update the ASTORIA files in an existing vault and preserve the user's work.
   original download or a verified official release snapshot.
   ASTORIA release v1.0.0 was tagged at `e68ddeb` even though its ZIP name
   contains `v0.1.0`. Treat an unidentified installation as unknown.
+- Skills Janitor remains a required update dependency. Missing required support
+  is an update prerequisite finding; removed optional audit skills are audit gaps.
 
 ## Steps
 
@@ -55,7 +59,12 @@ Update the ASTORIA files in an existing vault and preserve the user's work.
    and `lint.py` helpers in scratch with the assistant's normal permissions.
    If their origin or bytes cannot be verified, give a read-only comparison
    without running them. Verify the comparison release's provenance too.
-   With Python 3.9 or later and PyYAML, run `scripts/update_astoria.py` with
+   If this chat began with the working vault's updater, load the verified
+   release's `00 ASTORIA/skills/astoria-updater/SKILL.md` completely and
+   continue under those instructions, including their post-update checks.
+   Keep the confirmed folders, original comparison release and prior decisions.
+   With Python 3.9 or later and PyYAML, run the verified release's
+   `scripts/update_astoria.py` with
    `--source RELEASE --target VAULT --verified-release`. Use that flag only
    after verifying the release. Add `--baseline OLD_RELEASE` when a matching
    official baseline is available.
@@ -72,6 +81,46 @@ Update the ASTORIA files in an existing vault and preserve the user's work.
    Use the same assistant chat from either starting folder. If the assistant
    lacks the runtime or write access, give a read-only comparison and say what
    is needed to complete apply.
+5. **Janitor audit, pass 1.** Load the complete installed instructions for
+   [Skills Janitor](../skills-janitor/SKILL.md),
+   [Vault Janitor](../vault-janitor/SKILL.md), and
+   [Folder Janitor](../folder-janitor/SKILL.md). Invoke all three in audit-only
+   mode on the working vault, using its instructions, chosen structure, read
+   exclusions and holds. Audit skills and generated views, vault/layout and
+   instruction consistency, links and active paths, and Project/Area structure.
+   Limit content reading to what those checks need. Reuse Folder Janitor's
+   result if Vault Janitor already invoked it for the same scope in this pass.
+   If an optional janitor was deliberately removed or cannot run, report that gap and
+   continue the available checks without reinstalling it.
+
+   Use `lint.py`, `build_views.py --check`, `build_layout.py --check` and the
+   supported link audit with the verified target and exclusions. Run Python
+   audit commands with `-B` to avoid creating bytecode caches in the vault. Use reading
+   for checks without a suitable script. Audit mode leaves the working vault
+   unchanged, including its log. Do not rebuild views/layout, move files or
+   repair instructions during the audit. The request to update does not
+   authorize the newly discovered janitor repairs.
+6. **Approve and apply audit repairs.** Combine the findings from all three
+   janitors into one concrete proposal with affected paths, exact edits or
+   moves, and any uncertainty. Ask **"Can I make these changes?"** before
+   implementing it. Apply only the selected repairs through their existing
+   owners and verify those changes. If there are no repairs, continue without
+   asking. Keep declined findings visible and proceed with the remaining checks.
+7. **Recheck the update.** Run the updater preview again using the same
+   verified source, working vault and original comparison release from the
+   first pass, including when the installed version now equals the source
+   version. Re-read current files and obtain a new plan ID. Check for omissions
+   and remaining conflicts; a version match alone does not establish completion.
+   Apply a remaining delta only when its exact changes are already approved
+   or the user approves the new preview. Preserve declined repairs, deliberate
+   deletions and local customizations. Do not use the second pass to bypass a
+   decision or replace the original comparison with the updated vault.
+8. **Janitor audit, pass 2.** Run the same three audit-only checks again after
+   the second update check and any approved changes. Present new or remaining
+   findings. Obtain approval for any additional proposed repairs before applying
+   them, then verify the approved fixes. Finish with the status of both audit
+   passes and unresolved or uninspected items. Stop after these two passes;
+   further work follows the user's direction.
 
 ## Outputs
 
@@ -80,6 +129,9 @@ or specified by the vault's reporting policy.
 A successful change appends an entry
 to the existing AI log. An update with conflicts or an unverified baseline
 keeps the prior installed version and reports the pending work.
+Distinguish the applied update, each janitor audit, approved or declined
+repairs, the second update check, and remaining gaps. A completed file update
+does not imply that the post-update audits ran.
 
 ## Boundaries
 

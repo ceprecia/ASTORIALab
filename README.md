@@ -4,7 +4,7 @@
 
 **Adaptable Scientific Toolkit for Organized Research with Interchangeable Agents.**
 
-**ASTORIA version:** 1.1.0
+**ASTORIA version:** 1.2.0
 
 Make your research workspace feel like yours. Shape the toolkit around your work, keep your research connected, and bring along the AI assistant you prefer.
 
@@ -50,7 +50,9 @@ After setup, ask a different assistant to read your me.md for vault-wide context
 
 **First-time setup.** Open the extracted folder in Obsidian using **Open folder as vault**, or use a Markdown editor. To add ASTORIA to an Obsidian vault for the first time, show the assistant that vault. Review where to put `00 ASTORIA/` and how to handle any existing `AGENTS.md` before setup.
 
-**Update.** Show the assistant your working vault. You can also use the same command from a working vault that already has this setup flow. In that case, show the assistant the new ZIP or extracted folder. Review the proposed changes before approving the update.
+**Update.** Show the assistant your working vault. You can also use the same command from a working vault that already has this setup flow. In that case, show the assistant the new ZIP or extracted folder. Once the download is verified, the assistant follows its update instructions. Review the proposed changes before approving the update.
+
+After updating, all three janitors audit your vault. Approve any proposed repairs before they are applied. The assistant then checks the update once more and runs a final janitor audit, asking before making further repairs.
 
 For first-time setup, tell the assistant what you work on, which tools you use, and how you like to work. It gives you a short PARA example. Review its summary, choose folders and any optional research toolkit, then confirm the build plan.
 

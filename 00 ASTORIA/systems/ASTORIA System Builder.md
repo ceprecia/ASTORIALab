@@ -45,6 +45,11 @@ changes. The preview shows which shipped files can change and where local
 edits need a decision. Keep your working vault's notes, themes, settings,
 and custom skills. You can keep Obsidian open on that vault throughout.
 
+After the update, Skills Janitor, Vault Janitor and Folder Janitor audit the
+working vault automatically. The assistant shows any proposed repairs and asks
+approval before applying them. It then rechecks the update and runs a second
+janitor audit, with approval before any further repairs.
+
 ---
 
 ## PARA in the vault

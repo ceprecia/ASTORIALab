@@ -19,7 +19,7 @@ metadata:
   system: ASTORIA System Builder
   dependencies: me-builder, vault-builder, skills-janitor, vault-janitor, bridge-maker, astoria-updater
   created: "2026-09-24"
-  updated: "2026-11-08"
+  updated: "2026-11-13"
 ---
 
 # Setup My Vault
@@ -33,8 +33,10 @@ ASTORIA for the first time or updating a vault you already use?**
   up in another Obsidian vault, verify that it has the starter's `00 ASTORIA/`
   and review any existing root `AGENTS.md` before replacing it.
 - **Update an existing vault:** Read `00 ASTORIA/skills/astoria-updater/SKILL.md`
-  from the open folder and follow it before any setup interview or writes.
-  It locates the other folder and previews the update for approval.
+  from the open folder to locate and verify the incoming release before any
+  setup interview or writes. Then read that verified release's updater in full
+  and follow it through the update and its post-update checks. Reuse the
+  confirmed folders and decisions when handing off.
 
 For "continue my setup", resume below without asking the entry question again.
 This skill talks to the user during setup; the builders and janitors it calls

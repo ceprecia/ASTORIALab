@@ -278,8 +278,13 @@ def preview(source_root, target, baseline_root):
     if baseline_root and (SKILL_MAP not in baseline or VIEW_SCRIPT not in baseline):
         raise ValueError("The baseline must be an original ASTORIA release")
     baseline_version = version(baseline)
-    if baseline_root and installed_version and baseline_version != installed_version:
+    # A second pass keeps the original baseline after the first pass records
+    # the incoming version. Three-way comparison still protects local edits.
+    if (baseline_root and installed_version and baseline_version != installed_version
+            and installed_version != incoming_version):
         raise ValueError("The original release does not match the installed version")
+    if baseline_version and tuple(map(int, baseline_version.split("."))) > tuple(map(int, incoming_version.split("."))):
+        raise ValueError("The original release is newer than the selected update")
     if baseline_version and not installed_version:
         if tuple(map(int, baseline_version.split("."))) >= tuple(map(int, incoming_version.split("."))):
             raise ValueError("The original release must predate the selected update")
@@ -299,13 +304,13 @@ def preview(source_root, target, baseline_root):
                 planned[VERSION] = source[VERSION]
         else:
             planned, conflicts = {}, {}
-            if baseline_required:
-                conflicts = {
-                    path: "Original release required to verify this difference"
-                    for path, content in desired.items()
-                    if path not in (VERSION, SKILL_MAP)
-                    and comparison(current.get(path), path) != comparison(content, path)
-                }
+            conflicts = {
+                path: "Original release required to verify this difference"
+                for path, content in desired.items()
+                if path not in (VERSION, SKILL_MAP)
+                and comparison(current.get(path), path) != comparison(content, path)
+            }
+            baseline_required = baseline_required or bool(conflicts)
         pending = bool(conflicts) or baseline_required
         if planned:
             generated_changes(current, planned, tools)
