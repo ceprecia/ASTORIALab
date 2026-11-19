@@ -6,7 +6,7 @@
 
 **ASTORIA version:** 1.3.0
 
-Make your research workspace feel like yours. Shape the toolkit around your work, keep your research connected, and bring along the AI assistant you prefer.
+Make your research workspace feel like yours. Shape the toolkit around your work, keep your research connected, and bring along the AI assistant you prefer with Obsidian!
 
 ## Why an Adaptable Scientific Toolkit?
 
