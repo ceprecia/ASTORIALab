@@ -7,10 +7,10 @@ description: >-
   Triggers: build evidence for this paragraph, explain this evidence link.
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: writing-coordinator
   created: "2026-11-01"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 # Develop Writing Evidence
 
@@ -25,11 +25,12 @@ broad literature synthesis and an independent scientific claim audit.
 
 ## Inputs
 
-Read the [writing contract](../writing-coordinator/references/writing_contract.md).
-Use the current brief, relevant MOC and recipient-supplied writing guidance, exact target
-claim, section purpose, central argument and its status. Obtain the bounded
-source set, source locators and known limits. A paper title or citation string
-is not evidence of a finding.
+Read the [writing contract](../writing-coordinator/references/writing_contract.md)
+and use its task-sized context. Use the exact target claim, passage purpose,
+bounded source set, locators and known limits. Carry the wider argument and its
+status when the requested reasoning depends on that link. Read MOC or recipient-supplied writing guidance when it supplies needed context. A paper title or citation
+string is not evidence of a finding. A direct task returns to its caller without
+loading a writing lead or team.
 
 ## Steps
 
@@ -70,8 +71,9 @@ publication prose. Missing evidence is a gap, not a fabricated citation.
 
 ## Handoffs
 
-Return the evidence plan to the assigned section writer through
-writing-coordinator. verify-writing-citations verifies identity and exact
+Return the evidence plan to the invoking owner or assigned section writer,
+through writing-coordinator when it is already coordinating the task.
+verify-writing-citations verifies identity and exact
 source-to-claim support. Domain questions follow
 [cross-system handoffs](../writing-coordinator/references/cross_system_handoff.md);
 research-literacy or research-critique retains its scientific review scope.

@@ -8,10 +8,10 @@ description: >-
   research reporting completeness, check required method disclosures.
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: writing-coordinator
   created: "2026-11-01"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 # Check Research Reporting
 
@@ -26,11 +26,12 @@ scientific validity, accepted QC or reproducibility.
 
 ## Inputs
 
-Read the [writing contract](../writing-coordinator/references/writing_contract.md).
-Use the brief, relevant MOC and recipient-supplied writing guidance, manuscript version,
-study design, target venue, current checklist if supplied, protocol or
-preregistration and available technical records. Confirm the assigned section
-and whether the request covers text alone or supporting materials too.
+Read the [writing contract](../writing-coordinator/references/writing_contract.md)
+and use its task-sized context. Use the assigned text/version, study design,
+venue, current checklist if supplied, protocol or preregistration and available
+technical records. Read MOC or writing guidance when it supplies needed context.
+Confirm whether the requested audit covers text alone or supporting materials.
+A direct audit returns to its caller without loading a writing lead or team.
 
 ## Steps
 
@@ -85,7 +86,8 @@ Return the audit in the current task's requested form or under the recipient's e
 
 ## Handoffs
 
-Return through writing-coordinator. keep-writing-structure owns template and
+Return to the invoking owner, through writing-coordinator when it is already
+coordinating the task. keep-writing-structure owns template and
 layout fidelity; write-methods or the relevant writer adds verified disclosures.
 Domain ambiguities return through
 [cross-system handoffs](../writing-coordinator/references/cross_system_handoff.md).

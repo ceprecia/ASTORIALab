@@ -8,10 +8,10 @@ description: >-
   capture.
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: ""
   created: "2026-07-08"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 
 # Quick Capture
@@ -23,13 +23,17 @@ Save a short item directly in its project MOC's Research Log, with a Calendar in
 Use when:
 
 - The user wants to save one short thought, phrase, decision, snippet, or AI chat excerpt quickly.
-- The user says `quick-capture`, `quick capture`, `jot this down`, or asks to add something to today's capture.
+- The user asks to capture, log, jot, record, or save a short item with clear memory intent. Interpret the request, not isolated words in quotations, examples, or source material.
 - The content is worth preserving but does not need a full structured progress entry. The capture request authorizes saving; do not add a separate draft approval.
 
 Not for:
 
 - Use [capture-progress](../capture-progress/SKILL.md) when the work needs context, decisions, current state, open loops, next actions, or a broader source scan.
 - Use [summarize](../summarize/SKILL.md) when the full conversation must be kept word for word, or when the main job is a structured summary or BLUF.
+
+## Inputs
+
+Use the bounded source text, applicable instructions, owner and selected capture route. A clear memory request authorizes the local save once its source and destination are resolved. Present draft-only, proposed-only and show-only entries in the current request's deliverable form. Where that form is open, follow the recipient's applicable verified reporting policy; use chat as the fallback. Explicit current chat-only or no-save instructions take precedence. A preview request alone does not authorize capturing in a Research Log or index. Create a required preview artifact only within the task's authorized delivery scope; its format supplies no capture-record, index-edit or external-send authority. For a preview without capture authorization, skip saved-destination and index reads. A request to show and save authorizes both actions in order. Ask one compact question only for source or save-destination details that the requested action needs and cannot discover; present the pending draft under the preview rule above. This helper does not require a document argument brief, scientific writing profiles or a writing team.
 
 ## Capture destination preference
 
@@ -45,9 +49,9 @@ A current explicit capture request may override an earlier preference for that r
 ## Steps
 
 1. Read `/me.md`, `/00 ASTORIA/agent_notes/layout.md`, and the relevant capture entries in `/00 ASTORIA/Skill Map.md` when starting cold. Identify the short content the user wants saved; ask for it if missing.
-2. Resolve the owner, destination, and chosen capture route. Read the MOC's Research Log and only the selected index or shared destination. Reuse existing log headings, grouping, and order.
+2. For a preview without capture authorization, follow the preview presentation rule in Inputs and finish without capture-record or index writes or resolving a saved capture destination. For an authorized save, resolve the owner, destination, and chosen capture route, then read the MOC's Research Log and only the selected index or shared destination. Reuse existing log headings, grouping, and order.
 3. Check whether this exact capture was saved during an earlier attempt by comparing its source, text, covered period, and heading. A similar topic alone is not a duplicate. On retry, reuse the saved original and repair only missing metadata or references required by the selected route.
-4. Keep the captured text succinct and minimally transformed. Remove obvious chat scaffolding only when meaning is preserved. Do not invent claims, decisions, or context. Use a unique full-date heading `YYYY-MM-DD HH:MM - Quick Capture: Short Title`; add seconds and then a numeric suffix if needed. Use ordinary Markdown at the appropriate depth beneath the log or its existing group and keep saved headings stable.
+4. Preserve exact wording when requested. Otherwise keep the captured text succinct and minimally transformed, removing chat scaffolding only when meaning is preserved. Do not invent claims, decisions, or context. Use a unique full-date heading `YYYY-MM-DD HH:MM - Quick Capture: Short Title`; add seconds and then a numeric suffix if needed. Use ordinary Markdown at the appropriate depth beneath the log or its existing group and keep saved headings stable.
 5. Save the full original once, directly in the owning MOC's Research Log, or in the resolved shared capture destination for nonproject/shared content. Preserve existing content and MOC frontmatter. Create one Research Log only if absent, or `## Captures` only when needed in the selected shared destination; use newest first if a new log has no established order. For a selected Calendar original, update its supported metadata aggregates. Re-read and verify the saved text and heading before creating any selected index reference.
 6. Only when the selected route includes Calendar, add one project-original Calendar embed on its own line outside callouts: `![[<full vault-relative MOC path>#<exact entry heading>]]`. Preserve existing aliases. Convert a plain link to the same target in place rather than adding another reference. Aggregate supported entry metadata into Calendar. Nonproject/shared originals in Calendar need no self-embed.
 7. Verify the original, exact anchor, the index reference only when selected, metadata, and absence of duplicates. Compare resolved targets, not display labels. Make writes sequentially and re-read each target before writing. If an authorized Calendar update fails, keep the verified MOC entry, report the missing pointer, and repair it on retry without appending another copy.
@@ -126,4 +130,6 @@ Use today's local date and, when Calendar is selected, its `YY_Q#` quarter unles
 - **Multiple projects:** Use an explicit or unambiguous primary owner when one exists and retain relevant project attribution. Otherwise use the resolved shared capture destination; do not duplicate or arbitrarily split it between MOCs.
 - **Historical records:** Routine capture does not migrate history. An authorized migration preserves source text, metadata, original dates, and month/period groupings inside the MOC's Research Log. Keep historical headings and timestamps; do not invent daily timestamps for period records. Verify the MOC original before replacing an older Calendar copy or pointer with an embed of that exact entry.
 - Preserve existing captures and unrelated MOC content. Do not add unrelated wiki-links or relationship fields.
+- The requested capture authorizes its factual record in the Research Log. Save any additional agent coordination, handoff or verification record only within its authorized scope, at the location selected for the task or established by the recipient's verified content and continuity policy. Preserve existing approved captures and study continuity.
+- In a mixed request, retain the original caller and finish any prerequisite drafting before capturing its actual state. Return the saved location or unresolved destination directly to that caller; do not restart a companion intake or automatically invoke another helper.
 - If the content becomes a fuller progress record, use [capture-progress](../capture-progress/SKILL.md) with the same resolved MOC Research Log or Calendar destination. Do not create a parallel record.

@@ -14,7 +14,7 @@ metadata:
   system: Janitor System
   dependencies: ""
   created: "2026-05-20"
-  updated: "2026-11-04"
+  updated: "2026-11-17"
 ---
 
 # Bridge Maker
@@ -74,8 +74,9 @@ a workflow-type field, or a research-routing fragment. A known workspace
 without an `AGENTS.md` is an unconfigured bridge, not an instruction to
 create one unless the request includes that action.
 
-For a requested creation, include the MOC and continuity policy paragraph
-below in each new project bridge. Add only the project-specific instructions needed for the
+For every requested creation or update, include the MOC and continuity policy
+paragraph, explicit agent-workflow boundary and email attachment reminder below
+once in the bridge. An audit reports a missing rule without editing. Add only the project-specific instructions needed for the
 user's stated task. Do not invent
 scientific settings, safety rules, approval gates, a project history,
 or a copied list of skills.
@@ -88,9 +89,9 @@ For a requested update:
   to change them.
 - Keep project notes, maps and profiles out of required startup reads. Add or
   repair a continuity pointer only when the requested scope covers it and the
-  selected or configured location is verified. Update MOC writing instructions
-  only when the requested change covers them. The central `me.md` supplies skill
-  discovery.
+  selected or configured location is verified. Ensure the MOC and continuity
+  policy, agent-workflow boundary, and email attachment reminder are present
+  once on every bridge write. The central `me.md` supplies skill discovery.
 - Existing optional research routing may remain. Copy it from the template
   only when the user explicitly requests that routing; do not add it merely
   because a workspace contains research.
@@ -123,13 +124,28 @@ or established by the applicable project continuity policy. When that
 location is AI Notes, use its verified heading. Edit other MOC sections only
 when the user explicitly requests that change.
 
+Keep project maps focused on the requested project content. Follow the
+recipient's vault or project policy for where agent notes, review details
+and handoffs belong. Preserve existing human plans, approved logs and study
+continuity.
+
+When handing over an email draft with attachments for sending, briefly remind
+The user to open every attached file and confirm the intended version and
+contents, page count where applicable, and whether internal notes or unfinished
+material belong in it. Inspect accessible files rather than relying on filenames;
+distinguish local-file inspection from verification of the actual email
+attachments. Give one brief reminder without an additional approval step.
+
 Project MOC: `[verified vault-relative MOC path]`.
 Continuity: `[verified vault-relative path and exact heading, when applicable]`.
 Read relevant entries only when the task needs continuity or technical details.
 ```
 
-Include the MOC and continuity policy paragraph in each new bridge. For an
-external workspace, use the paragraph in the marked global fragment once.
+Include the MOC and continuity policy paragraph and explicit agent-workflow
+boundary and email attachment reminder in every created or updated bridge. For an external workspace, use
+the paragraphs in the marked global fragment once. Follow the recipient's selected or applicable project continuity policy for
+authorized agent workflow. Keep requested human-facing project content and
+approved records with their existing owners.
 
 Include an owning MOC pointer when relevant and verified. Add a separate
 continuity pointer only when the requested bridge scope includes it and the
@@ -158,8 +174,9 @@ automatic side effects of Bridge Maker.
 
 - Re-read the edited file and confirm the direct root-me path resolves.
 - Check that the requested change landed and existing approved project
-  instructions remain intact. For a new bridge, check that the MOC writing
-  default appears once and that any MOC path resolves.
+  instructions remain intact. For every bridge write, check that the MOC writing
+  default, agent-workflow boundary, and email attachment reminder each appear
+  once and any MOC path resolves.
 - Verify any path actually changed; do not scan a project or the vault
   recursively just to complete a bridge.
 - Confirm that any Bridge Maker file changes are limited to the requested `AGENTS.md` and that it created no duplicate standing profile, loader, note or index entry. A separate report artifact belongs to its original owner under that owner's authorized scope.

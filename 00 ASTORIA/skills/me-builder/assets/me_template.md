@@ -90,29 +90,31 @@ skip selection menus and repeated intake. Keep workstream stages separate,
 allow same-skill workers with distinct scopes, and keep one writer per canonical
 file. Chat names use only `research-coordinator/references/team_naming.md` under
 `00 ASTORIA/skills/`; shared helpers are discovered through the generated Skill
-Map's Capture and Writing Helpers group. System maintenance, unrelated study/teaching,
+Map's Writing System group. System maintenance, unrelated study/teaching,
 trivial replies and my explicit exceptions keep their own entrypoints.
 
 **PhD and career sessions.** A lead PhD/career chat loads PhD Companion and its internal PhD Coordinator (`00 ASTORIA/skills/phd-companion/SKILL.md` and `00 ASTORIA/skills/phd-coordinator/SKILL.md`). Use the same lead/assigned-worker distinction and shared naming registry above. The builder configures relevant support in my existing MOC; personal details stay there and here. Exact borrowed services retain the original return owner and their own requirements without another full intake.
 
-**Shared writing assistance.** A writing lead loads Writing Companion and its
-internal Writing Coordinator (`00 ASTORIA/skills/writing-companion/SKILL.md` and
-`00 ASTORIA/skills/writing-coordinator/SKILL.md`). Use the relevant specialist
-team by default: argument/evidence planning, content-specific writers and
-separate citation, structure, substance and argument-reasoning review. These are distinct
-jobs, not a fixed maximum roster. Every worker receives the current central
-claim and whether it is provisional, the section purpose, selected structure,
-source locations, unknowns, and the task-relevant MOC writing guidance and
-recipient-supplied writing guidance when available. Follow the fixed shared naming registry above; the
-Coordinator remains inside the lead chat and does not receive a separate ID.
+**Writing System.** Writing Companion heads writing, review, capture, preparation
+and style work. Classify the requested result, source, transformation and save
+intent first. Routine corrections and exact bounded services go directly to
+their existing capability. Load Writing Companion and its internal Writing
+Coordinator for sustained document development and dependent writing assignments.
+A mixed request carries separate context, profiles and save choices for each
+output. Reuse complete context already available.
 
-Writing assistance serves research, engineering, career, teaching and study
-work without taking over their decisions. Preserve the original session and
-return owner, reuse authorized specialist chats, and obtain intricate methods
-or mechanism facts through their existing coordinators. Technical owners check
-fidelity; writing reviewers check their separate concerns. Keep one writer for
-each canonical document. Use the shared cross-system handoff contract under
-`writing-coordinator/references/`; editing these skills does not launch chats.
+For substantive writing, pass the current claim and its provisional or adopted
+status, section purpose, relevant writing guidance and actual sources. Keep
+citation, substance, structure and argument-reasoning review distinct. Use technical
+specialists for concrete domain questions and reuse the established team.
+Preserve the original session and return owner, one canonical document editor,
+and the shared naming registry. The Coordinator remains internal to its lead.
+
+A clear memory request to capture, log or jot down a record authorizes saving
+when its source and owner are known. Drafts and proposed entries follow the current request's deliverable form, then the recipient's applicable verified reporting policy, with chat as the fallback. Honor explicit current chat-only or no-save instructions. Required preview artifacts stay within their authorized task scope; their format grants no capture-record, index-edit or external-send authority. Include a transcript only when requested. Exact-text requests preserve
+the supplied wording. Use the existing capture, protocol and MOC placement rules.
+See [Writing System](../../../systems/Writing%20System.md) and the shared handoff contract under
+`writing-coordinator/references/`. Editing these skills does not launch chats.
 
 **Start at the entry points below.** Most work routes through one of these, and they load the narrower skills themselves.
 
@@ -121,13 +123,15 @@ each canonical document. Use the shared cross-system handoff contract under
 | Research strategy, framing, a research project session | `00 ASTORIA/skills/research-companion/SKILL.md` |
 | PhD milestones, advisor and committee, authorship, career | `00 ASTORIA/skills/phd-companion/SKILL.md` |
 | Studying, learning a topic, teaching me something | `00 ASTORIA/skills/study-companion/SKILL.md` |
+| College teaching, TA work, grading, student communication, and course operations | `00 ASTORIA/skills/teaching-companion/SKILL.md` |
 | Finding, reading, or synthesizing papers | `00 ASTORIA/skills/scout-coordinator/SKILL.md` |
 | Challenging a question, auditing a claim, critiquing a study | `00 ASTORIA/skills/challenge-coordinator/SKILL.md` |
 | Hypotheses, experimental design, power, data standards, public datasets | `00 ASTORIA/skills/stress-test-coordinator/SKILL.md` |
 | Analyzing data, preprocessing, statistics, modeling, analysis software | `00 ASTORIA/skills/analysis-coordinator/SKILL.md` |
-| Writing projects, argument development, section drafting and writing review | `00 ASTORIA/skills/writing-companion/SKILL.md` |
+| Writing projects and mixed writing work, with direct routes for bounded services | `00 ASTORIA/skills/writing-companion/SKILL.md` |
 | Publication, research outputs, reproducibility, releases, engagement, closeout and funding requirements | `00 ASTORIA/skills/research-output-coordinator/SKILL.md` |
 | Planning, goals, a WOOP | `00 ASTORIA/skills/woop-skill/SKILL.md` |
+| Engineering project design, hardware reverse engineering, device development or build recovery | `00 ASTORIA/skills/engineering-companion/SKILL.md` |
 | Saving progress to a project log | `00 ASTORIA/skills/capture-progress/SKILL.md` or `00 ASTORIA/skills/quick-capture/SKILL.md` |
 | Building or fixing a skill | `00 ASTORIA/skills/skill-builder/SKILL.md` |
 | Changing this file | `00 ASTORIA/skills/me-builder/SKILL.md` |
@@ -137,10 +141,11 @@ each canonical document. Use the shared cross-system handoff contract under
 **When none of those fits,** read only the matching system section of the registry in `00 ASTORIA/Skill Map.md` (between the `registry` markers). It is grouped by system, and the Research Assistant System section shows its whole hierarchy: companions and coordination, then one section per part, 1 to 5, with the part coordinator first and the part's skills grouped by family:
 
 - 🏗️ ASTORIA System Builder: set up and maintain the AI system
-- ✍️ Writing Style References: rule-only profiles loaded by writing skills
+- ✍️ Writing System: develop, review, capture and prepare writing through Writing Companion
 - 🤹 Productivity and Study System: map, study, and plan progress
-- 🗒️ Capture and Writing Helpers: capture, prepare, and protect
+- 🍎 Teaching Assistant System: prepare, teach, assess, and manage college courses
 - 🧹 Janitor System: maintain the vault and the AI system
+- ⚙️ Engineering System: build, verify, and operate research hardware and inspect shipped software
 - 🎓 PhD and Career System: degree requirements, mentoring, opportunities and career development
 - 🧭 Research Assistant System: companions and coordination, then 1. Help me scout the field, 2. Help me challenge my question, 3. Help me stress-test my hypothesis and design, 4. Help me analyze the data, 5. Help me finish, share, and publish research
 
@@ -200,7 +205,7 @@ When helping me write:
 
 - Writing profiles are passive references for writing tasks, not assistant-wide defaults. The active writing skill owns the prose and applies profile rules without handing over drafting, structure, evidence, or decisions.
 - Apply a writing profile only when the recipient selects it for the task or records it in their own preferences. With no selection, follow the target document's requirements and preserve scientific meaning.
-- Do not load or mention a writing profile merely because a research skill is active. Literature search, summaries, critique, analysis, capture, and MOC work are not profile work.
+- Automatic profile activation follows the specific output and my recorded preferences. Research work, summaries, capture and MOC work do not activate a profile by themselves. An explicitly requested style revision of derived prose may use the named profile while preserving exact transcripts and captured source text.
 - Preserve my academic voice. Be precise. Avoid overstatement.
 - Separate claim, evidence, interpretation, and speculation.
 - Prefer clear structure before prose polishing. Do not polish away my thinking before we understand the structure.

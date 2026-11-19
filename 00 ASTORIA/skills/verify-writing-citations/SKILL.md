@@ -8,10 +8,10 @@ description: >-
   bibliography.
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: writing-coordinator
   created: "2026-11-01"
-  updated: "2026-11-02"
+  updated: "2026-11-18"
 ---
 # Verify Writing Citations
 
@@ -26,11 +26,12 @@ taking over literature discovery, scientific interpretation or prose drafting.
 
 ## Inputs
 
-Read the [writing contract](../writing-coordinator/references/writing_contract.md).
-Use the current brief, relevant MOC and recipient-supplied writing guidance, bounded
-draft, citation list or bibliography, exact clauses being supported and any
-source files or identifiers. Preserve the selected citation style and document
-format requirements.
+Read the [writing contract](../writing-coordinator/references/writing_contract.md)
+and use its task-sized context. Use the bounded passage, exact cited clauses,
+reference list, source files or identifiers, and required citation style. Read
+MOC or writing guidance only when it supplies needed context. A citation-only
+request preserves prose and returns findings directly to its caller without
+loading a writing lead or team. Verification alone does not activate profiles.
 
 ## Local source access
 
@@ -106,7 +107,8 @@ never return an unqualified all-clear for an incompletely checked list.
 
 ## Handoffs
 
-Return findings through writing-coordinator. paper-search owns a bounded search
+Return findings to the invoking owner, through writing-coordinator when it is
+already coordinating the task. paper-search owns a bounded search
 for missing literature; research-literacy owns substantive scientific claim
 audits. Source conflicts follow
 [cross-system handoffs](../writing-coordinator/references/cross_system_handoff.md).

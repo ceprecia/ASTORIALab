@@ -8,10 +8,10 @@ description: >-
   that selection in their own preferences.
 metadata:
   level: profile
-  system: Writing Style References
+  system: Writing System
   dependencies: ""
   created: "2026-07-23"
-  updated: "2026-10-31"
+  updated: "2026-11-18"
 ---
 
 # Writing Style: Positive, Scientific
@@ -44,11 +44,13 @@ reasoning, determine an inference, or apply itself.
   research capability that owns the decision.
 - Report applied profiles, profile warnings or verification details when called
   for by the current task or the recipient's existing reporting policy.
-- Do not activate this profile merely because a research skill is active. It
-  remains inactive for literature searching, paper summaries, synthesis notes,
-  critique, strategy, data analysis, MOCs, captures, profile building, skill
-  building, personal writing, ordinary email, ordinary notes, and
-  ordinary chat.
+- Do not automatically activate this profile merely because a research skill or
+  the Writing System is active. Automatic activation excludes literature searching,
+  paper summaries, synthesis notes, critique, strategy, data analysis, MOCs,
+  captures, profile building, skill building, personal writing, ordinary email,
+  ordinary notes and ordinary chat. An explicitly requested style revision of
+  derived prose may use this profile while preserving transcripts and exact
+  captured text.
 - Examples below illustrate expression only. They do not supply findings,
   interpretations, or claims for another project.
 

@@ -8,10 +8,10 @@ description: >-
   project, track every application section.
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: writing-coordinator
   created: "2026-11-01"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 # Organize Writing Project
 
@@ -27,11 +27,14 @@ documents and submission materials.
 
 ## Inputs
 
-Read the [writing contract](../writing-coordinator/references/writing_contract.md).
-Use the existing MOC, current draft locations, central claim and its status,
-writing guidance, selected template, scope, collaborators and known actions.
-Get current required sections and constraints from the requirements owner.
-Examples establish writing patterns, not current official requirements.
+Read the [writing contract](../writing-coordinator/references/writing_contract.md)
+and use its task-sized context. Use existing project context, current draft
+locations, selected structure, requested scope, collaborators and known actions.
+Include the central claim and its status when they determine section readiness.
+Read MOC or writing guidance when it supplies needed context. Get required
+sections and constraints from current requirement sources or their owner.
+Examples establish writing patterns rather than current official requirements.
+A direct organizer request returns to its caller without another lead or team.
 
 ## Steps
 
@@ -56,7 +59,8 @@ Examples establish writing patterns, not current official requirements.
 7. Surface cross-section dependencies and contradictions. Track a changed aim,
    term, method or sample through the sections it affects; leave unaffected
    sections and agreed milestones unchanged.
-8. Recommend the next bounded assignments to writing-coordinator, including
+8. Recommend the next bounded assignments to the invoking owner or active
+   writing-coordinator, including
    sources, output location, desired completion condition and responsible
    domain owner for missing technical content.
 9. When saving the organizer is authorized, update the existing organizer at
@@ -86,8 +90,9 @@ coordinator uses this organizer; it is not a second independent task system.
 
 ## Handoffs
 
-Return assignments to writing-coordinator and preserve the invoking owner's
-project responsibility. keep-writing-structure owns template fidelity.
+Return assignments to the invoking owner, through writing-coordinator when it
+is already coordinating the task. Preserve the owner's project responsibility.
+keep-writing-structure owns template fidelity.
 research-grant-advisor supplies application requirements; other domain owners
 use [cross-system handoffs](../writing-coordinator/references/cross_system_handoff.md).
 Saving progress routes to capture-progress or quick-capture.

@@ -65,7 +65,7 @@ materially conflicting evidence requires resolution.
 
 Fixed prefixes and project-wide numbering live only in
 `00 ASTORIA/skills/research-coordinator/references/team_naming.md`. The generated
-Capture and Writing Helpers group in [Skill Map](../Skill%20Map.md) is the shared helper catalog:
+Writing System group in [Skill Map](../Skill%20Map.md) is the shared helper catalog:
 curated protocols, progress capture and other support remain distinct workflows
 with one canonical skill each. Save useful team and technical continuity only when authorized, at the verified
 location selected for the task or established by the applicable project
@@ -81,16 +81,18 @@ user's chosen return owner.
 
 ## Shared writing assistance
 
-Writing Companion and its internal Writing Coordinator live in the shared helper
-catalog. Research Companion keeps scientific framing and the user conversation,
+[Writing System](Writing%20System.md) is headed by Writing Companion. Its internal Writing
+Coordinator organizes dependent writing assignments, and the shared catalog
+also provides direct capture, preparation and style capabilities. Research Companion keeps scientific framing and the user conversation,
 while the writing team handles argument development, section drafting and separate
 citation, substance, argument-reasoning, structure and integration work. Use as many distinct
 roles as the task needs; a roster is not capped at five and is not launched in full
 for every request.
 
-Every writing assignment carries the central argument and its provisional or
-adopted status, section purpose, selected structure, source locations and the
-project's writing guidance. Methods translation uses actual records from the
+Bounded writing and review requests use the exact specialist and relevant
+context directly. Sustained document work carries the central argument and its
+provisional or adopted status, section purpose, selected structure, sources and
+writing guidance. Capture and preparation use their own source and action scope. Methods translation uses actual records from the
 existing analysis/modality/software specialists, then returns to those owners for
 technical fidelity review. Successful processing, inspected images and accepted QC
 remain separate claims. One integrator owns the canonical document; independent

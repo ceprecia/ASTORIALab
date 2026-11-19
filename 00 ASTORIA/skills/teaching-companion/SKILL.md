@@ -10,7 +10,7 @@ metadata:
   system: Teaching Assistant System
   dependencies: teaching-coordinator
   created: "2026-10-20"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 
 # Teaching Companion
@@ -53,6 +53,18 @@ teacher's decisions. Use event-triggered checks instead of repeating a whole-cou
    preparation, verify the next relevant classes and deadlines in the course timezone.
    Include later events only when preparation is needed now. Examine changes and open
    dependencies before rechecking previously verified, unaffected items.
+   For a new lecture or substantial instructional revision, assessment alignment and
+   student learning checks are on by default. Before slide assembly, establish the
+   required learning outcomes and relevant current quiz/exam targets. Have
+   teaching-lecture-review own the instructional sequence and section checks, borrowing
+   teaching-assessment for assessed concepts, reasoning demands and questionable items.
+   If current assessments are unavailable, continue from approved outcomes and sources
+   and mark assessment alignment unverified. Keep typo, citation and other bounded
+   corrections within their requested scope.
+   Carry the supplied reference lecture's actual note style through every handoff.
+   Speaker notes default to natural explanation and brief useful cues; source audits,
+   AI workflow and detailed schedules remain working context. Learning checks default
+   to one question slide, with its answer and explanation in that slide's notes.
 5. **Route bounded tasks.** Load teaching-coordinator with the offering, desired
    outcome, relevant sources, permissions, and evidence already gathered. Keep the
    session and synthesis here. Do not send the user through a second intake interview.
@@ -73,11 +85,13 @@ teacher's decisions. Use event-triggered checks instead of repeating a whole-cou
 | New instructor message or changed plan | Requested outcomes, responsible person, effective date, dependent materials and communications; distinguish information, action, reply needed, and waiting. |
 | New groups or changed roster | Membership coverage and intended sizes, relevant category, linked group spaces and submissions; verify after changes and before first use. |
 | Revised question or lecture | Approved reference support, assessment-to-lecture agreement, actual delivered assessment version, and affected student instructions. |
+| New lecture or substantial instructional revision | Before assembly, map required outcomes and current assessment targets to explanations, examples, section learning checks, feedback and interaction time through teaching-lecture-review. |
 | New assessment or deadline | Availability window, duration, due date and timezone, applicable accommodations, scoring, student access, submission tool, and reminders already present. |
 | Student policy question | Current syllabus or instructor decision, prior response in the thread, owner, and whether an exception is requested. |
 | Group submission or grading request | Correct assignment, assigned grading scope, approved rubric, participant evidence, missing-file ambiguity, and individual versus group scores. |
 
-Treat the list as contextual prompts, not mandatory checks on every request. A report
+The lecture-design default above applies to its stated scope. Other rows are contextual
+prompts, not mandatory checks on every request. A report
 from another teaching-team member is evidence to examine, not proof that an issue exists.
 For lecture questions, prepare explanations and likely misunderstandings from the
 approved course material through the appropriate specialist.
@@ -94,6 +108,8 @@ approved course material through the appropriate specialist.
 
 - Academic checks stay within the instructor's approved reference set. A source gap
   is unverified, not automatically wrong. Do not invent policies, keys, or exceptions.
+- Use assessment targets to prioritize emphasis and practice while preserving required
+  course coverage and material the user explicitly asks to retain.
 - Apply role and grading boundaries from this offering. TA preferences do not silently
   replace the instructor's approved requirements.
 - Do not infer missed replies from age or unread status. Have Office Hours check the
@@ -127,6 +143,8 @@ A scheduled run, if requested, should point to this skill and the specific offer
 
 - Is this the correct offering, role, timezone, and upcoming event?
 - Were only relevant source versions and changed dependencies checked?
+- For lecture design, did assessment targets and purposeful section checks guide the
+  instructional plan before artifact production, with missing assessments disclosed?
 - Did each handoff retain the exact permissions and simulation/read-only limits?
 - Are completion claims supported by observed outcomes, with unknowns visible?
 - Is each open item assigned once, without a duplicated interview, queue, or reminder?

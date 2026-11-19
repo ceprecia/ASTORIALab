@@ -259,7 +259,7 @@ ASTORIA turns the source guidance into bounded Introduction and Discussion writi
 
 The main banner and isometric system icons were generated with an image-generation tool. ASTORIA supplies the editable architecture/research diagrams and system-banner compositions. Method, documentation and writing references remain cited in the relevant capabilities and templates; their inclusion as references does not transfer ownership of the external works.
 
-The README diagrams (`agent_team`, `para_project`, `interchangeable_agents` and `system_toolkit`) are native SVG compositions with paired PNG renderings. The toolkit composition embeds eight existing generated system icons without changing their bytes; its graduation cap and ring shapes are native SVG artwork. The interchangeability illustration uses plain assistant names in original text cards; no provider logo artwork is bundled.
+The README diagrams (`agent_team`, `para_project`, `interchangeable_agents` and `system_toolkit`) are native SVG compositions with paired PNG renderings. The toolkit composition embeds seven existing generated system icons without changing their bytes; its graduation cap and ring shapes are native SVG artwork. The interchangeability illustration uses plain assistant names in original text cards; no provider logo artwork is bundled.
 
 ## Assistant names
 

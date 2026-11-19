@@ -4,7 +4,7 @@
 
 **Adaptable Scientific Toolkit for Organized Research with Interchangeable Agents.**
 
-**ASTORIA version:** 1.2.0
+**ASTORIA version:** 1.3.0
 
 Make your research workspace feel like yours. Shape the toolkit around your work, keep your research connected, and bring along the AI assistant you prefer.
 
@@ -70,9 +70,9 @@ Optional mounts come after setup. [Manual setup guide](00%20ASTORIA/skills/setup
 
 ## Try a workflow
 
-**After setup**, start with a Companion for ongoing work. Direct utility skills and passive writing profiles support other tasks. The nine groups below give you places to begin.
+**After setup**, start with a Companion for ongoing work. Direct utility skills and passive writing profiles support other tasks. The eight groups below give you places to begin.
 
-![Nine toolkit groups arranged around the portable workflow layer, using their system icons](00%20ASTORIA/assets/system_toolkit.png)
+![Eight toolkit groups arranged around the portable workflow layer, using their system icons](00%20ASTORIA/assets/system_toolkit.png)
 
 | Group | Try asking |
 | --- | --- |
@@ -83,12 +83,11 @@ Optional mounts come after setup. [Manual setup guide](00%20ASTORIA/skills/setup
 | [Engineering](00%20ASTORIA/systems/Engineering%20System.md) | “Engineering Companion, help me plan this device build.” |
 | [System Builder](00%20ASTORIA/systems/ASTORIA%20System%20Builder.md) | “Update my working preferences in me.md.” |
 | [Janitor](00%20ASTORIA/systems/Janitor%20System.md) | “Folder Janitor, organize these files using my structure and repair their links.” |
-| [Capture and Writing](00%20ASTORIA/Skill%20Map.md) | “Capture Progress, save these decisions and next steps in my project MOC.” |
-| [Writing Profiles](00%20ASTORIA/Skill%20Map.md) | “Writing Companion, revise this scientific paragraph using my writing preferences.” |
+| [Writing](00%20ASTORIA/systems/Writing%20System.md) | “Writing Companion, help develop this document.” |
 
 Research and PhD/Career have separate Companions and internal Coordinators.
 
-For writing projects, start with **Writing Companion**. **Research Output Coordinator** helps you finish, share and publish research: publication packages, reproducibility, data/code releases, engagement, handover and funding requirements. It borrows the shared writing team when needed.
+For writing projects, start with **Writing Companion**. Named capture, summary, handoff, redaction and style-profile tasks go directly to their utility. Capture requests save to their known owner. Summaries stay in chat unless saving is authorized. **Research Output Coordinator** helps you finish, share and publish research through publication packages, reproducibility, data/code releases, engagement, handover and funding requirements, borrowing the shared writing team when needed.
 
 **More Research prompts:**
 
@@ -113,4 +112,4 @@ This is your starting point. Build around the projects, habits and tools you alr
 
 ## License and sources
 
-Keep [LICENSE, including source-specific notices](LICENSE), and capability-specific sources with the files. MIT covers ASTORIA's original material; adaptations retain their source terms. External tools and datasets retain their terms. Assistant names belong to their respective owners. The [layer diagram](00%20ASTORIA/assets/astoria_architecture.svg) and slim banners include editable SVGs; system icons were generated with an image-generation tool.
+Keep [LICENSE, including source-specific notices](LICENSE), and capability-specific sources with the files. MIT covers ASTORIA's original material; adaptations retain their source terms. External tools and datasets retain their terms. Assistant names belong to their respective owners. 

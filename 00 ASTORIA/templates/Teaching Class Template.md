@@ -39,6 +39,10 @@ STRUCTURE
   and automatically saved audits separate.
 
 CONTENT
+- Keep course content focused on the requested facts and responsibilities.
+  Save agent notes and workflow only when authorized, at the verified location
+  selected for the task or established by the applicable project policy.
+  Preserve approved course records and study continuity.
 - Syllabus and Course Sources: link the verified approved syllabus in the selected
   or configured supported form. Use a relative Markdown link when the form is open.
   Embed only when selected or configured and supported. Identify the teacher's
@@ -59,8 +63,9 @@ CONTENT
 - Course Files: link actual course resources in their existing grouping. Each
   level-two file group matches a resource subfolder. Files at the course root
   appear before the first group; do not scaffold empty folders.
-- Outstanding Actions is optional. Keep only unresolved next actions with an
-  owner/date when known. Do not create a second task list if one already owns it.
+- Outstanding Actions is only for a human action list explicitly requested by
+  the user. Use the selected or configured continuity location for authorized agent next steps and approval questions. Do not
+  create a second task list if one already owns it.
 - Preserve incoming filenames and substantive existing content. Keep the course note and supporting files together in the verified eligible offering folder. When placement is open, follow the verified owner convention and use the Area’s local files folder or documented external workspace. Add or update the Teaching MOC link under the verified term only when the MOC edit is authorized.
 
 LINKS
@@ -108,7 +113,7 @@ LINKS
 
 # 📌 Outstanding Actions
 
-*Optional unresolved actions. Omit this section if it has no useful content.*
+*Only a human action list explicitly requested by the user; otherwise omit.*
 
 # 🤖 AI Notes
 

@@ -56,11 +56,14 @@ part_coordinators:
 system_coordinators:
   Engineering System: engineering-coordinator
   PhD and Career System: phd-coordinator
-  Capture and Writing Helpers: writing-coordinator
+  Writing System: writing-coordinator
 
-# Shared helpers have two durable sections. New helper skills join one section here.
+# Each member of a grouped system joins one section, including passive profiles.
 system_sections:
-  Capture and Writing Helpers:
+  Writing System:
+    Companion and coordination:
+      - writing-companion
+      - writing-coordinator
     Capture, prepare, and notetake:
       - capture-progress
       - chat-handoff
@@ -69,8 +72,6 @@ system_sections:
       - summarize
       - write-protocol
     Writing assistance:
-      - writing-companion
-      - writing-coordinator
       - organize-writing-project
       - plan-writing-argument
       - develop-writing-evidence
@@ -90,9 +91,13 @@ system_sections:
       - write-conclusion
       - write-figure-table-text
       - write-section
+    Writing style:
+      - writing-style-builder
+      - writing-style-negative-ai
+      - writing-style-positive-scientific
 
-system_catalog_sections:
-  Capture and Writing Helpers: Writing assistance
+# All callable jobs are available to the coordinator; profiles remain references.
+system_catalog_sections: {}
 
 families:
   part-coordinator: Part coordinator
@@ -147,21 +152,16 @@ systems:
     emoji: "🧹"
     tagline: Maintain the vault and the AI system
     note: true
-  Capture and Writing Helpers:
-    banner: "00 ASTORIA/assets/banner_system_capture.png"
-    emoji: "🗒️"
-    tagline: Capture and prepare material, then develop and review writing
-    note: false
+  Writing System:
+    banner: "00 ASTORIA/assets/banner_system_writing.png"
+    emoji: "✍️"
+    tagline: Develop, review, capture and prepare writing through the right bounded capability
+    note: true
   Engineering System:
     banner: "00 ASTORIA/assets/banner_system_engineering.png"
     emoji: "⚙️"
     tagline: Build, verify, and operate research hardware and inspect shipped software
     note: true
-  Writing Style References:
-    banner: "00 ASTORIA/assets/banner_system_writing.png"
-    emoji: "✍️"
-    tagline: Rule-only references for writing tasks
-    note: false
 
 # Vault layout. Roles are fixed; the names are the user's. setup-my-vault
 # applies renames here first, then skills-janitor/scripts/rename_roots.py
@@ -210,6 +210,7 @@ purposes:
   "06 🪴 Archive": "Inactive projects, areas and resources kept for future reference and provenance."
   "06 🪴 Archive/finished_projects": "Finished, inactive or parked projects and their MOCs; keep capture history."
   "06 🪴 Archive/finished_areas": "Areas that have ended."
+  "06 🪴 Archive/small_projects": "Archived packages from small projects."
 
 note_types:
   - kind: Research project MOC
@@ -280,6 +281,7 @@ template_purposes:
   "ai_log_template.md": "The first `00 ASTORIA/agent_notes/ai_log.md`: the selective-reading and history-preservation callout and one setup entry; written by setup-my-vault."
 
 layout_rules:
+  - "Authorized agent workflow and verification notes follow the recipient's applicable verified content and continuity policy at their authorized locations. Authorized factual captures and reviewed human protocols retain their owning workflows and follow their selected or applicable verified placement rules. Preserve approved capture logs and AI Study Notes."
   - "Each Project or Area has one owning MOC and one AGENTS.md. Use a local files folder or documented external workspace for working material. Report genuinely missing entries and separately report workspace availability. Add a MOC link only within authorized note-edit scope."
   - "Preserve established project operational layouts and complete packages."
   - "Resources is a reference library. Collection names and grouping come from the recipient and their content. Preserve useful existing organization during routine filing."
@@ -305,10 +307,9 @@ companion_order: [research-companion, phd-companion, study-companion, teaching-c
 
 system_order:
   - ASTORIA System Builder
-  - Writing Style References
+  - Writing System
   - Productivity and Study System
   - Teaching Assistant System
-  - Capture and Writing Helpers
   - Janitor System
   - Engineering System
   - PhD and Career System

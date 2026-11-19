@@ -105,14 +105,14 @@ def registry(skills, vocab, vault=None):
             out.extend(["", "![%s](%s)" % (sysname, quote(relative, safe="/")), ""])
         if cfg.get("note"):
             out.append("[[%s]]: %s." % (sysname, cfg.get("tagline", "")))
-        elif vocab.get("system_sections", {}).get(sysname):
+        if vocab.get("system_sections", {}).get(sysname):
             for heading, selected in system_groups(sysname, members, vocab):
                 if out[-1] != "":
                     out.append("")
                 out.append("### %s" % heading)
                 for s in by_level_then_name(selected):
                     out.append(line(s))
-        else:
+        elif not cfg.get("note"):
             out.append("%s." % cfg.get("tagline", ""))
         if sysname == "Research Assistant System":
             top = [s for s in members if not s.part]

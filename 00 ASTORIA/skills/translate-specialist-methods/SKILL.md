@@ -8,10 +8,10 @@ description: >-
   into methods, explain these technical methods for readers.
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: writing-coordinator
   created: "2026-11-01"
-  updated: "2026-11-02"
+  updated: "2026-11-18"
 ---
 # Translate Specialist Methods
 
@@ -28,11 +28,12 @@ altering a design.
 ## Inputs
 
 Read the [writing contract](../writing-coordinator/references/writing_contract.md)
-and [cross-system handoffs](../writing-coordinator/references/cross_system_handoff.md).
-Use the current brief, relevant MOC and recipient-supplied writing guidance, target
-audience, section job, exact source revision and responsible technical owner.
-Obtain the actual procedure, configuration, outputs and unresolved choices,
-not a general description of what the software or device usually does.
+and [cross-system handoff](../writing-coordinator/references/cross_system_handoff.md).
+Use task-sized context with the target audience, passage purpose, exact technical source revision and
+responsible owner. Obtain the actual procedure, configuration, outputs and
+unresolved choices, rather than usual software or device behavior. Read MOC or
+writing guidance when it supplies needed context. A sufficient supplied record
+can support direct translation without another writing lead or domain team.
 
 ## Steps
 
@@ -88,8 +89,9 @@ profiles required by `me.md` when producing formal scientific prose.
 
 ## Handoffs
 
-writing-coordinator requests and collects the translation through the existing
-technical owner. write-methods turns the supported material into the selected
+Return to the invoking owner, through writing-coordinator when it is already
+coordinating the task. Preserve the existing technical owner for fidelity checks.
+write-methods turns the supported material into the selected
 section structure. verify-writing-citations checks source-dependent attribution;
 check-writing-substance checks retained specificity; integrate-writing preserves
 technical meaning across the document.

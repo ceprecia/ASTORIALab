@@ -2,13 +2,13 @@
 
 ## Ownership
 
-Writing is a shared service. Preserve the original caller, current project, task scope and return destination through every hop. writing-companion owns writing purpose and integrated feedback; writing-coordinator assigns and collects. The invoking domain companion/coordinator and existing specialists retain scientific, engineering, teaching or professional decisions. Borrow exact capabilities without creating parallel technical owners or restarting broad intake.
+Writing is a shared service. Preserve the original caller, current project, task scope and return destination through every hop. writing-companion owns broad writing work and integrated feedback. writing-coordinator assigns and collects when several jobs need coordination. A direct bounded task uses its exact skill and returns directly to its caller without requiring either lead. The invoking domain companion/coordinator and existing specialists retain scientific, engineering, teaching or professional decisions. Ordinary student correspondence stays with teaching-office-hours, and paper summaries stay with research-summarizer. Borrow exact capabilities without creating parallel technical owners or restarting broad intake.
 
-When research-companion or engineering-companion is already the lead, its internal coordinator can request writing support directly. A writer's missing technical input returns through that established owner. Do not bounce the same request recursively through ancestor coordinators. The writing coordinator communicates routine authorized clarifications with the relevant existing specialist and collects the answer; the user should not serve as a courier.
+When a domain companion is already the lead, it or its internal coordinator can request exact writing support directly. A writer's missing technical input returns through that established owner. Do not bounce the same request recursively through ancestor coordinators. The active task owner or writing coordinator communicates routine authorized clarifications with the relevant existing specialist and collects the answer, so the user need not serve as a courier. Ask only for consequential missing inputs. The task's permitted transformations and save actions persist through compound requests.
 
 ## Request
 
-Send only the context needed for the exact question, including:
+Send only the context needed for the exact question. A bounded direct request may already supply it. Include applicable fields from this list:
 
 - Original caller/return owner and verified project; target document/revision and section.
 - The paragraph's intended claim or procedural purpose, its status, and what detail is missing.
@@ -37,11 +37,11 @@ These are separate dimensions, not an automatic ladder. A successful preprocessi
 
 ## Translation and technical fidelity
 
-1. The domain owner resolves the actual question or returns a bounded gap. Do not run extra experiments, select analyses, change firmware or redesign circuits merely to fill prose.
-2. translate-specialist-methods turns the verified return into a technical account with exact terminology, sequence, values, sources and unresolved gaps.
+1. Use the supplied exact technical record when it answers the writing question. Consult the domain owner for missing or conflicting material and retain its evidence status. Do not run extra experiments, select analyses, change firmware or redesign circuits merely to fill prose.
+2. Use translate-specialist-methods when intricate records need a separate technical account with exact terminology, sequence, values, sources and unresolved gaps. A bounded writer may use an already sufficient record directly.
 3. The selected content writer makes the account readable for the intended audience, preserving its evidence state and implications.
 4. Return intricate or changed technical wording to the originating specialist for a fidelity check against the same source revision. Separate an editorial simplification from a proposed technical change.
-5. Independent writing reviewers check the stable draft; integrate-writing applies accepted repairs to the canonical document. If the technical source changes, invalidate only the affected claims and checks, then reconcile them.
+5. Relevant independent writing reviewers check a coordinated substantive draft, and integrate-writing applies accepted repairs to its canonical document. A direct bounded task keeps its assigned editor and requested review scope. If the technical source changes, invalidate only the affected claims and checks, then reconcile them.
 
 ## Existing routes
 
@@ -67,4 +67,4 @@ Internal subagents receive the same bounded contract. They can carry out authori
 
 ## Completion
 
-Return to the original owner with the text, source revision, technical acceptance state, writing checks, unresolved questions and next action. Completion of the writing service does not complete the underlying experiment, device validation, application or external delivery. Save only useful mapping when authorized, at the verified location selected for the task or established by the applicable project continuity policy. Keep the original owner and avoid a new cross-system tracker.
+Return to the original owner with the requested result, source revision, technical acceptance state, checks and remaining questions as applicable. Return through writing-coordinator only when it is already coordinating the work. Completion of the writing service does not complete the underlying experiment, device validation, application or external delivery. Save agent workflow and useful team mappings only when authorized, at the verified location selected for the task or established by the recipient's continuity policy. Preserve approved captures and study continuity. Saving, sending and publishing retain their own requested scope.

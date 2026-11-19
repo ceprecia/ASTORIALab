@@ -1,64 +1,80 @@
 ---
 name: writing-companion
 description: >-
-  Coordinates an expandable writing team around the author’s central argument,
-  evidence, audience and selected structure. For complex project writing, offers
-  a curated plan combining domain specialists and writers. Use for developing or
-  revising a document across sections; domain decisions stay with the invoking owner.
+  Leads the Writing System and coordinates sustained writing around the author’s
+  purpose, evidence, audience and selected structure. Routes bounded writing,
+  review, capture, preparation and style work to its exact owner, while existing
+  domain decisions and return destinations stay with the invoking owner.
   Triggers: coordinate my writing, assemble my writing team, help develop this
   document.
 metadata:
   level: companion
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: writing-coordinator
   created: "2026-11-01"
-  updated: "2026-11-02"
+  updated: "2026-11-18"
 ---
 
 # Writing Companion
 
-Help the author develop a meaningful document through an expandable team of focused writers and reviewers.
+Match the requested output to its owner and coordinate the writing work that needs several assignments.
 
 ## Purpose
 
-Own the writing conversation: purpose, audience, central argument, priorities and integrated feedback. Load writing-coordinator completely and use its specialist team by default for substantive writing. The catalog is expandable; staffing follows the current task's needs, with no fixed maximum team size. Select relevant roles, including several workers with the same skill when their scopes differ.
+Own Writing System policy, broad writing requests, priorities and integrated feedback. Choose a route from the requested output, transformation, source and save action before loading additional skills. A known bounded task goes directly to its exact skill and returns to its caller. Ordinary spelling and other small corrections proceed directly. A direct task does not require loading this companion, its coordinator or a full document brief.
 
-When borrowed by research-companion, engineering-companion, phd-companion, teaching-companion or another owner, preserve that session and its return destination. Provide writing assistance without starting a competing domain team. A direct standalone writing request stays here. A focused named skill can proceed without a new intake or a compulsory full-document plan.
+For sustained writing across sections or dependent assignments, load writing-coordinator completely and select the writers and reviews the task needs. Use several workers with the same skill when their scopes differ. When borrowed by research-companion, engineering-companion, phd-companion, teaching-companion or another owner, preserve that session and its return destination. Ordinary student correspondence stays with teaching-office-hours. Paper summaries stay with research-summarizer. Borrow exact domain support through its existing owner.
 
-For complex project writing, proactively offer a tailored team plan when the task involves several substantive sections or documents, multiple contributors, or consequential domain input and no suitable plan is already in scope. Make the offer in the response form selected for the task or under the applicable verified reporting policy. When neither specifies a form, a short offer such as “Would you like a team plan for [project name]?” is sufficient. Use the known project name, or the document/task name when no project is identified. Skip this offer when the user already requests a plan or authorizes the scoped team; proceed with that request. Ordinary small edits proceed directly.
+For consequential work without a suitable agreed plan, present one concrete plan with assignments, dependencies and checks. Carry an agreed plan through within its authorization. Select domain specialists only for actual missing domain inputs or decisions. Use the existing chat-creation rules when persistent chats are needed.
+
+### Task routes
+
+| Requested outcome | Route |
+| --- | --- |
+| Bounded prose or display text | The matching section writer, including figure titles and captions together when they belong to one display |
+| Citation, substance, reasoning, structure or reporting review | The exact reviewer, preserving review-only and unchanged-prose scope |
+| A short saved thought or a fuller progress record | quick-capture or capture-progress, using the known owner and configured capture preference |
+| A conversation transcript, meeting summary or BLUF | summarize, preserving its source and transcript rules |
+| A curated protocol | write-protocol, retaining its selected content and placement reviews |
+| Material for another named chat or sensitive-content transformation | chat-handoff or redactor under that skill's bounded workflow |
+| Create or update a style reference | writing-style-builder directly from the supplied sources |
+| Apply an existing named profile | The active writer uses the passive reference only on the requested derived prose |
+| Several substantive sections or dependent writing assignments | This companion and its internal writing-coordinator |
+
+Interpret intent rather than matching a word alone. “Capture the argument” inside a writing request and a quoted trigger phrase do not request a saved record. An explicit request to capture, log or record material as memory authorizes saving to a known owner. Draft-only, show-only and review-only instructions keep the result unsaved. A request to show and save authorizes both actions in order. For compound requests, sequence the requested transformations and save actions under their existing authorization, with one owner for each mutable output.
 
 ## Inputs
 
-Read applicable AGENTS.md and me.md, relevant MOC context and the current artifact. Then read the shared [writing contract](../writing-coordinator/references/writing_contract.md), using recipient-supplied writing guidance when available and the document-purpose and evidence requirements when it is absent. Obtain only consequential missing inputs; discover supplied files before asking for them again.
+Read applicable AGENTS.md and me.md and reuse complete context already available. For document writing or review, follow the task-sized context in the shared [writing contract](../writing-coordinator/references/writing_contract.md). Capture, transcript, redaction and profile-building work use their own source and destination requirements. Obtain only consequential missing inputs and discover supplied files before asking for them again.
 
 Use the actual central claim and its status, not an inferred replacement. A project with provisional aims can receive an outline, alternatives and bounded provisional prose while the author decides its contribution.
 
 ## Steps
 
-1. Establish the requested output, audience, current document, selected structure and scope of changes. Preserve frozen material. Identify whether the need is argument, content, evidence, structure, review or integration.
-2. When the user wants a team plan, have writing-coordinator curate the [starter team-plan template](assets/team_plan_starter.md). Begin with at least two relevant non-writing specialist skill chats, then tailor the writing preparation, content writers, reviews and integration to the task. Before dispatch under the existing authorization rules, present concrete assignments and dependencies in the current task's selected form or under the applicable verified reporting policy. Use the starter layout when neither specifies a form. For authorized execution, assemble the shared brief and relevant specialists. For an application or multipart document use organize-writing-project to maintain section-level readiness in the existing owner, with substantive completion distinct from formatting or submission.
-3. Use plan-writing-argument for the controlling claim, analytical question, section claims and paragraph purposes. Send unresolved scientific or technical decisions to the current domain owner; show evidence-supported alternatives without silently selecting one.
+1. Establish the requested output, transformation, source and persistence action. Preserve frozen material and the original domain owner. Complete a sufficient direct task route and return to the caller without a second intake. The remaining document steps apply only when coordinated document work is needed. For a compound helper request, sequence its exact specialist workflows under the existing authorization.
+2. For coordinated work, have writing-coordinator curate the [starter team-plan template](assets/team_plan_starter.md). Select domain support for actual gaps, then tailor writing preparation, content writers, reviews and integration to the task. Present concrete assignments and dependencies under the existing authorization rules. For authorized execution, assemble the relevant brief and specialists. For an application or multipart document use organize-writing-project to maintain section-level readiness in the existing owner, with substantive completion distinct from formatting or submission.
+3. When argument planning is needed, use plan-writing-argument for the controlling claim, analytical question, section claims and paragraph purposes. Procedural and descriptive work keeps its actual purpose. Send unresolved scientific or technical decisions to the current domain owner, showing evidence-supported alternatives without silently selecting one.
 4. Have the coordinator retrieve detailed specialist material through the [cross-system handoff](../writing-coordinator/references/cross_system_handoff.md). The author should not have to relay routine authorized clarifications between existing workers.
-5. Collect bounded drafts from the content-specific writers, then independent substance, argument-reasoning, citation and structure reviews as relevant. A technically intricate methods account also returns to its originating specialist for fidelity review. A positive writing review never establishes scientific validity.
+5. Collect bounded drafts from the content-specific writers, then independent substance, argument-reasoning, citation and structure reviews as relevant. A single requested review uses its exact reviewer. A technically intricate methods account also returns to its originating specialist for fidelity review. A positive writing review never establishes scientific validity.
 6. Have integrate-writing combine accepted passages into the single canonical artifact, preserving exact constructs, source support and the chosen architecture. Recheck affected passages after substantive changes; do not repeat unrelated completed checks.
 7. Present the requested text and the few unresolved decisions that matter. Separate completed drafting/review from author acceptance and from any external delivery. Return to the invoking owner with checks, limits and the next useful action.
 
 ## Outputs
 
-The requested draft or revision, a concise explanation of substantive changes, and specific missing-input questions when they prevent completion. A requested team plan includes the domain-first roster, concrete assignments, dependencies and first deliverable. Present it in the selected or configured form. Use the starter layout when neither specifies a form. A writing plan is a plan; a finished draft is an artifact. Keep task management with the existing project MOC and action tracker. Do not create a second project hub or a separate team dashboard.
+The requested draft, review, record or other bounded result, with a concise explanation of material changes and missing inputs when needed. A coordinated plan uses the starter template's relevant assignments, dependencies and first deliverable. Direct tasks return to their caller. Keep task management with the existing project MOC and action tracker. Save agent workflow only when authorized, at the verified location selected for the task or established by the recipient's continuity policy. Preserve approved captures and study continuity.
 
 ## Boundaries
 
 - Writing assistance does not select hypotheses, analysis models, engineering designs, training commitments or submission targets for the user.
-- Apply the active writing profiles according to me.md when producing formal scientific prose. Profiles do not own evidence, structure or decisions.
+- Apply writing profiles according to me.md only to the prose being produced or revised. An explicit named-profile request can cover a derived meeting summary while its transcript stays frozen. Capture, source records and verification alone do not activate scientific profiles. Profiles remain passive and do not own evidence, structure or decisions.
 - Fluent wording, a complete heading list and a plausible citation are not evidence of substance, completeness or source support.
 - Building this catalog or discussing a team does not launch project chats. Dedicated chat creation and cross-chat messages follow the user's existing authorization and the host's actual rules; internal specialist workers can do authorized work here.
 - A new substantive contribution requires the author's decision; ordinary revisions under an established frame do not require repeated rhetorical approval.
 
 ## Handoffs
 
-writing-coordinator runs internally in this lead chat. Domain companions retain their technical and scientific authority. research-grant-advisor supplies verified application requirements and application judgment; shared writers produce prose under that brief. Artifact builders handle document formats, slides and tables without becoming prose owners. See the coordinator catalog for bounded roles and the single shared naming registry for fixed titles.
+When needed, writing-coordinator runs internally in this lead chat. Domain companions retain their technical and scientific authority. research-grant-advisor supplies verified application requirements and application judgment, and shared writers produce prose under that brief. Artifact builders handle document formats, slides and tables without becoming prose owners. See the coordinator catalog for bounded roles and the single shared naming registry for fixed titles.
 
 ## Checks
 
-The author can identify the document's point, its supporting evidence, the reasoning and the contribution of each major section. Every missing fact is visible, every adopted decision has an owner, and every reported worker result was actually collected.
+The selected route matches the requested output, transformation and save action. Direct tasks complete under their exact skill's checks. For document work, the author can identify the point, supporting evidence, reasoning and each major section's contribution. Every material missing fact is visible, every adopted decision has an owner, and every reported worker result was actually collected.

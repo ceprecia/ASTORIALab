@@ -8,10 +8,10 @@ description: >-
   is imposed. Includes an optional draft-diagnostic script.
 metadata:
   level: profile
-  system: Writing Style References
+  system: Writing System
   dependencies: ""
   created: "2026-09-25"
-  updated: "2026-09-25"
+  updated: "2026-11-18"
 ---
 
 # Writing Style: Negative, AI

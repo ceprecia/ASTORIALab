@@ -14,10 +14,10 @@ description: >-
   share-safe version.
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: ""
   created: "2026-07-17"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 
 # Redactor

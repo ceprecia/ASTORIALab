@@ -84,7 +84,7 @@ The builders, one per core file, and their janitors:
 Helpers:
 
 - [paper-to-skill](../skills/paper-to-skill/SKILL.md) and [repo-to-skill](../skills/repo-to-skill/SKILL.md) build an approved evidence pack from a paper or a pinned repository state and hand it to skill-builder.
-- [writing-style-builder](../skills/writing-style-builder/SKILL.md) reads supplied samples, creates or updates a registered writing-style profile directly, and tests it on sample drafts before reporting.
+- [Writing System](Writing%20System.md) owns Writing Companion, writing specialists, capture and preparation helpers, and passive style references. Its [writing-style-builder](../skills/writing-style-builder/SKILL.md) builds and tests profiles from supplied sources.
 - [skill-mount](../skills/skill-mount/SKILL.md) is an optional convenience for native discovery, keeping one copy in `00 ASTORIA/skills/`: relative symlinks in `.agents/skills/` (Codex) and `.claude/skills/` (Claude Code) for platforms that scan a folder, or pointer stubs for a registry platform. It runs only when requested and is not required for skill-file access, vault completion, or exporting a usable starter.
 - [setup-my-vault](../skills/setup-my-vault/SKILL.md) calls the builders for first-time setup and hands off updates to ASTORIA Updater.
 

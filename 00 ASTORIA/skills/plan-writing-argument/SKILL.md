@@ -8,10 +8,10 @@ description: >-
   paragraphs to my thesis.
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: writing-coordinator
   created: "2026-11-01"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 # Plan Writing Argument
 
@@ -26,10 +26,13 @@ writing plan, not an independent decision about scientific interpretation.
 
 ## Inputs
 
-Read the [writing contract](../writing-coordinator/references/writing_contract.md).
-Load the current brief, relevant MOC sections and any recipient-supplied writing guidance through that contract. Use the current text, audience, writing task,
-selected structure, evidence boundary and central claim with its status.
-Distinguish an adopted claim from a proposed claim, question or missing choice.
+Read the [writing contract](../writing-coordinator/references/writing_contract.md)
+and use its task-sized context. Use the current text, audience, writing task,
+selected structure, evidence boundary and relevant claim with its status. Read
+MOC or recipient-supplied writing guidance when it supplies needed context. Distinguish an
+adopted claim from a proposed claim, question or missing choice. A clear bounded
+argument request can proceed directly without a complete manuscript brief or
+another lead or team.
 
 ## Steps
 
@@ -72,7 +75,8 @@ scientific choices. Save the result only when requested. Use the existing projec
 
 ## Handoffs
 
-Return to writing-coordinator or the invoking owner. Send evidence gaps to
+Return to the invoking owner, through writing-coordinator when it is already
+coordinating the task. Send evidence gaps to
 develop-writing-evidence; send the bounded outline to the matching section
 writer. Scientific interpretation returns through
 [cross-system handoffs](../writing-coordinator/references/cross_system_handoff.md)

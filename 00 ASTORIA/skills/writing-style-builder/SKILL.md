@@ -14,10 +14,10 @@ description: >-
   style from these samples.
 metadata:
   level: skill
-  system: ASTORIA System Builder
+  system: Writing System
   dependencies: ""
   created: "2026-07-23"
-  updated: "2026-09-25"
+  updated: "2026-11-18"
 ---
 
 # Writing Style Profile Builder
@@ -69,9 +69,9 @@ Audience, register, authorship, editing history, and intended use are helpful bu
    - punctuation and formatting.
 4. **Separate style from scientific and argumentative ownership.** Do not turn topic vocabulary, factual claims, quotations, data, or isolated subject matter into general style rules. A profile may guide expression and local cohesion, but it must not choose claims, evidence, inference, interpretation, ideas, argument structure, paragraph functions, or section organization.
 5. **Qualify limitations without blocking.** Mark a rule `supported`, `context-specific`, or `tentative` when that distinction matters. Note coauthored, edited, translated, templated, sparse, or mixed sources briefly. Build the best supported profile instead of requiring a threshold or held-out set.
-6. **Write the profile directly.** Create or update the skill folder `00 ASTORIA/skills/<name>/SKILL.md` with `metadata.level: profile`, `metadata.system: Writing Style References`, and no trigger sentence (profiles are loaded by writing skills, never invoked). A negative profile may ship a `scripts/` checker, as writing-style-negative-ai does, so the writing skill can test a draft instead of rereading the list. For an update, preserve unrelated existing rules unless the user asked to replace the profile.
+6. **Write the profile directly.** Create or update the skill folder `00 ASTORIA/skills/<name>/SKILL.md` with `metadata.level: profile`, `metadata.system: Writing System`, and no trigger sentence (profiles are loaded by writing skills, never invoked). A negative profile may ship a `scripts/` checker, as writing-style-negative-ai does, so the writing skill can test a draft instead of rereading the list. For an update, preserve unrelated existing rules unless the user asked to replace the profile.
 7. **Test the profile on drafts and adjust it.** Follow `./references/test_cycle.md`: pick five to ten situations from the profile's writing context, write each once without the profile (naive) and once with it applied through the writing skill that will load it, add two or three human-written controls, and score. A negative profile's checker must fail every naive draft and pass every applied draft and every control; a positive profile's rules are tallied per rule against the naive drafts, and any rule that changed nothing, changed meaning, or contradicted an explicitly selected companion profile is rewritten or dropped. Fix the profile, rewrite the affected drafts, score again, and stop when a full round ends with no rule change. Drafts and scores stay outside the vault and are removed at the end; report only the cycle actually performed and its limitations in the requested form; keep References for outside sources.
-8. **Register it.** Run `00 ASTORIA/skills/skills-janitor/scripts/build_views.py` so the Skill Map registry lists it under Writing profiles.
+8. **Register it.** In `00 ASTORIA/skills/skill-builder/assets/vocabulary.md`, add the profile name exactly once under `system_sections` → `Writing System` → `Writing style`, preserving existing members. Then run `00 ASTORIA/skills/skills-janitor/scripts/build_views.py`. Verify that the profile appears once in the generated registry and remains excluded from the coordinator's callable-skill catalog.
 9. **Validate and report.** Run `00 ASTORIA/skills/skills-janitor/scripts/lint.py` (frontmatter, headings, links, registry). Then summarize in the requested report the created or changed rule groups, any material source limitations, the situations tested, the scores before and after, and the adjustments made.
 
 Do not stop for a profile brief, rule-by-rule approval, task requirements, evidence matrix, calibration gate, held-out source validation, Style Profile Specification, adapter handoff, or [skill-builder](../skill-builder/SKILL.md) review. The draft test in step 7 is the builder's own check, run without asking, and its output is a report, not an approval request.
@@ -90,7 +90,7 @@ description: >-
   invoked on its own.
 metadata:
   level: profile
-  system: Writing Style References
+  system: Writing System
   dependencies: ""
   created: YYYY-MM-DD
   updated: YYYY-MM-DD
@@ -152,7 +152,7 @@ Rules:
 - Do not use [paper-to-skill](../paper-to-skill/SKILL.md), [repo-to-skill](../repo-to-skill/SKILL.md), or [skill-builder](../skill-builder/SKILL.md).
 - Do not turn internal quality checks into user questions or convert internal quality checks into user gates.
 - Do not independently browse for more sources.
-- Do not apply a writing profile to capture, summarization, MOC, skill-building, note-making, or ordinary chat workflows.
+- These workflows do not automatically activate a writing profile: capture, summarization, MOC, skill-building, note-making and ordinary chat. An explicit style revision of derived prose may use the named profile. Preserve exact transcripts and captured source text. Profile testing applies the candidate only inside its own bounded draft test cycle.
 - Do not claim that a profile detects AI authorship, and do not report a perplexity gauge or a classifier as a detector.
 - Report uncertainty briefly rather than refusing to build.
 - If this run creates or updates a profile as authorized and logging the change is within this role's scope, add one entry at the top of the existing `00 ASTORIA/agent_notes/ai_log.md` under its callout. Use three to six lines with the date and skill in the heading and record what was done, where and what is pending.

@@ -9,7 +9,7 @@ metadata:
   system: Teaching Assistant System
   dependencies: teaching-assistant-builder, teaching-grader, teaching-office-hours, teaching-platform, teaching-lecture-review, teaching-assessment
   created: "2026-10-20"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 
 # Teaching Coordinator
@@ -59,11 +59,23 @@ identity or syllabus is not required.
 | Student questions, policy replies, announcements, email drafts and thread triage | [teaching-office-hours](../teaching-office-hours/SKILL.md) |
 | Inspect or change configured course-platform state; verify student-facing effect | [teaching-platform](../teaching-platform/SKILL.md) |
 | Review or revise teaching materials against supplied approved references | [teaching-lecture-review](../teaching-lecture-review/SKILL.md) |
+| Plan a lecture's learning outcomes, assessment emphasis and section learning checks before slide assembly | [teaching-lecture-review](../teaching-lecture-review/SKILL.md) |
 | Design or check quizzes, exams, assignments, discussion prompts and proposed rubrics | [teaching-assessment](../teaching-assessment/SKILL.md) |
 
 Content decisions remain with the relevant content specialist. Platform owns live LMS
 execution, including approved grade entry and assessment settings. Office Hours owns
 the communication draft; a platform announcement and a sent email are separate effects.
+
+For lecture design, route the instructional plan to teaching-lecture-review before
+artifact assembly. It borrows teaching-assessment for a bounded current-assessment
+map when available, then returns the sequence, section checks, feedback and timings
+to the companion for the presentation handoff. These checks are on by default for
+new lectures and substantial instructional revisions; narrow corrections stay narrow.
+The handoff does not require another team or another approval.
+Keep the instructional brief separate from delivered speaker notes. Carry the user's
+reference-note style and citation placement to production: natural spoken explanations,
+brief useful cues and one slide per check, with the answer/rationale in that slide's notes.
+Private source maps, timing schedules and verification records are not narration.
 
 Folder filing is a conditional maintenance detour: verify folder-janitor when
 requested, pass the existing folder scope, holds and any approved move/dependency

@@ -109,9 +109,14 @@ the writing owner rather than designing a study through a style edit.
 
 ## Using the checker
 
-The script identifies selected wording and layout patterns. Review each hit
-against the actual task, scientific terminology and protected source material;
-use an allowed technical phrase when appropriate. Read the whole draft for
-repetition, altered meaning and missing context that a pattern matcher cannot
-establish. Report only checks actually performed. A clean result is not an
-AI-authorship test or a scientific validation.
+The script reports unfinished draft markers (`TODO`, `TBD`, `TK`,
+`[citation needed]` and `[source needed]`) and exact duplicate prose paragraphs
+after supported protected material and allowed phrases are excluded.
+It does not assess broader wording or layout preferences. It masks supported
+code blocks and some inline or quoted material; unsupported Markdown structures
+can affect diagnostics. Review each hit against the actual task, scientific
+terminology and protected source material, preserving valid technical phrases,
+quotations and citations. Read the whole draft manually for repetition, altered
+meaning and missing context beyond these narrow checks. Report only checks
+actually performed. A clean result is not an AI-authorship test or a scientific
+validation.

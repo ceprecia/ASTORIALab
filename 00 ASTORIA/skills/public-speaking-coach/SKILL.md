@@ -10,7 +10,7 @@ metadata:
   system: PhD and Career System
   dependencies: ""
   created: "2026-10-31"
-  updated: "2026-10-31"
+  updated: "2026-11-18"
 ---
 
 # Public Speaking Coach
@@ -22,6 +22,8 @@ Practice one clear message, then improve the next attempt.
 Coach conference talks, poster explanations, interviews, defenses, brief updates
 and Q&A. Work with the user's existing message and chosen scientific claims.
 Use an applicable coaching method, not a collage of famous-speaker mannerisms.
+When asked for speaker notes, prepare an explanation the speaker can deliver, not a
+report about preparation. Inspect the notes in the user's supplied model talk first.
 phd-career-builder owns persistent audience, feedback and example preferences;
 this skill owns the current practice session.
 
@@ -33,6 +35,8 @@ this skill owns the current practice session.
   model speaker, coach, transcript or example.
 - Evidence available for feedback: text, a user-timed attempt, audio or video.
   Locate supplied context before asking for it again.
+- For classroom teaching, the teaching owner's planned section learning checks,
+  supported answers, explanatory feedback, reveal cues and class schedule.
 
 ## Steps
 
@@ -48,11 +52,33 @@ this skill owns the current practice session.
    explain its audience relevance, then give the next implication or action.
    Preserve uncertainty; significance to the audience is not statistical
    significance or proof of a mechanism.
+   For teaching, use Feynman-style explanation: start with a familiar case, explain the
+   mechanism plainly, define necessary terms, and connect back to the figure or takeaway.
+   Repair gaps and consequential analogy limits before polishing. The notes should
+   contain the resulting natural explanation, not a labeled account of that process.
+   When a user selects TED-style guidance, borrow a relatable opening, clear idea,
+   evidence and conversational delivery without imposing TED's event format on a class.
+   When a user selects Vinh Giang, choose a relevant delivery variable to practice:
+   pace, volume, pitch/melody, tone or pause. Explain the concrete choice and preserve the
+   user's own voice. Do not print a coaching checklist on every slide or claim a method
+   was observed without a performance sample.
 4. Build a task-sized rehearsal. For a talk, allocate the actual time across
    its existing sections and rehearse transitions, opening and close. For a
    poster, practice a brief overview followed by a longer guided explanation.
    For a finished deck, keep the approved content and focus on delivery unless
    the user requests a content revision.
+   For classroom teaching, rehearse each planned check's instructions, thinking/response
+   pause, answer reveal, explanation, likely misconception and transition back to teaching.
+   Include this interaction time in the supplied schedule. Preserve the question format
+   and pedagogical method; rhetorical questions and immediately self-answered prompts
+   do not replace planned student responses. Return missing instructional content to
+   teaching-lecture-review through the teaching owner rather than removing the check.
+   Default to one slide per classroom check. The presenter explains the answer aloud
+   from that slide's notes after the response; a separate explanation slide is not required.
+   Rehearsal planning may track time and misconceptions privately. Speaker notes contain
+   the spoken explanation and occasional useful cues, such as "give them a minute".
+   Exclude source dumps, verification history, agent instructions and repeated timing
+   headers. Do not replace a useful explanation with an arbitrary short word limit.
 5. Practice aloud when the user can, in conditions resembling the event.
    Use a full timed run or a focused section according to the target. Following
    Duarte's rehearsal guidance, practice delivery rather than only clicking
@@ -89,15 +115,26 @@ Use research-presentation-builder for requested artifact/content work,
 phd-networking-advisor for person-specific conversations, and
 phd-meeting-advisor for meeting preparation. A substantive scientific question
 goes to its bounded research owner rather than turning rehearsal into critique.
+For a course lecture, retain the teaching owner and its default learning-check plan.
+These classroom rehearsal checks do not impose student questions on conference talks,
+posters or other presentations, and do not expand a narrow correction into a redesign.
 
 ## Checks
 
 The practice fits the audience and time. Feedback identifies its evidence and
 one doable change. Scientific claims, uncertainty and user choices are preserved.
 No proposed or simulated performance has been reported as observed.
+For classroom teaching, students have planned response and feedback time, and the
+learning checks and transitions fit the class schedule. Keep estimated timing explicit
+until an actual rehearsal measures it.
+When notes are requested, read a representative passage aloud and compare it with the
+user's model notes. Check that it actually explains the concept and that its delivery
+cues help the speaker. Self-explanatory slides may need no notes.
 
 ## References
 
 - Abrahams, M. (n.d.). One communication tool you should add to your toolkit. Stanford Graduate School of Business. https://www.gsb.stanford.edu/insights/one-communication-tool-you-should-add-your-toolkit
 - Duarte. (n.d.). 3 expert tips to maximize your presentation rehearsal time. https://www.duarte.com/blog/3-expert-tips-to-maximize-your-presentation-rehearsal-time/
+- TED. (n.d.). TEDx speaker guide. https://storage.ted.com/tedx/manuals/tedx_speaker_guide.pdf
+- Giang, V. (n.d.). 5 small changes to become a better communicator [Post]. LinkedIn. https://www.linkedin.com/posts/vinhgiang_5-small-changes-to-become-a-better-communicator-activity-7331280854284939265-vQZ5
 

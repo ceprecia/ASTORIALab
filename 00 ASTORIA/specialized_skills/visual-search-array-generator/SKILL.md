@@ -5,8 +5,9 @@ description: >-
   approved controlled-array visual-search task. Use when the request, or a stage
   coordinator, hands over an explicitly matching task. It maps display geometry,
   visual units, item bounds, feature assignments, target placement, spacing,
-  set-size cells, randomization, seeds, and validation invariants; compares
-  feasible generation algorithms; and generates only the user-selected bounded
+  set-size cells, randomization, seeds, and validation invariants; assesses a selected
+  algorithm and compares feasible alternatives only for a material unresolved
+  choice; and generates only the user-selected bounded
   batch after two approval gates. It does not choose the paradigm or scientific
   parameters, use inherited defaults, build a task runner, install packages,
   analyze search performance, search, save, or render production stimuli without
@@ -36,7 +37,7 @@ Generate controlled visual-search layouts without hiding scientific choices insi
 It owns:
 
 - translating user-selected display geometry and visual units into an explicit coordinate system;
-- comparing feasible array-placement algorithms under approved spatial constraints;
+- assessing the user-selected array-placement algorithm under approved spatial constraints, or comparing feasible alternatives only for a material unresolved algorithm choice;
 - assigning target, distractor, feature, position, set-size, and condition fields from an approved design;
 - generating a bounded manifest with recorded seed, runtime, algorithm, and parameter provenance;
 - validating counts, boundaries, distances, positions, feature balance, target balance, reproducibility, and failed-placement behavior;
@@ -119,15 +120,15 @@ Show:
 
 Estimate the output scale before approval: number of trials, number of item rows, approximate serialized size, and requested previews. Do not generate an unbounded manifest.
 
-### 2. Gate 1: approve the constraint and algorithm-comparison boundary
+### 2. Gate 1: approve the constraint and algorithm-assessment boundary
 
-Ask the user to approve or correct the Array Generation Brief, constraint definitions, candidate algorithm classes, validation plan, and batch-size estimate.
+Ask the user to approve or correct the Array Generation Brief, constraint definitions, the selected algorithm or any requested candidate algorithm classes, validation plan, and batch-size estimate.
 
 Gate 1 authorizes only:
 
 - inspection of the displayed inputs and evidence;
 - geometry and feasibility checks;
-- comparison of placement and assignment algorithms;
+- assessment of a selected placement and assignment algorithm, preparation of requested candidate algorithm proposals, and comparison only for a material unresolved algorithm choice;
 - design of the manifest schema and validation invariants;
 - preparation of response options.
 
@@ -175,9 +176,9 @@ Create one row per constraint:
 
 Hard constraints may never be silently relaxed. A retry cap is an engineering guard, not permission to weaken the design.
 
-### 5. Build the Generation Algorithm Option Matrix
+### 5. Assess the selected algorithm or compare alternatives
 
-Generate two to four `AI-generated generation algorithm option` entries only when feasible. Common candidate classes include:
+Assess the user-selected algorithm against the approved constraints. If it is compatible, document that method alone; do not generate alternatives merely because they are feasible. If it is incompatible, report the exact constraint mismatch, preserve the recorded selection, and return the consequential decision to the user before dependent generation. Do not substitute a method or relax constraints silently. Generate feasible candidates when the user requests them. Compare alternatives only when a material algorithm choice remains unresolved, using as many relevant feasible candidates as needed to resolve it without a fixed minimum. Use the fields below for the selected assessment or each candidate. Common candidate classes include:
 
 - approved candidate locations followed by constrained sampling;
 - grid or lattice positions with bounded jitter;
@@ -199,7 +200,7 @@ Generate two to four `AI-generated generation algorithm option` entries only whe
 | Evidence status | Verified method, user supplied, external candidate, or AI-generated |
 | Validation plan | Invariants, simulations, preview, and reproduction test |
 
-If only one algorithm can satisfy the approved constraints, explain why and do not invent alternatives.
+Assess a compatible user-selected algorithm alone even when other methods are feasible. If an unresolved choice has only one feasible algorithm under the approved constraints, explain why and do not invent alternatives.
 
 Do not select an algorithm because a package implements it. Do not import the source YAML's `max_attempts`, grid jitter, rings, target balance, or run-length values.
 
@@ -308,7 +309,7 @@ Include the applicable evidence and outputs below in the form and order selected
 - **Array Generation Brief**
 - **Display Geometry and Constraint Map**, after Gate 1
 - **Constraint and Evidence Register**
-- **Generation Algorithm Option Matrix**
+- **Selected Algorithm Assessment**, with requested candidate proposals when applicable; **Generation Algorithm Option Matrix** only for a material unresolved algorithm choice
 - **Manifest and Balance Plan**
 - **Array Threat Register**
 - **Response Options**
@@ -352,7 +353,7 @@ Edge cases:
 - **Unknown item extent**: Do not validate center spacing as if it guaranteed edge clearance.
 - **Dense cell is infeasible**: Report the exact conflicting constraints; do not shrink items, expand the region, reduce spacing, or drop trials silently.
 - **Pixel rounding creates a violation**: Reject or regenerate according to the approved rule and retain the failure record.
-- **Only one feasible algorithm**: Explain the constraint and do not invent alternatives.
+- **Selected or sole feasible algorithm**: Assess a compatible user-selected algorithm alone even when other methods are feasible. If the selected algorithm is incompatible, report the actual constraint mismatch and return the decision to the user without substituting a method or relaxing constraints. When only one algorithm is feasible, explain why and do not invent alternatives.
 - **Source supplies a default number**: Mark it unverified until exact-match evidence and the user selection.
 - **Color or luminance manipulation**: Require device and calibration evidence; RGB values alone are insufficient.
 - **Crowding rule requested**: Require the exact task, stimulus, eccentricity, direction, population, and criterion basis.

@@ -17,6 +17,8 @@ Compare `layout_rules` with `me.md` sentence by sentence: the owner's note polic
 
 Scope: `00 ASTORIA/skills/`, `00 ASTORIA/systems/`, `00 ASTORIA/Skill Map.md`, `me.md`, `AGENTS.md`. Exclusions: `00 ASTORIA/agent_notes/`, `02 📅 Calendar/`, and dotfolders.
 
+Also inspect Project and Area `AGENTS.md` bridges in the requested scope. Locate them using the configured roots and verified owner or workspace bindings. Apply read exclusions, holds and archive exceptions before opening a bridge; do not search unrelated project content or follow an external workspace beyond the authorized scope. Compare its active skill and system routing with the current Skill Map. References to Writing Style References or Capture and Writing Helpers need repair only when they direct active routing to a retired group. Preserve historical examples, personal preferences and approved project instructions. Return exact locations and proposed edits with the audit findings. An updater audit authorizes no bridge changes; approved instruction repairs go through Bridge Maker or Propagate with the existing owner and scope. Folder Janitor handles structure and active path tokens.
+
 Choose search terms from the recipient's verified renames and the current task.
 Replace the illustrative terms below before running the command, and restrict
 the named paths to the approved readable scope. Fixed-string matching keeps

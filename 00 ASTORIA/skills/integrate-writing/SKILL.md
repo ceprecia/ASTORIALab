@@ -8,10 +8,10 @@ description: >-
   these section drafts, reconcile document wording.
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: writing-coordinator
   created: "2026-11-01"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 # Integrate Writing
 
@@ -26,11 +26,13 @@ a substitute for the separate citation, substance, argument reasoning or structu
 
 ## Inputs
 
-Read the [writing contract](../writing-coordinator/references/writing_contract.md).
-Use the current brief, relevant MOC and recipient-supplied writing guidance, canonical
-document/version, section returns, selected structure, central claim and its
-status, source locators, protected text and review findings. Identify the sole
-writer allowed to modify the canonical artifact.
+Read the [writing contract](../writing-coordinator/references/writing_contract.md)
+and use its task-sized context. Use the canonical document/version, assigned
+section returns, selected structure, source locators, protected text and review
+findings. Include the central claim and its status for argument-bearing material.
+Read MOC or recipient-supplied writing guidance when it supplies needed context. Identify
+the sole editor of the canonical artifact. A bounded integration request may
+return directly to its caller without another lead or team.
 
 ## Steps
 
@@ -50,6 +52,12 @@ writer allowed to modify the canonical artifact.
 5. Check transitions for their actual relation: continuation, contrast,
    consequence, qualification or a new question. Remove transition words that
    disguise an unsupported jump.
+   For a link between sources, identify what the combined evidence actually
+   establishes. A study of varied workflows does not isolate one component's
+   effect merely because the preceding paragraph described that component.
+   Distinguish evidence that motivates a proposed test from evidence that
+   directly answers it; adjacent accurate statements can imply an unsupported
+   causal or mechanistic connection after integration.
 6. Read for voice and proportion. Replace empty emphasis with the supported
    specific point, remove redundant announcements and ensure paragraphs do
    distinct work. Preserve technical language when precision requires it.
@@ -86,7 +94,8 @@ Do not produce a second canonical document or unsolicited review files.
 
 ## Handoffs
 
-Return the integrated draft to writing-coordinator and the invoking companion.
+Return the integrated draft to the invoking owner, through writing-coordinator
+when it is already coordinating the task.
 Use the relevant content writer for substantial section redevelopment.
 Technical fidelity follows
 [cross-system handoffs](../writing-coordinator/references/cross_system_handoff.md).

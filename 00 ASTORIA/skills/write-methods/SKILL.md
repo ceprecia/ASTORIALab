@@ -6,9 +6,9 @@ description: 'Drafts or revises Methods from verified procedures, configurations
   these procedures.'
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   created: '2026-11-01'
-  updated: '2026-11-01'
+  updated: '2026-11-18'
 ---
 # Write Methods
 
@@ -24,17 +24,17 @@ and validates the work; this skill explains it faithfully.
 ## Inputs
 
 Read the [writing contract](../writing-coordinator/references/writing_contract.md)
-completely. Use the [cross-system handoff](../writing-coordinator/references/cross_system_handoff.md)
-when domain-specialist material or requirements are involved.
+and use its task-sized context. A clear bounded request can supply the brief
+without loading Writing Companion or Writing Coordinator. Use the exact passage
+or artifact, its purpose, source records, relevant definitions, constraints and
+authorized edits. Carry the central claim and its status when this passage needs
+that argument. Read MOC or recipient-supplied writing guidance only when needed context is
+not already available, following the MOC reading policy in `me.md`.
 
-Read the relevant MOC by the default in `me.md`, then the sections needed for
-this assignment. Read any recipient-supplied writing guidance identified in the brief. If none is supplied, use the document-purpose and evidence requirements and the actual task sources. Writing preferences are not evidence for the project's scientific claims.
-
-Recover the current writing brief: exact document/version, audience, section
-purpose, central argument and its provisional or adopted status, any recipient-selected organizational requirements,
-source locators, protected terminology, claim ceiling, required structure and
-length, and authorized edits. Apply only a writing profile selected for this task or in the recipient's `me.md`. The available references include `writing-style-positive-scientific` and `writing-style-negative-ai`. Apply each independently when selected. Ask only for missing information that changes the
-requested wording; continue unaffected work without inventing an answer.
+Use the [cross-system handoff](../writing-coordinator/references/cross_system_handoff.md)
+for missing domain detail or fidelity questions. Apply only a writing profile selected for this task or in the recipient's `me.md`, and only to prose being produced or revised. The available references include `writing-style-positive-scientific` and `writing-style-negative-ai`. Apply each independently when selected. Preserve source records and
+frozen text. Ask only for missing information that changes the requested result
+and continue independent supported work.
 
 Use the actual protocol, task/program configuration, scripts, analysis outputs,
 records, and domain-translation packet needed for the passage. Obtain the
@@ -49,7 +49,8 @@ different details. A remembered software default is not project evidence.
    checked, reviewed or adopted. Separate the proposed protocol from actual
    practice and reported deviations. For a proposal, use prospective wording;
    for completed work, verify actual settings rather than copying the plan.
-2. Read the bounded primary records and domain-specialist return. Match the
+2. Read the bounded primary records and any relevant domain-specialist return.
+   Sufficient supplied records support a direct assignment. Match the
    correct dataset/build, version and run/configuration to the document.
    Resolve discrepancies with the domain owner; do not rerun an analysis,
    redesign a circuit, choose exclusions or infer acceptance from file existence.
@@ -109,7 +110,7 @@ Keep the canonical document with its assigned integration owner.
 ## Handoffs
 
 Use the cross-system handoff for missing technical inputs or a fidelity question
-with the existing domain owner. Return prose to the invoking writing owner.
+with the existing domain owner. Return prose to the invoking owner.
 The substance checker checks content and specificity; the structure keeper
 checks required coverage. The writer does not replace either independent review.
 

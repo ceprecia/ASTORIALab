@@ -6,9 +6,9 @@ description: 'Drafts or revises figure legends, table notes, and associated disp
   Triggers: draft figure captions, write table notes.'
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   created: '2026-11-01'
-  updated: '2026-11-06'
+  updated: '2026-11-18'
 ---
 # Write Figure and Table Text
 
@@ -24,17 +24,17 @@ analysis status. Figure design and statistical execution remain with their owner
 ## Inputs
 
 Read the [writing contract](../writing-coordinator/references/writing_contract.md)
-completely. Use the [cross-system handoff](../writing-coordinator/references/cross_system_handoff.md)
-when domain-specialist material or requirements are involved.
+and use its task-sized context. A clear bounded request can supply the brief
+without loading Writing Companion or Writing Coordinator. Use the exact passage
+or artifact, its purpose, source records, relevant definitions, constraints and
+authorized edits. Carry the central claim and its status when this passage needs
+that argument. Read MOC or recipient-supplied writing guidance only when needed context is
+not already available, following the MOC reading policy in `me.md`.
 
-Read the relevant MOC by the default in `me.md`, then the sections needed for
-this assignment. Read any recipient-supplied writing guidance identified in the brief. If none is supplied, use the document-purpose and evidence requirements and the actual task sources. Writing preferences are not evidence for the project's scientific claims.
-
-Recover the current writing brief: exact document/version, audience, section
-purpose, central argument and its provisional or adopted status, any recipient-selected organizational requirements,
-source locators, protected terminology, claim ceiling, required structure and
-length, and authorized edits. Apply only a writing profile selected for this task or in the recipient's `me.md`. The available references include `writing-style-positive-scientific` and `writing-style-negative-ai`. Apply each independently when selected. Ask only for missing information that changes the
-requested wording; continue unaffected work without inventing an answer.
+Use the [cross-system handoff](../writing-coordinator/references/cross_system_handoff.md)
+for missing domain detail or fidelity questions. Apply only a writing profile selected for this task or in the recipient's `me.md`, and only to prose being produced or revised. The available references include `writing-style-positive-scientific` and `writing-style-negative-ai`. Apply each independently when selected. Preserve source records and
+frozen text. Ask only for missing information that changes the requested result
+and continue independent supported work.
 
 Inspect the current figure or table, including visible panels, axes, units,
 row/column headings, symbols and annotations. Use its source data/analysis
@@ -95,7 +95,7 @@ its assigned owner; no invented statistical note fills an unknown.
 ## Handoffs
 
 Use the cross-system handoff for display/analysis definitions or fidelity
-questions. Return text to the invoking writing owner and pass artifact mismatches
+questions. Return text to the invoking owner and pass artifact mismatches
 to the actual builder/analyst. The integration editor reconciles numbering and
 cross-references; independent substance/structure reviewers retain their checks.
 

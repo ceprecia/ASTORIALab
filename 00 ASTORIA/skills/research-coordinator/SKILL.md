@@ -17,7 +17,7 @@ metadata:
   requires: ""
   gates: ""
   created: "2026-07-23"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 
 # Research Coordinator
@@ -41,7 +41,7 @@ Load only what the current assignment needs:
 3. Relevant context from the verified project MOC when history, decisions or a return point matter. Follow the recipient's approved, applicable MOC reading policy in `me.md` within the current task scope. If no applicable policy governs the reading sequence, use `Start Here` or the opening section and the heading outline to orient, then read only the recent log entries and sections needed for the task. Under that fallback, reserve a full read for a task about the MOC itself. If continuity still lacks needed evidence, consult relevant captures or records at the verified location selected for the task or established by the applicable project continuity policy, within the approved reading scope.
 4. Exact installed skill metadata and the needed part coordinator catalog when discovery is required. A named matching skill can be verified directly. Consult several part catalogs only when separate requested lanes need them, never to load whole parts or families.
 5. `./references/team_naming.md` before proposing or assigning any team chat title or number. It is the only prefix/ID registry; never copy its table elsewhere.
-6. For shared support discovery, only the generated [Capture and Writing Helpers](../../Skill%20Map.md#-capture-and-writing-helpers) group, then the exact selected helper. Use the existing catalog across systems, not copied helper folders or a second capability list.
+6. For shared support discovery, only the generated [Writing System](../../Skill%20Map.md#-writing-system) group, then the exact selected helper. Use the existing catalog across systems, not copied helper folders or a second capability list.
 7. External workspace paths only when verified and needed for the task.
 
 The lead reads routing metadata and necessary contracts, not every worker's full body. Give each worker its exact installed `SKILL.md` and required guides to read completely. Proposed later capabilities stay `suggested, not loaded`; installation, readability and runtime availability are separate facts.
@@ -151,7 +151,7 @@ For cross-system work, carry the original owner, verified current project, exact
 
 - Research Companion supplies the outcome, sources, current scope and user decisions, retains strategy/synthesis and collects the team's results.
 - Part coordinators supply discovery and required specialized routes; exact installed skills own the bounded work. The lead need not read all worker bodies.
-- Shared support uses the generated Capture and Writing Helpers group as its canonical catalog. Its writing-companion and internal writing-coordinator provide reusable writing teams; exact section writers and separate review skills remain directly assignable.
+- Shared support uses the generated Writing System group as its canonical catalog. Its writing-companion and internal writing-coordinator provide reusable writing teams; exact section writers and separate review skills remain directly assignable.
 - For writing, read `00 ASTORIA/skills/writing-coordinator/references/cross_system_handoff.md`. Send the current claim/status, MOC writing guidance, selected structure, source versions, known facts and unresolved decisions. The writing coordinator requests detailed methods through this coordinator and the existing modality/method/adapter owners, then returns text for technical fidelity review. Do not bypass an existing technical team or create a competing analysis team. Other support owners retain their existing scope.
 - PhD Companion and phd-coordinator own career support. Research and PhD may borrow exact skills or request a bounded companion service while preserving the original owner, project and scientific choices.
 

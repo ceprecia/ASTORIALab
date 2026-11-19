@@ -35,6 +35,10 @@ STRUCTURE
   with their own workflows.
 
 LINKS AND UPDATES
+- Keep the MOC focused on the requested teaching context and verified links.
+  Save agent notes and workflow only when authorized, at the verified location
+  selected for the task or established by the applicable project policy.
+  Preserve approved teaching records and existing study continuity.
 - Verify each course note and AGENTS.md exists before linking it. Update affected
   heading links and any selected current-term shortcuts when the timeline changes.
 - Reuse the existing MOC, AGENTS.md, and course note. Create or update each

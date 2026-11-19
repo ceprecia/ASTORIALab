@@ -7,6 +7,7 @@ Apply only the displayed plan with --apply PLAN_ID.
 import argparse
 from dataclasses import dataclass
 from datetime import date
+import difflib
 import hashlib
 import json
 import os
@@ -25,6 +26,7 @@ AI_LOG = ASTORIA / "agent_notes/ai_log.md"
 ACTIVE = ASTORIA / "skills"
 OPTIONAL = ASTORIA / "specialized_skills"
 VIEW_SCRIPT = ACTIVE / "skills-janitor/scripts/build_views.py"
+VOCABULARY = ACTIVE / "skill-builder/assets/vocabulary.md"
 UPDATE_LOCK = ASTORIA / ".astoria-update-lock"
 TOOLKIT_STATE = ASTORIA / ".toolkit-install-in-progress.json"
 GENERATED = re.compile(
@@ -175,6 +177,85 @@ def change_group(path):
     return path
 
 
+def merge_vocabulary(original, current, incoming):
+    """Keep disjoint configuration edits without rewriting recipient comments."""
+    try:
+        import yaml
+    except ImportError:
+        return None, "PyYAML is required to compare customized vocabulary configuration"
+
+    class UniqueKeys(yaml.SafeLoader):
+        pass
+
+    def mapping(loader, node):
+        values = {}
+        for key_node, value_node in node.value:
+            key = loader.construct_object(key_node, deep=True)
+            if not isinstance(key, str) or key in values:
+                raise ValueError("Vocabulary configuration has a duplicate or unsupported mapping key")
+            values[key] = loader.construct_object(value_node, deep=True)
+        return values
+
+    UniqueKeys.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, mapping)
+
+    def configuration(text):
+        blocks = re.findall(r"```yaml\n(.*?)\n```", text, re.S)
+        if len(blocks) != 1:
+            raise ValueError("Vocabulary must contain one YAML configuration block")
+        value = yaml.load(blocks[0], Loader=UniqueKeys)
+        if not isinstance(value, dict):
+            raise ValueError("Vocabulary configuration must be a mapping")
+        return value
+
+    missing = object()
+
+    def combine(before, live, after):
+        if live == before:
+            return after
+        if after == before or live == after:
+            return live
+        if all(isinstance(value, dict) for value in (before, live, after)):
+            result = {}
+            for key in before.keys() | live.keys() | after.keys():
+                value = combine(before.get(key, missing), live.get(key, missing), after.get(key, missing))
+                if value is not missing:
+                    result[key] = value
+            return result
+        # Lists are a single choice; do not infer how to combine two changed orders.
+        raise ValueError("Local and release vocabulary configuration changes overlap")
+
+    try:
+        before, live, after = (content.data.decode("utf-8") for content in (original, current, incoming))
+        live_configuration = configuration(live)
+        expected = combine(configuration(before), live_configuration, configuration(after))
+        base_lines = before.splitlines(keepends=True)
+        edits = []
+        for text in (live, after):
+            lines = text.splitlines(keepends=True)
+            for tag, start, end, other_start, other_end in difflib.SequenceMatcher(
+                    None, base_lines, lines, autojunk=False).get_opcodes():
+                if tag == "equal":
+                    continue
+                edit = (start, end, lines[other_start:other_end])
+                if edit in edits:
+                    continue
+                for previous_start, previous_end, _ in edits:
+                    overlap = max(start, previous_start) < min(end, previous_end)
+                    insertion = ((start == end and previous_start <= start <= previous_end)
+                                 or (previous_start == previous_end and start <= previous_start <= end))
+                    if overlap or insertion:
+                        raise ValueError("Vocabulary text changes overlap; review the configuration before updating")
+                edits.append(edit)
+        for start, end, replacement in sorted(edits, reverse=True):
+            base_lines[start:end] = replacement
+        merged = "".join(base_lines)
+        if configuration(merged) != expected:
+            raise ValueError("Combined vocabulary does not preserve both configuration changes")
+        return File(merged.encode("utf-8"), current.mode), None
+    except (UnicodeError, ValueError, yaml.YAMLError, RecursionError) as error:
+        return None, str(error)
+
+
 def select_changes(current, source, baseline):
     changes = {}
     conflicts = {}
@@ -186,6 +267,13 @@ def select_changes(current, source, baseline):
         live = comparison(current.get(path), path)
         after = comparison(source.get(path), path)
         if live == after or before == after:
+            continue
+        if path == VOCABULARY and all(path in files for files in (baseline, current, source)) and live != before:
+            merged, reason = merge_vocabulary(baseline[path], current[path], source[path])
+            if reason:
+                conflicts[path] = reason
+            elif merged != current[path]:
+                changes[path] = merged
             continue
         if live == before and (before is not None or change_group(path) not in groups):
             incoming = source.get(path)
@@ -210,6 +298,12 @@ def select_changes(current, source, baseline):
         if change_group(path) in held:
             conflicts[path] = "Held with another file in the same skill"
             del changes[path]
+    if VOCABULARY in conflicts:
+        # Coordinators and their vocabulary form one coherent installation.
+        # Report the conflict before trying incoming catalogs against old settings.
+        for path in changes:
+            conflicts[path] = "Held until the vocabulary configuration conflict is resolved"
+        changes.clear()
     return changes, conflicts
 
 
@@ -313,7 +407,16 @@ def preview(source_root, target, baseline_root):
             baseline_required = baseline_required or bool(conflicts)
         pending = bool(conflicts) or baseline_required
         if planned:
-            generated_changes(current, planned, tools)
+            try:
+                generated_changes(current, planned, tools)
+            except ValueError as error:
+                # Retained local skills may still use the older catalog schema.
+                # Keep the installation coherent and show the conflict, not a partial apply.
+                conflicts[SKILL_MAP] = "Generated skill views require review before this update: " + str(error)
+                for path in planned:
+                    conflicts.setdefault(path, "Held until the generated skill-view conflict is resolved")
+                planned.clear()
+                pending = True
     rows = []
     for path, content in sorted(planned.items()):
         previous = current.get(path)

@@ -3,7 +3,7 @@ related:
   - "[[me]]"
 created: 2026-01-01
 updated: 2026-11-02
-astoria_version: "1.2.0"
+astoria_version: "1.3.0"
 ---
 This is the active skill registry for the user's AI system. Every skill is a folder, `00 ASTORIA/skills/<name>/SKILL.md`, on the Agent Skills standard; the registry below is generated from the skills' frontmatter by `00 ASTORIA/skills/skills-janitor/scripts/build_views.py` and is never edited by hand. The full sortable table is the Base in [Skills](Skills.md).
 
@@ -29,10 +29,9 @@ This is the active skill registry for the user's AI system. Every skill is a fol
 <!-- systems:start -->
 > [!example] 🗺️ Systems
 > - 🏗️ [ASTORIA System Builder](#-astoria-system-builder): Set up and maintain the AI system.
-> - ✍️ [Writing Style References](#-writing-style-references): Rule-only references for writing tasks.
+> - ✍️ [Writing System](#-writing-system): Develop, review, capture and prepare writing through the right bounded capability.
 > - 🤹 [Productivity and Study System](#-productivity-and-study-system): Map, study, and plan progress.
 > - 🍎 [Teaching Assistant System](#-teaching-assistant-system): Prepare, teach, assess, and manage college courses.
-> - 🗒️ [Capture and Writing Helpers](#-capture-and-writing-helpers): Capture and prepare material, then develop and review writing.
 > - 🧹 [Janitor System](#-janitor-system): Maintain the vault and the AI system.
 > - ⚙️ [Engineering System](#-engineering-system): Build, verify, and operate research hardware and inspect shipped software.
 > - 🎓 [PhD and Career System](#-phd-and-career-system): Navigate degree requirements, mentoring, opportunities and career development.
@@ -55,14 +54,49 @@ This is the active skill registry for the user's AI system. Every skill is a fol
 - [skill-builder](skills/skill-builder/SKILL.md): Creates one new skill folder in `00 ASTORIA/skills/<name>/` with a standard SKILL.md, the required frontmatter, a description under 1,000 characters with at most five triggers, and optional references, scripts, and assets, then regenerates the Skill Map and coordinator catalogs. Triggers: make a skill, create a new skill, draft a skill for this workflow, turn this into a skill.
 - [skill-mount](skills/skill-mount/SKILL.md): Optionally mounts the vault's skills where an agent platform looks for them, keeping one copy in `00 ASTORIA/skills`. Triggers: mount my skills, remount the skills, make my skills show up in Codex, register my skills for Claude Science.
 - [vault-builder](skills/vault-builder/SKILL.md): Builds or refreshes the layout reference `00 ASTORIA/agent_notes/layout.md`, the one page an agent checks before placing, naming, or moving a file. Triggers: build my layout reference, refresh the layout, map my folders for AI, map my templates for AI.
-- [writing-style-builder](skills/writing-style-builder/SKILL.md): Creates or updates one passive writing-style reference directly from sources the user supplies. Triggers: build my writing style profile, update my writing style profile, calibrate my writing style from these samples.
 
 ---
-## ✍️ Writing Style References
+## ✍️ Writing System
 
-![Writing Style References](assets/banner_system_writing.png)
+![Writing System](assets/banner_system_writing.png)
 
-Rule-only references for writing tasks.
+[Writing System](systems/Writing%20System.md): Develop, review, capture and prepare writing through the right bounded capability.
+
+### Companion and coordination
+- [writing-companion](skills/writing-companion/SKILL.md) (companion): Leads the Writing System and coordinates sustained writing around the author’s purpose, evidence, audience and selected structure. Triggers: coordinate my writing, assemble my writing team, help develop this document.
+- [writing-coordinator](skills/writing-coordinator/SKILL.md) (coordinator): Internally assigns, collects and integrates bounded writing specialists and independent reviews while preserving the invoking companion and technical owners.
+
+### Capture, prepare, and notetake
+- [capture-progress](skills/capture-progress/SKILL.md): Saves project progress in the owning MOC's Research Log and follows the chosen project-only or Calendar-indexed capture preference. Triggers: capture this progress, log this progress, capture this work session, capture this system change.
+- [chat-handoff](skills/chat-handoff/SKILL.md): Prepares a bounded context packet for another explicitly named AI chat or reviews that chat's returned material while preserving decisions, evidence limits and provenance. Triggers: prepare this for another chat, hand this off to another chat, review what the other chat returned.
+- [quick-capture](skills/quick-capture/SKILL.md): Saves short text or chat excerpts in the owning MOC's Research Log and follows the chosen project-only or Calendar-indexed capture preference. Triggers: quick capture this, jot this down, add this to today's capture.
+- [redactor](skills/redactor/SKILL.md): Creates multi-format redaction and de-identification candidates from exact user-named files, pasted content, or bounded batches. Triggers: redact this document, de-identify this, scan this for sensitive information, make a share-safe version.
+- [summarize](skills/summarize/SKILL.md): Summarizes bounded conversations, meetings or supplied documents in the selected reporting form and saves summary or verbatim transcript records when authorized. Triggers: save this verbatim, keep this exchange word for word, summarize this conversation, summarize this meeting, give me a BLUF.
+- [write-protocol](skills/write-protocol/SKILL.md): Curates established work into durable, user-reviewed protocols in selected MOC sections across projects. Triggers: turn this into a protocol, document this established process, update the project protocol, formalize these working steps.
+
+### Writing assistance
+- [check-research-reporting](skills/check-research-reporting/SKILL.md): Audits a bounded research document against the applicable current reporting guideline and identifies missing or ambiguous disclosures. Triggers: audit research reporting completeness, check required method disclosures.
+- [check-writing-cerl](skills/check-writing-cerl/SKILL.md): Independently checks the relationships among a passage's claim, evidence, reasoning and link to the central argument using CERL and MEAL. Triggers: check the CERL links, review paragraph MEAL.
+- [check-writing-substance](skills/check-writing-substance/SKILL.md): Independently checks writing for specific content, source traceability, unsupported additions, construct drift and claims that exceed available evidence. Triggers: find empty fluent prose, check writing specificity.
+- [develop-writing-evidence](skills/develop-writing-evidence/SKILL.md): Builds a source-bounded evidence and reasoning plan for a specified writing claim. Triggers: build evidence for this paragraph, explain this evidence link.
+- [integrate-writing](skills/integrate-writing/SKILL.md): Integrates bounded section drafts into one coherent document while preserving argument, scientific meaning, terminology and authorial voice. Triggers: integrate these section drafts, reconcile document wording.
+- [keep-writing-structure](skills/keep-writing-structure/SKILL.md): Preserves the selected document template, required section functions and structural constraints while identifying drift. Triggers: keep this document on template, check section structure drift.
+- [organize-writing-project](skills/organize-writing-project/SKILL.md): Keeps each document or application section tied to its purpose, current draft, owner, dependencies and next action in the existing project context. Triggers: organize this writing project, track every application section.
+- [plan-writing-argument](skills/plan-writing-argument/SKILL.md): Develops a document argument from the central claim through section purposes and paragraph reasoning. Triggers: map the argument for this, connect paragraphs to my thesis.
+- [translate-specialist-methods](skills/translate-specialist-methods/SKILL.md): Translates source-backed specialist procedures, configurations and technical reasoning into accurate material for a methods writer. Triggers: translate specialist records into methods, explain these technical methods for readers.
+- [verify-writing-citations](skills/verify-writing-citations/SKILL.md): Verifies citation identities, bibliographic metadata and whether an accessible source supports the exact proposition attached to it. Triggers: verify these citations, check this bibliography.
+- [write-abstract](skills/write-abstract/SKILL.md): Drafts or revises a self-contained abstract from the current document and verified evidence, preserving the distinction between proposed and completed work. Triggers: prepare abstract text, condense this study summary.
+- [write-conclusion](skills/write-conclusion/SKILL.md): Drafts or revises a Conclusion that carries forward the established answer, contribution, and earned significance. Triggers: draft concluding paragraph, revise the take-home message.
+- [write-discussion](skills/write-discussion/SKILL.md): Drafts or revises a Discussion around a user-owned interpretation, its relation to evidence and prior work, and its bounded significance. Triggers: draft discussion interpretation, revise discussion argument.
+- [write-figure-table-text](skills/write-figure-table-text/SKILL.md): Drafts or revises figure legends, table notes, and associated display text from the actual artifact and analysis definitions. Triggers: draft figure captions, write table notes.
+- [write-introduction](skills/write-introduction/SKILL.md): Drafts or revises an introduction that connects a supported problem and gap to the actual question, rationale, and contribution. Triggers: draft an introduction, revise introduction rationale.
+- [write-methods](skills/write-methods/SKILL.md): Drafts or revises Methods from verified procedures, configurations, and domain-specialist returns, preserving execution and review status. Triggers: draft the methods, describe these procedures.
+- [write-results](skills/write-results/SKILL.md): Drafts or revises Results from actual analysis outputs, linking each result to its question while preserving estimates, uncertainty, and analysis status. Triggers: draft results prose, narrate these analysis outputs.
+- [write-section](skills/write-section/SKILL.md): Drafts or revises one explicitly bounded custom section from its purpose, supplied evidence, and applicable template or requirements. Triggers: draft a custom section, write a training narrative.
+- [write-title](skills/write-title/SKILL.md): Drafts or revises accurate titles from an established subject, contribution, and audience. Triggers: suggest manuscript titles, revise a research title.
+
+### Writing style
+- [writing-style-builder](skills/writing-style-builder/SKILL.md): Creates or updates one passive writing-style reference directly from sources the user supplies. Triggers: build my writing style profile, update my writing style profile, calibrate my writing style from these samples.
 - [writing-style-negative-ai](skills/writing-style-negative-ai/SKILL.md) (profile): Optional editorial review for a recipient-selected audience, purpose and style specification.
 - [writing-style-positive-scientific](skills/writing-style-positive-scientific/SKILL.md) (profile): Passive rule reference for precise, readable, construct-faithful scientific prose.
 
@@ -92,45 +126,9 @@ Rule-only references for writing tasks.
 - [teaching-assessment](skills/teaching-assessment/SKILL.md): Designs and reviews college assessments, answer keys, and proposed rubrics against instructor-approved sources and lectures. Triggers: review my exam questions, check my quiz answers, design a course assessment.
 - [teaching-assistant-builder](skills/teaching-assistant-builder/SKILL.md): Creates or refreshes a college teaching area and one course offering from approved sources, preserving existing notes and resources. Triggers: set up a teaching course, import my teaching syllabus, organize my teaching classes.
 - [teaching-grader](skills/teaching-grader/SKILL.md): Applies approved course and assignment grading criteria to submissions and reconciles proposed scores and feedback. Triggers: grade these course submissions, review these student scores.
-- [teaching-lecture-review](skills/teaching-lecture-review/SKILL.md): Reviews college teaching materials for clarity, mechanical errors, and agreement with instructor-approved references. Triggers: check my lecture slides, review my teaching materials.
+- [teaching-lecture-review](skills/teaching-lecture-review/SKILL.md): Plans and reviews college teaching materials using approved sources, learning outcomes, current assessment targets and section learning checks. Triggers: check my lecture slides, review my teaching materials.
 - [teaching-office-hours](skills/teaching-office-hours/SKILL.md): Triages teaching correspondence and drafts source-grounded student replies, announcements, and office-hours explanations. Triggers: draft a student reply, prepare a class announcement, triage my teaching email.
 - [teaching-platform](skills/teaching-platform/SKILL.md): Inspects and performs authorized operations in the configured college course platforms, then verifies the affected student-facing outcome. Triggers: check my LMS setup, verify my course groups, update my course platform.
-
----
-## 🗒️ Capture and Writing Helpers
-
-![Capture and Writing Helpers](assets/banner_system_capture.png)
-
-### Capture, prepare, and notetake
-- [capture-progress](skills/capture-progress/SKILL.md): Saves project progress in the owning MOC's Research Log and follows the chosen project-only or Calendar-indexed capture preference. Triggers: capture this progress, log this progress, capture this work session, capture this system change.
-- [chat-handoff](skills/chat-handoff/SKILL.md): Prepares a source-bounded context packet for another explicitly named AI chat, or reviews material returned from that chat, while preserving the user's decisions, evidence boundaries, unresolved questions, and provenance. Triggers: prepare this for another chat, hand this off to another chat, review what the other chat returned.
-- [quick-capture](skills/quick-capture/SKILL.md): Saves short text or chat excerpts in the owning MOC's Research Log and follows the chosen project-only or Calendar-indexed capture preference. Triggers: quick capture this, jot this down, add this to today's capture.
-- [redactor](skills/redactor/SKILL.md): Creates multi-format redaction and de-identification candidates from exact user-named files, pasted content, or bounded batches. Triggers: redact this document, de-identify this, scan this for sensitive information, make a share-safe version.
-- [summarize](skills/summarize/SKILL.md): Summarizes a supplied conversation, meeting, or transcript in the selected form, including a brief BLUF. Triggers: save this verbatim, keep this exchange word for word, summarize this conversation, summarize this meeting, give me a BLUF.
-- [write-protocol](skills/write-protocol/SKILL.md): Curates established work into durable, user-reviewed protocols in selected MOC sections across projects. Triggers: turn this into a protocol, document this established process, update the project protocol, formalize these working steps.
-
-### Writing assistance
-- [writing-companion](skills/writing-companion/SKILL.md) (companion): Coordinates an expandable writing team around the author’s central argument, evidence, audience and selected structure. Triggers: coordinate my writing, assemble my writing team, help develop this document.
-- [writing-coordinator](skills/writing-coordinator/SKILL.md) (coordinator): Internally assigns, collects and integrates bounded writing specialists and independent reviews while preserving the invoking companion and technical owners.
-- [check-research-reporting](skills/check-research-reporting/SKILL.md): Audits a bounded research document against the applicable current reporting guideline and identifies missing or ambiguous disclosures. Triggers: audit research reporting completeness, check required method disclosures.
-- [check-writing-cerl](skills/check-writing-cerl/SKILL.md): Independently checks the relationships among a passage's claim, evidence, reasoning and link to the central argument using CERL and MEAL. Triggers: check the CERL links, review paragraph MEAL.
-- [check-writing-substance](skills/check-writing-substance/SKILL.md): Independently checks writing for specific content, source traceability, unsupported additions, construct drift and claims that exceed available evidence. Triggers: find empty fluent prose, check writing specificity.
-- [develop-writing-evidence](skills/develop-writing-evidence/SKILL.md): Builds a source-bounded evidence and reasoning plan for a specified writing claim. Triggers: build evidence for this paragraph, explain this evidence link.
-- [integrate-writing](skills/integrate-writing/SKILL.md): Integrates bounded section drafts into one coherent document while preserving argument, scientific meaning, terminology and authorial voice. Triggers: integrate these section drafts, reconcile document wording.
-- [keep-writing-structure](skills/keep-writing-structure/SKILL.md): Preserves the selected document template, required section functions and structural constraints while identifying drift. Triggers: keep this document on template, check section structure drift.
-- [organize-writing-project](skills/organize-writing-project/SKILL.md): Keeps each document or application section tied to its purpose, current draft, owner, dependencies and next action in the existing project context. Triggers: organize this writing project, track every application section.
-- [plan-writing-argument](skills/plan-writing-argument/SKILL.md): Develops a document argument from the central claim through section purposes and paragraph reasoning. Triggers: map the argument for this, connect paragraphs to my thesis.
-- [translate-specialist-methods](skills/translate-specialist-methods/SKILL.md): Translates source-backed specialist procedures, configurations and technical reasoning into accurate material for a methods writer. Triggers: translate specialist records into methods, explain these technical methods for readers.
-- [verify-writing-citations](skills/verify-writing-citations/SKILL.md): Verifies citation identities, bibliographic metadata and whether an accessible source supports the exact proposition attached to it. Triggers: verify these citations, check this bibliography.
-- [write-abstract](skills/write-abstract/SKILL.md): Drafts or revises a self-contained abstract from the current document and verified evidence, preserving the distinction between proposed and completed work. Triggers: prepare abstract text, condense this study summary.
-- [write-conclusion](skills/write-conclusion/SKILL.md): Drafts or revises a Conclusion that carries forward the established answer, contribution, and earned significance. Triggers: draft concluding paragraph, revise the take-home message.
-- [write-discussion](skills/write-discussion/SKILL.md): Drafts or revises a Discussion around a user-owned interpretation, its relation to evidence and prior work, and its bounded significance. Triggers: draft discussion interpretation, revise discussion argument.
-- [write-figure-table-text](skills/write-figure-table-text/SKILL.md): Drafts or revises figure legends, table notes, and associated display text from the actual artifact and analysis definitions. Triggers: draft figure captions, write table notes.
-- [write-introduction](skills/write-introduction/SKILL.md): Drafts or revises an introduction that connects a supported problem and gap to the actual question, rationale, and contribution. Triggers: draft an introduction, revise introduction rationale.
-- [write-methods](skills/write-methods/SKILL.md): Drafts or revises Methods from verified procedures, configurations, and domain-specialist returns, preserving execution and review status. Triggers: draft the methods, describe these procedures.
-- [write-results](skills/write-results/SKILL.md): Drafts or revises Results from actual analysis outputs, linking each result to its question while preserving estimates, uncertainty, and analysis status. Triggers: draft results prose, narrate these analysis outputs.
-- [write-section](skills/write-section/SKILL.md): Drafts or revises one explicitly bounded custom section from its purpose, supplied evidence, and applicable template or requirements. Triggers: draft a custom section, write a training narrative.
-- [write-title](skills/write-title/SKILL.md): Drafts or revises accurate titles from an established subject, contribution, and audience. Triggers: suggest manuscript titles, revise a research title.
 
 ---
 ## 🧹 Janitor System

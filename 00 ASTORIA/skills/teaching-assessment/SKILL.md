@@ -10,7 +10,7 @@ metadata:
   system: Teaching Assistant System
   dependencies: ""
   created: "2026-10-20"
-  updated: "2026-10-20"
+  updated: "2026-11-18"
 ---
 
 # Teaching Assessment
@@ -22,6 +22,8 @@ Check assessment content against approved teaching sources and verify the intend
 Design and review college quizzes, exams, answer keys, and proposed rubrics using the instructor's
 approved materials. Check ambiguity, coverage, scoring logic, and agreement with lectures.
 Keep content review separate from verification of the assessment actually delivered to students.
+For lecture planning, supply the assessed concepts and reasoning demands that guide
+teaching emphasis and practice. Teaching-lecture-review owns the instructional sequence.
 
 ## Inputs
 
@@ -35,6 +37,8 @@ instructions identify the course owner or create another instruction file.
 - Supplied or instructor-approved references, lectures, syllabus requirements, and later decisions.
 - Stems, every answer option, images, scoring rules, and the stored key when available.
 - For design: learning objectives, content coverage, format, points, difficulty, and approved constraints.
+- For lecture planning: required outcomes, the lecture scope and relevant current assessment
+  items/targets, with supplied practice or released items distinguished from upcoming items.
 - Requested result and authorization: review, proposed items, approved edits, delivery check, or simulation.
 
 Retrieve discoverable details first; ask only when a missing source or decision changes the result.
@@ -70,6 +74,22 @@ Retrieve discoverable details first; ask only when a missing source or decision 
    approved lecture account. Identify contradictions among slides, references, and keys.
    For requested design work, draft items from the approved learning objectives and coverage plan.
    Offer proposed rubrics or scoring rules as proposals until approved; do not silently make policy.
+   For a lecture-planning handoff, return a compact map of learning outcome, assessed
+   concept/skill, approved source, distractor misconception and parallel practice question
+   with a source-supported answer and explanation. Record the current item/version privately;
+   distinguish it from an old bank or unverified copy. Flag a questionable key rather than
+   planning instruction around it. Preserve required outcomes beyond the assessment sample.
+   Use fresh parallel practice by default. Use unreleased items internally to identify
+   teaching targets; reproduce upcoming questions/options/keys in student-facing material
+   only when the instructor intends their release. Keep staff keys and identifiers out
+   of student-facing slides and distributed notes. If current items are unavailable,
+   return an outcomes-based map and mark assessment alignment unverified. This bounded
+   handoff does not start a settings audit, item edit, regrade or publication.
+   For a classroom check, supply one short question slide by default, usually with clear
+   A–D options and one defensible answer. Return a concise practice answer and explanation
+   for that slide's speaker notes, including the useful distractor distinction. Keep
+   item IDs, source maps and validity-review detail in the private brief. Do not turn the
+   review fields into a notes template or request separate explanation slides by default.
 7. **Prepare the smallest useful correction.** Preserve the intended concept and original structure
    where requested. Make distractors clearly wrong for substantive reasons and ensure the revised item
    still tests the objective. Re-evaluate every option after rewriting, not only the changed answer.
@@ -92,6 +112,8 @@ Retrieve discoverable details first; ask only when a missing source or decision 
 
 - Return a compact review in the current task's requested form or under the recipient's existing reporting policy, identifying each item by stable ID or distinctive stem.
   Give the source-supported answer text, stored-key comparison when available, evidence, and any issue.
+- For lecture planning, return the compact assessment-to-instruction map to teaching-lecture-review,
+  with parallel practice, supported reasoning, emphasis priorities and source/version gaps.
 - Present exact replacement wording for proposed fixes and mark instructor decisions still needed.
   State which items and sources were reviewed and which operational checks remain unknown.
 - Save an item set, rubric or review file only when requested. Use the verified destination selected for the task. If none is selected, follow the applicable verified recipient or course placement policy. If neither resolves the destination, use the verified owning course folder.
@@ -115,7 +137,9 @@ Retrieve discoverable details first; ask only when a missing source or decision 
   The companion remains the visible session owner when it initiated the work.
 - Use the shared handoff: course offering, task, approved sources, authorization/review/simulation
   scope, and desired result. Return evidence, actions, verified/draft/unknown status, and dependencies.
-- teaching-lecture-review owns lecture-side corrections within the authorized teaching portion.
+- teaching-lecture-review owns the lecture's instructional sequence, section learning checks
+  and lecture-side corrections within the authorized teaching portion; supply its bounded
+  assessment map before slide assembly for new lectures and substantial teaching revisions.
 - teaching-platform owns authorized item/settings edits and verification of the delivered assessment.
 - teaching-grader owns applying approved regrades; teaching-office-hours owns correction messages.
 - Return unresolved source conflicts or policy decisions to the user while completing independent items.
@@ -127,6 +151,8 @@ Retrieve discoverable details first; ask only when a missing source or decision 
 - Item identity survives shuffling, and affected bank versus delivered copies are distinguished.
 - Requirements about length, points, and timing come from current applicable approved sources.
 - Content and delivery claims match the actual coverage and evidence; unresolved dependencies are named.
+- Lecture-planning maps distinguish current items from old banks, use supported answers,
+  preserve required outcomes and separate staff assessment evidence from student practice.
 
 ## Modular Plugin Support
 

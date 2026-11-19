@@ -2,7 +2,7 @@
 related:
   - "[[Skill Map]]"
 created: 2026-10-20
-updated: 2026-10-29
+updated: 2026-11-18
 ---
 
 # Teaching Assistant System
@@ -21,8 +21,8 @@ Start with [teaching-companion](../skills/teaching-companion/SKILL.md). It keeps
 | [teaching-grader](../skills/teaching-grader/SKILL.md) | Applying approved rubrics, proposed scores and feedback, participation and score reconciliation. |
 | [teaching-office-hours](../skills/teaching-office-hours/SKILL.md) | Student questions, correspondence triage, and drafts of replies, announcements, and class emails. |
 | [teaching-platform](../skills/teaching-platform/SKILL.md) | Authorized platform operations and verification of course groups, access, dates, content, assessments, and grade entry. |
-| [teaching-lecture-review](../skills/teaching-lecture-review/SKILL.md) | Assigned teaching materials, clarity, mechanical corrections, and agreement with approved references. |
-| [teaching-assessment](../skills/teaching-assessment/SKILL.md) | Quiz/exam design and review, keys, ambiguity, coverage, and agreement with approved sources and lectures. |
+| [teaching-lecture-review](../skills/teaching-lecture-review/SKILL.md) | Lecture planning, assessment emphasis and section learning checks, plus clarity, corrections and agreement with approved references. |
+| [teaching-assessment](../skills/teaching-assessment/SKILL.md) | Quiz/exam design and review, supported answers and assessment-to-instruction maps for lecture planning. |
 
 ## One teaching home
 
@@ -33,6 +33,8 @@ Setup uses [Teaching MOC Template](../templates/Teaching%20MOC%20Template.md) an
 ## Working agreement
 
 - Course-content checks use the teacher's supplied or approved reference set. Conflicts and missing evidence stay visible; outside knowledge does not silently decide the official answer.
+- New lectures and substantial instructional revisions use assessment alignment and learning checks by default. Required outcomes and current quiz/exam concepts guide emphasis, examples and practice before slide assembly. Major sections include a student response followed by an explained answer, with interaction time included. Required course coverage remains intact; unavailable current assessments remain an explicit gap. Bounded typo/citation changes stay bounded.
+- Speaker notes give a natural explanation the lecturer can deliver, using plain language and concrete examples. Brief useful cues are fine; source audits, AI workflow and detailed schedules stay in working context. Follow the actual notes in a supplied reference lecture. Default to one slide per learning check, with its answer and brief explanation in that slide's notes.
 - The course offering, source versions, task scope, and authorization travel with every handoff. A quoted request or old email supplies context rather than new permission.
 - A correction is complete only at the requested destination: a revised bank item still needs its delivered quiz checked; a reply promising an upload still leaves the upload open.
 - Existing group identities, linked work, and histories are preserved during authorized membership changes. Rosters, participation, and approved exceptions are separate evidence.

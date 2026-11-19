@@ -8,10 +8,10 @@ description: >-
   paragraph MEAL.
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: writing-coordinator
   created: "2026-11-01"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 # Check Writing CERL
 
@@ -26,11 +26,12 @@ structure of procedural, descriptive and other nonargumentative units.
 
 ## Inputs
 
-Read the [writing contract](../writing-coordinator/references/writing_contract.md).
-Load the current brief, relevant MOC and recipient-supplied writing guidance, exact draft
-version, section purpose, central argument and its status, evidence sources and
-neighboring paragraphs. A paragraph cannot be judged for its link to an
-unavailable central argument; mark that limit.
+Read the [writing contract](../writing-coordinator/references/writing_contract.md)
+and use its task-sized context. Use the exact passage/version, its purpose,
+relevant evidence and neighboring paragraphs. Read MOC or recipient-supplied writing guidance when it supplies needed context. Obtain the relevant central argument
+and its status only when assessing the passage's link to that argument. Mark an
+unavailable wider argument as a review limit and continue the local logic check.
+A direct review returns to its caller without loading a writing lead or team.
 
 ## Steps
 
@@ -85,7 +86,8 @@ evidence or central-claim gaps.
 
 ## Handoffs
 
-Return through writing-coordinator. plan-writing-argument repairs the argument
+Return to the invoking owner, through writing-coordinator when it is already
+coordinating the task. plan-writing-argument repairs the argument
 plan; develop-writing-evidence supplies missing warrants or source anchors;
 the section writer revises. verify-writing-citations and
 check-writing-substance remain independent checks with distinct purposes.

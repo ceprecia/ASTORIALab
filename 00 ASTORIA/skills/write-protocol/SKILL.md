@@ -8,10 +8,10 @@ description: >-
   process, update the project protocol, formalize these working steps.
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: ""
   created: "2026-10-27"
-  updated: "2026-11-08"
+  updated: "2026-11-18"
 ---
 
 # Write Protocol

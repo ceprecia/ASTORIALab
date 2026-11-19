@@ -6,9 +6,9 @@ description: 'Drafts or revises Results from actual analysis outputs, linking ea
   Triggers: draft results prose, narrate these analysis outputs.'
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   created: '2026-11-01'
-  updated: '2026-11-02'
+  updated: '2026-11-18'
 ---
 # Write Results
 
@@ -23,17 +23,17 @@ or mechanistic argument with its appropriate section and domain owner.
 ## Inputs
 
 Read the [writing contract](../writing-coordinator/references/writing_contract.md)
-completely. Use the [cross-system handoff](../writing-coordinator/references/cross_system_handoff.md)
-when domain-specialist material or requirements are involved.
+and use its task-sized context. A clear bounded request can supply the brief
+without loading Writing Companion or Writing Coordinator. Use the exact passage
+or artifact, its purpose, source records, relevant definitions, constraints and
+authorized edits. Carry the central claim and its status when this passage needs
+that argument. Read MOC or recipient-supplied writing guidance only when needed context is
+not already available, following the MOC reading policy in `me.md`.
 
-Read the relevant MOC by the default in `me.md`, then the sections needed for
-this assignment. Read any recipient-supplied writing guidance identified in the brief. If none is supplied, use the document-purpose and evidence requirements and the actual task sources. Writing preferences are not evidence for the project's scientific claims.
-
-Recover the current writing brief: exact document/version, audience, section
-purpose, central argument and its provisional or adopted status, any recipient-selected organizational requirements,
-source locators, protected terminology, claim ceiling, required structure and
-length, and authorized edits. Apply only a writing profile selected for this task or in the recipient's `me.md`. The available references include `writing-style-positive-scientific` and `writing-style-negative-ai`. Apply each independently when selected. Ask only for missing information that changes the
-requested wording; continue unaffected work without inventing an answer.
+Use the [cross-system handoff](../writing-coordinator/references/cross_system_handoff.md)
+for missing domain detail or fidelity questions. Apply only a writing profile selected for this task or in the recipient's `me.md`, and only to prose being produced or revised. The available references include `writing-style-positive-scientific` and `writing-style-negative-ai`. Apply each independently when selected. Preserve source records and
+frozen text. Ask only for missing information that changes the requested result
+and continue independent supported work.
 
 Read the actual approved output tables, figures, model summaries or specialist
 returns that support the result statements. Obtain sample/unit definitions,
@@ -58,6 +58,11 @@ exploratory or changed; do not infer their status from presentation order.
    measures interchangeable: response latency differs from duration error,
    and uncertainty about a mean differs from variability among observations.
    Keep this meaning in the prose, not only in private source notes.
+   For a proportion or overlap score, identify what is counted in the numerator
+   and denominator when the conclusion depends on that distinction. A label
+   such as similarity or agreement plus a numeric range is not a definition.
+   Preserve the operation when compressing: the reader should know what a
+   higher value means without reconstructing the metric from the source.
    State the actual comparison and direction with supplied labels. Report
    estimates/effect sizes and their uncertainty when available, and the
    applicable test/model quantities. Preserve denominators, degrees of freedom,
@@ -103,10 +108,11 @@ analysis to a requested scaffold. Save only within the assigned output ownership
 
 ## Handoffs
 
-Return to the invoking writing owner. Missing outputs and scientific/statistical
+Return to the invoking owner. Missing outputs and scientific/statistical
 conflicts go through the cross-system handoff to the actual analysis owner.
-Send the result text and its limits to the Discussion writer through the
-coordinator; the independent substance checker verifies traceability.
+Send the result text and its limits to an assigned Discussion writer through an
+already active coordinator. Independent substance review checks traceability
+when assigned.
 
 ## Checks
 

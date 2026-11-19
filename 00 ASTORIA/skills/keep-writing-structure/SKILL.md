@@ -7,10 +7,10 @@ description: >-
   Triggers: keep this document on template, check section structure drift.
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: writing-coordinator
   created: "2026-11-01"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 # Keep Writing Structure
 
@@ -25,11 +25,12 @@ scientific validity and detailed reporting completeness.
 
 ## Inputs
 
-Read the [writing contract](../writing-coordinator/references/writing_contract.md).
-Load the brief, relevant MOC, recipient-supplied writing guidance, current document and
-exact selected template or example. Obtain requirement sources, versions and
-limits from the domain or application owner. Identify frozen text, required
-headings and permitted structural flexibility.
+Read the [writing contract](../writing-coordinator/references/writing_contract.md)
+and use its task-sized context. Use the exact document and selected template or
+example, relevant requirement sources/versions and limits. Read MOC or writing
+guidance when it supplies needed context. Identify frozen text, required headings
+and permitted flexibility. A direct structure review returns to its caller
+without loading a writing lead or team.
 
 ## Steps
 
@@ -75,7 +76,8 @@ more useful than prose.
 
 ## Handoffs
 
-Return through writing-coordinator. organize-writing-project tracks section
+Return to the invoking owner, through writing-coordinator when it is already
+coordinating the task. organize-writing-project tracks section
 readiness; check-research-reporting audits guideline disclosures;
 check-writing-substance checks operational specifics; a named paragraph-method review through check-writing-cerl is available only when the recipient selects it. Other reasoning review follows the document's purpose. Requirement conflicts return to the owning specialist
 through [cross-system handoffs](../writing-coordinator/references/cross_system_handoff.md).

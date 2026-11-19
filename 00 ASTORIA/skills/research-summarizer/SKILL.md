@@ -7,8 +7,8 @@ description: >-
   weaknesses, and discussion questions. Adds a table, equation, or diagram to a
   part when it clarifies a central claim, each built from the paper's reported
   values or stated design and tagged with its source. Use when the user explicitly invokes
-  Research Summarizer, asks to summarize or explain a specific research paper or a
-  supplied set of papers, or when a verified Research Coordinator handoff selects it for one bounded
+  Research Summarizer, requests a bounded paper summary, or
+  when a verified Research Coordinator handoff selects it for one bounded
   paper-summary task. Do not use for general summaries, multi-paper synthesis,
   independent research critique, manuscript drafting, or contextual connections
   to the user's vault and projects. Triggers: summarize this paper, explain this
@@ -23,7 +23,7 @@ metadata:
   requires: the paper text or PDF; a Python runtime with matplotlib only for a PNG plot on save
   gates: ""
   created: "2026-05-19"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 
 # Research Summarizer
@@ -35,7 +35,7 @@ Explain each supplied research paper deeply without pretending to know more than
 Use this skill when any of these conditions applies.
 
 - The user explicitly says "research-summarizer" or "research summarizer";
-- The user asks for a bounded paper summary or explanation, including "summarize this paper", "explain this study to me", "what does this paper claim", "summarize these papers" or "summarize all these papers". Apply the same source and scope checks.
+- The user asks to "summarize this paper", "summarize these papers" or "summarize all these papers"; or
 - a verified [research-coordinator](../research-coordinator/SKILL.md) handoff selects this capability for one
   supplied or otherwise bounded paper-summary task.
 

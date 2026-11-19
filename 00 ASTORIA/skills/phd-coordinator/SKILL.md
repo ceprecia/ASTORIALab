@@ -8,7 +8,7 @@ metadata:
   system: PhD and Career System
   dependencies: ''
   created: '2026-10-31'
-  updated: "2026-11-02"
+  updated: "2026-11-18"
 ---
 
 # PhD Coordinator
@@ -21,7 +21,7 @@ Operate internally in the lead PhD Companion chat. Ordinary academic and career 
 
 ## Inputs
 
-Read the single shared naming registry at 00 ASTORIA/skills/research-coordinator/references/team_naming.md before names. Read current user scope, chosen MOC/config and current host project/chat inventory. For shared support discovery, use only the generated Skill Map's Capture and Writing Helpers group, then the selected helper's complete skill. For offline evaluation only, explicitly labelled mock host/source files replace those services; output planned dispatch records, never actual host calls.
+Read the single shared naming registry at 00 ASTORIA/skills/research-coordinator/references/team_naming.md before names. Read current user scope, chosen MOC/config and current host project/chat inventory. For shared support discovery, use only the generated Skill Map's Writing System group, then the selected helper's complete skill. For offline evaluation only, explicitly labelled mock host/source files replace those services; output planned dispatch records, never actual host calls.
 
 ## Steps
 
@@ -43,7 +43,7 @@ For structured handoffs, direction identifies the original consult request; pres
 
 ## Shared support
 
-Discover shared helpers through the generated Capture and Writing Helpers group; use their existing capture, protocol, transcript, handoff and redaction contracts without copying the catalog here. Chat Handoff prepares packets; it is not the live dispatcher. Preserve the user's current capture preference. Also borrow research-grant-advisor, study-companion, teaching-companion and woop-skill for their existing responsibilities. Shared writing specialists return through the original owner. For scientific interpretation or unsettled contribution choices, request a bounded Research Companion consult; obtain technical fidelity review from the relevant domain owner without routing every writing task through another full research session. Do not create copies or load these just because they are listed.
+Discover shared helpers through the generated Writing System group; use their existing capture, protocol, transcript, handoff and redaction contracts without copying the catalog here. Chat Handoff prepares packets; it is not the live dispatcher. Preserve the user's current capture preference. Also borrow research-grant-advisor, study-companion, teaching-companion and woop-skill for their existing responsibilities. Shared writing specialists return through the original owner. For scientific interpretation or unsettled contribution choices, request a bounded Research Companion consult; obtain technical fidelity review from the relevant domain owner without routing every writing task through another full research session. Do not create copies or load these just because they are listed.
 
 ## Assignment and Return Format
 

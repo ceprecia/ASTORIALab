@@ -15,14 +15,14 @@ metadata:
   system: Janitor System
   dependencies: skill-builder, propagate
   created: "2026-04-11"
-  updated: "2026-11-02"
+  updated: "2026-11-18"
 ---
 
 # Skills Janitor
 
 Scan the skill folders. Lint them against the schema, rebuild the generated views, compare sibling contracts, search for stale wording. Report drift. Fix on approval.
 
-The skill folders in `00 ASTORIA/skills/` are the source of truth. The Skill Map registry and the part-coordinator catalogs are generated from them by `./scripts/build_views.py`, never edited by hand. The schema, the description recipe, the trigger policy, and the vocabulary belong to [skill-builder](../skill-builder/SKILL.md).
+The skill folders in `00 ASTORIA/skills/` are the source of truth. The Skill Map registry, research-part coordinator catalogs and all system-coordinator catalogs configured in the vocabulary are generated from them by `./scripts/build_views.py`, never edited by hand. The schema, the description recipe, the trigger policy, and the vocabulary belong to [skill-builder](../skill-builder/SKILL.md).
 
 ## Purpose
 
@@ -51,7 +51,7 @@ Run `python3 ./scripts/lint.py` (add `--vault PATH` when not inside the vault). 
 - level-1 skills missing from the Skill Map registry, part skills missing from their coordinator catalog, map links to skills that no longer exist;
 - stray agent instruction files anywhere in the vault (`CLAUDE.md`, `CLAUDE.local.md`, `codex.md`, `AGENTS.override.md`, `AGENTS.local.md`, `GEMINI.md`) and anything inside `.claude/` other than the `skills` shim.
 
-Without a shell, do the same checks by reading: open each `SKILL.md` frontmatter, the vocabulary, the Skill Map registry, and the five coordinator catalogs, and compare.
+Without a shell, do the same checks read-only: open each `SKILL.md` frontmatter, the vocabulary, the Skill Map registry, the research-part coordinator catalogs and all system-coordinator catalogs configured in the vocabulary for installed systems, and compare within the requested audit scope. Follow the vault's actual configuration, including custom or intentionally omitted systems.
 
 ### 2. Views
 

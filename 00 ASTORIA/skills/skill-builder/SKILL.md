@@ -15,7 +15,7 @@ metadata:
   system: ASTORIA System Builder
   dependencies: skills-janitor
   created: "2026-05-05"
-  updated: "2026-11-02"
+  updated: "2026-11-18"
 ---
 
 # Skill Builder
@@ -24,7 +24,7 @@ A skill for creating skills. Captures a repeatable workflow as a standard skill 
 
 ## Purpose
 
-Skills follow the Agent Skills standard (agentskills.io): one folder per skill, `SKILL.md` inside it, optional `references/`, `scripts/`, and `assets/`. Skill Builder owns the schema below, the description recipe, the trigger policy, and the controlled vocabulary in `./assets/vocabulary.md`. It also owns the rebuild of the Skill Map and the part-coordinator catalogs after a skill is written, through `00 ASTORIA/skills/skills-janitor/scripts/build_views.py`. Source adaptations route through [paper-to-skill](../paper-to-skill/SKILL.md) or [repo-to-skill](../repo-to-skill/SKILL.md) first; writing-style profiles are built by [writing-style-builder](../writing-style-builder/SKILL.md).
+Skills follow the Agent Skills standard (agentskills.io): one folder per skill, `SKILL.md` inside it, optional `references/`, `scripts/`, and `assets/`. Skill Builder owns the schema below, the description recipe, the trigger policy, and the controlled vocabulary in `./assets/vocabulary.md`. It also owns the rebuild of the Skill Map, research-part coordinator catalogs and all system-coordinator catalogs configured in the vocabulary after a skill is written, through `00 ASTORIA/skills/skills-janitor/scripts/build_views.py`. Source adaptations route through [paper-to-skill](../paper-to-skill/SKILL.md) or [repo-to-skill](../repo-to-skill/SKILL.md) first; writing-style profiles are built by [writing-style-builder](../writing-style-builder/SKILL.md).
 
 "Make a skill for X", "draft a skill", "turn this workflow into a skill". "Draft" starts the planning conversation; any completed skill is written as a finished folder. Run this instead of free-handing the files.
 
@@ -58,7 +58,7 @@ Before writing, check the task-specific requirements: include labeled alternativ
 3. **Write the description** by the recipe below and choose the triggers by the policy below.
 4. **Scaffold and check**: `python3 ./scripts/new_skill.py <name> --level ... --system ... --description "..." --triggers "a; b; c"` prints the frontmatter and reports any trigger overlap against every existing skill. Add `--apply` to write `00 ASTORIA/skills/<name>/SKILL.md` from `./assets/SKILL_template.md`. Without a shell, write the same frontmatter by hand and run the overlap check by reading the Skill Map and the coordinator catalogs.
 5. **Fill the body**: pattern-match a sibling in the same system or part for section order and voice. Keep SKILL.md under 500 lines; move tables, command references, and long option lists into `./references/<real_name>.md` with a table of contents when a file passes 100 lines. Scripts go in `./scripts/`, templates and reusable output material in `./assets/`. When authoring a new source file, read and adapt the vault-root `00 ASTORIA/templates/code_template.md`.
-6. **Register grouped helpers and rebuild the views**: For a new Capture and Writing Helpers skill, assign it to exactly one existing `system_sections` group in the vocabulary: Capture, prepare, and notetake, or Writing assistance. Writing roles also receive a fixed label in `research-coordinator/references/team_naming.md`; reuse the WR prefix, never invent a code per chat. Then run `python3 00 ASTORIA/skills/skills-janitor/scripts/build_views.py`. The Skill Map registry and the part-coordinator catalogs are generated from frontmatter; never edit them by hand.
+6. **Register grouped helpers and rebuild the views**: For a new Writing System member, assign its name to exactly one existing `system_sections` group in the vocabulary: Companion and coordination, Capture, prepare, and notetake, Writing assistance, or Writing style. A passive profile joins Writing style through writing-style-builder. Writing roles also receive a fixed label in `research-coordinator/references/team_naming.md`; reuse the WR prefix, never invent a code per chat. Then run `python3 00 ASTORIA/skills/skills-janitor/scripts/build_views.py`. The Skill Map registry and coordinator catalogs are generated from frontmatter; never edit them by hand.
 7. **Lint**: `python3 00 ASTORIA/skills/skills-janitor/scripts/lint.py` must report zero errors.
 8. **Show the result**: the description and triggers to the user before declaring the skill done. The description is how an agent decides to fire the skill.
 

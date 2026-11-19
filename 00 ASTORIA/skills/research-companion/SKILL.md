@@ -15,7 +15,7 @@ metadata:
   system: Research Assistant System
   dependencies: research-coordinator
   created: "2026-05-19"
-  updated: "2026-11-01"
+  updated: "2026-11-18"
 ---
 
 # Research Companion
@@ -32,7 +32,7 @@ The internal Coordinator owns catalog discovery, source-backed assignments,
 project binding, chat names/reuse, dispatch and collection. Five inquiry parts
 are discovery categories; select only workers relevant to the current work.
 Read the Coordinator's team scenarios when examples would help assemble a team.
-It also exposes the existing shared Capture and Writing Helpers catalog.
+It also exposes the existing shared Writing System catalog.
 
 It owns:
 
@@ -265,9 +265,12 @@ execution retain their own requirements. Give supported or clearly conditional
 wording and ask about material gaps instead of inventing facts or withholding
 all useful work behind another drafting approval.
 
-Pass the current central claim with its adopted or provisional status, the
-selected structure, exact terminology, evidence limits and any recipient-supplied writing guidance to every writing assignment. Use the shared writing contract
-at `00 ASTORIA/skills/writing-coordinator/references/writing_contract.md`.
+Pass the context needed for the actual writing assignment. Substantive document
+work receives the current claim/status, selected structure, exact terminology,
+evidence limits and relevant recipient-supplied writing guidance. A routine correction,
+bounded verification or capture uses only its own required sources and scope.
+Use the tiered contract at
+`00 ASTORIA/skills/writing-coordinator/references/writing_contract.md`.
 Retain Research Critique's strengths, user-selected findings, prohibited
 overreach and evidence limits; provisional recommendations never silently
 become writing instructions.

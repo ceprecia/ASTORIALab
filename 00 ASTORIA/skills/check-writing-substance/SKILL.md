@@ -8,10 +8,10 @@ description: >-
   check writing specificity.
 metadata:
   level: skill
-  system: Capture and Writing Helpers
+  system: Writing System
   dependencies: writing-coordinator
   created: "2026-11-01"
-  updated: "2026-11-02"
+  updated: "2026-11-18"
 ---
 # Check Writing Substance
 
@@ -26,11 +26,14 @@ argument reasoning logic, citation identity, template fidelity and style filteri
 
 ## Inputs
 
-Read the [writing contract](../writing-coordinator/references/writing_contract.md).
-Use the current brief, relevant MOC and recipient-supplied writing guidance, exact draft
-version, intended audience, central claim and status, supplied sources,
-specialist returns and the user's requested changes. Do not rely on a writer's
-claim that it already fixed the passage.
+Read the [writing contract](../writing-coordinator/references/writing_contract.md)
+and use its task-sized context. Use the exact passage/version, intended audience,
+requested factual or specificity check, supplied sources and relevant specialist
+returns. Include a central claim only when the check depends on it. Read MOC or
+recipient-supplied writing guidance when it supplies needed context. A bounded accuracy
+review of a capture returns findings without saving or restyling that record.
+Do not rely on a writer's claim that it already fixed the passage. A direct
+review returns to its caller without loading a writing lead or team.
 
 ## Steps
 
@@ -108,7 +111,8 @@ remaining source gaps.
 
 ## Handoffs
 
-Return to writing-coordinator. The domain owner supplies missing specifics
+Return to the invoking owner, through writing-coordinator when it is already
+coordinating the task. The domain owner supplies missing specifics
 through [cross-system handoffs](../writing-coordinator/references/cross_system_handoff.md);
 the relevant writer revises. check-writing-cerl is available when the recipient selects that named framework; otherwise use reasoning review suited to the task;
 verify-writing-citations tests cited support; integrate-writing handles prose.

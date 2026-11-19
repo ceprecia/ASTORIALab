@@ -51,3 +51,12 @@ Do not create `CLAUDE.md`, `CLAUDE.local.md`, `.claude/CLAUDE.md`, `.claude/rule
 `codex.md`, or `AGENTS.override.md`. The only things allowed under `.claude/` and
 `.agents/` are the `skills/` shim folders of relative symlinks into
 `00 ASTORIA/skills/`, written by skill-mount.
+
+## Email attachments
+
+When handing over an email draft with attachments for sending, briefly remind
+The user to open every attached file and confirm the intended version and
+contents, page count where applicable, and whether internal notes or unfinished
+material belong in it. Inspect accessible files rather than relying on filenames;
+distinguish local-file inspection from verification of the actual email
+attachments. Give one brief reminder without an additional approval step.

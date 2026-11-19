@@ -46,19 +46,21 @@ is the human-facing explanation; `research-coordinator/SKILL.md` owns dispatch.
 
 ### Shared support
 
-The generated [Capture and Writing Helpers](../../../Skill%20Map.md#-capture-and-writing-helpers) group is the single shared support catalog across systems. Consult only that group when discovery is needed, then load or assign the exact helper under its own contract. Do not duplicate helper folders or maintain a hand-copied catalog. The generated shared group separates capture/preparation/notetaking from writing assistance.
+The generated [Writing System](../../../Skill%20Map.md#-writing-system) group is the single shared support catalog across systems. Consult only that group when discovery is needed, then load or assign the exact helper under its own contract. Do not duplicate helper folders or maintain a hand-copied catalog. The generated shared group separates capture/preparation/notetaking from writing assistance.
 
-Shared writing defaults to the appropriate specialist team through writing-companion
-and its internal writing-coordinator, not a single generic writer. Read
+Writing Companion heads the Writing System. Routine corrections and exact bounded
+writing, review or capture requests use their existing capability directly. Use
+Writing Companion and its internal Writing Coordinator for sustained document
+development and dependent writing assignments. Read the shared handoff at
 `00 ASTORIA/skills/writing-coordinator/references/cross_system_handoff.md` when
-requesting or supplying writing support. Every writing worker receives the
-current central argument/status, section purpose, selected template, source
-locators, unresolved choices and the MOC/recipient-supplied writing guidance. A writing
-request does not turn planned methods into performed work or software success
-into accepted QC. Reuse authorized technical specialists for exact facts and
-technical fidelity review; keep one writer per canonical artifact.
+requesting or supplying domain material. Pass the context needed by the actual
+assignment: source locators, requested output and action scope, with current
+argument/status, selected structure and MOC/recipient-supplied writing guidance where they
+bear on substantive writing. Preserve planned, executed and accepted-QC states.
+Reuse existing technical specialists for concrete questions and fidelity review,
+and keep one writer per canonical artifact.
 
-Requested protocol work curates established procedures under Write Protocol's existing selection, detailed-review and publication rules. Capture helpers own progress logs under the user's current capture preference. Neither dispatch nor completion authorizes automatic saving. Save useful team continuity only when authorized, at the verified location selected for the task or established by the applicable project continuity policy. Preserve the existing owner and avoid duplicate registries or hubs.
+Requested protocol work curates established procedures under Write Protocol's existing selection, detailed-review and insertion rules, reusing equivalent approvals already supplied. A clear request to capture or log a record authorizes the capture helper to save it at its verified owner under the current capture preference. Drafts and proposed entries follow the current request's deliverable form, then the recipient's applicable verified reporting policy, with chat as the fallback. Honor explicit current chat-only or no-save instructions. Required preview artifacts stay within their authorized task scope; their format grants no capture-record, index-edit or external-send authority. Compound writing/capture requests carry separate context and saving choices, with dependent steps in sequence. Save useful team continuity only when authorized, at the verified location selected for the task or established by the applicable project continuity policy. Preserve the existing owner and avoid duplicate registries or hubs.
 
 The companion handles unsaved visual mapping in its response. A bounded map save or revision can use [mindmap](../../mindmap/SKILL.md) when that file action is authorized, with the companion retaining its return point. Pass current sources, user ideas, evidence/inference labels and unresolved questions. Its own organization, construction, missing-information and save rules apply; it does not choose scientific claims. Filing and link/path repair remain support maintenance under the existing owner, without forcing a scientific part.
 
