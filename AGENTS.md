@@ -1,10 +1,16 @@
 # ASTORIA agent instructions (setup pending)
 
+**ASTORIA starter release:** 1.3.0
+
 This vault is not set up yet. Its skills and Skill Map are included in
 `00 ASTORIA/`. Setup creates your personal `me.md` briefing and working folders.
 
 For **"Set up my vault"**, read `00 ASTORIA/skills/setup-my-vault/SKILL.md`
 completely. It handles both first-time setup and updates.
+
+The installed ASTORIA version is recorded in `00 ASTORIA/version.json`, the
+version authority for this vault. GitHub's per-file last-commit label describes
+that file's history and does not determine the product version.
 
 **MOC content and agent continuity.** Keep project maps focused on the requested project content. Follow the recipient's vault or project policy for where agent notes, review details and handoffs belong. Preserve existing human plans, approved logs and study continuity.
 

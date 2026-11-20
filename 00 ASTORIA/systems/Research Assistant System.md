@@ -101,7 +101,7 @@ reviewers inspect a stable draft. The detailed handoff lives in
 
 Part 5's research-output-coordinator routes publication planning, output/provenance
 verification, computational reproduction, release preparation and verification,
-engagement, and project closeout. Its ten bounded output skills borrow shared
+engagement, and project closeout. Its bounded output skills borrow shared
 writers, reporting reviewers and existing technical owners; the existing Grant
 Advisor retains application-specific requirements. Select the service needed for
 the current output rather than launching every role or imposing a fixed sequence.

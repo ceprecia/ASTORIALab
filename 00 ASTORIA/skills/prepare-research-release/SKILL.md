@@ -15,7 +15,7 @@ metadata:
   requires: defined materials, intended audience/access and repository candidates
     or destination
   created: '2026-11-02'
-  updated: '2026-11-02'
+  updated: '2026-11-20'
   gates: ''
 ---
 
@@ -88,6 +88,13 @@ independent inventory and source checks while a consequential choice remains ope
    materials and established project layout. Compare the result with the selected
    inventory for omissions, broken references, mismatched versions and unsupported
    claims about access, permissions, availability or reproducibility.
+   For GitHub, prepare the intended visible branch, commit/release titles,
+   README/version information, current file-page headings, rendered artwork and
+   release/download route alongside the package. Inspect any existing public
+   pages for stale names, versions or links. Raw file correctness does not show
+   what the page displays. Give the publication owner those exact expectations
+   and route post-publication browser and download comparison to
+   verify-repository-release. Preserve historical commits and tags.
 10. Return the prepared result or plan, current source state, inspected scope,
     unresolved requirements and the next owner. If a repository record already
     exists, give its exact identifier/version to verify-repository-release rather

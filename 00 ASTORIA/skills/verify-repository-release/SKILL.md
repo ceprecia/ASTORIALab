@@ -15,7 +15,7 @@ metadata:
   requires: exact repository version, authorized inspection access and intended
     release evidence where available
   created: '2026-11-02'
-  updated: '2026-11-02'
+  updated: '2026-11-20'
   gates: ''
 ---
 
@@ -79,6 +79,18 @@ limitation; do not silently substitute the file list as proof of completeness.
    in metadata, a resolving DOI, the correct target version and accessible files.
    A linked article DOI does not become a dataset DOI. Follow links needed for the
    bounded comparison and report redirects, broken links or version mismatches.
+   For GitHub, inspect the live rendered repository/ref, relevant current file
+   pages and their displayed commit headings, README/artwork, About/title and
+   selected release/download. Compare visible results with the intended release
+   and file history, separately from raw files or API responses. Reproduce a
+   supplied screenshot's selected branch/tag/commit before explaining it; a
+   current file page may still show its older last-change title. A stale version
+   heading the user asked to refresh remains a finding even if the body passes.
+   For a newly changed file, verify its displayed commit agrees with the delivered
+   change. Inspect Latest when current-release delivery is in scope; retain an
+   explicitly selected historical version. Verify the downloaded package rather
+   than assuming Code → Download ZIP uses the default branch. Report unavailable
+   browser/rendering checks as unverified, not passed by hashes or cached text.
 10. Return observed matches and discrepancies with supporting record/file evidence,
     the current source state, inspection limits and the next responsible owner.
     Separate findings about publication state, availability, content integrity,
