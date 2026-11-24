@@ -178,469 +178,346 @@ the updater retains its two janitor audit passes.
 
 ## 6. Ask a normal chat question
 
-You do not need a special command language to use skills. Naming a capability
-can make the request clear. Give it a task and the relevant files.
+You can ask for help in your own words. Open the [proofreading brief](tutorial_examples/research/inputs/project_brief.md)
+and [protocol](tutorial_examples/research/inputs/protocol.md) in the practice
+vault and show them to your assistant. Then ask:
 
-Try this small Research request in the practice vault:
+> Can you help me plan this study?
 
-```text
-Research Companion, read tutorial_examples/research/inputs/project_brief.md
-and tutorial_examples/research/inputs/protocol.md. Restate the fixed question
-and identify one design decision that still needs attention. Use only those
-files and keep the response here in chat.
-```
+Read the answer and ask a follow-up about anything unclear. The assistant has
+a question and source material to work with; you can develop the conversation
+one step at a time. These files describe an invented study. To summarize a
+paper instead, supply the actual paper you want to discuss.
 
-The packet is an invented protocol and synthetic data, not a published article.
-For an article summary, supply the actual article you want summarized and ask
-the assistant to ground its answer in that source.
+Other systems work the same way. After selecting **Study and Productivity**,
+open its [lesson](tutorial_examples/study_productivity/inputs/lesson_and_practice.md)
+and ask:
 
-Study and skill creation are ordinary requests too:
+> Can you explain this lesson?
 
-- **Study Companion, after selecting Study and Productivity:** “Use the lesson
-  in the Study example to teach one concept, ask me a question and wait for my
-  answer.”
-- **Skill Builder:** “Use the custom-skill request in the System Builder
-  example to help turn this repeated task into one reusable skill.”
+For a task you repeat, show Skill Builder the
+[example request](tutorial_examples/system_builder/inputs/custom_skill_request.md):
 
-The [Research](#research), [Study](#study-productivity), and
-[System Builder](#system-builder) walkthroughs below name their exact input
-files and show fuller prompts.
+> Could we turn this task into a skill?
+
+The [worked examples below](#research) give you materials to try these
+conversations and see what useful results can look like.
 
 <a id="continue-with-another-assistant"></a>
 
 ## 7. Continue with a different assistant
 
-Before switching, save the context you want the next assistant to use. For the
-small Research request above, ask:
+Before switching assistants, ask the current one to save what you want to keep:
 
-```text
-Save a short practice_notes/proofreading_handoff.md in this practice vault.
-Name the two Research input files we just read. Record that the proofreading
-question is fixed, its prediction is provisional, and no design revision has
-been adopted. Set the next task to comparing passage-assignment options and
-carryover concerns from the protocol. Keep unknowns explicit.
-```
+> Can you save what we decided and what comes next?
 
-Open and check the saved note. It should contain the stated context and next
-task, not a claim that the experiment or its checks were performed. For an
-ongoing project, its owning map is the place to keep this useful context; its
-project `AGENTS.md` connects the assistant to the briefing and map.
+Open the saved note and check it. In the proofreading example, it should point
+back to the source files and record the design question you have not settled.
+An idea still under discussion should remain a proposal.
 
-Then open the same practice vault in another assistant and ask:
+Open the same practice vault in another assistant, show it the note and ask:
 
-```text
-Read this practice vault's AGENTS.md and me.md, then
-practice_notes/proofreading_handoff.md and the source files it names.
-Restate the fixed question and continue the documented next design task.
-Keep proposals separate from decisions already adopted.
-```
+> Can we continue where we left off?
 
-Check the new assistant's folder access and available tools. Responses and tool
-capabilities can differ. Useful continuation depends on the saved files carrying
-the question, decisions, evidence and next step.
+Check that the new assistant can access the files and understands where you
+stopped. Its tools and answers may differ. For ongoing work, keep this context
+in your existing project map so that useful progress has one place to return to.
 
 <a id="make-it-yours"></a>
 
 ## 8. Make it yours
 
-Start with a small task and change the system around what you actually do.
-Update preferences through Me Builder. Keep useful folder choices and use the
-janitors for a selected cleanup. Add systems or individual skills through
-**Set up my vault** and the existing skill owners when a need arises.
+Tell your assistant when a preference changes. Me Builder can help update your
+briefing, and the janitors can help with a folder that has become difficult to
+use. Keep the structure that works for you.
 
-You can change an example input, try another system, or bring a bounded task
-from your own work. Keep the fictional learning projects separate from your
-actual projects. The eight walkthroughs below show purpose, prerequisites,
-files, prompts, outputs and a next customization for each system.
+Use **Set up my vault** when you want to add a system, update ASTORIA or bring
+in another skill. You can also describe a procedure you repeat and ask Skill
+Builder to help make it reusable.
+
+Choose a worked example below that interests you. Try the supplied materials,
+then adapt the conversation to your own work. Keep the fictional practice
+projects separate from your real projects.
 
 ## Choose a worked example
 
 | System | Included by | Try this example when you want to… |
 | --- | --- | --- |
-| [Research Assistant](#research) | Basics | Turn a question into a plan and inspect synthetic observations |
-| [Janitor](#janitor) | Basics | Organize a genuinely mixed folder without losing its links or decisions |
-| [ASTORIA System Builder](#system-builder) | Basics | Change a briefing and make a small reusable skill |
-| [Writing](#writing) | Help me choose | Turn supplied evidence into a defensible short scientific report |
-| [Study and Productivity](#study-productivity) | Help me choose | Study a student course and make a workable practice plan |
-| [Teaching](#teaching) | Help me choose | Prepare an instructor's week, activity, rubric and feedback |
-| [Engineering](#engineering) | Help me choose | Review a simple circuit and prepare build checks |
-| [PhD and Career](#phd-career) | Help me choose | Turn a fictional handbook and progress record into a milestone plan |
+| [Research Assistant](#research) | Basics | Plan a study and understand invented observations |
+| [Janitor](#janitor) | Basics | Organize a mixed folder while keeping its notes and links |
+| [ASTORIA System Builder](#system-builder) | Basics | Change a briefing and make a reusable labeling skill |
+| [Writing](#writing) | Help me choose | Turn supplied evidence into a scientific report |
+| [Study and Productivity](#study-productivity) | Help me choose | Learn a course topic and plan practice time |
+| [Teaching](#teaching) | Help me choose | Prepare a class, activity and feedback |
+| [Engineering](#engineering) | Help me choose | Review a circuit before building it |
+| [PhD and Career](#phd-career) | Help me choose | Prepare a milestone plan and advisor conversation |
 
 ![The eight available ASTORIA system groups](00%20ASTORIA/assets/system_toolkit.png)
 
-The diagram shows what is available, not what every vault installs. These are
-original fictional learning materials. Supplied outputs are **illustrative**,
-not records of an assistant run, an experiment, a class or a physical build.
-Component specifications are identified separately through manufacturer sources.
+The diagram shows available systems; your setup choices determine which are
+installed. The projects below are fictional. Their finished examples show
+possible results, not work that an assistant, class, experiment or physical
+build has actually completed. Engineering component specifications have their
+own manufacturer sources.
 
 ## Work through an example
 
-1. Complete setup in the separate practice vault. Select the system named by
-   the example.
-2. Obtain its whole `inputs/` folder from the same starter copy as this guide.
-   On GitHub, linked files provide previews; the starter download provides the
-   complete folder. Copy the inputs into one working folder you choose inside
-   the practice vault. Keep their nested layout.
-3. In the detailed prompts below, replace `<practice_folder>` with that working
-   folder's actual path. The assistant starts from the practice vault's
-   `AGENTS.md` and uses only the named inputs for the exercise.
-4. Keep supplied inputs unchanged unless the example practices moving them.
-   Request results in an `outputs/` folder inside the practice folder, or keep
-   them in chat as the prompt says.
-5. Open `illustrative_outputs/` after trying the task. Compare source fidelity,
-   decisions and visible outputs rather than expecting identical wording.
+Use the separate practice vault you set up earlier. Choose the system named
+by the example, then copy its whole inputs folder into that vault. The starter
+download contains the complete folders; the links below let you preview their
+contents on GitHub. Keep any nested folders together.
 
-These materials are a reference shelf. Setup does not create their fictional
-projects, enroll you in the courses or install the example custom skill.
+Open those files in your assistant or show it the copied folder. Start with
+the suggested question and continue the conversation as you would with a
+colleague. Use the supplied materials for the practice task and keep initial
+answers in chat. Review proposed file moves or new skills before applying them.
+
+Try the task before opening its finished examples. Compare how the answer uses
+the sources and what it helps you do next; the wording need not be identical.
+Setup leaves these learning materials as examples rather than creating active
+projects from them.
 
 <a id="research"></a>
 
 ## Research Assistant: a proofreading pilot
 
-**Purpose.** Research Companion helps frame and coordinate research across
-question, design, analysis and reporting. Try it when you have a scientific
-question and need to decide what the available evidence supports.
+Research Companion helps you move from a scientific question to a plan and
+interpretation. This example uses **Basics**, with no additional research
+software or method group needed.
 
-**Needs.** Basics. No optional imaging or software group is needed for this
-small supplied-data exercise. Its descriptive arithmetic does not require an
-external service.
-
-**Get.** Copy the [Research inputs](tutorial_examples/research/inputs):
+Copy the [Research inputs](tutorial_examples/research/inputs) and open the
 [brief](tutorial_examples/research/inputs/project_brief.md),
 [protocol](tutorial_examples/research/inputs/protocol.md) and
-[CSV](tutorial_examples/research/inputs/synthetic_results.csv).
+[invented results](tutorial_examples/research/inputs/synthetic_results.csv).
+They explore whether a quiet break changes performance on a proofreading task.
 
-**Try it.**
+> Can you help me plan this study?
 
-1. Read the question and protocol. Notice which design choices are still open.
-2. Ask Research Companion to produce a plan and descriptive summary:
+Read the proposed plan and discuss an unresolved design choice. Then ask what
+the invented results can tell you, and check the summary against the eight
+paired records. Each passage contains 12 planted errors. Does the answer keep the original question, explain its arithmetic and
+distinguish invented observations from evidence about real people?
 
-```text
-Research Companion, use only project_brief.md, protocol.md and
-synthetic_results.csv in <practice_folder>. Keep the proofreading question
-fixed. Identify design gaps and summarize the eight paired synthetic records
-with denominators. Separate arithmetic, interpretation and what remains
-unknown. Do not search literature or treat invented records as empirical
-evidence. Save research_plan.md and synthetic_summary.md in outputs/ here.
-```
-
-3. Check the summary against the CSV. Ask the assistant to add a short
-   continuation note naming the fixed question, sources and unresolved design
-   choice. A different assistant should be able to resume from those files.
-
-**See.** An [illustrative plan](tutorial_examples/research/illustrative_outputs/research_plan.md)
+Compare your answer with the [illustrative plan](tutorial_examples/research/illustrative_outputs/research_plan.md)
 and [summary](tutorial_examples/research/illustrative_outputs/synthetic_summary.md).
-The table has eight paired records, 12 planted errors per passage, and no
-justification for a population or causal claim.
+Neither establishes a population effect or a causal finding.
 
-**Continue.** Change the question or supply approved observations from your own
-project. Preserve the distinction between a proposed design, a synthetic check
-and collected evidence.
+To continue, change one design choice in a practice copy and ask how it affects
+the plan. For your own research, bring your actual question, protocol and
+approved observations.
 
 <a id="janitor"></a>
 
 ## Janitor: a mixed exhibit folder
 
-**Purpose.** Folder Janitor files selected material and repairs its references.
-Vault Janitor checks vault structure and links; Skills Janitor checks skills
-and generated discovery views. Try this system when organization obscures an
-owner or breaks navigation.
+The Janitor System is part of **Basics**. Folder Janitor can organize selected
+files and repair their links; Vault Janitor checks the wider structure, while
+Skills Janitor maintains the skills and their discovery views.
 
-**Needs.** Basics. This is a file-operation exercise on a practice copy.
+Copy the entire [Janitor folder](tutorial_examples/janitor/inputs), including
+its nested folders. Read the [cleanup request](tutorial_examples/janitor/inputs/organization_choices.md)
+and [exhibit map](tutorial_examples/janitor/inputs/exhibit_map.md), then look
+through the mixed notes, flyer, reusable reference and kiosk files.
 
-**Get.** Copy the entire [Janitor inputs](tutorial_examples/janitor/inputs),
-including `stuff/` and `kiosk_bundle/`. Read
-[organization_choices.md](tutorial_examples/janitor/inputs/organization_choices.md)
-and the existing [exhibit map](tutorial_examples/janitor/inputs/exhibit_map.md).
+> Can you help me organize this folder?
 
-**Try it.**
+Review the proposed moves before accepting them. Some notes have unclear
+ownership, so leaving them in place is useful. The kiosk files belong together
+as one working package. The exhibit map's text and dated decision should survive.
 
-1. Inspect the mixed notes, working flyer, reusable reference and kiosk package.
-2. Ask for a finite proposal:
+When you are happy with the plan, ask:
 
-```text
-Folder Janitor, tidy only <practice_folder>, following organization_choices.md
-and exhibit_map.md. First show exact sources, destinations and affected links.
-Keep unclear items in place and keep the kiosk package intact. Preserve note
-text and the dated map decision. Do not make new maps or apply moves until I
-accept this exercise's plan.
-```
+> Apply the moves we agreed on and check the links afterward.
 
-3. Accept or edit that concrete plan. Ask the assistant to apply the accepted
-   moves and path repairs together, then check every affected link and manifest
-   target. A kept or unclear item is a valid outcome, not unfinished sorting.
+Compare the result with the [example move plan](tutorial_examples/janitor/illustrative_outputs/move_plan.md)
+and [checks](tutorial_examples/janitor/illustrative_outputs/verification_checklist.md).
+The mixed-owner note and unidentified table stay where they are.
 
-**See.** A possible [move plan](tutorial_examples/janitor/illustrative_outputs/move_plan.md)
-and [verification checklist](tutorial_examples/janitor/illustrative_outputs/verification_checklist.md).
-The mixed-owner note and unidentified CSV remain in place.
-
-**Continue.** Try **Keep my structure** instead: the original files should
-remain where they are. Later, apply a bounded cleanup to a folder whose actual
-owners and retention needs you know.
+Next, try **Keep my structure** on another practice copy, or ask about one
+folder whose real purpose and owners you know.
 
 <a id="system-builder"></a>
 
 ## ASTORIA System Builder: a briefing and a custom skill
 
-**Purpose.** System Builder's skills configure the vault and maintain its
-reusable workflows. Try them when your preferences change or a narrow task
-keeps recurring.
+System Builder is included in **Basics**. Its skills help you adapt the vault
+to your preferences and turn a repeated task into a reusable workflow.
 
-**Needs.** Basics and the separate practice vault. The custom skill is one
-explicit addition, not selection of an entire optional system.
+Copy the [System Builder inputs](tutorial_examples/system_builder/inputs).
+Start with the fictional [briefing answers](tutorial_examples/system_builder/inputs/briefing_answers.md):
 
-**Get.** Copy the [System Builder inputs](tutorial_examples/system_builder/inputs):
-[briefing answers](tutorial_examples/system_builder/inputs/briefing_answers.md),
-[custom-skill request](tutorial_examples/system_builder/inputs/custom_skill_request.md)
-and [inventory](tutorial_examples/system_builder/inputs/packet_inventory.csv).
+> Can we draft a briefing from these answers?
 
-**Try it.**
+Read the draft alongside the answers. It should leave unspecified details
+unknown and use the fictional preferences rather than changing your real
+briefing. Compare it with the [example excerpt](tutorial_examples/system_builder/illustrative_outputs/sample_briefing.md).
 
-1. Ask Me Builder for a briefing draft, using only the fictional answers:
+Next, open the [label-making request](tutorial_examples/system_builder/inputs/custom_skill_request.md):
 
-```text
-Me Builder, read briefing_answers.md in <practice_folder>. Draft a briefing
-using your current template, keeping unspecified details unknown. Return it
-here first. This is a fictional practice persona; do not change my working
-vault's me.md or install additional systems.
-```
+> Could we turn this task into a skill?
 
-2. In the practice vault, ask Skill Builder to inspect
-   `custom_skill_request.md`, check overlap and dependencies, and create only
-   the accepted skill folder. Include its supporting reference. Review the
-   description and trigger phrases. Have Skills Janitor refresh the practice
-   vault's views and record this as your custom addition.
-3. Invoke the created skill on the copied inventory:
+Discuss the proposed skill and review it before creation in the practice vault.
+This adds one chosen skill, rather than selecting an entire optional system.
+The assistant checks for overlap and includes the supporting instructions.
+Then open the [inventory](tutorial_examples/system_builder/inputs/packet_inventory.csv):
 
-```text
-Use format-seed-labels on <practice_folder>/packet_inventory.csv. Return the
-labels here and report any incomplete rows. Keep source values unchanged.
-```
+> Can you make the labels?
 
-**See.** A [briefing excerpt](tutorial_examples/system_builder/illustrative_outputs/sample_briefing.md),
-a complete illustrative [skill folder](tutorial_examples/system_builder/illustrative_outputs/format-seed-labels),
-its [supporting format](tutorial_examples/system_builder/illustrative_outputs/format-seed-labels/references/label_format.md)
-and [labels](tutorial_examples/system_builder/illustrative_outputs/labels.md).
-Do not treat that illustrative folder as already installed. If you choose to
-import a ready-made folder, include all of it; a GitHub link or local folder
-goes through the import flow, while pasted workflow instructions go through
-Skill Builder.
+Compare the labels with the [finished example](tutorial_examples/system_builder/illustrative_outputs/labels.md).
+You can also inspect the [illustrative skill folder](tutorial_examples/system_builder/illustrative_outputs/format-seed-labels)
+and its [format guide](tutorial_examples/system_builder/illustrative_outputs/format-seed-labels/references/label_format.md);
+that example folder is not already installed.
 
-**Continue.** Supply a small procedure you actually repeat. Reuse an existing
-skill when it already owns the job, and preserve supporting files and attribution
-when importing someone else's skill.
+Try another procedure you repeat. An existing skill may already cover it; if
+you import someone else's skill, keep its supporting files and attribution.
 
 <a id="writing"></a>
 
 ## Writing: an evidence-bounded scientific report
 
-**Purpose.** Writing Companion develops a document through appropriate drafting
-and review skills. Try it when you have sources and a document to produce or
-revise, rather than an open research-design decision.
+Choose the **Writing System** through **Help me choose**. Writing Companion
+helps develop and review documents; Research's shared writing helpers do not
+select this whole system.
 
-**Needs.** Select the Writing System through **Help me choose**. Its full
-workflow is an optional choice even when some shared writing helpers support
-Research. No specialist modality is needed here.
-
-**Get.** Copy the [Writing inputs](tutorial_examples/writing/inputs):
+Copy the [Writing inputs](tutorial_examples/writing/inputs) and open the
 [brief](tutorial_examples/writing/inputs/project_brief.md),
 [plant data](tutorial_examples/writing/inputs/plant_height_data.csv) and
 [rough report](tutorial_examples/writing/inputs/rough_report.md).
+The report deliberately makes claims stronger than the fictional record supports.
 
-**Try it.**
+> Which claims need better evidence?
 
-1. Read the fictional methods and rough report. Look for claims that are
-   stronger than the supplied record.
-2. Run the audit before asking for a revision:
+Read the answer against the brief and table. Ask about any claim whose source
+you cannot find. When you understand what can be supported, continue:
 
-```text
-Writing Companion, read only project_brief.md, plant_height_data.csv and
-rough_report.md in <practice_folder>. Make a claim-to-source table and a short
-report outline here. Identify unsupported statements. Do not search papers,
-add analyses or change the inputs. Keep the illustrative outputs closed.
-```
+> Could you help me revise this report?
 
-3. Ask for a report of at most 450 words with Question, Methods, Results and
-   Limitations sections, preserving the synthetic label and supplied values.
-
-**See.** The [evidence ledger](tutorial_examples/writing/illustrative_outputs/evidence_ledger.md)
+The revision should retain the synthetic-data label, supplied values and
+limitations. Compare it with the [evidence ledger](tutorial_examples/writing/illustrative_outputs/evidence_ledger.md)
 and [revised report](tutorial_examples/writing/illustrative_outputs/revised_report.md).
-Compare what each claim rests on, not the exact phrasing.
+Look at how the wording changes when a claim has less support.
 
-**Continue.** Replace the invented packet with approved methods and outputs
-from your own work. Keep evidence review distinct from prose polishing.
+For your own report, supply approved methods and results, then use the same
+conversation to examine the claims before polishing the prose.
 
 <a id="study-productivity"></a>
 
 ## Study and Productivity: a student's course and practice week
 
-**Purpose.** Study Companion helps you learn supplied material; planning tools
-help turn study intentions into workable actions. Try this system when you are
-the learner, preparing a lesson or practicing for an assessment.
+Choose **Study and Productivity** through **Help me choose**. Study Companion
+helps you learn supplied material, while planning tools help you make time to
+practice it.
 
-**Needs.** Select Study and Productivity through **Help me choose**. The
-student's course is separate from the instructor course below.
+Copy the [Study inputs](tutorial_examples/study_productivity/inputs). Read the
+[course note](tutorial_examples/study_productivity/inputs/student_course_note.md)
+and [student syllabus](tutorial_examples/study_productivity/inputs/student_syllabus.md),
+then open the [lesson and practice](tutorial_examples/study_productivity/inputs/lesson_and_practice.md).
+You are the learner in this fictional course about maps.
 
-**Get.** Copy the [Study and Productivity inputs](tutorial_examples/study_productivity/inputs):
-[course note](tutorial_examples/study_productivity/inputs/student_course_note.md),
-[student syllabus](tutorial_examples/study_productivity/inputs/student_syllabus.md),
-[lesson and practice](tutorial_examples/study_productivity/inputs/lesson_and_practice.md)
-and [planning brief](tutorial_examples/study_productivity/inputs/weekly_planning_brief.md).
-Their requirements, not a real institution's policies, govern this exercise.
+> Can you explain this lesson?
 
-**Try it.**
+After the explanation, ask for a practice question. Try the practice question
+before asking to see the answer. Discuss what you understood and where you got
+stuck, then compare with the [example explanation and answers](tutorial_examples/study_productivity/illustrative_outputs/study_explanation_and_answers.md).
 
-1. Read the student's course requirements and the supplied lesson.
-2. Ask the assistant to teach and check understanding:
+For the productivity example, show the assistant the
+[planning brief](tutorial_examples/study_productivity/inputs/weekly_planning_brief.md)
+as well as the syllabus:
 
-```text
-Study Companion, read student_course_note.md, student_syllabus.md and
-lesson_and_practice.md in <practice_folder>. Teach one short concept, ask me a
-practice question, wait for my answer, then explain the answer using those
-sources. Do not answer your own question before I try. Treat this as an
-invented course.
-```
+> Can you help me plan my study week?
 
-3. Try the productivity workflow on the supplied availability:
+Check that the plan fits the supplied deadlines and available sessions. Compare
+it with the [example week](tutorial_examples/study_productivity/illustrative_outputs/weekly_plan.md).
+This practice conversation does not create calendar events or reminders.
 
-```text
-WOOP, use weekly_planning_brief.md and student_syllabus.md in <practice_folder>
-to propose a small study plan. Give a wish, outcome, obstacle and if-then plan
-that fit those sources and the available sessions. Keep it here in chat; do
-not create reminders or calendar events.
-```
-
-**See.** Compare the [explanation and answers](tutorial_examples/study_productivity/illustrative_outputs/study_explanation_and_answers.md)
-and [weekly plan](tutorial_examples/study_productivity/illustrative_outputs/weekly_plan.md)
-with the explanation, practice feedback and schedule you obtained. A good plan
-fits the source deadlines and available time.
-
-**Continue.** Supply your own syllabus and current unit. Keep student learning
-separate from instructor planning, and give the assistant the actual lecture
-material when asking for an answer according to that course.
+Next, bring your own syllabus and current lesson. Supply the actual lecture
+material when you want an explanation grounded in that course.
 
 <a id="teaching"></a>
 
 ## Teaching: an instructor's week and feedback
 
-**Purpose.** Teaching Companion coordinates work from an instructor's approved
-course sources. Try it when preparing a class, activity, rubric or feedback in
-a teaching role.
+Choose the **Teaching System** through **Help me choose**. Teaching Companion
+helps prepare classes and feedback using an instructor's approved course sources.
 
-**Needs.** Select Teaching through **Help me choose**. This is a different
-fictional course from the student example. No live learning platform or student
-records are connected.
+Copy the [Teaching inputs](tutorial_examples/teaching/inputs). This time you
+are the instructor for a different fictional course about clear procedures.
+Read the [course note](tutorial_examples/teaching/inputs/instructor_course_note.md),
+[syllabus](tutorial_examples/teaching/inputs/instructor_syllabus.md) and
+[week's materials](tutorial_examples/teaching/inputs/week_02_sources.md):
 
-**Get.** Copy the complete [Teaching inputs](tutorial_examples/teaching/inputs):
-[instructor course note](tutorial_examples/teaching/inputs/instructor_course_note.md),
-[instructor syllabus](tutorial_examples/teaching/inputs/instructor_syllabus.md),
-[week sources](tutorial_examples/teaching/inputs/week_02_sources.md) and
-[rubric and student work](tutorial_examples/teaching/inputs/activity_rubric_and_student_work.md).
+> Can you help me plan this class?
 
-**Try it.**
+Check that the plan addresses the learning objective and leaves students time
+to attempt the activity. Compare it with the [example lesson plan and activity](tutorial_examples/teaching/illustrative_outputs/lesson_plan_and_activity.md).
 
-1. Identify the week's learning objective and class length in the syllabus.
-2. Ask for materials tied to those sources:
+Now open the [rubric and fictional student work](tutorial_examples/teaching/inputs/activity_rubric_and_student_work.md):
 
-```text
-Teaching Companion, read instructor_course_note.md, instructor_syllabus.md,
-week_02_sources.md and activity_rubric_and_student_work.md in <practice_folder>.
-Draft a class plan, one activity and formative feedback using the supplied
-rubric, objective and class length. Keep its point scheme. Identify any missing
-policy instead of inventing one. Return drafts here; do not post, grade in a
-live system or contact anyone.
-```
+> How could I give useful feedback on this work?
 
-3. Check the activity against the objective, the plan against available class
-   time, and feedback against the rubric and supplied student response.
+Check the comments and proposed score against the rubric, then compare with
+the [illustrative feedback](tutorial_examples/teaching/illustrative_outputs/feedback.md).
+These are drafts for instructor review, not actual grades or course policy.
 
-**See.** A possible [lesson plan and activity](tutorial_examples/teaching/illustrative_outputs/lesson_plan_and_activity.md)
-and [feedback](tutorial_examples/teaching/illustrative_outputs/feedback.md).
-They are examples for instructor review, not actual grades or course policy.
-
-**Continue.** Use the syllabus, role and sources from a course you actually
-teach, and keep consequential grading or communication within your authorized
-course workflow.
+Keep the practice work in chat. To adapt it, bring your own approved course
+materials, objectives and rubric, and review the proposed feedback in your
+role as instructor.
 
 <a id="engineering"></a>
 
 ## Engineering: a low-voltage indicator circuit
 
-**Purpose.** Engineering Companion brings a design question to the appropriate
-technical skills. Try it when interfaces, parts, calculations and checks need
-to agree before you build.
+Choose the **Engineering System** through **Help me choose**. Engineering
+Companion helps you connect a design question with its parts, drawings and
+checks. Reading this example does not require hardware.
 
-**Needs.** Select Engineering through **Help me choose**. Reading and reviewing
-this example needs no hardware. Physical assembly would require the specified
-parts, tools and an independently checked build plan.
-
-**Get.** Copy the [Engineering inputs](tutorial_examples/engineering/inputs):
-[project map](tutorial_examples/engineering/inputs/moc_indicator.md),
+Copy the [Engineering inputs](tutorial_examples/engineering/inputs). Start
+with the [project map](tutorial_examples/engineering/inputs/moc_indicator.md),
 [circuit and parts](tutorial_examples/engineering/inputs/circuit_and_parts.md)
-and [build/test plan](tutorial_examples/engineering/inputs/build_and_test_plan.md).
+and [proposed build checks](tutorial_examples/engineering/inputs/build_and_test_plan.md).
+Read the schematic and its linked manufacturer source.
 
-**Try it.**
+> Do these drawings, parts and tests agree?
 
-1. Read the schematic, power limits and linked manufacturer source. Distinguish
-   a stated component specification from a calculation or an unknown measurement.
-2. Ask for a bounded review:
+Trace the connections in the drawing and discuss any mismatch the assistant
+finds. Manufacturer specifications, calculated estimates and physical
+measurements should remain distinguishable. No circuit was assembled, powered
+or physically tested for this example.
 
-```text
-Engineering Companion, review only the indicator-circuit packet in
-<practice_folder>. Check the schematic, parts and proposed tests for agreement.
-Separate manufacturer facts, assumptions, calculations and unmeasured results.
-Return a corrected design-review draft and build-check table here. Do not
-claim that a circuit was assembled, powered or tested.
-```
-
-3. Compare the proposed checks with the illustrative record. Keep every
-   physical-result field unmeasured until someone actually performs that test.
-
-**See.** An [illustrative design review](tutorial_examples/engineering/illustrative_outputs/illustrative_design_review.md)
+Compare your answer with the [illustrative design review](tutorial_examples/engineering/illustrative_outputs/illustrative_design_review.md)
 and [unmeasured test record](tutorial_examples/engineering/illustrative_outputs/illustrative_test_record.csv).
-These demonstrate preparation and evidence boundaries, not a working device.
+Physical result fields stay unmeasured until someone performs and records the checks.
 
-**Continue.** Replace the simple brief with a bounded design of your own.
-Verify exact interfaces and source specifications before treating it as a
-construction guide.
+Next, change one requirement, such as supply voltage, and ask which calculations
+and checks must change. A later physical build needs the specified equipment
+and an independently checked build plan.
 
 <a id="phd-career"></a>
 
 ## PhD and Career: a handbook and milestone discussion
 
-**Purpose.** PhD Companion supports degree planning, advisor conversations and
-career decisions using the user's circumstances and current sources. Try it
-when a requirement, deadline or mentorship decision needs a grounded plan.
+Choose the **PhD and Career System** through **Help me choose**. PhD Companion
+helps with degree planning and advisor conversations using the circumstances
+and sources you supply.
 
-**Needs.** Select PhD and Career through **Help me choose**. Its companion is
-separate from Research Companion. This packet uses invented policies only.
-
-**Get.** Copy the [PhD and Career inputs](tutorial_examples/phd_career/inputs):
+Copy the [PhD and Career inputs](tutorial_examples/phd_career/inputs). Read the
 [project map](tutorial_examples/phd_career/inputs/moc_degree_path.md),
-[fictional handbook](tutorial_examples/phd_career/inputs/fictional_handbook.md),
-[student context](tutorial_examples/phd_career/inputs/student_context.md) and
-[completion evidence](tutorial_examples/phd_career/inputs/completion_evidence.md).
+[invented handbook](tutorial_examples/phd_career/inputs/fictional_handbook.md),
+[student's circumstances](tutorial_examples/phd_career/inputs/student_context.md)
+and [progress evidence](tutorial_examples/phd_career/inputs/completion_evidence.md).
+The policies and student are fictional.
 
-**Try it.**
+> What should this student do next?
 
-1. Read the stated requirements and distinguish completed milestones from
-   intentions and missing evidence.
-2. Ask for a source-grounded plan:
+Choose one proposed milestone and trace it back to the handbook and progress
+record. Does the student have evidence of completion, or only an intention?
+Check that requirements, suggested targets and unknown dates remain distinct.
+Then discuss which questions would be useful for the advisor meeting.
 
-```text
-PhD Companion, use only the fictional handbook, student context and completion
-evidence in <practice_folder>. Make a milestone plan and a short advisor
-meeting agenda. Trace deadlines and completion labels to those files, keep
-unknown requirements unknown, and distinguish proposals from confirmed dates.
-Return the drafts here. Do not contact anyone or create reminders.
-```
-
-3. Check the dates and prerequisites against the fictional handbook. Identify
-   which question would most usefully go to the advisor.
-
-**See.** An [illustrative milestone plan](tutorial_examples/phd_career/illustrative_outputs/illustrative_milestone_plan.md)
+Compare your answer with the [illustrative milestone plan](tutorial_examples/phd_career/illustrative_outputs/illustrative_milestone_plan.md)
 and [advisor agenda](tutorial_examples/phd_career/illustrative_outputs/illustrative_advisor_agenda.md).
-These policies do not apply to an actual university.
+Notice how the agenda turns missing information into useful questions.
 
-**Continue.** Bring your current handbook and documented progress. Verify real
-requirements from the responsible program before relying on a deadline.
+Next, add a fictional approval record to your copy and ask which statuses change.
+For your own degree, bring the applicable handbook and documented progress,
+and verify real requirements with the responsible program.
