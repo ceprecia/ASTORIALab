@@ -8,6 +8,8 @@
 
 An Obsidian toolkit to make your research workspace feel like yours. Shape the toolkit around your work, keep your research connected, and bring along the AI assistant you prefer!
 
+[Tutorial](tutorial.md)
+
 ## Why an Adaptable Scientific Toolkit?
 
 AI assistants and tools change, but your core workflows should stay with you. ASTORIA lets you replace these outer layers while keeping your context and working methods.
