@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """finish_setup.py: verify the build and write the full AGENTS.md loader, retaining README.md.
 
-Purpose: the last step of setup Stage 4. It checks that me.md, the layout reference, the AI log,
-the Skill Map, and the root folders exist and that the specialized-skills
-catalog is gone, replaces the draft AGENTS.md with the loader from
+Purpose: the last step of setup. It checks me.md, the layout, AI log, Skill Map,
+root folders and any recorded installed selection. A verified uninstalled
+catalog may remain. It replaces only the exact draft AGENTS.md with the loader from
 00 ASTORIA/templates/agents_loader_template.md, and retains README.md as the
 participant guide. Passing the core checks and installing the full loader
 mean setup is done; README presence is not a setup-state signal.
@@ -56,8 +56,21 @@ def main(argv):
                 problems.append("root folder escapes the vault: %s" % name)
             elif not os.path.isdir(path):
                 problems.append("missing root folder: %s" % name)
-    if os.path.isdir(os.path.join(vault, sk.CATALOG_REL)):
-        problems.append("catalog still present: %s (run install_specialized.py with --remove-catalog)" % sk.CATALOG_REL)
+    catalog_path = os.path.join(vault, sk.CATALOG_REL)
+    catalog_present = os.path.lexists(catalog_path)
+    catalog_safe = not catalog_present or (not os.path.islink(catalog_path)
+                                          and os.path.isdir(catalog_path)
+                                          and inside_vault(vault, catalog_path))
+    if not catalog_safe:
+        problems.append("uninstalled catalog is not a regular vault directory")
+    selection_path = os.path.join(vault, sk.SELECTION_REL)
+    if catalog_present or os.path.lexists(selection_path):
+        if os.path.islink(selection_path) or not inside_vault(vault, selection_path):
+            problems.append("selection record is not a regular vault file")
+        elif not os.path.isfile(selection_path):
+            problems.append("missing selection record: %s (apply the confirmed installer selection)" % sk.SELECTION_REL)
+        elif catalog_safe:
+            problems.extend("selection: " + problem for problem in sk.validate_selection(vault))
     agents_path = os.path.join(vault, "AGENTS.md")
     loader_path = os.path.join(vault, LOADER_TEMPLATE)
     draft_path = os.path.join(vault, DRAFT_TEMPLATE)

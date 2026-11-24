@@ -62,7 +62,7 @@ The user owns:
 
 The advisor may present labeled options, evidence, tradeoffs, unresolved requirements, and a recommendation. It implements only the direction the user selects. It never promises competitiveness, review scores, eligibility, compliance, or funding.
 
-Use [research-companion](../research-companion/SKILL.md) for broad research strategy or funder-fit thinking before one application is selected. Use [research-cv-builder](../research-cv-builder/SKILL.md) for a CV, biosketch evidence record, or research resume. Use writing-companion and its internal writing-coordinator for writing assistance across manuscripts and grant applications. Supply exact verified requirements and the current scientific frame; neither writing support nor this advisor adopts scientific or institutional decisions. A bounded scholarly-evidence need may be handed to [paper-search](../paper-search/SKILL.md) only after the user approves that separate task.
+Use [research-companion](../research-companion/SKILL.md) for broad research strategy or funder-fit thinking before one application is selected. Use [research-cv-builder](../../specialized_skills/research-cv-builder/SKILL.md) for a CV, biosketch evidence record, or research resume. Use writing-companion and its internal writing-coordinator for writing assistance across manuscripts and grant applications. Supply exact verified requirements and the current scientific frame; neither writing support nor this advisor adopts scientific or institutional decisions. A bounded scholarly-evidence need may be handed to [paper-search](../paper-search/SKILL.md) only after the user approves that separate task.
 
 ## Modes
 
@@ -399,7 +399,7 @@ DARPA remains a named Department of War component route. A DARPA BAA may contemp
 - Route prose production and writing review through writing-companion/writing-coordinator for manuscripts and application sections alike. Read `00 ASTORIA/skills/writing-coordinator/references/cross_system_handoff.md`; preserve the original session/return owner and supply only task-relevant verified requirements, source material, selected structure and current scientific choices.
 - Borrow organize-writing-project for the section organizer, keep-writing-structure for the chosen template, and independent citation/substance/argument reasoning review without duplicating their workflows here. A complete heading list or polished paragraph does not establish application readiness.
 - Route scholarly literature discovery to [paper-search](../paper-search/SKILL.md) only through a separate bounded handoff.
-- Route CV, research resume, and evidence-ledger work to [research-cv-builder](../research-cv-builder/SKILL.md).
+- Route CV, research resume, and evidence-ledger work to [research-cv-builder](../../specialized_skills/research-cv-builder/SKILL.md).
 - Route detailed scientific critique of a bounded proposal or design to [research-critique](../research-critique/SKILL.md) when the user asks for that separate critique.
 - Treat any non-core funder, including Taiwan's NSTC, through the source-bound fallback only when the user supplies exact current official instructions. There is no dedicated Taiwan or NSTC section, template, or maintained policy lane.
 

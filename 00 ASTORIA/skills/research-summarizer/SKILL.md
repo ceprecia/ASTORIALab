@@ -46,7 +46,7 @@ or verification.
 Outside a verified coordinator handoff, do not trigger this skill for general
 conversation summaries, meeting summaries, transcript summaries, BLUF
 summaries, broad requests to read or analyze a paper, or multi-paper synthesis.
-Ordinary summaries belong to [summarize](../summarize/SKILL.md). Multi-paper synthesis belongs to
+Ordinary summaries belong to [summarize](../../specialized_skills/summarize/SKILL.md). Multi-paper synthesis belongs to
 its own Part 1 capability.
 
 ## Inputs
@@ -96,7 +96,7 @@ Offer one next action that fits the request:
 
 - continue source-bounded discussion;
 - save the summary;
-- hand a difficult method or concept to [study-companion](../study-companion/SKILL.md);
+- hand a difficult method or concept to [study-companion](../../specialized_skills/study-companion/SKILL.md);
 - hand contextual implications for the user's work to [research-companion](../research-companion/SKILL.md);
 - hand approved manuscript use to [writing-companion](../writing-companion/SKILL.md).
 
@@ -213,7 +213,7 @@ Rendering:
 
 - Render the summary in the requested form, then under the applicable verified reporting policy when the request leaves it open. When using Markdown, use tables where appropriate and omit an outer code fence. If the selected surface cannot render a diagram or formula, express the same source-supported structure or mathematics in a readable form it supports. For example, describe the labeled sequence or model terms and functional relationship in text. Preserve the source, attribution and figure eligibility checks.
 - Present the same reported values in the current requested form, then under the applicable verified recipient or project policy if the request leaves the form open. If neither specifies a form, return the values in the current session. Use a table when helpful. Make an eligible PNG only when its save is authorized and a matplotlib runtime is available. When the report edit is authorized, use the playbook's selected-form image rules and place any supported embed above the same reported values under one label. If an authorized PNG cannot be made, keep the values and state the limitation once. Image and data files require an authorized save.
-- No inline SVG, Canvas, Excalidraw, HTML, found images, or image search. Mind maps and Canvas belong to [mindmap](../mindmap/SKILL.md), interactive examples to [study-planner](../study-planner/SKILL.md), found images and videos to [study-enricher](../study-enricher/SKILL.md).
+- No inline SVG, Canvas, Excalidraw, HTML, found images, or image search. Mind maps and Canvas belong to [mindmap](../../specialized_skills/mindmap/SKILL.md), interactive examples to [study-planner](../../specialized_skills/study-planner/SKILL.md), found images and videos to [study-enricher](../../specialized_skills/study-enricher/SKILL.md).
 
 ## Boundaries
 

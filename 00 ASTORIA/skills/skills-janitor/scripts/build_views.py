@@ -54,17 +54,69 @@ def system_groups(system, members, vocab):
     return result
 
 
-def system_navigation(skills, vocab):
+def partial_systems(skills, vocab, vault=None):
+    """Distinguish exact installed helpers from choosing an entire optional system."""
+    starter = vocab.get("starter") or {}
+    optional = starter.get("optional_systems", sk.OPTIONAL_SYSTEMS)
+    state = sk.read_selection(vault) if vault else None
+    present = {skill.system for skill in skills.values()}
+    if state is not None:
+        chosen = {optional[name] for name in state["choices"]["systems"] if name in optional}
+        return present.intersection(optional.values()) - chosen
+    # An unconfigured release deliberately has no recipient choices record.
+    # Its shelf and exact available membership establish what is not installed;
+    # adapted dependencies cannot reconstruct the author's original helper set.
+    available = sk.load_skills(vault, sk.CATALOG_REL) if vault else {}
+    available.update(skills)
+    released = starter.get("released_skill_names")
+    eligible = set(released) if released is not None else set(available)
+    coordinators = starter.get("available_system_coordinators", vocab.get("system_coordinators", {}))
+    partial = set()
+    for system in present.intersection(optional.values()):
+        installed = {name for name, skill in skills.items() if skill.system == system}
+        expected = {name for name, skill in available.items() if skill.system == system and name in eligible}
+        for names in vocab.get("system_sections", {}).get(system, {}).values():
+            expected.update(name for name in names if released is None or name in eligible)
+        coordinator = coordinators.get(system)
+        if coordinator and (released is None or coordinator in eligible):
+            expected.add(coordinator)
+        if not expected or not expected.issubset(installed):
+            partial.add(system)
+    return partial
+
+
+def partial_system_labels(skills, vocab, vault=None):
+    """Name shipped shared helpers separately from named or imported partial sets."""
+    partial = partial_systems(skills, vocab, vault)
+    if not partial:
+        return {}
+    starter = vocab.get("starter") or {}
+    state = sk.read_selection(vault) if vault else None
+    shipped = set(starter.get("released_skill_names") or []) - set(starter.get("catalog_index") or [])
+    required = set(state["required_helpers"]) if state is not None else set()
+    explicit = (set(state["choices"]["skills"]) | set(state["imports"])) if state is not None else set()
+    labels = {}
+    for system in partial:
+        installed = {name for name, skill in skills.items() if skill.system == system}
+        shared = installed.issubset(shipped | required) and not installed.intersection(explicit)
+        labels[system] = "shared helpers" if shared else "selected skills"
+    return labels
+
+
+def system_navigation(skills, vocab, vault=None):
     """Keep the opening navigation in the same order as installed systems."""
     present = {skill.system for skill in skills.values()}
+    partial = partial_system_labels(skills, vocab, vault)
     out = ["> [!example] 🗺️ Systems"]
     for name in vocab["system_order"]:
         if name not in present:
             continue
         cfg = vocab["systems"][name]
-        heading = "%s %s" % (cfg.get("emoji", ""), name)
+        title = name + (" (%s)" % partial[name] if name in partial else "")
+        heading = "%s %s" % (cfg.get("emoji", ""), title)
         out.append("> - %s [[#%s|%s]]: %s." % (
-            cfg.get("emoji", ""), heading, name, cfg.get("tagline", "")))
+            cfg.get("emoji", ""), heading,
+            title, cfg.get("tagline", "")))
     return "\n".join(out)
 
 
@@ -73,6 +125,7 @@ def registry(skills, vocab, vault=None):
     System shows its whole hierarchy: companions and coordination, then one section per part with the
     coordinator first and the part skills grouped by family."""
     systems, order = vocab["systems"], vocab["system_order"]
+    partial = partial_system_labels(skills, vocab, vault)
     coords, part_names, fam_labels = vocab["part_coordinators"], vocab["parts"], vocab["families"]
     level_tag = {"companion": "companion", "coordinator": "coordinator", "profile": "profile"}
     comp_order = {n: i for i, n in enumerate(vocab.get("companion_order", []))}
@@ -92,7 +145,16 @@ def registry(skills, vocab, vault=None):
         members = [s for s in skills.values() if s.system == sysname]
         if not members:
             continue
-        out.append("## %s %s" % (cfg.get("emoji", ""), sysname))
+        title = sysname + (" (%s)" % partial[sysname] if sysname in partial else "")
+        if sysname in partial:
+            # Existing cross-system links keep the unqualified section target
+            # when a recipient moves between shared helpers and the full system.
+            stable_anchor = sk.PortableLinks._slug("%s %s" % (cfg.get("emoji", ""), sysname))
+            out.extend(["", '<a name="%s"></a>' % stable_anchor, ""])
+        out.append("## %s %s" % (cfg.get("emoji", ""), title))
+        if sysname in partial:
+            out.extend(["", "Only selected skills and required shared helpers are installed in this group. "
+                        "The full system remains an optional setup choice."])
         if cfg.get("banner"):
             banner = cfg["banner"]
             if not isinstance(banner, str) or os.path.isabs(banner) or ".." in banner.split("/"):
@@ -283,7 +345,7 @@ def main(argv):
     if new is None:
         print("Skill Map has no registry markers"); return 2
     if sk.MARK_START.format(name="systems") in text or sk.MARK_END.format(name="systems") in text:
-        navigation = render_links(system_navigation(skills, vocab), sk.MAP_REL, vault, vocab)
+        navigation = render_links(system_navigation(skills, vocab, vault), sk.MAP_REL, vault, vocab)
         new = sk.replace_between(new, "systems", navigation)
         if new is None:
             print("Skill Map has invalid systems markers"); return 2

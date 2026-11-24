@@ -10,7 +10,7 @@ metadata:
   system: ASTORIA System Builder
   dependencies: skills-janitor
   created: "2026-11-08"
-  updated: "2026-11-13"
+  updated: "2026-11-23"
 ---
 
 # ASTORIA Updater
@@ -36,6 +36,10 @@ after each audit. The audits start automatically after the update.
   contains `v0.1.0`. Treat an unidentified installation as unknown.
 - Skills Janitor remains a required update dependency. Missing required support
   is an update prerequisite finding; removed optional audit skills are audit gaps.
+- The working vault's `00 ASTORIA/selection.json`, when present, records its
+  choices, release-owned skills, removals and user-owned imports. Use the verified
+  incoming planner to interpret that record. An older vault without the record
+  keeps its actual installed membership and unknown local skills.
 
 ## Steps
 
@@ -56,7 +60,8 @@ after each audit. The audits start automatically after the update.
    updater and view helpers match the verified package. For an extracted
    folder, compare those files with the verified ZIP or tagged source.
    The automated preview runs the release's `build_views.py`, `skillkit.py`,
-   and `lint.py` helpers in scratch with the assistant's normal permissions.
+   `lint.py`, and, when relevant, `build_layout.py` helpers in scratch with the
+   assistant's normal permissions.
    If their origin or bytes cannot be verified, give a read-only comparison
    without running them. Verify the comparison release's provenance too.
    If this chat began with the working vault's updater, load the verified
@@ -71,9 +76,22 @@ after each audit. The audits start automatically after the update.
    If the comparison release is missing, preview differences only. Obtain the
    original release before applying changes or recording a new version.
    Summarize the resulting adds, replacements, retirements, generated changes,
-   and conflicts. Identify optional skills available separately. Keep the
-   exact plan ID for apply. Ask the user once whether to apply the displayed
-   changes. Explain any conflict or unavailable prerequisite in plain language.
+   and conflicts. The update previews changes to the generated Files,
+   Templates, and Rules sections that match the previous generated text.
+   `layout_review` reports any changed section that needs separate attention.
+   Project and Area notes are outside this generation step. Identify available
+   optional skills, retained choices and any selection conflict. Basics contains
+   Research Assistant, Janitor and System Builder plus their exact required
+   helpers. An installed helper from another system does not select that system.
+   Keep other systems and research specialties optional even when an incoming
+   release places their files in its active folder. New Basics can join the
+   approved update, while existing removals and imported ownership remain in
+   effect. A valid selection record is refreshed only as part of the same
+   approved transaction. With no record, preserve legacy membership and offer
+   additional optional capabilities without activating them.
+   Keep the exact plan ID for apply. Ask the user once
+   whether to apply the displayed changes. Explain any conflict or unavailable
+   prerequisite in plain language.
 4. **Apply and verify.** Repeat the same command with `--apply PLAN_ID` after
    approval. The script checks the preview again and saves a rollback copy of
    affected files before writing. If the plan changed, show the revised preview.
@@ -140,6 +158,14 @@ does not imply that the post-update audits ran.
 - Compare shipped files against the selected original release before replacing
   or retiring them. When local changes or intentional deletions are ambiguous,
   keep them and show the user the conflict. Keep optional toolkit choices.
+- Preserve imported ownership and untracked local skills even when a release
+  offers the same name. Keep the recipient's choices, including an explicit
+  multimodal exclusion, and retain detected removals. A malformed or conflicting
+  selection record needs review before the update proceeds. Bind its current
+  bytes to approval and include any approved refresh in backup and rollback.
+- Available system guides and artwork do not activate their skills or add an
+  absent coordinator. Preserve recipient configuration through the existing
+  comparison and conflict process.
 - Regenerate the Skill Map and coordinator catalogs from the destination's
   installed skills. Native skill mounting remains optional.
 

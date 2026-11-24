@@ -6,7 +6,7 @@ PyYAML when available or a small fallback parser for the skill schema.
 Import from lint.py, build_views.py, and skill-builder/scripts/new_skill.py.
 """
 from contextlib import contextmanager
-import json, os, re, stat, sys, textwrap
+import copy, json, os, re, stat, sys, tempfile, textwrap
 from pathlib import Path
 from urllib.parse import quote, unquote, urlsplit
 
@@ -16,10 +16,16 @@ except Exception:  # pragma: no cover
     yaml = None
 
 SKILLS_REL = os.path.join("00 ASTORIA", "skills")
-CATALOG_REL = os.path.join("00 ASTORIA", "specialized_skills")  # starter vault catalog, removed at the end of setup
+CATALOG_REL = os.path.join("00 ASTORIA", "specialized_skills")  # retained, inactive available shelf
 MAP_REL = os.path.join("00 ASTORIA", "Skill Map.md")
 SYSTEMS_REL = os.path.join("00 ASTORIA", "systems")
 VOCAB_REL = os.path.join(SKILLS_REL, "skill-builder", "assets", "vocabulary.md")
+SELECTION_REL = "00 ASTORIA/selection.json"
+BASICS_SYSTEMS = ("Research Assistant System", "Janitor System", "ASTORIA System Builder")
+OPTIONAL_SYSTEMS = {"phd": "PhD and Career System", "study": "Productivity and Study System",
+                    "teaching": "Teaching Assistant System", "engineering": "Engineering System",
+                    "writing": "Writing System"}
+SKILL_NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 ALLOWED_TOP = {"name", "description", "license", "compatibility", "allowed-tools", "metadata"}
 CORE_META = ["level", "system", "dependencies", "created", "updated"]
 RESEARCH_META = ["part", "family", "modality", "population", "requires", "gates"]
@@ -186,7 +192,7 @@ def load_skills(vault, rel=None):
         p = os.path.join(folder, "SKILL.md")
         if not os.path.isdir(folder) or not os.path.isfile(p):
             continue
-        text = open(p, encoding="utf-8").read()
+        text = Path(p).read_text(encoding="utf-8")
         fm, body = parse_frontmatter(text)
         if fm is None:
             fm = {"__error__": "no frontmatter"}
@@ -219,8 +225,309 @@ def is_specialized(skill, vocab):
     return modality not in ("", "any")
 
 
+def research_groups(skills, vocab):
+    """Research modality groups never absorb skills from optional systems."""
+    groups = {}
+    for name, skill in sorted(skills.items()):
+        if not is_specialized(skill, vocab):
+            continue
+        modalities = [value.strip() for value in skill.meta.get("modality", "").split(",") if value.strip()]
+        for value in modalities or ["any"]:
+            groups.setdefault("general" if value == "any" else value, []).append(name)
+    return groups
+
+
+def selection_plan(skills, vocab, systems=(), groups=(), names=(), include_multimodal=True, removed_skills=()):
+    """Select Basics, explicit options and exact dependencies, never owning systems.
+
+    The caller supplies the available release skills. Imported ownership belongs
+    in selection.json, independently of this release-selection calculation.
+    """
+    starter = vocab.get("starter") or {}
+    basic_systems = starter.get("basics_systems", BASICS_SYSTEMS)
+    optional_systems = starter.get("optional_systems", OPTIONAL_SYSTEMS)
+    excluded_systems = set(starter.get("exclude_systems") or [])
+    excluded_names = set(starter.get("exclude_skills") or [])
+    removed = set(removed_skills)
+    available = {name: skill for name, skill in skills.items()
+                 if skill.system not in excluded_systems and name not in excluded_names}
+    systems, groups, names = (sorted(set(values)) for values in (systems, groups, names))
+    unknown = set(systems) - set(optional_systems)
+    if unknown:
+        raise ValueError("Unknown optional systems: " + ", ".join(sorted(unknown)))
+    group_members = research_groups(available, vocab)
+    unknown = set(groups) - set(group_members)
+    if unknown:
+        raise ValueError("Unknown research groups: " + ", ".join(sorted(unknown)))
+    unknown = set(names) - set(available) - removed
+    if unknown:
+        raise ValueError("Unknown skills: " + ", ".join(sorted(unknown)))
+
+    reasons, seeds = {}, set()
+
+    def seed(name, reason):
+        if name in removed:
+            return
+        seeds.add(name)
+        if reason not in reasons.setdefault(name, []):
+            reasons[name].append(reason)
+
+    for name, skill in sorted(available.items()):
+        if skill.system in basic_systems and not is_specialized(skill, vocab):
+            seed(name, "Basics: " + skill.system)
+        for system in systems:
+            if skill.system == optional_systems[system]:
+                seed(name, "chosen system: " + system)
+    effective_groups = list(groups)
+    imaging = set(starter.get("imaging_modalities") or [])
+    if include_multimodal and imaging.intersection(groups) and "multimodal" in group_members:
+        effective_groups = sorted(set(groups) | {"multimodal"})
+    for group in effective_groups:
+        for name in group_members[group]:
+            seed(name, "research group: " + group)
+    for name in names:
+        seed(name, "chosen skill")
+
+    # Passive resources travel with Basics without selecting or applying a style.
+    resources = starter.get("basics_resources", [])
+    if not isinstance(resources, list) or any(not isinstance(name, str) for name in resources):
+        raise ValueError("Basics resources must list exact released skill names")
+    for name in sorted(set(resources) - removed):
+        if name not in available:
+            raise ValueError("Required Basics resource is unavailable or excluded: " + name)
+        reasons.setdefault(name, []).append("Bundled passive Basics resource; apply only when selected")
+
+    # A chosen research method needs its exact modality coordinator, not its system.
+    chosen_modalities = {value.strip() for name in list(seeds)
+                         if is_specialized(available[name], vocab)
+                         for value in available[name].meta.get("modality", "").split(",") if value.strip()}
+    for name, skill in sorted(available.items()):
+        if skill.system == "Research Assistant System" and skill.family == "modality-coordinator":
+            if chosen_modalities.intersection(value.strip() for value in skill.meta.get("modality", "").split(",")):
+                reasons.setdefault(name, []).append("coordinator for chosen research methods")
+
+    visited = set()
+
+    def visit(name):
+        if name in removed:
+            raise ValueError("Required dependency was removed: %s; explicitly reselect it before installing dependent skills" % name)
+        if name in visited:
+            return
+        if name not in available:
+            raise ValueError("Required skill is unavailable or excluded: " + name)
+        visited.add(name)
+        for dependency in available[name].dependencies:
+            reason = "dependency of " + name
+            if reason not in reasons.setdefault(dependency, []):
+                reasons[dependency].append(reason)
+            visit(dependency)
+
+    for name in list(reasons):
+        visit(name)
+    return {"installed_skills": sorted(visited),
+            "required_helpers": {name: reasons[name] for name in sorted(visited - seeds)},
+            "reasons": {name: reasons[name] for name in sorted(visited)},
+            "choices": {"systems": systems, "research_groups": groups, "skills": names,
+                        "include_multimodal": bool(include_multimodal)}}
+
+
+def basics_selection(skills, vocab):
+    """The three Basics systems plus their exact declared helper closure."""
+    return selection_plan(skills, vocab)
+
+
+def selection_vocabulary(vocab, installed_names):
+    """Filter active coordinator bindings without losing available definitions."""
+    result = copy.deepcopy(vocab)
+    starter = result.setdefault("starter", {})
+    available = starter.setdefault("available_system_coordinators", copy.deepcopy(result.get("system_coordinators", {})))
+    installed = set(installed_names)
+    result["system_coordinators"] = {system: name for system, name in available.items() if name in installed}
+    return result
+
+
+def release_selection_skills(skills, vocab, known_names=()):
+    """Keep observed local folders out of official release ownership.
+
+    New releases provide the exact complete manifest. For an older installation,
+    only its existing release ownership and catalog index establish eligibility;
+    a folder's system metadata alone is never ownership evidence.
+    """
+    starter = vocab.get("starter") or {}
+    if "released_skill_names" in starter:
+        names = starter["released_skill_names"]
+        _selection_names(names, "released_skill_names")
+        if not names:
+            raise ValueError("The authoritative release skill inventory is empty")
+        eligible = set(names)
+    else:
+        eligible = set(starter.get("catalog_index") or []) | set(known_names)
+    return {name: skill for name, skill in skills.items() if name in eligible}
+
+
+def _selection_names(values, label):
+    if not isinstance(values, list) or any(not isinstance(name, str) or
+            not SKILL_NAME_RE.fullmatch(name) or len(name) > 64 for name in values):
+        raise ValueError("Invalid selection " + label)
+    if len(values) != len(set(values)):
+        raise ValueError("Duplicate selection " + label)
+
+
+def _validate_selection_state(state):
+    """Validate the one recipient-owned choices record before reading or writing."""
+    if not isinstance(state, dict) or type(state.get("schema_version")) is not int or state.get("schema_version") != 1:
+        raise ValueError("selection.json needs schema_version 1")
+    required = {"schema_version", "choices", "installed_skills", "required_helpers", "removed_skills", "imports"}
+    if set(state) != required:
+        raise ValueError("selection.json has missing or unknown fields")
+    choices = state["choices"]
+    if not isinstance(choices, dict) or set(choices) - {"systems", "research_groups", "skills", "include_multimodal"} or not {"systems", "research_groups", "skills"}.issubset(choices):
+        raise ValueError("Invalid selection choices")
+    for key in ("systems", "research_groups", "skills"):
+        _selection_names(choices[key], key)
+    if "include_multimodal" in choices and not isinstance(choices["include_multimodal"], bool):
+        raise ValueError("Invalid multimodal choice policy")
+    if set(choices["systems"]) - set(OPTIONAL_SYSTEMS):
+        raise ValueError("Invalid selected optional system IDs")
+    for key in ("installed_skills", "removed_skills"):
+        _selection_names(state[key], key)
+    if set(state["installed_skills"]) & set(state["removed_skills"]):
+        raise ValueError("Installed skills cannot also be marked removed")
+    helpers = state["required_helpers"]
+    if not isinstance(helpers, dict) or set(helpers) - set(state["installed_skills"]):
+        raise ValueError("Required helpers must be installed release skills")
+    for reasons in helpers.values():
+        if not isinstance(reasons, list) or not reasons or any(not isinstance(reason, str) or not reason for reason in reasons):
+            raise ValueError("Required helpers need reasons")
+    imports = state["imports"]
+    if not isinstance(imports, dict):
+        raise ValueError("Invalid imported ownership")
+    _selection_names(list(imports), "imports")
+    if set(imports) & set(state["installed_skills"]):
+        raise ValueError("Imported skills cannot be release-owned")
+    for record in imports.values():
+        fields = {"owner", "source_kind", "source", "revision", "source_path", "files"}
+        if not isinstance(record, dict) or set(record) != fields or record["owner"] != "user":
+            raise ValueError("Invalid import ownership fields")
+        if record["source_kind"] not in {"github", "local", "workflow"}:
+            raise ValueError("Invalid imported source kind")
+        if any(not isinstance(record[key], str) for key in ("source", "revision", "source_path")) or not record["source"]:
+            raise ValueError("Imported skill needs its source and revision fields")
+        if record["source_kind"] == "github" and (not re.fullmatch(r"[0-9a-fA-F]{40}", record["revision"]) or
+                                                   not record["source"].startswith("https://github.com/")):
+            raise ValueError("GitHub imports need their resolved repository and commit")
+        files = record["files"]
+        if not isinstance(files, dict) or "SKILL.md" not in files:
+            raise ValueError("Imported ownership needs SKILL.md and file hashes")
+        for relative, digest in files.items():
+            path = Path(relative) if isinstance(relative, str) else None
+            if path is None or path.is_absolute() or not path.parts or ".." in path.parts or "\\" in relative or path.as_posix() != relative:
+                raise ValueError("Imported file ownership must stay inside its skill folder")
+            if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
+                raise ValueError("Invalid imported file hash")
+    return state
+
+
+def read_selection(vault):
+    path = Path(vault) / SELECTION_REL
+    if path.is_symlink() or (path.exists() and (not stat.S_ISREG(path.lstat().st_mode) or path.stat().st_nlink != 1)):
+        raise ValueError("selection.json must be a regular file without aliases")
+    if not path.exists():
+        return None
+    return _validate_selection_state(json.loads(path.read_text(encoding="utf-8")))
+
+
+def validate_selection(vault, state=None):
+    """Return actionable installation errors without changing files or ownership."""
+    try:
+        state = read_selection(vault) if state is None else _validate_selection_state(state)
+        if state is None:
+            return ["The recipient selection record is missing"]
+        active = load_skills(str(vault))
+        catalog = load_skills(str(vault), CATALOG_REL)
+        vocabulary = load_vocab(str(vault))
+    except (OSError, ValueError, TypeError, SystemExit) as error:
+        return ["Invalid selection record: " + str(error)]
+    problems = []
+    tracked = set(state["installed_skills"]) | set(state["imports"])
+    removed = set(state["removed_skills"])
+    try:
+        choices = state["choices"]
+        observed = dict(catalog, **active)
+        available = release_selection_skills(observed, vocabulary, state["installed_skills"])
+        available.update({name: active[name] for name in state["imports"] if name in active})
+        if not any(skill.system in (vocabulary.get("starter") or {}).get("basics_systems", BASICS_SYSTEMS)
+                   and not is_specialized(skill, vocabulary) for skill in available.values()):
+            raise ValueError("The release inventory cannot establish Basics; preserve unknown folders and obtain the original release")
+        names = (set(choices["skills"]) | set(state["imports"])) - removed
+        expected = selection_plan(available, vocabulary, choices["systems"], choices["research_groups"], sorted(names),
+                                  choices.get("include_multimodal", True), removed_skills=removed)
+        expected_release = set(expected["installed_skills"]) - set(state["imports"]) - removed
+        if expected_release != set(state["installed_skills"]):
+            missing = expected_release - set(state["installed_skills"])
+            extra = set(state["installed_skills"]) - expected_release
+            if missing:
+                problems.append("Selection record omits required release skills: " + ", ".join(sorted(missing)))
+            if extra:
+                problems.append("Selection record claims unselected release skills: " + ", ".join(sorted(extra)))
+        expected_helpers = {name for name in expected["required_helpers"] if name in expected_release}
+        if expected_helpers != set(state["required_helpers"]):
+            problems.append("Selection record does not match the exact required helper closure")
+    except (OSError, ValueError, TypeError, KeyError, SystemExit) as error:
+        problems.append("Cannot verify Basics and selected choices: " + str(error))
+    for name in sorted(tracked - removed):
+        if name not in active:
+            problems.append("Recorded installed skill is missing: " + name)
+            continue
+        folder = Path(vault) / SKILLS_REL / name
+        if folder.is_symlink() or (folder / "SKILL.md").is_symlink():
+            problems.append("Installed skill must not be an alias: " + name)
+            continue
+        if "__error__" in active[name].fm:
+            problems.append("Installed skill has invalid frontmatter: " + name)
+        for dependency in active[name].dependencies:
+            if dependency not in active:
+                problems.append(name + " needs installed dependency " + dependency)
+    for name, record in state["imports"].items():
+        if name in removed:
+            continue
+        folder = Path(vault) / SKILLS_REL / name
+        for relative in record["files"]:
+            path = folder / relative
+            try:
+                path.resolve().relative_to(folder.resolve())
+            except ValueError:
+                problems.append("Imported ownership escapes its skill: " + name + "/" + relative)
+                continue
+            parents = [folder.joinpath(*Path(relative).parts[:index]) for index in range(len(Path(relative).parts))]
+            if path.is_symlink() or any(parent.is_symlink() for parent in parents):
+                problems.append("Imported ownership must not use aliases: " + name + "/" + relative)
+            elif not path.is_file():
+                problems.append("Imported supporting file is missing: " + name + "/" + relative)
+    return sorted(set(problems))
+
+
+def write_selection(vault, state):
+    """Atomically replace only the recipient-owned selection record."""
+    _validate_selection_state(state)
+    path = Path(vault) / SELECTION_REL
+    if path.is_symlink():
+        raise ValueError("selection.json must not be a symlink")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", prefix=".selection_", dir=path.parent,
+                                         delete=False) as stream:
+            temporary = Path(stream.name)
+            stream.write(json.dumps(state, indent=2, ensure_ascii=False) + "\n")
+        os.replace(temporary, path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
 def load_vocab(vault):
-    text = open(os.path.join(vault, VOCAB_REL), encoding="utf-8").read()
+    text = Path(vault, VOCAB_REL).read_text(encoding="utf-8")
     m = re.search(r"```yaml\n(.*?)\n```", text, re.S)
     if not m:
         raise SystemExit("vocabulary.md has no YAML configuration block")
@@ -337,7 +644,7 @@ def logical_path(path):
 
 
 class PortableLinks:
-    """Resolve actual package files, without reading outside the package root.
+    """Resolve actual package files and folders within the package root.
 
     Relocations map old to new vault-relative folders during optional install.
     Missing optional skills become explicit lookup labels; all other unresolved
@@ -355,6 +662,8 @@ class PortableLinks:
         self.skills_prefix = logical_path(SKILLS_REL) + "/"
         self.catalog_prefix = logical_path(CATALOG_REL) + "/"
         self.files, self.names, self.identities = set(), {}, {}
+        root_info = self.root.lstat()
+        self.directories = {".": (root_info.st_dev, root_info.st_ino)}
         self.problems = []
         for p in sorted(self.root.rglob("*")):
             relative = p.relative_to(self.root).as_posix()
@@ -365,6 +674,8 @@ class PortableLinks:
                 if stat.S_ISDIR(mode):
                     if p.resolve(strict=True) != p:
                         raise ValueError("Markdown tree contains a directory alias")
+                    info = p.lstat()
+                    self.directories[relative] = (info.st_dev, info.st_ino)
                     continue
                 if stat.S_ISLNK(mode) and p.is_dir():
                     raise ValueError("Markdown tree contains a directory alias")
@@ -473,12 +784,31 @@ class PortableLinks:
     def _relative(self, target, document):
         return quote(os.path.relpath(target, os.path.dirname(document) or ".").replace(os.sep, "/"), safe="/")
 
+    def _existing_target(self, relative, document):
+        path = self.root / relative
+        if self._omitted(relative) or not self._inside(path):
+            return False
+        if relative in self.directories:
+            try:
+                info = path.lstat()
+                if (not stat.S_ISDIR(info.st_mode) or path.resolve(strict=True) != path
+                        or (info.st_dev, info.st_ino) != self.directories[relative]):
+                    raise ValueError("Linked directory identity changed or crosses an alias")
+            except (OSError, ValueError, RuntimeError) as error:
+                self._problem(document, relative, str(error))
+                return False
+            return True
+        return path.is_file()
+
     def _resolve(self, target, document):
         candidates = []
         original = self._original(document)
         for base in (self.root / Path(original).parent, self.root):
             p = base / target
             if not self._inside(p):
+                continue
+            if p.resolve() != Path(os.path.abspath(p)):
+                self._problem(document, target, "local link crosses an alias")
                 continue
             rel = p.resolve().relative_to(self.root).as_posix()
             candidates.extend([self._relocate(rel), self._relocate(rel + ".md")])
@@ -489,8 +819,7 @@ class PortableLinks:
             elif candidate.startswith(self.catalog_prefix):
                 candidates.append(self.skills_prefix + candidate[len(self.catalog_prefix):])
         for candidate in candidates:
-            p = self.root / candidate
-            if not self._omitted(candidate) and self._inside(p) and p.is_file():
+            if self._existing_target(candidate, document):
                 return candidate
         if "/" not in target:
             matches = self.names.get(target, set())
@@ -549,6 +878,9 @@ class PortableLinks:
             if Path(path).is_absolute() or not self._inside(source):
                 self._problem(document, target, "local link escapes package")
                 return match.group()
+            if source.resolve() != Path(os.path.abspath(source)):
+                self._problem(document, target, "local link crosses an alias")
+                return match.group()
             old = source.resolve().relative_to(self.root).as_posix()
             name = self._skill_name(old)
             if name in self.unavailable:
@@ -558,7 +890,18 @@ class PortableLinks:
                 label = prefix[prefix.index("[") + 1:-2]
                 return "%s (optional skill `%s`; not installed)" % (label, name)
             resolved = self._relocate(old)
-            if self._omitted(resolved) or not (self.root / resolved).is_file():
+            found = self._existing_target(resolved, document)
+            if not found:
+                # An exact shared helper can stay live while its caller remains
+                # on the shelf, or the caller can link to an unselected skill.
+                for original_prefix, other_prefix in ((self.skills_prefix, self.catalog_prefix),
+                                                       (self.catalog_prefix, self.skills_prefix)):
+                    if resolved.startswith(original_prefix):
+                        alternate = other_prefix + resolved[len(original_prefix):]
+                        if self._existing_target(alternate, document):
+                            resolved, found = alternate, True
+                            break
+            if not found:
                 if self._runtime(old):
                     return "`%s` (created during setup)" % old
                 self._problem(document, target, "unresolved local Markdown link")
@@ -573,9 +916,11 @@ class PortableLinks:
         return _markdown_prose(text, edit)
 
 
-def portable_vault_links(vault, relocations=None, unavailable_skills=(), write=True):
+def portable_vault_links(vault, relocations=None, unavailable_skills=(), write=True, documents=None):
     """Plan every edit first; unresolved real links prevent all writes."""
     links = PortableLinks(vault, relocations, unavailable_skills)
+    if documents is not None:
+        links.files.intersection_update(logical_path(relative) for relative in documents)
     originals, changed = {}, {}
     for rel in sorted(links.files):
         try:

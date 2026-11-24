@@ -20,6 +20,8 @@ decisions and log narratives. A code fence does not make an active path historic
 A short link that still resolves to the same file may need no edit. These cases
 do not authorize new MOCs, bridges, indexes or explanatory sections.
 
+- [15. A mixed pile in a first-time setup](#15-a-mixed-pile-in-a-first-time-setup)
+
 ## 1. A translation with several source formats
 
 **Request:** file a translation draft with its source material.
@@ -191,3 +193,49 @@ repairs to their owner. Pause only a newly discovered consequence outside the
 agreed scope and continue independent authorized work. Report filed, held, unclear
 and deferred items, dependency checks and recovery location once. Completion
 requires all active paths to resolve, including instructions and script literals.
+
+## 15. A mixed pile in a first-time setup
+
+**Request:** the user chooses Help propose organization during setup. The
+selected folder has no PARA arrangement. Its loose files include two drafts
+and a synthetic CSV about a proofreading pilot, a teaching activity, statistics
+revision questions, a reading list, a hobby logger sketch and mixed meeting
+notes. None of those filenames proves an owner.
+
+**Questions that matter:** is the pilot active work with a finish point? Is
+the teaching activity for a course the user teaches, takes, or just keeps as a
+reference? Are the statistics questions part of that pilot or a separate class?
+Should the hobby material stay in an existing collection? Ask only the
+unanswered questions, together. Do not infer a complete course structure from
+one worksheet.
+
+Suppose the user confirms the pilot as an active project, identifies an
+existing teaching course, keeps statistics revision as reusable reference and
+leaves the mixed notes undecided. A useful proposal is:
+
+| Group | Current location | Proposed home | Reason |
+| --- | --- | --- | --- |
+| Two pilot drafts and synthetic CSV | Selected loose pile | Accepted pilot project's local files folder | One active project; keep variants together |
+| Teaching activity | Selected loose pile | Existing teaching course folder | User confirmed instructor role and offering |
+| Statistics revision | Selected loose pile | Existing methods reference collection | Reusable notes; no new course requested |
+| Mixed meeting note and unclear reading list | Selected loose pile | Leave in place, or the user's configured intake if selected | Several purposes; ownership still unknown |
+| Hobby logger sketch | Selected loose pile | User's existing hobby collection, if confirmed | Follow the user's organization rather than invent a new Area |
+
+These destinations depend on those answers. Different answers produce a
+different proposal. Show actual paths and counts in the real batch, include
+incoming and rebased outgoing references, and name any accepted owner entries
+that setup's builders still need to create. Include the plan in setup's second
+read-back before moving anything. After the same plan is approved, perform the
+filing and reference repair once. Preserve all draft text, the whole mixed
+meeting note, data values and existing MOC prose.
+
+**Other choices:** Keep my structure leaves the entire pile in place and
+returns accepted locations for indexing. Tidy selected folders uses the
+existing homes only. Neither choice silently creates a full Projects/Areas
+taxonomy or files a note merely because its extension matches another file.
+
+**Verification and stop:** the user can locate the pilot material and teaching
+activity through their accepted homes; affected references still identify the
+same files; unclear notes are accounted for; and file contents are preserved
+except for approved path tokens. Report actual checks and remaining ownership
+questions. Do not call the presence of a new folder tree successful cleanup.

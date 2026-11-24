@@ -12,7 +12,7 @@ metadata:
   system: ASTORIA System Builder
   dependencies: ""
   created: "2026-05-09"
-  updated: "2026-10-31"
+  updated: "2026-11-23"
 ---
 
 # Me Builder
@@ -110,12 +110,16 @@ Routine verification is part of the work, not a user checkpoint. Return the chan
 
 When `me.md` does not exist, the file is built from two inputs and nothing else:
 
-1. The interview answers. The questions, options, and defaults are in `./references/interview.md`; [setup-my-vault](../setup-my-vault/SKILL.md) asks them and passes the confirmed answers. If me-builder is invoked directly on a fresh vault, run the interview itself, one round at a time, and do the read-back before writing.
+1. The confirmed interview answers. The questions and options are in `./references/interview.md`; [setup-my-vault](../setup-my-vault/SKILL.md) asks them and passes the confirmed answers. Use a reference default only when the user selects or confirms it. Unknown personal facts, tastes and preferences stay unspecified. Skipping the interview calls for a minimal briefing with supplied identity and functional vault instructions, not acceptance of every reference default. If me-builder is invoked directly on a fresh vault, run the interview one round at a time and use the same read-back before writing.
 2. The template `./assets/me_template.md`. It carries the section structure of a full briefing (Summary, Working Preferences, Deeper Dive) with the vault-describing sections already written and `{{placeholders}}` for the answers. The table at the end of the interview reference says which answer fills which placeholder.
 
 When instantiating a template at a different location, resolve any real relative links and embeds from the template path, rebase them to the destination, and check the resulting targets. Keep the reusable template unchanged; literal root-relative lookup paths remain lookups.
 
-Write the file by filling the placeholders, removing a placeholder line whose answer was skipped and has no default, and omitting `## Code Preferences` when the user does not write code. `## Security for Agents` is copied from the template as it stands: no interview question feeds it and no answer removes it. Preserve the template's security, evidence and ownership requirements. Populate elective style and interaction preferences only from the recipient's answers; do not treat inherited author preferences as mandatory vault behavior. Then read the file back and greet the user from it, as the interview reference describes. In Setup Stage 4, use the approved second read-back as the source for a bounded section refresh. Update the accepted PARA entries and external path when approved. Amend the existing File naming rule under `## Rules` with any confirmed ordinary note naming or filename-date choices. Preserve choices the user did not change, technical record formats and unrelated wording. The existing approval covers this refresh.
+Fill placeholders only from supplied answers or accepted defaults, remove unanswered optional placeholder lines, and omit `## Code Preferences` when the user does not write code. `## Security for Agents` is copied from the template as it stands: no interview question feeds it and no answer removes it. Preserve functional vault instructions, using the installed-capability rules below for optional routes. Read the file back and greet the user only from its supported content. Setup Stage 4 later supplies accepted additions or corrections in `## Current Projects and Areas` and `## Working Locations`, plus confirmed ordinary note-name and filename-date choices. Persist those choices in the existing appropriate conventions field or the context selected in the second read-back; do not impose a `## Rules` heading or File naming field on a customized briefing. Preserve unspecified preferences, technical record formats and unrelated entries. The same approved second read-back covers this bounded refresh without another gate.
+
+When reading back the fresh briefing, confirm it includes `## Security for Agents`, `## Current Projects and Areas`, `## Working Locations`, and `### Pipeline layout`. Project bridges refer to `Pipeline layout`. Preserve that subsection when updating external paths during setup.
+
+Populate the Skills section from setup's confirmed installed selection and the actual `00 ASTORIA/skills/` folders. Verify scripted `00 ASTORIA/selection.json` when present. Keep the template's installed-capability guard and shared helper contracts; optional-system role descriptions and lookup paths describe possible routes, not proof of installation. Do not claim an optional system is installed because one of its dependency helpers is present. Omit routing rows or dedicated session paragraphs for uninstalled optional systems from the fresh briefing, while preserving any installed shared helpers and the required core headings. Keep deferred manual choices explicitly pending. Missing capabilities can be added later through Set up my vault and Skills Janitor; do not route to the uninstalled catalog as an active capability. An existing briefing changes only within the current authorized scope.
 
 ## Boundaries
 

@@ -47,7 +47,7 @@ Do not use it for:
 - one-paper explanation, which belongs to [research-summarizer](../research-summarizer/SKILL.md);
 - broad research framing or project strategy, which belongs to [research-companion](../research-companion/SKILL.md);
 - manuscript prose, which belongs to [writing-companion](../writing-companion/SKILL.md);
-- preparing bounded material for another AI chat or reviewing returned chat material, which belongs to [chat-handoff](../chat-handoff/SKILL.md);
+- preparing bounded material for another AI chat or reviewing returned chat material, which belongs to [chat-handoff](../../specialized_skills/chat-handoff/SKILL.md);
 - an ordinary request to find papers;
 - a systematic review, scoping review, meta-analysis, or other formal evidence-synthesis design.
 
@@ -324,7 +324,7 @@ Do not automatically hand off.
 - Use [research-summarizer](../research-summarizer/SKILL.md) for deeper explanation of one selected paper.
 - Use [research-companion](../research-companion/SKILL.md) for broader framing or research strategy.
 - Use [writing-companion](../writing-companion/SKILL.md) only after the user selects approved synthesis material for manuscript prose.
-- Use [chat-handoff](../chat-handoff/SKILL.md) when the approved task is preparing bounded material for another AI chat or reviewing material returned from that chat.
+- Use [chat-handoff](../../specialized_skills/chat-handoff/SKILL.md) when the approved task is preparing bounded material for another AI chat or reviewing material returned from that chat.
 
 ## Boundaries
 

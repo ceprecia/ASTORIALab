@@ -107,7 +107,7 @@ Return to the invoking companion. Proposed repair, rerun, denoising changes or d
 
 - Return panel explanations, relevant examples, evidence-linked observations, unresolved issues and a compact summary in the current task's requested form or under the recipient's existing reporting policy.
 - Save one QC table within the authorized record scope. Update the agreed MOC resume point only within the authorized continuity scope. For teaching-only requests, explain the evidence in the selected form.
-- Save reusable instructions only within the authorized note scope. Use the selected verified destination, then the applicable project policy. If neither specifies placement, reuse the verified existing methods note when it fits the task. A curated protocol rewrite stays with `write-protocol`. Separately requested progress entries stay with the capture skills.
+- Save reusable instructions only within the authorized note scope. Use the selected verified destination, then the applicable project policy. If neither specifies placement, reuse the verified existing methods note when it fits the task. A curated protocol rewrite stays with `write-protocol`. Quick Capture files separately requested log entries.
 - No automatic screenshot collection, duplicate reports, per-panel notes or second hub. Clean expendable rendering scratch after inspection.
 
 ## Boundaries
@@ -124,7 +124,7 @@ Return to the invoking companion. Proposed repair, rerun, denoising changes or d
 - The invoking companion remains the visible owner. Return the inspected scope, findings, decisions and resume point to it.
 - `fmri-coordinator` can identify this skill as the next owner once preprocessing reports are available.
 - `fmri-preprocessing-pipeline-guide` owns unresolved method/QC-criteria changes; `fmriprep` owns approved execution or reruns. Do not load them merely to explain an ordinary panel.
-- `write-protocol` owns requested durable instructions; `capture-progress` owns a separately requested Research Log capture. Neither is called automatically after review.
+- `write-protocol` owns requested durable instructions; `quick-capture` owns a separately requested Research Log capture. Neither is called automatically after review.
 
 ## Checks
 

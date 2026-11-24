@@ -15,7 +15,7 @@ metadata:
   system: Janitor System
   dependencies: skill-builder, propagate
   created: "2026-04-11"
-  updated: "2026-11-18"
+  updated: "2026-11-23"
 ---
 
 # Skills Janitor
@@ -59,7 +59,7 @@ Run `python3 ./scripts/build_views.py --check` to see whether the Skill Map regi
 
 ### 3. Trigger quality
 
-Beyond the mechanical overlap check, read the phrases of any two skills that share a domain (both companions, a coordinator and its part skills, the capture helpers) and judge whether a natural request could reach the wrong one. Generic intent belongs to the companion or coordinator; specific intent to the specialized skill. Propose the narrower phrase for the specialized skill.
+Beyond the mechanical overlap check, read the phrases of any two skills that share a domain (both companions, a coordinator and its part skills, Quick Capture and Summarize) and judge whether a natural request could reach the wrong one. Generic intent belongs to the companion or coordinator; specific intent to the specialized skill. Propose the narrower phrase for the specialized skill.
 
 ### 4. Stale wording
 
@@ -104,7 +104,8 @@ Surface but do not auto-fix: `name` versus folder mismatches (a rename goes thro
 
 ## Scripts beyond the audit
 
-- `./scripts/install_specialized.py`: on a starter vault, lists the groups in `00 ASTORIA/specialized_skills/`, plans an installation from the chosen groups (modality coordinators and declared dependencies pulled in), moves the chosen folders into `00 ASTORIA/skills/`, rebuilds the views, lints, and removes the catalog folder. Links from installed skills to skills left in the repository are reported by the lint as "not installed", not as errors; the names live in the vocabulary's `starter.catalog_index`.
+- `./scripts/install_specialized.py`: previews Basics, chosen optional systems/research groups, exact named skills, or one ready-made import. Basics comprises Research Assistant, Janitor and ASTORIA System Builder plus exact required helpers; modality/software specialists remain optional. `--list` shows the five optional system IDs and research groups. Use `--systems phd,study,teaching,engineering,writing`, `--groups <groups>`, `--names <names>`, or `--none` for Basics; add `--apply` to execute the shown plan. Existing choices and custom folders survive `--none`. Exact dependencies never select their entire owning system. The available shelf remains inactive; legacy `--remove-catalog` is accepted with an explanation and retains it. Views and lint follow installation, and failures roll back the owned changes. Interrupted moves require the same verified plan; an unsafe or changed pending state stops for inspection.
+- The same installer accepts `--import-skill <GitHub-link-or-local-folder>` or registers a finished pasted-workflow skill with `--register-skill <name> --source-kind workflow --source pasted`. Follow Skill Builder for schema normalization, naming/overlap and exact dependencies. Preserve complete supporting files and rights; never use Repo to Skill to install an existing skill or run imported scripts during installation. `00 ASTORIA/selection.json` is the one recipient-owned record of choices, helpers, release-owned installed names, removals and imported source/version/file ownership. Preserve imports and actual missing managed skills as deliberate removals; only explicit named reselection restores a removed release skill.
 - `./scripts/rename_roots.py`: renames root folders (`--no-emoji`, `--no-numbers`, `--set role=name`, `--drop role`) and cascades every path string in `00 ASTORIA/`, `me.md`, `AGENTS.md`, the Obsidian settings, and the Base files, then updates the vocabulary `roots`. The lint flags any numbered root path that is not in `roots`.
 
 ## Outputs
@@ -123,7 +124,7 @@ Rules:
 - **Be specific.** Name the skill, the field, the phrase, the line.
 - **Protected zones stay untouched.** Dated capture logs and existing content in `00 ASTORIA/agent_notes/` are never edited by the janitor. The sole exception is adding the single entry described in Outputs after an approved fix changes the system and logging is within scope. Preserve earlier entries and other agent notes.
 - **Check reporting follows the requested deliverable and recipient's reporting policy.** Creating a separate report requires authorization.
-- **The catalog is uninstalled reference material.** `00 ASTORIA/specialized_skills/` ships with the starter and may remain after manual core setup so existing links work. Lint checks it separately from active skills. When scripted installation or removal is selected, `install_specialized.py --remove-catalog` repairs links and deletes the shelf after successful checks.
+- **The catalog is uninstalled reference material.** `00 ASTORIA/specialized_skills/` ships with the starter and remains available after setup. Lint checks it separately from active skills. Its presence does not activate a system or keep a verified Basics installation incomplete. Generate the active coordinator bindings from `starter.available_system_coordinators` and installed names; retain the available definitions and the rest of the recipient's vocabulary configuration.
 
 Edge cases:
 

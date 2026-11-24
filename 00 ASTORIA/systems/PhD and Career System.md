@@ -11,11 +11,11 @@ PhD Companion owns degree progress, academic and professional mentoring, authors
 
 ## Start here
 
-Ask **“set up my PhD support”** to use [PhD Career Builder](../skills/phd-career-builder/SKILL.md). It reads existing answers before asking useful question groups about the program and cohort, milestones, mentoring and meetings, career and networking, opportunities, speaking, presentations, collaboration and reminders. Ordinary setup uses small relevant batches; a full interview is available when wanted.
+Ask **“set up my PhD support”** to use [PhD Career Builder](../specialized_skills/phd-career-builder/SKILL.md). It reads existing answers before asking useful question groups about the program and cohort, milestones, mentoring and meetings, career and networking, opportunities, speaking, presentations, collaboration and reminders. Ordinary setup uses small relevant batches; a full interview is available when wanted.
 
 Program and career settings and evidence links stay in the chosen existing MOC, with standing preferences in `me.md`. The builder does not create a second profile or program-specific skill. Substantive setup uses one read-back; a clear small correction or an already approved setup save does not restart onboarding. Missing optional details remain unknown.
 
-The exact installed skills and descriptions are generated in [PhD Coordinator's catalog](../skills/phd-coordinator/SKILL.md). Shared capture and notation tools stay in their existing Skill Map group.
+The exact installed skills and descriptions are generated in [PhD Coordinator's catalog](../specialized_skills/phd-coordinator/SKILL.md). Shared capture and notation tools stay in their existing Skill Map group.
 
 ## Situation-dependent teams
 
@@ -32,6 +32,6 @@ Dedicated chats in the current companion chat's verified project are recommended
 
 ## Research handoffs and reminders
 
-A handoff carries the exact question, current profile and project source paths, original return owner, verified current project, decisions, allowed work and expected output. Borrow the existing CV, grant, research, study, teaching and capture skills instead of making copies. Use shared writing assistance through Writing Companion and its internal Writing Coordinator, or an exact content-specific writer for a bounded section, preserving the original PhD return owner. Consult Research Companion only when the task needs substantive scientific framing; request scientific or technical fidelity review from the relevant domain owner when source facts or technical wording require it. A missing dependency returns once; it does not restart both systems.
+A handoff carries the exact question, current profile and project source paths, original return owner, verified current project, decisions, allowed work and expected output. Borrow existing CV, grant, research, study and teaching skills. Use Quick Capture for notes the user asks to file. Use shared writing assistance through Writing Companion and its internal Writing Coordinator, or an exact content-specific writer for a bounded section, preserving the original PhD return owner. Consult Research Companion only when the task needs substantive scientific framing; request scientific or technical fidelity review from the relevant domain owner when source facts or technical wording require it. A missing dependency returns once; it does not restart both systems.
 
 Opportunity Scout separates eligibility from preference fit, deduplicates each opportunity/cycle and keeps failed notifications retryable. Deadline reminders use selected thresholds and current verified dates. Disabled watches and unavailable current profiles do not produce fresh matches or delivery claims. Local reminder configuration is separate from an actual scheduled task and delivery mechanism; neither is created by installing these skills.

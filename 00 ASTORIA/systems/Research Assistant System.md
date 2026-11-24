@@ -74,8 +74,8 @@ or copied catalog.
 
 [PhD and Career System](PhD%20and%20Career%20System.md) owns career and mentoring support through PhD
 Companion and its own internal Coordinator, and can request bounded research support.
-[research-cv-builder](../skills/research-cv-builder/SKILL.md) remains the
-canonical career-document owner; [mindmap](../skills/mindmap/SKILL.md) can
+[research-cv-builder](../specialized_skills/research-cv-builder/SKILL.md) remains the
+canonical career-document owner; [mindmap](../specialized_skills/mindmap/SKILL.md) can
 supply bounded visual organization. Cross-system handoffs preserve scope and the
 user's chosen return owner.
 

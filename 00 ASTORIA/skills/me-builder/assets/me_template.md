@@ -62,6 +62,8 @@ This is your briefing on who I am, how I think, and how to interact with me.
 - **Records and context:** Preserve existing records and the owner's organization. Read the context needed for the current task and identify unavailable sources.
 - **Saved content:** Follow the requested scope and recipient's capture policy. Preserve source attribution and distinguish current decisions from historical context.
 - **MOC use:** Use the owning map for navigation. Follow its existing structure and the recipient's chosen reading and maintenance conventions. For continuity, use the verified location selected for the task or established by the applicable project continuity policy. Save only when authorized.
+- **MOC writing default:** When AI Notes is the project’s chosen continuity location, the agent who owns the workstream maintains one current handoff in place. Update verified state, active source paths and the next authorized action. Retire superseded directions in the same edit and keep useful older records dated as history.
+- **MOC reading default:** Read the relevant current handoff and verify it against the latest user instructions and active sources. Consult dated history when needed for evidence.
 - {{capture_line}}
 
 ## Conventions
@@ -71,6 +73,8 @@ This is your briefing on who I am, how I think, and how to interact with me.
 ## Skills
 
 Skills live in `/00 ASTORIA/skills/` as folders following the Agent Skills standard: one folder per skill, `SKILL.md` inside it, optional `references/`, `scripts/`, and `assets/`. Every skill's frontmatter carries `name`, `description` (with its trigger phrases), and `metadata` (`level`, `system`, and for research skills `part`, `family`, `modality`, `requires`, `gates`). The Skill Map registry and the part coordinators' catalogs are generated from that frontmatter; never edit them by hand.
+
+**Installed capabilities.** Basics includes the Research Assistant System, Janitor System and ASTORIA System Builder, plus their exact required helpers. Writing, Study and productivity, Teaching, Engineering, and PhD and career are optional systems. Before following a route below, verify that its exact skill folder is installed under `00 ASTORIA/skills/` and consult only the matching installed catalog. A helper or companion present as a dependency does not activate its entire optional system. `00 ASTORIA/specialized_skills/` is an uninstalled reference shelf. For a missing capability, offer installation through Set up my vault and the existing Skills Janitor; do not require or invoke a nonexistent route. Scripted choices and required helpers are recorded in `00 ASTORIA/selection.json`; verify that record against the files. Keep manually deferred choices distinct from installed capabilities.
 
 **Research session core.** In a user-facing research lead chat, load
 `00 ASTORIA/skills/research-companion/SKILL.md` and
@@ -132,11 +136,12 @@ See [Writing System](../../../systems/Writing%20System.md) and the shared handof
 | Publication, research outputs, reproducibility, releases, engagement, closeout and funding requirements | `00 ASTORIA/skills/research-output-coordinator/SKILL.md` |
 | Planning, goals, a WOOP | `00 ASTORIA/skills/woop-skill/SKILL.md` |
 | Engineering project design, hardware reverse engineering, device development or build recovery | `00 ASTORIA/skills/engineering-companion/SKILL.md` |
-| Saving progress to a project log | `00 ASTORIA/skills/capture-progress/SKILL.md` or `00 ASTORIA/skills/quick-capture/SKILL.md` |
+| Filing supplied notes in a capture log | `00 ASTORIA/skills/quick-capture/SKILL.md` |
 | Building or fixing a skill | `00 ASTORIA/skills/skill-builder/SKILL.md` |
 | Changing this file | `00 ASTORIA/skills/me-builder/SKILL.md` |
 | Rebuilding or refreshing the layout reference | `00 ASTORIA/skills/vault-builder/SKILL.md` |
 | Checking the vault or the skills for drift | `00 ASTORIA/skills/vault-janitor/SKILL.md` or `00 ASTORIA/skills/skills-janitor/SKILL.md` |
+| Setting up the vault or choosing additional systems and skills | `00 ASTORIA/skills/setup-my-vault/SKILL.md` |
 
 **When none of those fits,** read only the matching system section of the registry in `00 ASTORIA/Skill Map.md` (between the `registry` markers). It is grouped by system, and the Research Assistant System section shows its whole hierarchy: companions and coordination, then one section per part, 1 to 5, with the part coordinator first and the part's skills grouped by family:
 
@@ -177,7 +182,7 @@ I organize this vault with PARA (Projects, Areas, Resources, Archive) plus three
 - Resources collections have no required three-entry layout. Leave them as organized by their owner during routine cleanup, except for filing Obsidian attachments in scope. Automatic attachments use the configured intake. Deliberately saved supporting content goes directly to its known owner. Intake is temporary, and unlinked files are not deleted merely for lacking links.
 - Folder tidying changes structure and affected link/path targets only. Preserve MOC prose, headings, decisions, section order and log narratives. Verify affected links and embeds when content moves; do not add parallel indexes, MOCs or empty taxonomies merely to classify files.
 
-These are editable defaults. My later choices govern the structure, and I can change or remove the optional Folder Janitor skill.
+These are editable defaults. My later choices govern the structure and which maintenance skills I keep.
 
 ## Current Projects and Areas
 
@@ -193,11 +198,23 @@ These are editable defaults. My later choices govern the structure, and I can ch
 
 ## Working Locations
 
-Read this file directly at `{{vault_path}}`. This vault-root `me.md` is the one authoritative personal briefing; project `AGENTS.md` files point here. Do not create project-specific `me.md` files.
+Open the vault folder itself as the workspace. In Codex, make it the primary
+folder. Use that folder as the root for paths to the briefing, skills, and
+project files. This vault-root `me.md` is the one authoritative personal
+briefing. Project `AGENTS.md` files point here. Do not create project-specific
+`me.md` files.
 
 {{locations}}
 
 Use verified current paths. Quote paths containing spaces. A missing external drive affects only the project that needs it, not vault startup.
+
+### Pipeline layout
+
+Follow the recipient's recorded layout and the current project's documented convention. When no convention has been chosen, use `scripts/pipelines/<stage>/` for pipeline code, `scripts/exploratory/<stage>/` for exploratory code, and `derivatives/<stage>/` for generated files. Match the full stage name and any numeric prefix. Record a project-specific exception by stage and output in the project's existing `AGENTS.md`.
+
+Before running or rerunning, trace the actual destination through the selected recipe or configuration to the code that writes it. An older handoff or recipe is evidence to check against the rule.
+
+For an authorized layout change, fix the writer or active configuration and the references that consume its output. Verify the source of the write as part of the change.
 
 ## Writing Standards
 

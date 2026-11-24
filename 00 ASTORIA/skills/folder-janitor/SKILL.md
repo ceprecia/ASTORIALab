@@ -17,7 +17,7 @@ metadata:
   system: Janitor System
   dependencies: propagate, vault-builder, bridge-maker
   created: "2026-10-29"
-  updated: "2026-10-29"
+  updated: "2026-11-23"
 ---
 
 # Folder Janitor
@@ -52,6 +52,9 @@ Use the current request and existing context before asking anything.
 - Configured intake and attachment destination, explicit holds, active writers,
   scientific layouts, retention rules, and write exclusions.
 - Invoking session and return point, if this is a handoff.
+- Organization choice already made in setup or chat: keep the current
+  structure, tidy selected folders, or propose an organization. Reuse its
+  answers and any approved move plan.
 
 Ask only when no scope can be identified or a consequential filing choice
 remains unresolved. Do not require a new setup interview, research question,
@@ -59,7 +62,8 @@ course record, companion session, native mount, or attachment plugin.
 
 ## Steps
 
-1. **Resolve roles and scope.** Treat the AI system root, including a renamed
+1. **Resolve roles and scope.** Reuse the organization choice and answered
+   ownership questions below before proposing destinations. Treat the AI system root, including a renamed
    equivalent of `00 ASTORIA`, as read-only. Read its layout/instructions as
    needed; do not reorganize it or add notes there. Keep Inbox, Calendar,
    Projects, Areas, Resources, and Archive roles distinct where they exist.
@@ -134,6 +138,45 @@ course record, companion session, native mount, or attachment plugin.
    Stop when the requested batch is organized, unclear items are accounted
    for, and active dependencies resolve. Report deferred batches, unrun checks and other findings in the current task's requested form or under the recipient's existing reporting policy. A separate saved report requires authorization and its appropriate owner. Return changed paths, remaining issues,
    and the return point without taking over scientific, teaching or study work.
+
+### Guided organization
+
+Use this conversation when setup hands over existing content or the user asks
+for help deciding how to organize it. Reuse known answers; routine filing to an
+explicit destination needs no interview.
+
+Ask only if the choice is still unknown:
+
+> Would you like to keep your current structure, tidy selected folders, or
+> have me propose an organization?
+
+- **Keep my structure:** leave existing content in place. Return that choice
+  to setup so its builder can index only the owners and locations the user
+  accepted. A consistency audit may report an issue without authorizing moves.
+- **Tidy selected folders:** use the existing owners and collections. Ask
+  which folder or batch only if the request does not identify it.
+- **Help propose organization:** inspect the selected batch, then ask only
+  the unanswered questions that affect filing: which items belong to active
+  projects, which support ongoing responsibilities, which are reusable
+  references, and which useful groupings or packages should stay together.
+  Explain Projects, Areas and Resources briefly with examples from that batch.
+  Names in an example are suggestions, not a required taxonomy.
+
+Show the resulting groups in one short table: **files/count**, **current
+location**, **proposed home**, and **reason or unresolved question**. Include
+affected references and held groups. A generic tree or a promise to organize
+later is not a filing proposal. For a setup handoff, return this concrete plan
+for its existing second read-back; after approval, execute the same scope
+without asking again. A new folder needs a present owner or browsing purpose.
+Setup's builder handles any accepted new MOC or bridge; this skill preserves
+their content and repairs path tokens only.
+
+An ambiguous note spanning several purposes stays intact and unresolved unless
+The user gives it a home. Several related files can share one home. Do not split
+notes, merge drafts or sort everything by extension to make the tree look tidy.
+Finish with the filed, unclear, held and deferred groups and the reference
+checks actually completed. Read worked example 15 when a fresh mixed pile needs
+an organization proposal.
 
 ### Active path dependencies
 

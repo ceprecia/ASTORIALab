@@ -1,0 +1,5 @@
+{
+  "example_only": true,
+  "labels": "labels.csv",
+  "display_note": "assets/display_note.txt"
+}

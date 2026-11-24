@@ -8,14 +8,16 @@ description: >-
   skill with the same job or overlapping triggers before writing, includes
   safety rules or approval gates only when the user supplies or approves them, and
   shows the finished description and triggers for approval. If no system or
-  part fits, it stops and asks. Triggers: make a skill, create a new skill,
-  draft a skill for this workflow, turn this into a skill.
+  part fits, it stops and asks. Also normalizes a supplied ready-made skill for
+  installation while preserving its complete support and rights. Triggers:
+  make a skill, create a new skill, draft a skill for this workflow,
+  turn this into a skill, install a ready-made skill.
 metadata:
   level: skill
   system: ASTORIA System Builder
   dependencies: skills-janitor
   created: "2026-05-05"
-  updated: "2026-11-18"
+  updated: "2026-11-23"
 ---
 
 # Skill Builder
@@ -24,9 +26,45 @@ A skill for creating skills. Captures a repeatable workflow as a standard skill 
 
 ## Purpose
 
-Skills follow the Agent Skills standard (agentskills.io): one folder per skill, `SKILL.md` inside it, optional `references/`, `scripts/`, and `assets/`. Skill Builder owns the schema below, the description recipe, the trigger policy, and the controlled vocabulary in `./assets/vocabulary.md`. It also owns the rebuild of the Skill Map, research-part coordinator catalogs and all system-coordinator catalogs configured in the vocabulary after a skill is written, through `00 ASTORIA/skills/skills-janitor/scripts/build_views.py`. Source adaptations route through [paper-to-skill](../paper-to-skill/SKILL.md) or [repo-to-skill](../repo-to-skill/SKILL.md) first; writing-style profiles are built by [writing-style-builder](../writing-style-builder/SKILL.md).
+Skills follow the Agent Skills standard (agentskills.io): one folder per skill, `SKILL.md` inside it, optional `references/`, `scripts/`, and `assets/`. Skill Builder owns the schema below, the description recipe, the trigger policy, and the controlled vocabulary in `./assets/vocabulary.md`. It also owns the rebuild of the Skill Map, research-part coordinator catalogs and all system-coordinator catalogs configured in the vocabulary after a skill is written, through `00 ASTORIA/skills/skills-janitor/scripts/build_views.py`. Extracting a new capability from a paper or repository routes through [paper-to-skill](../paper-to-skill/SKILL.md) or [repo-to-skill](../repo-to-skill/SKILL.md); installing an existing skill uses the import path below. Writing-style profiles are built by [writing-style-builder](../../specialized_skills/writing-style-builder/SKILL.md).
 
 "Make a skill for X", "draft a skill", "turn this workflow into a skill". "Draft" starts the planning conversation; any completed skill is written as a finished folder. Run this instead of free-handing the files.
+
+## Ready-made skills and supplied workflows
+
+For a ready-made skill, accept its GitHub repository/folder link or local folder.
+Inspect the actual skill choices when a repository contains several; never choose
+one silently. The existing installer resolves a normal GitHub reference to a
+commit internally. The user does not need to supply a hash. Use
+`python3 -B "00 ASTORIA/skills/skills-janitor/scripts/install_specialized.py" --import-skill <link-or-folder>`
+to preview, then the same command with `--apply` for the selected installation.
+Do not route an existing skill through Repo to Skill.
+
+Check the name, purpose and trigger overlap, metadata, exact dependencies and
+support references before installation. If upstream metadata needs adapting,
+prepare a complete working folder outside the vault, preserve the workflow body,
+all supporting files and required rights, and fill the schema below. Assign its
+functional system; importing never selects that whole system. Use the installer's
+`--source-kind`, `--source`, `--revision` and `--source-path` fields to retain the
+actual upstream repository, resolved commit and skill path when installing that
+prepared folder. Disclose missing support or unresolved dependencies; do not
+claim a complete import or execute supplied scripts merely to install it.
+For a Writing import, preserve its existing group; otherwise infer one of the
+configured groups from its role and task. Ordinary bounded writing skills default
+to Writing assistance, profiles to Writing style, and companions/coordinators to
+Companion and coordination. Use `--writing-group "<existing group>"` for a supplied
+capture/prepare/notetake role or another applicable existing group. The preview
+shows the assignment; installation saves it with the other vocabulary changes.
+
+For a pasted workflow, use the normal creation steps. After the normalized folder
+and its checks are complete, register its user ownership with
+`python3 -B "00 ASTORIA/skills/skills-janitor/scripts/install_specialized.py" --register-skill <name> --source-kind workflow --source pasted --apply`.
+This registers an existing finished folder; it does not invent a skill from raw
+text. The recipient's `00 ASTORIA/selection.json` holds source/version, file
+hashes and ownership alongside choices, exact required helpers and deliberate
+removals. Preserve that record on later selections and updates. Imports stay
+user-owned and are never reclassified as release-owned skills. Do not create a
+second provenance file or copy history into the skill's References section.
 
 ## Inputs
 

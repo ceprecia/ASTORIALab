@@ -25,7 +25,7 @@ metadata:
   requires: an approved Search Direction; database or browser access
   gates: ""
   created: "2026-07-23"
-  updated: "2026-11-01"
+  updated: "2026-11-20"
 ---
 
 # Paper Search
@@ -89,13 +89,16 @@ central objective.
 
 Before Gate 1:
 
-1. Use the optional credential file `.research_api.env` in this skill's folder, `00 ASTORIA/skills/paper-search/.research_api.env`, when a proposed provider needs it.
-2. Check that exact location without loading any global profile.
-3. Check only whether the credential file and expected variables are present.
-4. Do not make network requests merely to prove readiness.
-5. Report only a configuration problem that materially changes the proposed direction.
+1. If a proposed provider needs credentials, use what is configured for the
+   current search session or a local credential file outside the synced vault
+   that the user explicitly supplies for this search.
+2. Check only whether the required credentials are available. Do not load a
+   global profile, inspect or expose credential values, or make network requests
+   merely to prove readiness.
+3. If credentials are unavailable, propose an appropriate public route or name
+   the specific provider limitation when it materially affects coverage.
 
-The credential file is not a startup dependency. Load configured credentials
+Credentials are not a startup dependency. Load configured credentials
 only into the current process after
 the search is approved. Never display, quote, log, save, or return credential
 values or place them in a visible request URL.
@@ -436,7 +439,7 @@ Scientific and coverage rules:
 Edge cases:
 
 - **Missing field or interests:** Ask only for the missing core input, then draft the Search Direction.
-- **Credential location unavailable:** Use the verified current location above; no global loader is required. Missing credentials affect only the routes that need them.
+- **Credential source unavailable:** Use the approved session configuration or a local credential file explicitly supplied for that search. Missing credentials affect only the routes that need them.
 - **Credential missing for an optional lane:** Continue through the functioning approved routes and record the gap.
 - **Credential or institutional action required for an essential lane:** Pause for the exact action, then resume or skip without another Gate 1.
 - **Scholar login, MFA, school-network access, or CAPTCHA required:** Ask the user to complete it in the connected browser, then resume the same approved lane without another Gate 1.

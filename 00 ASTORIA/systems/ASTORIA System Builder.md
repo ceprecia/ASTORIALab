@@ -4,7 +4,7 @@ related:
   - "[[Janitor System]]"
   - "[[Research Assistant System]]"
 created: 2026-01-01
-updated: 2026-11-02
+updated: 2026-11-23
 ---
 
 ![ASTORIA System Builder](../assets/banner_system_builder.png)
@@ -17,7 +17,8 @@ This system helps you set up the vault, write your working instructions, and mai
 | --- | --- |
 | Root `AGENTS.md` | The assistant's starting instructions: where to read your briefing and find the relevant workflow. |
 | `me` (created during setup) | Your preferences, current work, and rules for the assistant. |
-| [Skill Map](../Skill%20Map.md) | The directory of available skills. |
+| [Skill Map](../Skill%20Map.md) | The directory of installed skills and shared helpers. |
+| `00 ASTORIA/specialized_skills/` | The available shelf of uninstalled skills; choose additions through setup. |
 | A project or Area MOC | A home note with context and links to that work. |
 | `00 ASTORIA/agent_notes/` | The generated layout reference and the AI's system-maintenance log. |
 
@@ -28,8 +29,36 @@ Builders create or refresh the files they own. Janitors check the matching files
 Open the new download in your assistant and say **"Set up my vault."**
 You can use the same command from a working vault that already has this
 setup flow. Choose **first-time setup** or **update an existing vault**
-when asked. For first-time setup, the assistant shows a short PARA example
-before you choose your folder structure.
+when asked. Setup My Vault owns the opening, waits for this answer and resumes
+answered rounds without repeating them. For first-time setup, it uses the
+researcher interview, two read-backs and a short PARA example before building.
+
+**Basics** provides the Research Assistant System, Janitor System and ASTORIA
+System Builder, with the exact shared helpers those workflows need. Add only
+the systems you choose: Writing, Study and productivity, Teaching, Engineering,
+or PhD and career. **Help me choose** uses your goals to recommend a selection.
+Relevant research groups are chosen separately. A helper included as a dependency
+does not turn on its entire optional system.
+
+Choosing Teaching installs its support skills when accepted. The tutorial's
+later syllabus workflow configures an actual course; selecting the system
+during setup does not perform that course work.
+
+Setup asks once whether you want to add a skill from GitHub, pasted instructions,
+a local skill folder, or skip. Skill Builder and Skills Janitor handle that
+bounded addition through their existing source, validation and ownership rules.
+There is no separate intake system.
+
+For existing content, choose **Keep my structure**, **Tidy selected folders**,
+or **Help propose organization**. Keep preserves existing roots and filing.
+A separately requested root rename appears as exact moves and reference repairs
+in the same second read-back, and is reported as an explicit exception to Keep.
+Folder Janitor turns the
+selected batch into a concrete grouped plan with current homes, proposed homes,
+reasons, held items and affected references. Setup includes that plan in its
+second read-back; only the approved map is executed. Skills Janitor checks skill
+consistency and Vault Janitor checks layout and instructions. Notes, packages,
+decisions and logs are preserved, with links and active paths repaired after moves.
 
 If you choose to update, Setup My Vault hands off to
 [ASTORIA Updater](../skills/astoria-updater/SKILL.md) in the same chat.
@@ -71,7 +100,8 @@ Each Project or Area has one MOC and one `AGENTS.md`. Use one top-level `files/`
 One conversation sets up a new vault:
 
 - The downloaded package contains `00 ASTORIA/`, a repository README, `LICENSE`, a draft `AGENTS.md` and Git exclusions. Obsidian creates its settings when you open the vault. Give a file-aware assistant access to the vault root and ask it to start **Setup My Vault** in the **ASTORIA System Builder**. The draft root `AGENTS.md` directs the assistant to the guided setup, where you choose your working folders and create your personal `me.md` briefing.
-- **setup-my-vault** owns that conversation: orientation and capability check, researcher interview, first read-back and `me.md`, structure and optional-toolkit choices, second read-back, then the core build. Scripted building uses Python and PyYAML with the YAML vocabulary. The manual core path is available without them when the toolkit state check passes and it can carry out the approved setup plan. The core build creates folders, installs the selected toolkit or keeps core skills only, writes layout and AI log, performs the applicable checks, writes the full `AGENTS.md` loader, and retains the root README as the participant guide. The vault is then set up and usable without mounts.
+- **setup-my-vault** owns that conversation: orientation and capability check, researcher interview, first read-back and `me.md`, then Basics, optional systems, relevant research groups, supplied skills and organization choices in the second read-back. Scripted building uses Python and PyYAML with the YAML vocabulary. It records the installed selection and helper reasons in `00 ASTORIA/selection.json`, creates folders and accepted owners, applies only approved filing, writes layout and AI log, checks the result, installs the full `AGENTS.md` loader and retains the README.
+- **The manual path uses the same choices.** Shipped Basics remain usable without Python or PyYAML. Optional choices are installed manually only when their whole folders, dependency closure and matching views can be verified; otherwise they remain explicitly pending. Unrun automated checks are reported. The uninstalled catalog is a reference shelf and can remain after completion; it activates nothing. The briefing checks actual installed capabilities before routing.
 - **Native discovery is optional after completion.** Only when the user chooses it, skill-mount adds native picker and trigger integration. Skipping it or encountering a mounting problem does not invalidate core setup. The skill files remain in the vault and `AGENTS.md` routing still works.
 - If setup is interrupted, use the files to identify completed work and recover the exact Stage 3 plan and its approval before resuming the first unfinished build step. A draft root `AGENTS.md` indicates setup is pending. A pending toolkit install uses its prior approved apply command and options through verified recovery. Fresh toolkit listing and preview belong to a new plan. Before manual writes on resume, verify the toolkit state and confirm the recovered approval fits the manual build. If it cannot be carried out, leave setup pending until the original runtime is available or the user approves the affected changes through the existing Stage 3 read-back.
 
@@ -84,7 +114,7 @@ The builders, one per core file, and their janitors:
 Helpers:
 
 - [paper-to-skill](../skills/paper-to-skill/SKILL.md) and [repo-to-skill](../skills/repo-to-skill/SKILL.md) build an approved evidence pack from a paper or a pinned repository state and hand it to skill-builder.
-- [Writing System](Writing%20System.md) owns Writing Companion, writing specialists, capture and preparation helpers, and passive style references. Its [writing-style-builder](../skills/writing-style-builder/SKILL.md) builds and tests profiles from supplied sources.
+- [Writing System](Writing%20System.md) owns Writing Companion, writing specialists, capture and preparation helpers, and passive style references. Its [writing-style-builder](../specialized_skills/writing-style-builder/SKILL.md) builds and tests profiles from supplied sources.
 - [skill-mount](../skills/skill-mount/SKILL.md) is an optional convenience for native discovery, keeping one copy in `00 ASTORIA/skills/`: relative symlinks in `.agents/skills/` (Codex) and `.claude/skills/` (Claude Code) for platforms that scan a folder, or pointer stubs for a registry platform. It runs only when requested and is not required for skill-file access, vault completion, or exporting a usable starter.
 - [setup-my-vault](../skills/setup-my-vault/SKILL.md) calls the builders for first-time setup and hands off updates to ASTORIA Updater.
 

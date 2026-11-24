@@ -33,7 +33,7 @@ For consequential work without a suitable agreed plan, present one concrete plan
 | --- | --- |
 | Bounded prose or display text | The matching section writer, including figure titles and captions together when they belong to one display |
 | Citation, substance, reasoning, structure or reporting review | The exact reviewer, preserving review-only and unchanged-prose scope |
-| A short saved thought or a fuller progress record | quick-capture or capture-progress, using the known owner and configured capture preference |
+| File supplied notes, from one thought to a meeting record | Quick Capture, using the chosen owner and daily index preference |
 | A conversation transcript, meeting summary or BLUF | summarize, preserving its source and transcript rules |
 | A curated protocol | write-protocol, retaining its selected content and placement reviews |
 | Material for another named chat or sensitive-content transformation | chat-handoff or redactor under that skill's bounded workflow |

@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from datetime import date
 import difflib
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -23,10 +24,14 @@ ASTORIA = Path("00 ASTORIA")
 VERSION = ASTORIA / "version.json"
 SKILL_MAP = ASTORIA / "Skill Map.md"
 AI_LOG = ASTORIA / "agent_notes/ai_log.md"
+LAYOUT = ASTORIA / "agent_notes/layout.md"
 ACTIVE = ASTORIA / "skills"
 OPTIONAL = ASTORIA / "specialized_skills"
 VIEW_SCRIPT = ACTIVE / "skills-janitor/scripts/build_views.py"
+LAYOUT_SCRIPT = ACTIVE / "vault-builder/scripts/build_layout.py"
+LAYOUT_SECTIONS = re.compile(rb"^## (Files|Templates|Rules)\n.*?(?=^## |\Z)", re.M | re.S)
 VOCABULARY = ACTIVE / "skill-builder/assets/vocabulary.md"
+SELECTION = ASTORIA / "selection.json"
 UPDATE_LOCK = ASTORIA / ".astoria-update-lock"
 TOOLKIT_STATE = ASTORIA / ".toolkit-install-in-progress.json"
 GENERATED = re.compile(
@@ -127,23 +132,196 @@ def version(files):
     return value
 
 
-def installed_paths(files, current, tools):
+def resource_folder(files, parent, name):
+    """Compare a complete release-owned resource folder by relative file and mode."""
+    root = parent / name
+    return {path.relative_to(root): content for path, content in files.items() if root in path.parents}
+
+
+def recover_resource_ownership(current, baseline, target, names):
+    """Recover only exact shipped resources omitted by an older selection record."""
+    recovered = set()
+    for name in names:
+        actual = resource_folder(current, ACTIVE, name)
+        original = resource_folder(baseline, ACTIVE, name)
+        if not original:
+            original = resource_folder(baseline, OPTIONAL, name)
+        if not actual or actual != original:
+            continue
+        # The ordinary inventory skips hidden files. An extra supplied file,
+        # including a hidden one, must not become official ownership by name.
+        folder = safe_path(target, ACTIVE / name)
+        complete = {}
+        for path in folder.rglob("*"):
+            info = path.lstat()
+            if stat.S_ISDIR(info.st_mode):
+                continue
+            if not stat.S_ISREG(info.st_mode):
+                raise ValueError("Resource ownership cannot include aliases or special files: " + str(path.relative_to(target)))
+            complete[path.relative_to(folder)] = read_file(target, path.relative_to(target))
+        if complete == original:
+            recovered.add(name)
+    return recovered
+
+
+def release_selection(source, current, baseline, target, helper):
+    """Use the verified release planner without treating a helper as a chosen system."""
+    skills = {}
+    for path, content in source.items():
+        if path.name != "SKILL.md" or path.parent.parent not in (ACTIVE, OPTIONAL):
+            continue
+        name = path.parent.name
+        if name in skills:
+            raise ValueError("The release contains two copies of skill " + name)
+        text = content.data.decode("utf-8")
+        frontmatter, body = helper.parse_frontmatter(text)
+        if frontmatter is None:
+            raise ValueError("Release skill has no frontmatter: " + name)
+        skills[name] = helper.Skill(name, path.parent.as_posix(), path.as_posix(),
+                                   frontmatter, body, text)
+    vocabulary = source.get(VOCABULARY)
+    if vocabulary is None:
+        raise ValueError("The release is missing its vocabulary")
+    block = re.search(r"```yaml\n(.*?)\n```", vocabulary.data.decode("utf-8"), re.S)
+    if block is None:
+        raise ValueError("The release vocabulary has no YAML configuration")
+    vocab = helper.yaml.safe_load(block[1])
+    record = read_file(target, SELECTION)
+    state = helper.read_selection(str(target))
+    if read_file(target, SELECTION) != record:
+        raise ValueError("The selection record changed during preview")
+    choices = state["choices"] if state else {}
+    active = {path.parent.name for path in current
+              if path.name == "SKILL.md" and path.parent.parent == ACTIVE}
+    original = {path.parent.name for path in baseline
+                if path.name == "SKILL.md" and path.parent.parent in (ACTIVE, OPTIONAL)}
+    if state:
+        imported = set(state["imports"])
+        removed = set(state["removed_skills"]) | ((set(state["installed_skills"]) | imported) - active)
+        resources = set(vocab.get("starter", {}).get("basics_resources", []))
+        # Preserve deletion of an old shipped resource even when its old record
+        # omitted ownership. New resources absent from the baseline remain new.
+        removed.update(name for name in resources - active
+                       if resource_folder(baseline, ACTIVE, name))
+        if set(state["removed_skills"]) & active:
+            raise ValueError("A removed skill is present again; review selection.json before updating")
+        unrecorded = (resources & active) - set(state["installed_skills"]) - imported - removed
+        recovered = recover_resource_ownership(current, baseline, target, unrecorded)
+        if unrecorded - recovered:
+            raise ValueError("Unrecorded Basics resources need verified original release ownership; preserve custom files: "
+                             + ", ".join(sorted(unrecorded - recovered)))
+        protected = imported | (active - set(state["installed_skills"]) - imported - recovered)
+    else:
+        removed = {path.parent.name for path in baseline
+                   if path.name == "SKILL.md" and path.parent.parent == ACTIVE} - active
+        protected = active - original if baseline else set()
+        recovered = set()
+    # Deletions override saved choices before either dependency traversal.
+    selected = helper.selection_plan(
+        skills, vocab, systems=choices.get("systems", ()),
+        groups=choices.get("research_groups", ()), names=choices.get("skills", ()),
+        include_multimodal=choices.get("include_multimodal", True),
+        removed_skills=removed,
+    )
+    owned = (set(state["installed_skills"]) | recovered) if state else original
+    retained_names = (active & owned & skills.keys()) - protected - removed
+    # A dependency correction does not remove an installed official capability.
+    # Retain those exact skills individually; it never chooses their whole system.
+    retained_choices = sorted(set(choices.get("skills", ())) | (retained_names - set(selected["installed_skills"])))
+    selected = helper.selection_plan(
+        skills, vocab, systems=choices.get("systems", ()),
+        groups=choices.get("research_groups", ()), names=retained_choices,
+        include_multimodal=choices.get("include_multimodal", True),
+        removed_skills=removed,
+    )
+    allowed = (set(selected["installed_skills"]) | active) - removed - protected
+    helpers = selected["required_helpers"]
+    return {"state": state, "record": record, "allowed": allowed,
+            "protected": protected, "removed": removed, "active": active,
+            "helpers": helpers, "recovered_resources": recovered, "retained_choices": retained_choices,
+            "vocabulary": helper.selection_vocabulary(vocab, active | allowed),
+            "available": sorted(set(skills) - active - allowed - protected)}
+
+
+def selection_vocabulary_text(content, configured, helper):
+    """Change only coordinator configuration, retaining other vocabulary text."""
+    text = content.data.decode("utf-8")
+    block = re.search(r"```yaml\n(.*?)\n```", text, re.S)
+    raw = block[1]
+    for path in (("system_coordinators",), ("starter", "available_system_coordinators")):
+        wanted = configured
+        for key in path:
+            wanted = wanted[key]
+        current = helper.yaml.safe_load(raw)
+        if path == ("system_coordinators",):
+            present = current.get(path[0])
+        else:
+            present = (current.get("starter") or {}).get(path[1])
+        if present == wanted:
+            continue
+        node = helper.yaml.compose(raw)
+        key = path[0]
+        pair = next(((k, v) for k, v in node.value if k.value == key), None)
+        if len(path) == 2 and pair and not pair[1].flow_style:
+            node = pair[1]
+            key = path[1]
+            pair = next(((k, v) for k, v in node.value if k.value == key), None)
+        elif len(path) == 2:
+            wanted = configured["starter"]
+        if pair:
+            key_node, value_node = pair
+            indent = key_node.start_mark.column
+            start = key_node.start_mark.index - indent
+            end = value_node.end_mark.index
+            if value_node.end_mark.column and end < len(raw) and raw[end] != "\n":
+                end = raw.find("\n", end)
+                if end == -1:
+                    end = len(raw)
+            if value_node.end_mark.column and end < len(raw) and raw[end] == "\n":
+                end += 1
+        else:
+            indent = node.value[0][0].start_mark.column if node.value else 0
+            start = end = node.end_mark.index
+        rendered = helper.yaml.safe_dump({key: wanted}, sort_keys=False, allow_unicode=True)
+        rendered = "".join(" " * indent + line for line in rendered.splitlines(keepends=True))
+        if start and raw[start - 1] != "\n":
+            rendered = "\n" + rendered
+        raw = raw[:start] + rendered + raw[end:]
+    if helper.yaml.safe_load(raw) != configured:
+        raise ValueError("Selected coordinator configuration could not be preserved exactly")
+    return File((text[:block.start(1)] + raw.rstrip("\n") + text[block.end(1):]).encode("utf-8"),
+                content.mode)
+
+
+def installed_paths(files, current, tools, allowed=(), protected=(), removed=(),
+                    configured=None, helper=None):
     """Render release links using the same installed options as the destination."""
     result = {}
     moves, absent = {}, set()
     for path, content in files.items():
-        if path.is_relative_to(OPTIONAL):
-            suffix = path.relative_to(OPTIONAL)
+        root = next((root for root in (ACTIVE, OPTIONAL) if path.is_relative_to(root)), None)
+        if root:
+            suffix = path.relative_to(root)
             name = suffix.parts[0]
-            if ACTIVE / name / "SKILL.md" in current:
-                moves[(OPTIONAL / name).as_posix()] = (ACTIVE / name).as_posix()
-                path = ACTIVE / suffix
+            if name in protected or name in removed:
+                if ACTIVE / name / "SKILL.md" not in current:
+                    absent.add(name)
+                continue
+            if ACTIVE / name / "SKILL.md" in current or name in allowed:
+                destination = ACTIVE
             elif OPTIONAL / name / "SKILL.md" not in current:
                 absent.add(name)
                 continue
+            else:
+                destination = OPTIONAL
+            if root != destination:
+                moves[(root / name).as_posix()] = (destination / name).as_posix()
+            path = destination / suffix
         if path in result:
             raise ValueError(f"Two release files resolve to the same installed path: {path}")
         result[path] = content
+    if configured is not None:
+        result[VOCABULARY] = selection_vocabulary_text(result[VOCABULARY], configured, helper)
     if not (moves or absent):
         return result
 
@@ -151,6 +329,9 @@ def installed_paths(files, current, tools):
         stage = Path(folder)
         for path, content in result.items():
             write_file(stage, path, content)
+        for path, content in current.items():
+            if path.is_relative_to(ACTIVE) and path.parts[2] in protected:
+                write_file(stage, path, content)
         add_stage_placeholders(stage)
         command = (
             "import json, sys; sys.path.insert(0, sys.argv[1]); import skillkit; "
@@ -160,7 +341,37 @@ def installed_paths(files, current, tools):
         )
         run_check([sys.executable, "-E", "-B", "-c", command, str(tools), str(stage),
                    json.dumps(moves), json.dumps(sorted(absent))], "Release links could not be adapted", stage)
-        return inventory(stage)
+        return {path: content for path, content in inventory(stage).items()
+                if not (path.is_relative_to(ACTIVE) and path.parts[2] in protected)}
+
+
+def plan_selection_refresh(scope, current, planned):
+    """Keep existing choices and imported ownership while recording this transaction."""
+    state = scope["state"]
+    if state is None:
+        return
+    updated = json.loads(json.dumps(state))
+    active = set(scope["active"])
+    added = set()
+    for path, content in planned.items():
+        if path.name == "SKILL.md" and path.parent.parent == ACTIVE:
+            if content is None:
+                active.discard(path.parent.name)
+            else:
+                active.add(path.parent.name)
+                added.add(path.parent.name)
+    previous = set(state["installed_skills"])
+    owned = ((previous | added | scope["recovered_resources"]) & active) - scope["protected"] - scope["removed"]
+    updated["installed_skills"] = sorted(owned)
+    updated["choices"]["skills"] = scope["retained_choices"]
+    updated["removed_skills"] = sorted(set(state["removed_skills"]) | scope["removed"] | (previous - active))
+    reasons = {name: values for name, values in scope["helpers"].items() if name in owned}
+    updated["required_helpers"] = reasons
+    if updated != state:
+        record = scope["record"]
+        current[SELECTION] = record
+        planned[SELECTION] = File((json.dumps(updated, indent=2, ensure_ascii=False) + "\n").encode("utf-8"),
+                                  record.mode)
 
 
 def comparison(content, path):
@@ -177,7 +388,7 @@ def change_group(path):
     return path
 
 
-def merge_vocabulary(original, current, incoming):
+def merge_vocabulary(original, current, incoming, imported_skills=()):
     """Keep disjoint configuration edits without rewriting recipient comments."""
     try:
         import yaml
@@ -224,8 +435,53 @@ def merge_vocabulary(original, current, incoming):
         # Lists are a single choice; do not infer how to combine two changed orders.
         raise ValueError("Local and release vocabulary configuration changes overlap")
 
+    def writing_group_items(text, group):
+        block = re.search(r"```yaml\n(.*?)\n```", text, re.S)
+        node = yaml.compose(block[1])
+        for name in ("system_sections", "Writing System", group):
+            node = next(value for key, value in node.value if key.value == name)
+        if not isinstance(node, yaml.SequenceNode) or node.flow_style:
+            raise ValueError("Customized Writing groups need block lists for a safe import merge")
+        return block.start(1), node.value
+
+    def item_line(text, offset, node):
+        start = text.rfind("\n", 0, offset + node.start_mark.index) + 1
+        end = text.find("\n", offset + node.end_mark.index)
+        return start, len(text) if end == -1 else end + 1
+
     try:
         before, live, after = (content.data.decode("utf-8") for content in (original, current, incoming))
+        configurations = [configuration(text) for text in (before, live, after)]
+        sections = []
+        for value in configurations:
+            groups = value.get("system_sections")
+            writing = groups.get("Writing System") if isinstance(groups, dict) else None
+            sections.append(writing if isinstance(writing, dict) else {})
+        preserved, removals = {}, []
+        for group, old_names in sections[0].items():
+            live_names, new_names = sections[1].get(group), sections[2].get(group)
+            if not all(isinstance(names, list) for names in (old_names, live_names, new_names)):
+                continue
+            if any(not isinstance(name, str) for names in (old_names, live_names, new_names) for name in names):
+                continue
+            extra = set(live_names) & set(imported_skills) - set(old_names)
+            if (not extra or new_names == old_names or extra.intersection(new_names)
+                    or [name for name in live_names if name not in extra] not in (old_names, new_names)):
+                continue
+            # Only recipient-owned imported additions can be set aside. Any
+            # local change to official membership or order still conflicts.
+            for text in (before, after):
+                writing_group_items(text, group)
+            offset, items = writing_group_items(live, group)
+            retained = []
+            for index, node in enumerate(items):
+                if node.value in extra:
+                    start, end = item_line(live, offset, node)
+                    retained.append((node.value, live[start:end], live_names[index + 1:]))
+                    removals.append((start, end))
+            preserved[group] = retained
+        for start, end in sorted(removals, reverse=True):
+            live = live[:start] + live[end:]
         live_configuration = configuration(live)
         expected = combine(configuration(before), live_configuration, configuration(after))
         base_lines = before.splitlines(keepends=True)
@@ -249,6 +505,20 @@ def merge_vocabulary(original, current, incoming):
         for start, end, replacement in sorted(edits, reverse=True):
             base_lines[start:end] = replacement
         merged = "".join(base_lines)
+        for group, retained in preserved.items():
+            names = expected["system_sections"]["Writing System"][group]
+            for name, line, following in retained:
+                offset, items = writing_group_items(merged, group)
+                anchor = next((value for value in following if value in names), None)
+                if anchor is None:
+                    position = item_line(merged, offset, items[-1])[1]
+                    names.append(name)
+                else:
+                    node = next(item for item in items if item.value == anchor)
+                    position = item_line(merged, offset, node)[0]
+                    names.insert(names.index(anchor), name)
+                indent = items[0].start_mark.column - 2
+                merged = merged[:position] + " " * indent + line.lstrip(" ") + merged[position:]
         if configuration(merged) != expected:
             raise ValueError("Combined vocabulary does not preserve both configuration changes")
         return File(merged.encode("utf-8"), current.mode), None
@@ -256,7 +526,7 @@ def merge_vocabulary(original, current, incoming):
         return None, str(error)
 
 
-def select_changes(current, source, baseline):
+def select_changes(current, source, baseline, imported_skills=()):
     changes = {}
     conflicts = {}
     groups = {change_group(path) for path in current}
@@ -269,7 +539,7 @@ def select_changes(current, source, baseline):
         if live == after or before == after:
             continue
         if path == VOCABULARY and all(path in files for files in (baseline, current, source)) and live != before:
-            merged, reason = merge_vocabulary(baseline[path], current[path], source[path])
+            merged, reason = merge_vocabulary(baseline[path], current[path], source[path], imported_skills)
             if reason:
                 conflicts[path] = reason
             elif merged != current[path]:
@@ -348,7 +618,8 @@ def generated_changes(current, planned, tools):
         errors = json.loads(lint.stdout)["errors"]
         problems = [f"{skill}: {message}" for skill, message in errors
                     if message.startswith(("dependency ", "frontmatter error:", "name field ",
-                                           "present in both", "folder has no SKILL.md"))]
+                                           "present in both", "folder has no SKILL.md",
+                                           "metadata.system "))]
         if problems:
             raise ValueError("Skill verification found conflicts: " + "; ".join(problems))
         rendered = inventory(stage)
@@ -359,10 +630,74 @@ def generated_changes(current, planned, tools):
                 planned[path] = content
 
 
+def layout_sections(files, source):
+    """Render the release-controlled layout sections without reading vault notes."""
+    with tempfile.TemporaryDirectory(prefix="astoria_layout_") as folder:
+        stage = Path(folder)
+        for path, content in files.items():
+            if (path == VOCABULARY or path.is_relative_to(ASTORIA / "templates")
+                    or (path.is_relative_to(ACTIVE) and path.name == "SKILL.md")):
+                write_file(stage, path, content)
+        for helper in (LAYOUT_SCRIPT, VIEW_SCRIPT.with_name("skillkit.py")):
+            write_file(stage, helper, source[helper])
+        add_stage_placeholders(stage)
+        run_check([sys.executable, "-E", "-B", str(stage / LAYOUT_SCRIPT),
+                   "--vault", str(stage), "--apply"], "Layout sections could not be generated", stage)
+        matches = list(LAYOUT_SECTIONS.finditer((stage / LAYOUT).read_bytes()))
+        sections = {match[1]: match[0] for match in matches}
+        if len(matches) != 3 or sections.keys() != {b"Files", b"Templates", b"Rules"}:
+            raise ValueError("The release layout uses an unexpected section format. Check the installed layout separately.")
+        return sections
+
+
+def plan_layout_refresh(target, current, planned, source):
+    """Preview only layout sections changed by the package transaction."""
+    if not any(path == VOCABULARY or path.is_relative_to(ASTORIA / "templates")
+               or (path.is_relative_to(ACTIVE) and path.name == "SKILL.md") for path in planned):
+        return []
+    if LAYOUT_SCRIPT not in source:
+        return ["The release has no layout helper. Check the installed layout separately."]
+    installed = dict(current)
+    for path, content in planned.items():
+        if content is None:
+            installed.pop(path, None)
+        else:
+            installed[path] = content
+    try:
+        before = layout_sections(current, source)
+        after = layout_sections(installed, source)
+        changed = {name: text for name, text in after.items() if text != before.get(name)}
+        if not changed:
+            return []
+        existing = read_file(target, LAYOUT)
+    except (OSError, ValueError) as error:
+        return [str(error)]
+    if existing is None:
+        return ["The installed layout is absent. Run the layout audit before rebuilding it."]
+    sections = list(LAYOUT_SECTIONS.finditer(existing.data))
+    refresh, review = {}, []
+    for name, replacement in changed.items():
+        matches = [match for match in sections if match[1] == name]
+        if len(matches) == 1 and matches[0][0] == before.get(name):
+            refresh[name] = replacement
+        elif len(matches) != 1 or matches[0][0] != replacement:
+            review.append("The installed layout section differs from expected generated text: "
+                          + name.decode("ascii"))
+    if refresh:
+        current[LAYOUT] = existing
+        planned[LAYOUT] = File(LAYOUT_SECTIONS.sub(lambda match: refresh.get(match[1], match[0]),
+                                                 existing.data), existing.mode)
+    return review
+
+
 def preview(source_root, target, baseline_root):
     source = inventory(source_root)
     current = inventory(target)
     baseline = inventory(baseline_root) if baseline_root else {}
+    selection_record = read_file(target, SELECTION)
+    if selection_record is not None:
+        current[SELECTION] = selection_record
+    selection_review = []
     incoming_version = version(source)
     installed_version = version(current)
     if incoming_version is None or SKILL_MAP not in source or VIEW_SCRIPT not in source:
@@ -389,11 +724,29 @@ def preview(source_root, target, baseline_root):
             if path not in source:
                 raise ValueError(f"The release is missing a view helper: {path}")
             write_file(tools, Path(name), source[path])
-        desired = installed_paths(source, current, tools)
+        spec = importlib.util.spec_from_file_location("astoria_verified_release_skillkit", tools / "skillkit.py")
+        helper = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(helper)
+        scope = None
+        try:
+            scope = release_selection(source, current, baseline, target, helper)
+            if scope["record"] != selection_record:
+                raise ValueError("The selection record changed during preview")
+            desired = installed_paths(source, current, tools, scope["allowed"],
+                                      scope["protected"], scope["removed"],
+                                      scope["vocabulary"], helper)
+        except (OSError, ValueError, KeyError, TypeError) as error:
+            selection_review.append(str(error))
+            desired = {}
         baseline_required = baseline_root is None and installed_version != incoming_version
-        if baseline_root:
-            original = installed_paths(baseline, current, tools)
-            planned, conflicts = select_changes(current, desired, original)
+        if selection_review:
+            planned, conflicts = {}, {SELECTION: selection_review[0]}
+        elif baseline_root:
+            original = installed_paths(baseline, current, tools,
+                                       protected=scope["protected"], removed=scope["removed"])
+            imports = scope["state"]["imports"] if scope["state"] else ()
+            planned, conflicts = select_changes(current, desired, original, imports)
+            plan_selection_refresh(scope, current, planned)
             if not conflicts and source[VERSION] != current.get(VERSION):
                 planned[VERSION] = source[VERSION]
         else:
@@ -405,6 +758,8 @@ def preview(source_root, target, baseline_root):
                 and comparison(current.get(path), path) != comparison(content, path)
             }
             baseline_required = baseline_required or bool(conflicts)
+            if not conflicts:
+                plan_selection_refresh(scope, current, planned)
         pending = bool(conflicts) or baseline_required
         if planned:
             try:
@@ -417,6 +772,7 @@ def preview(source_root, target, baseline_root):
                     conflicts.setdefault(path, "Held until the generated skill-view conflict is resolved")
                 planned.clear()
                 pending = True
+    layout_review = plan_layout_refresh(target, current, planned, source)
     rows = []
     for path, content in sorted(planned.items()):
         previous = current.get(path)
@@ -432,19 +788,21 @@ def preview(source_root, target, baseline_root):
         status = "Pending items remain. Installed version was retained." if pending else "Verified the installed version and refreshed skill views."
         entry = (f"\n## {date.today().isoformat()} astoria-updater: ASTORIA {incoming_version}\n\n"
                  f"- Applied {len(rows)} approved file changes.\n"
-                 f"- Held {len(conflicts)} files for review. {status}\n")
+                 f"- Held {len(conflicts)} files for review. {status}\n"
+                 + ("- Refreshed release-controlled sections of the generated layout.\n" if LAYOUT in planned else "")
+                 + ("- Some generated layout sections need a separate audit.\n" if layout_review else ""))
         planned[AI_LOG] = File(previous_log.data.replace(b"# AI log\n", b"# AI log\n" + entry.encode(), 1),
                                previous_log.mode)
         current[AI_LOG] = previous_log
-    optional = sorted({path.relative_to(OPTIONAL).parts[0] for path in source
-                       if path.is_relative_to(OPTIONAL) and path.name == "SKILL.md"
-                       and ACTIVE / path.relative_to(OPTIONAL) not in current
-                       and path not in current})
+    optional = scope["available"] if scope else []
     report = {"source": str(source_root), "target": str(target),
               "baseline": str(baseline_root) if baseline_root else None,
               "version": incoming_version, "installed_version": installed_version,
               "pending": pending, "baseline_required": baseline_required,
               "changes": rows, "optional_available": optional,
+              "selection_sha256": selection_record.digest() if selection_record else None,
+              "selection_review": selection_review,
+              "layout_review": layout_review,
               "conflicts": [{"path": path.as_posix(), "reason": reason}
                             for path, reason in sorted(conflicts.items())]}
     fingerprints = {path.as_posix(): [current[path].digest(), current[path].mode]
@@ -458,6 +816,8 @@ def preview(source_root, target, baseline_root):
 def apply(target, current, planned):
     if not planned:
         return
+    if read_file(target, SELECTION) != current.get(SELECTION):
+        raise ValueError(f"File changed after preview: {SELECTION}")
     backup = Path(tempfile.mkdtemp(prefix="astoria_rollback_"))
     originals = backup / "original"
     applied = []
@@ -480,6 +840,8 @@ def apply(target, current, planned):
         for path, content in planned.items():
             if read_file(target, path) != content:
                 raise ValueError(f"Applied file could not be verified: {path}")
+        if SELECTION not in planned and read_file(target, SELECTION) != current.get(SELECTION):
+            raise ValueError(f"File changed during apply: {SELECTION}")
     except (OSError, ValueError, KeyboardInterrupt):
         for path in reversed(applied):
             if read_file(target, path) == planned[path]:

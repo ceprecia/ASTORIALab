@@ -263,7 +263,30 @@ def catalog_dirs(pattern, name):
         print("%s: local catalog could not be safely inspected: %s (%s)" % (name, expanded, err))
 
 
-def registry_evidence(d, catalog_fd, vault, stamp):
+def other_vault_pointer(entry, quoted_paths):
+    """Identify a possible moved pointer by its same-named absolute and durable paths."""
+    relative = os.path.join("00 ASTORIA", "skills", entry, "SKILL.md")
+    if relative not in quoted_paths:
+        return None
+    absolute = {
+        path for path in quoted_paths
+        if os.path.isabs(path) and os.path.normpath(path) == path
+        and path.endswith(os.sep + relative)
+    }
+    if len(absolute) == 1:
+        return absolute.pop()
+    return None
+
+
+def print_pointer_review(moved):
+    """Report review candidates without counting them as owned registrations."""
+    for entry, previous in moved.items():
+        print("  different-vault pointer; ownership review required: %s -> %s" % (entry, previous))
+    if moved:
+        print("  verify the exact entry and previous vault through the platform before rebind or retirement")
+
+
+def registry_evidence(d, catalog_fd, vault, stamp, moved=None):
     """Read bounded local evidence through the pinned catalog descriptor."""
     candidates, leads = [], []
     valid_stamp = stamp and os.path.basename(stamp) == stamp and stamp not in {".", ".."}
@@ -301,6 +324,10 @@ def registry_evidence(d, catalog_fd, vault, stamp):
             quoted_paths = re.findall(r"[`\"']([^`\"'\n]+)[`\"']", head)
             if expected in quoted_paths:
                 leads.append(entry)
+            elif moved is not None:
+                previous = other_vault_pointer(entry, quoted_paths)
+                if previous:
+                    moved[entry] = previous
         return occupied, candidates, leads
     except OSError:
         return None
@@ -309,7 +336,8 @@ def registry_evidence(d, catalog_fd, vault, stamp):
 def report_registry(platform, d, catalog_fd, chosen, vault):
     """Report local occupancy and leads, with platform verification still required."""
     name = platform["name"]
-    evidence = registry_evidence(d, catalog_fd, vault, platform.get("stamp", ""))
+    moved = {}
+    evidence = registry_evidence(d, catalog_fd, vault, platform.get("stamp", ""), moved)
     if evidence is None:
         print("%s %s: local catalog could not be safely inspected; verify through the platform" % (name, d))
         return
@@ -327,7 +355,8 @@ def report_registry(platform, d, catalog_fd, chosen, vault):
         print("  occupied; preserved, no registration: %s" % " ".join(blocked))
     if to_register:
         print("  confirm vacancy before registration: %s" % " ".join(to_register))
-    if candidates or blocked or to_register or leads:
+    print_pointer_review(moved)
+    if candidates or blocked or to_register or leads or moved:
         print("  use the %s adapter in ./references/registry_adapters.md for authorized platform actions" % name)
 
 

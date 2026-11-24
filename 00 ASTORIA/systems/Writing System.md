@@ -19,15 +19,14 @@ A clear bounded request goes directly to its specialist. A spelling correction n
 | --- | --- |
 | Develop a document across sections or coordinate writing work | [Writing Companion](../skills/writing-companion/SKILL.md) and its internal [Writing Coordinator](../skills/writing-coordinator/SKILL.md) |
 | Draft or review one bounded writing object | Its specialist in [the generated Writing System catalog](../Skill%20Map.md#-writing-system) |
-| Save a short thought, sentence or decision | [Quick Capture](../skills/quick-capture/SKILL.md) |
-| Record a work session or progress | [Capture Progress](../skills/capture-progress/SKILL.md) |
-| Summarize a conversation or preserve an exact transcript | [Summarize](../skills/summarize/SKILL.md), using the requested summary, transcript and save choices |
-| Prepare context for a named AI chat or review its return | [Chat Handoff](../skills/chat-handoff/SKILL.md) |
-| Produce a redaction candidate for review | [Redactor](../skills/redactor/SKILL.md) |
-| Curate an established procedure into a reviewed protocol | [Write Protocol](../skills/write-protocol/SKILL.md) |
-| Build or update a passive style reference from supplied sources | [Writing Style Builder](../skills/writing-style-builder/SKILL.md) |
+| File supplied notes, from a single decision to a full meeting record | [Quick Capture](../specialized_skills/quick-capture/SKILL.md) |
+| Summarize a conversation or preserve an exact transcript | [Summarize](../specialized_skills/summarize/SKILL.md), using the requested summary, transcript and save choices |
+| Prepare context for a named AI chat or review its return | [Chat Handoff](../specialized_skills/chat-handoff/SKILL.md) |
+| Produce a redaction candidate for review | [Redactor](../specialized_skills/redactor/SKILL.md) |
+| Curate an established procedure into a reviewed protocol | [Write Protocol](../specialized_skills/write-protocol/SKILL.md) |
+| Build or update a passive style reference from supplied sources | [Writing Style Builder](../specialized_skills/writing-style-builder/SKILL.md) |
 
-The requested result determines the route. “Capture the argument in this Introduction” asks for writing. “Capture this session in the project log” asks for a saved record. A quoted trigger is part of the supplied material. Paper summaries belong to [Research Summarizer](../skills/research-summarizer/SKILL.md), and course-policy replies belong to [Teaching Office Hours](../skills/teaching-office-hours/SKILL.md).
+The requested result determines the route. “Capture the argument in this Introduction” asks for writing. “Capture this session in the project log” asks for a saved record. A quoted trigger is part of the supplied material. Paper summaries belong to [Research Summarizer](../skills/research-summarizer/SKILL.md), and course-policy replies belong to [Teaching Office Hours](../specialized_skills/teaching-office-hours/SKILL.md).
 
 ## Writing and review
 
@@ -41,9 +40,9 @@ When another companion is already leading, it remains the session and domain own
 
 A clear request to capture, log or jot down a record authorizes saving when its source and owner are known. Drafts and proposed entries follow the current request's deliverable form, then the recipient's applicable verified reporting policy, with chat as the fallback. Honor explicit current chat-only or no-save instructions. Required preview artifacts stay within their authorized task scope; their format grants no capture-record, index-edit or external-send authority. Summaries and transcripts are separate choices, and a transcript is included when requested. Exact-text requests preserve their supplied wording.
 
-Project captures use the owning MOC's Research Log and the configured Calendar preference. A retry repairs a missing index against the saved original. Requested human protocols retain their reviewed content and placement. Agent continuity follows the recipient's verified location and applicable MOC policy.
+Project captures use the owning MOC's Research Log. Meeting and area captures use their established notes. With Calendar indexing selected, keep one daily index record per external original with a verified note-relative Markdown link to its exact populated heading. Retain working links and labels. Add transclusion only when selected by the recipient and supported by the receiving app, retaining the plain link in the same record. General captures can be written directly in that log. On retry, preserve the saved original and repair only missing or broken index references using the original capture date. Requested human protocols retain their reviewed content and placement. Agent continuity follows the recipient's verified location and applicable MOC policy.
 
-For a combined request, complete dependent work in order. Drafting a paragraph followed by capturing its changes produces a draft and a factual progress record with the correct status. Each output follows its own source, profile and saving requirements.
+For a combined request, complete dependent work in order. When someone asks to summarize and log a meeting, Summarize prepares the requested text and Quick Capture files it once. Each output follows its own source, profile and saving requirements.
 
 ## Writing style
 

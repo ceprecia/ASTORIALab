@@ -27,6 +27,8 @@ Register only when native discovery is requested for the selected platform and e
 
 Moving a vault can leave a pointer's absolute path stale. Review ownership explicitly before refreshing or retiring it. The same relative skill path can occur in several vaults, so it is a location hint rather than proof of registration ownership. Treat any local pointer match as a lead for review through the platform's own list and the user's context.
 
+For a `different-vault pointer`, compare its exact name, previous path and platform scope with the verified vault move. When ownership is confirmed and the canonical skill still exists, rebind that entry through the platform using its new manifest path. When the owned skill has been retired, verify that retirement and unregister the specific entry through the platform. If another vault could own the pointer, preserve it and use the canonical skill directly. A cache or local catalog copy cannot verify a platform change.
+
 ## The pointer stub
 
 One registered entry per exposed skill. Frontmatter carries the manifest's `name` and `description` unchanged, apart from repairs a specific registry demands. The body routes and nothing more.

@@ -100,7 +100,7 @@ source files and the owning project's established layout.
 
 - Preserve the invoking session and return owner.
 - Borrow shared writers for requested correction prose, artifact owners for
-  rendering and [verify-writing-citations](../verify-writing-citations/SKILL.md)
+  rendering and [verify-writing-citations](../../specialized_skills/verify-writing-citations/SKILL.md)
   for citation-identity questions.
 - Use [verify-research-outputs](../verify-research-outputs/SKILL.md)
   for result/provenance comparisons and

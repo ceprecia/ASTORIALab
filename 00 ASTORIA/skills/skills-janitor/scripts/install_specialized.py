@@ -1,122 +1,373 @@
 #!/usr/bin/env python3
-"""install_specialized.py: choose specialized research skills from the catalog and install them.
-
-Purpose: on a starter vault, 00 ASTORIA/specialized_skills/ holds every
-specialized research skill (modality coordinators, method guides, software
-and model adapters, datasets, acquisition, computing). setup-my-vault asks the
-user which groups they want, then this script moves the chosen folders into
-00 ASTORIA/skills/, regenerates the Skill Map and the coordinator catalogs,
-lints, and removes the catalog folder.
-
-Language: Python 3 and PyYAML for the YAML vocabulary.
-Author: ASTORIA System Builder. Date: 2026-09-24.
-
-Usage:
-    python3 install_specialized.py --list
-        Print the groups the catalog offers, with the skills in each.
-    python3 install_specialized.py --groups fmri,eeg,general,behavior [--names a,b] [--no-multimodal]
-        Print the installation plan (dry run): chosen skills, coordinators and
-        dependencies pulled in, and what stays in the catalog.
-    python3 install_specialized.py --groups ... --apply
-        Move the chosen folders, rebuild the views, run the lint.
-    python3 install_specialized.py --groups ... --apply --remove-catalog
-        Also delete 00 ASTORIA/specialized_skills/ when the lint passes.
-    python3 install_specialized.py --none [--apply --remove-catalog]
-        Keep the core skills only; preview first, then remove the unused catalog.
-    Add --vault PATH when running from outside the vault.
-
-    An interrupted selected install can be retried with the same approved
-    options while its moved folders and pre-link identities and bytes verify.
-    List and preview stop during recovery. Keep the temporary install state
-    and catalog until the checks succeed.
-
-Groups are modality values from the vocabulary plus "general" (modality any).
-Choosing an imaging modality also installs its modality coordinator and, unless
---no-multimodal is given, the multimodal skills that apply to any imaging work.
+r"""File: install_specialized.py | Purpose: Select ASTORIA options or import one ready-made skill.
+Inputs/outputs: Existing active/shelf folders; recipient-owned selection.json.
+Requires: Python 3 and PyYAML. Dry run by default; --apply performs the shown plan.
+Examples:
+    python3 -B install_specialized.py --list
+    python3 -B install_specialized.py --systems study,teaching --groups eeg --apply
+    python3 -B install_specialized.py --none --apply
+    python3 -B install_specialized.py --import-skill https://github.com/owner/repo/tree/main/skills/example
+    python3 -B install_specialized.py --register-skill example --source-kind workflow --source pasted --apply
+GitHub references resolve to a commit before downloading. Imported code is never executed.
 """
+
+# Step 0. Use the existing skill, view and lint machinery.
+import argparse
+import copy
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import stat
 import subprocess
 import sys
+import tempfile
+from urllib.error import HTTPError
+from urllib.parse import quote, unquote, urlsplit
+from urllib.request import Request, urlopen
+import zipfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import skillkit as sk
 
-# Toggles
-DEFAULT_INCLUDE_MULTIMODAL = True   # multimodal skills follow any imaging modality
-GENERAL_GROUP_NAME = "general"      # the name users see for modality "any"
+DEFAULT_INCLUDE_MULTIMODAL = True
+GENERAL_GROUP_NAME = "general"
+SKIP_IMPORT = {".git", "__pycache__", ".DS_Store", ".venv", "node_modules"}
+INSTALL_STATE = ".toolkit-install-in-progress.json"
 
 
 def argument(argv, flag, default=None):
-    """Return the value after a flag, or the default."""
     if flag in argv:
-        i = argv.index(flag)
-        if i + 1 >= len(argv) or argv[i + 1].startswith("--"):
+        position = argv.index(flag)
+        if position + 1 >= len(argv) or argv[position + 1].startswith("--"):
             raise ValueError("%s needs a value" % flag)
-        return argv[i + 1]
+        return argv[position + 1]
     return default
 
 
 def catalog_groups(catalog, vocab):
-    """Map each group name to the sorted skill names in it."""
-    groups = {}
-    for name, skill in catalog.items():
-        modality = skill.meta.get("modality", "") or ""
-        for value in [m.strip() for m in modality.split(",") if m.strip()] or ["any"]:
-            key = GENERAL_GROUP_NAME if value == "any" else value
-            groups.setdefault(key, set()).add(name)
-    return {k: sorted(v) for k, v in groups.items()}
+    return sk.research_groups(catalog, vocab)
 
 
 def plan(catalog, vocab, chosen_groups, extra_names, include_multimodal):
-    """Compute the set of catalog skills to install and why each one is included."""
-    groups = catalog_groups(catalog, vocab)
-    imaging = set((vocab.get("starter") or {}).get("imaging_modalities") or [])
-    reasons = {}
+    selected = sk.selection_plan(catalog, vocab, groups=chosen_groups, names=extra_names,
+                                 include_multimodal=include_multimodal)
+    return {name: "; ".join(reasons) for name, reasons in selected["reasons"].items()}, catalog_groups(catalog, vocab)
 
-    # Step 1: every skill in a chosen group
-    for g in chosen_groups:
-        for name in groups.get(g, []):
-            reasons.setdefault(name, "group %s" % g)
 
-    # Step 2: the multimodal group follows any imaging modality
-    if include_multimodal and any(g in imaging for g in chosen_groups):
-        for name in groups.get("multimodal", []):
-            reasons.setdefault(name, "multimodal, follows the imaging modalities chosen")
-
-    # Step 3: names the user added directly
-    for name in extra_names:
-        if name in catalog:
-            reasons.setdefault(name, "named directly")
-        else:
-            reasons.setdefault(name, "NOT IN CATALOG")
-
-    # Step 4: modality coordinators for every modality present in the selection
-    for name, skill in catalog.items():
-        if skill.family == "modality-coordinator":
-            modality = skill.meta.get("modality", "")
-            if any(catalog[n].meta.get("modality", "") == modality for n in list(reasons) if n in catalog):
-                reasons.setdefault(name, "coordinator for modality %s" % modality)
-
-    # Step 5: declared dependencies that live in the catalog
-    changed = True
-    while changed:
-        changed = False
-        for name in list(reasons):
-            if name not in catalog:
+def import_files(folder):
+    """Inventory every supplied supporting file, refusing aliases and escapes."""
+    folder = Path(folder)
+    if folder.is_symlink() or not folder.is_dir():
+        raise ValueError("Choose a real skill folder, not a directory alias")
+    files = {}
+    for parent, directories, names in os.walk(folder, followlinks=False):
+        for name in directories + names:
+            path = Path(parent) / name
+            if name not in SKIP_IMPORT and path.is_symlink():
+                raise ValueError("Imported supporting files must not be aliases: " + str(path))
+        directories[:] = sorted(name for name in directories if name not in SKIP_IMPORT)
+        for name in sorted(names):
+            if name in SKIP_IMPORT:
                 continue
-            for dep in catalog[name].dependencies:
-                if dep in catalog and dep not in reasons:
-                    reasons[dep] = "dependency of %s" % name
-                    changed = True
-    return reasons, groups
+            path = Path(parent) / name
+            info = path.lstat()
+            if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
+                raise ValueError("Imported support must be a regular file: " + str(path))
+            relative = path.relative_to(folder).as_posix()
+            files[relative] = hashlib.sha256(path.read_bytes()).hexdigest()
+    if "SKILL.md" not in files:
+        raise ValueError("Choose a folder containing SKILL.md")
+    return files
 
 
-INSTALL_STATE = ".toolkit-install-in-progress.json"
+def preflight_tree(folder):
+    """Check the complete installed/shelf tree before loading any metadata."""
+    folder = Path(folder)
+    if not folder.exists() and not folder.is_symlink():
+        return
+    if folder.is_symlink() or not folder.is_dir() or folder.resolve(strict=True) != folder:
+        raise ValueError("Installation tree must not be a directory alias: " + str(folder))
+    for parent, directories, names in os.walk(folder, followlinks=False):
+        for name in directories + names:
+            path = Path(parent) / name
+            info = path.lstat()
+            if stat.S_ISLNK(info.st_mode) or path.resolve(strict=True) != path:
+                raise ValueError("Installation tree contains an alias: " + str(path))
+            if not stat.S_ISDIR(info.st_mode) and (not stat.S_ISREG(info.st_mode) or info.st_nlink != 1):
+                raise ValueError("Installation tree requires regular files without aliases: " + str(path))
+
+
+def check_import_references(folder, skill=None, available=None):
+    """Check explicit local support links and named scripts before installing."""
+    root = Path(folder).resolve()
+    problems = []
+    for path in sorted(root.rglob("*.md")):
+        text = path.read_text(encoding="utf-8")
+        links = re.findall(r'!?\[[^\]]*\]\(\s*(<[^>]+>|[^\s)]+)', text)
+        links += re.findall(r'(?m)^\s*\[[^\]]+\]:\s*(<[^>]+>|\S+)', text)
+        links += re.findall(r'(?:href|src)=["\']([^"\']+)["\']', text)
+        links += re.findall(r'(?<![A-Za-z0-9_/])((?:\./)?(?:scripts|references|assets)/[^\s`"\'<>),;]+)', text)
+        for target in links:
+            target = target.strip("<>").rstrip(".")
+            parsed = urlsplit(target)
+            if parsed.scheme or parsed.netloc or not parsed.path or re.search(r"[{}<>]|\.\.\.|…", target):
+                continue
+            requested = (path.parent / unquote(parsed.path)).resolve()
+            try:
+                requested.relative_to(root)
+            except ValueError:
+                pieces = Path(unquote(parsed.path)).parts
+                dependencies = skill.dependencies if skill is not None else []
+                supported = False
+                for index, piece in enumerate(pieces):
+                    if piece in dependencies and available is not None and piece in available:
+                        support_target = Path(available[piece].path).parent.joinpath(*pieces[index + 1:])
+                        if support_target.is_file():
+                            supported = True
+                            break
+                if supported:
+                    continue
+                problems.append(path.relative_to(root).as_posix() + ": support link escapes the imported folder: " + target)
+                continue
+            if not requested.exists():
+                problems.append(path.relative_to(root).as_posix() + ": supporting file is missing: " + target)
+    if problems:
+        raise ValueError("Import is incomplete; preserve the supplied support or resolve its references:\n" + "\n".join(sorted(set(problems))))
+
+
+def github_json(url):
+    request = Request(url, headers={"Accept": "application/vnd.github+json", "User-Agent": "ASTORIA-skill-import"})
+    with urlopen(request, timeout=30) as response:
+        return json.load(response)
+
+
+def github_location(url):
+    """Validate the original URL without resolving a moving reference."""
+    parsed = urlsplit(url)
+    parts = [unquote(part) for part in parsed.path.strip("/").split("/")]
+    if parsed.scheme != "https" or parsed.netloc != "github.com" or len(parts) < 2 or parsed.query or parsed.fragment:
+        raise ValueError("Use an HTTPS GitHub repository or folder link")
+    owner, repository = parts[:2]
+    repository = repository.removesuffix(".git")
+    if not re.fullmatch(r"[A-Za-z0-9_.-]+", owner) or not re.fullmatch(r"[A-Za-z0-9_.-]+", repository):
+        raise ValueError("Invalid GitHub repository link")
+    if len(parts) != 2 and (parts[2] != "tree" or len(parts) < 4):
+        raise ValueError("Choose a repository or tree/folder URL, not a file URL")
+    return owner, repository, parts
+
+
+def validate_github_pin(url, pin):
+    """Require a complete saved import snapshot from this exact repository."""
+    owner, repository, unused = github_location(url)
+    fields = {"owner", "source_kind", "source", "revision", "source_path", "files"}
+    if (not isinstance(pin, dict) or set(pin) != fields or pin["owner"] != "user"
+            or pin["source_kind"] != "github"
+            or pin["source"] != "https://github.com/" + owner + "/" + repository
+            or not isinstance(pin["revision"], str) or not re.fullmatch(r"[0-9a-f]{40}", pin["revision"])):
+        raise ValueError("The interrupted GitHub import has no valid saved repository and commit")
+
+    def relative_path(value, allow_root=False):
+        if not isinstance(value, str):
+            return False
+        if allow_root and value == "":
+            return True
+        path = Path(value)
+        return (bool(value) and bool(path.parts) and not path.is_absolute() and "\\" not in value
+                and path.as_posix() == value and all(part not in {".", ".."} for part in path.parts))
+
+    files = pin["files"]
+    if (not relative_path(pin["source_path"], allow_root=True)
+            or not isinstance(files, dict) or "SKILL.md" not in files
+            or any(not relative_path(path) or not isinstance(digest, str)
+                   or not re.fullmatch(r"[0-9a-f]{64}", digest) for path, digest in files.items())):
+        raise ValueError("The interrupted GitHub import has invalid saved paths or file hashes")
+
+
+def github_folder(url, destination, pin=None):
+    """Extract one complete skill, reusing a verified saved commit during recovery."""
+    owner, repository, parts = github_location(url)
+    api = "https://api.github.com/repos/" + owner + "/" + repository
+    subpath = ""
+    if pin is not None:
+        validate_github_pin(url, pin)
+        commit, subpath = pin["revision"], pin["source_path"]
+    elif len(parts) == 2:
+        reference = github_json(api)["default_branch"]
+        commit = github_json(api + "/commits/" + quote(reference, safe=""))["sha"]
+    else:
+        commit = None
+        # Branch names may contain slashes. Resolve the longest real ref first.
+        for count in range(len(parts) - 3, 0, -1):
+            reference = "/".join(parts[3:3 + count])
+            try:
+                commit = github_json(api + "/commits/" + quote(reference, safe=""))["sha"]
+                subpath = "/".join(parts[3 + count:])
+                break
+            except HTTPError as error:
+                if error.code != 404:
+                    raise
+        if commit is None:
+            raise ValueError("The GitHub branch, tag or commit could not be resolved")
+    if not isinstance(commit, str) or not re.fullmatch(r"[0-9a-fA-F]{40}", commit):
+        raise ValueError("GitHub did not return a pinned commit")
+    commit = commit.lower()
+    with urlopen(Request("https://codeload.github.com/" + owner + "/" + repository + "/zip/" + commit,
+                         headers={"User-Agent": "ASTORIA-skill-import"}), timeout=30) as response:
+        archive_bytes = response.read()
+    with zipfile.ZipFile(io.BytesIO(archive_bytes)) as archive:
+        members = archive.infolist()
+        roots = {member.filename.split("/")[0] for member in members}
+        if len(roots) != 1:
+            raise ValueError("Unexpected GitHub archive layout")
+        root = next(iter(roots)) + "/"
+        prefix = root + (subpath.rstrip("/") + "/" if subpath else "")
+        skills = sorted(member.filename[len(root):-len("/SKILL.md")] for member in members
+                        if member.filename.startswith(prefix) and member.filename.endswith("/SKILL.md")
+                        and not any(part in SKIP_IMPORT for part in Path(member.filename).parts))
+        exact = subpath if prefix + "SKILL.md" in archive.namelist() else None
+        if pin is not None and exact is None:
+            raise ValueError("The saved GitHub skill folder is missing at its pinned commit")
+        if exact is not None:
+            selected = exact
+        elif len(skills) == 1:
+            selected = skills[0]
+        else:
+            choices = ["https://github.com/" + owner + "/" + repository + "/tree/" + commit + "/" + name for name in skills]
+            raise ValueError("Choose one actual skill folder from this repository:\n" + ("\n".join(choices) or "No SKILL.md folders found"))
+        prefix = root + (selected.rstrip("/") + "/" if selected else "")
+        destination = Path(destination)
+        for member in members:
+            if not member.filename.startswith(prefix):
+                continue
+            mode = member.external_attr >> 16
+            if stat.S_ISLNK(mode):
+                raise ValueError("The GitHub skill contains a supporting-file alias")
+            if member.is_dir():
+                continue
+            relative = member.filename[len(prefix):]
+            path = Path(relative)
+            if path.is_absolute() or ".." in path.parts or "\\" in relative or not path.parts:
+                raise ValueError("The GitHub archive contains an escaping path")
+            if any(part in SKIP_IMPORT for part in path.parts):
+                continue
+            target = destination / path
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(archive.read(member))
+            if mode & 0o111:
+                target.chmod(0o755)
+        # Repository-wide rights accompany a nested skill even when not repeated there.
+        for member in members:
+            relative = member.filename[len(root):]
+            if "/" in relative or not re.match(r"(?i)^(LICENSE|COPYING|NOTICE)(?:[._-].*)?$", relative):
+                continue
+            if stat.S_ISLNK(member.external_attr >> 16):
+                raise ValueError("The upstream rights file must not be an alias")
+            content = archive.read(member)
+            target = destination / relative
+            if target.exists() and target.read_bytes() != content:
+                target = destination / "references" / "upstream_rights" / relative
+            if target.exists() and target.read_bytes() != content:
+                raise ValueError("Upstream rights collision; preserve both existing notices and choose a distinct destination: " + relative)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(content)
+    return {"owner": "user", "source_kind": "github", "source": "https://github.com/" + owner + "/" + repository,
+            "revision": commit, "source_path": selected}
+
+
+def candidate_skill(folder, vocabulary, available, registering=False):
+    folder = Path(folder)
+    text = (folder / "SKILL.md").read_text(encoding="utf-8")
+    frontmatter, body = sk.parse_frontmatter(text)
+    if not frontmatter or "__error__" in frontmatter:
+        raise ValueError("Imported skill needs valid Agent Skills frontmatter")
+    name = frontmatter.get("name", "")
+    if not isinstance(name, str) or not sk.SKILL_NAME_RE.fullmatch(name) or len(name) > 64:
+        raise ValueError("Imported skill needs a standard skill name")
+    if name in available and not registering:
+        raise ValueError("A skill named " + name + " already exists; resolve naming/ownership before importing")
+    if set(frontmatter) - sk.ALLOWED_TOP:
+        raise ValueError("Normalize imported frontmatter through Skill Builder; preserve its workflow and rights")
+    metadata = frontmatter.get("metadata")
+    if not isinstance(metadata, dict) or any(key not in metadata for key in sk.CORE_META):
+        raise ValueError("Skill Builder must supply the ASTORIA metadata before installation")
+    if any(not isinstance(value, str) for value in metadata.values()):
+        raise ValueError("Imported metadata values must be strings")
+    skill = sk.Skill(name, "", str(folder / "SKILL.md"), frontmatter, body, text)
+    if skill.level not in vocabulary["levels"] or skill.system not in vocabulary["systems"]:
+        raise ValueError("Choose an existing level and system through Skill Builder")
+    if not skill.description or len(skill.description) > int(vocabulary.get("description_max_chars", 1000)):
+        raise ValueError("Imported description must contain 1 to 1,000 characters")
+    low, high = vocabulary["trigger_counts"][skill.level]
+    if not low <= len(skill.triggers) <= high or skill.description.count("Triggers:") > 1:
+        raise ValueError("Imported trigger count does not match its level")
+    for trigger in skill.triggers:
+        normalized = trigger.lower()
+        if normalized in {name, name.replace("-", " ")} or normalized.startswith("run " + name):
+            raise ValueError("Imported trigger repeats its skill name")
+        for other in available.values():
+            if registering and other.name == name:
+                continue
+            if any(normalized in phrase.lower() or phrase.lower() in normalized for phrase in other.triggers):
+                raise ValueError("Imported trigger overlaps " + other.name + ": " + trigger)
+    for dependency in skill.dependencies:
+        if dependency not in available and dependency != name:
+            raise ValueError("Resolve imported dependency before installation: " + dependency)
+    if skill.system == "Research Assistant System" and skill.level in {"skill", "coordinator"}:
+        for field, values in (("part", vocabulary.get("parts", {})), ("family", vocabulary.get("families", {})),
+                              ("modality", vocabulary.get("modalities", [])), ("population", vocabulary.get("populations", []))):
+            for value in metadata.get(field, "").split(","):
+                if value.strip() and value.strip() not in values:
+                    raise ValueError("Imported research " + field + " is outside the vocabulary")
+    for field in ("created", "updated"):
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", metadata[field]):
+            raise ValueError("Imported dates must use YYYY-MM-DD")
+    return skill
+
+
+def imported_writing_group(vocabulary, skill, requested=None):
+    """Assign one configured Writing group without duplicating existing ownership."""
+    if skill.system != "Writing System":
+        if requested:
+            raise ValueError("--writing-group applies only to a Writing System import")
+        return vocabulary, None
+    result = copy.deepcopy(vocabulary)
+    groups = result.get("system_sections", {}).get("Writing System")
+    if not groups:
+        if requested:
+            raise ValueError("This vault has no configured Writing groups; use its actual vocabulary")
+        return result, None  # Older flat registries do not require grouped ownership.
+    owners = [heading for heading, names in groups.items() if skill.name in names]
+    if len(owners) > 1:
+        raise ValueError("The imported Writing skill is already assigned to multiple groups")
+    if owners:
+        if requested and requested != owners[0]:
+            raise ValueError("The skill already belongs to Writing group " + owners[0])
+        return result, owners[0]
+    if skill.level == "profile":
+        inferred = "Writing style"
+    elif skill.level in {"companion", "coordinator"}:
+        inferred = "Companion and coordination"
+    else:
+        inferred = "Writing assistance"
+    group = requested or inferred
+    if group not in groups or not isinstance(groups[group], list):
+        raise ValueError("Choose an existing Writing group: " + ", ".join(groups))
+    groups[group].append(skill.name)
+    return result, group
+
+
+def save_vocabulary(vault, vocabulary):
+    path = Path(vault) / sk.VOCAB_REL
+    text = path.read_text(encoding="utf-8")
+    block = "```yaml\n" + sk.yaml.safe_dump(vocabulary, sort_keys=False, allow_unicode=True) + "```"
+    rewritten, count = re.subn(r"```yaml\n.*?\n```", lambda match: block, text, count=1, flags=re.S)
+    if count != 1:
+        raise ValueError("Vocabulary configuration block is missing")
+    path.write_text(rewritten, encoding="utf-8")
 
 
 def directory_identity(path):
@@ -159,7 +410,7 @@ def document_digest(vault, relocations, unavailable):
     if links.problems:
         raise ValueError("\n".join(links.problems))
     entries = {}
-    for relative in sorted(links.files):
+    for relative in sorted(links.files & set(documents(vault))):
         target = links._relocate(relative)
         if target in entries:
             raise ValueError("Two documents resolve to the same install path: %s" % target)
@@ -246,173 +497,262 @@ def stop_install(error):
     return 1
 
 
+
+def documents(vault):
+    """Only ASTORIA installation documents are eligible for link/view changes."""
+    root = Path(vault)
+    selected = [root / sk.MAP_REL, root / "README.md", root / "AGENTS.md"]
+    for relative in (sk.SKILLS_REL, sk.CATALOG_REL, sk.SYSTEMS_REL):
+        folder = root / relative
+        if folder.is_symlink():
+            raise ValueError("The installation must not use directory aliases: " + relative)
+        if folder.exists():
+            selected.extend(folder.rglob("*.md"))
+    for path in selected:
+        if path.exists() and (path.is_symlink() or path.resolve(strict=True) != path or path.stat().st_nlink != 1):
+            raise ValueError("Installation document must not be an alias: " + str(path))
+    return sorted({path.relative_to(root).as_posix() for path in selected if path.is_file()})
+
+
 def main(argv):
-    # Validate explicit choices before any installation or catalog removal.
+    # Step 1. Resolve the requested choices before any write.
+    parser = argparse.ArgumentParser(description=__doc__)
+    for flag in ("systems", "groups", "names", "vault", "import-skill", "register-skill", "source-kind", "source", "revision", "source-path", "writing-group", "assume-notes"):
+        parser.add_argument("--" + flag)
+    for flag in ("list", "none", "apply", "no-multimodal", "remove-catalog"):
+        parser.add_argument("--" + flag, action="store_true")
     try:
-        chosen_groups = [g.strip() for g in (argument(argv, "--groups") or "").split(",") if g.strip()]
-        extra_names = [n.strip() for n in (argument(argv, "--names") or "").split(",") if n.strip()]
-        assume_notes = argument(argv, "--assume-notes")
-        argument(argv, "--vault")
-    except ValueError as error:
-        print(error)
-        return 1
-    core_only = "--none" in argv
-    if core_only and ("--groups" in argv or "--names" in argv):
-        print("--none cannot be combined with --groups or --names")
-        return 1
-    if "--list" not in argv and not core_only and not chosen_groups and not extra_names:
-        print("Choose --groups or --names, or use --none to keep the core skills only.")
-        return 1
-
-    vault = sk.vault_from_argv(argv)
-    vocab = sk.load_vocab(vault)
-    catalog_dir = Path(vault) / sk.CATALOG_REL
-    live_dir = Path(vault) / sk.SKILLS_REL
-    state_path = catalog_dir.parent / INSTALL_STATE
-    apply = "--apply" in argv and "--list" not in argv
-    include_multimodal = DEFAULT_INCLUDE_MULTIMODAL and "--no-multimodal" not in argv
-    request = {"groups": chosen_groups, "names": extra_names, "core_only": core_only,
-               "include_multimodal": include_multimodal, "remove_catalog": "--remove-catalog" in argv,
-               "assume_notes": assume_notes, "portable": sk.portable_links_enabled(vocab)}
-    state = identity = None
-    moved = set()
-    if os.path.lexists(state_path):
-        if not apply:
-            return stop_install("An interrupted install is recorded; the remaining catalog cannot supply a fresh preview")
-        try:
-            state, identity = state_record(state_path)
-            moved = verify_state(state, request, catalog_dir, live_dir, vault)
-        except (OSError, ValueError, KeyError, TypeError, RuntimeError) as error:
-            return stop_install(error)
-
-    if not catalog_dir.is_dir():
-        print("no catalog at %s; nothing to install" % sk.CATALOG_REL)
-        return 0
-    if apply and core_only and request["remove_catalog"]:
-        try:
-            directory_identity(catalog_dir)
-            tree_digest(catalog_dir)
-        except (OSError, ValueError, RuntimeError) as error:
-            return stop_install(error)
-    catalog = sk.load_skills(vault, sk.CATALOG_REL)
-    if moved:
-        live = sk.load_skills(vault)
-        for name in moved:
-            if name not in live:
-                return stop_install("Verified moved folder lacks an active skill: %s" % name)
-            catalog[name] = live[name]
-
-    if "--list" in argv:
-        groups = catalog_groups(catalog, vocab)
-        print("Catalog: %d specialized skills in %d groups\n" % (len(catalog), len(groups)))
-        for g in sorted(groups):
-            print("%s (%d): %s" % (g, len(groups[g]), ", ".join(groups[g])))
-        return 0
-
-    reasons, groups = plan(catalog, vocab, chosen_groups, extra_names, include_multimodal)
-    unknown_groups = [g for g in chosen_groups if g not in groups]
-    missing = [n for n, r in reasons.items() if r == "NOT IN CATALOG"]
-    if unknown_groups or missing:
-        if unknown_groups:
-            print("unknown groups (not in the catalog): %s" % ", ".join(unknown_groups))
-        if missing:
-            print("names not in the catalog: %s" % ", ".join(missing))
-        return stop_install("The requested selection cannot be established from the catalog")
-    install = sorted(n for n in reasons if n in catalog)
-    staying = sorted(set(catalog) - set(install))
-    unavailable = staying if request["remove_catalog"] else []
-    if state is not None and (set(install) != set(state["selected"]) or unavailable != state["unavailable"]):
-        return stop_install("The approved selection or catalog membership changed")
-
-    if apply and state is None and not core_only:
-        # Without the record, live folders cannot prove an earlier selected move.
-        index = set((vocab.get("starter") or {}).get("catalog_index") or ())
-        live_optional = {name: skill for name, skill in sk.load_skills(vault).items()
-                         if name in index and name not in catalog}
-        if live_optional:
-            broader_plan, _ = plan({**catalog, **live_optional}, vocab, chosen_groups,
-                                   extra_names, include_multimodal)
-            if set(broader_plan) & set(live_optional):
-                return stop_install("The selection includes already-live catalog names without verified state")
-
-    print("Installation plan: %d of %d catalog skills" % (len(install), len(catalog)))
-    if core_only:
-        print("Core only: keep the existing live skills and install no optional toolkit.")
-    for name in install:
-        print("  + %-40s %s" % (name, reasons[name]))
-    print("staying in the catalog: %d" % len(staying))
-
-    if "--apply" not in argv:
-        print("\ndry run; add --apply to install")
-        return 0
-
-    relocations = relocation_map(install)
-    if install:
-        try:
-            if state is None:
-                state, identity = start_state(state_path, request, catalog_dir, live_dir, vault,
-                                              install, unavailable)
+        options = parser.parse_args(argv)
+        request_options = {key: value for key, value in vars(options).items()
+                           if key not in {"apply", "list", "vault"}}
+        if options.none and any((options.systems, options.groups, options.names, options.import_skill, options.register_skill)):
+            raise ValueError("--none cannot be combined with optional choices or imports")
+        if options.import_skill and options.register_skill:
+            raise ValueError("Choose one imported folder or one existing workflow skill")
+        if not options.list and not any((options.none, options.systems, options.groups, options.names, options.import_skill, options.register_skill)):
+            raise ValueError("Choose --systems, --groups, --names, --import-skill, --register-skill or --none")
+        vault = Path(options.vault or sk.find_vault()).resolve()
+        preflight_tree(vault / sk.SKILLS_REL)
+        preflight_tree(vault / sk.CATALOG_REL)
+        state_path = vault / "00 ASTORIA" / INSTALL_STATE
+        pending = pending_identity = None
+        if os.path.lexists(state_path):
+            if not options.apply or options.list:
+                return stop_install("An interrupted install is recorded; the remaining shelf cannot supply a fresh preview")
+            pending, pending_identity = state_record(state_path)
+            saved = pending.get("request") if isinstance(pending, dict) else None
+            saved_options = saved.get("options") if isinstance(saved, dict) else None
+            if (not isinstance(pending, dict) or pending.get("version") != 2 or not isinstance(saved, dict)
+                    or set(saved) != {"options", "import"} or saved_options != request_options
+                    or any(type(saved_options[key]) is not type(value) for key, value in request_options.items())):
+                raise ValueError("Retry requires the exact originally approved selection and options")
+            if options.import_skill and options.import_skill.startswith("https://"):
+                validate_github_pin(options.import_skill, saved["import"])
+        vocabulary = sk.load_vocab(str(vault))
+        active = sk.load_skills(str(vault))
+        catalog = sk.load_skills(str(vault), sk.CATALOG_REL)
+        if set(active) & set(catalog):
+            raise ValueError("A skill is present in both active and optional folders")
+        observed = dict(catalog, **active)
+        previous = sk.read_selection(vault)
+        available = sk.release_selection_skills(observed, vocabulary, previous["installed_skills"] if previous else [])
+        if previous:
+            available.update({name: active[name] for name in previous["imports"] if name in active})
+        if options.list:
+            for identifier, system in (vocabulary.get("starter", {}).get("optional_systems") or sk.OPTIONAL_SYSTEMS).items():
+                print("system %s (%d): %s" % (identifier, sum(skill.system == system for skill in available.values()), system))
+            for group, members in catalog_groups(available, vocabulary).items():
+                print("research group %s (%d): %s" % (group, len(members), ", ".join(members)))
+            return 0
+        with tempfile.TemporaryDirectory(prefix="astoria_skill_import_") as temporary:
+            import_folder, imported, candidate, writing_group = None, None, None, None
+            registering = bool(options.register_skill)
+            if options.import_skill:
+                if options.import_skill.startswith("https://"):
+                    import_folder = Path(temporary) / "skill"
+                    pin = pending["request"]["import"] if pending is not None else None
+                    imported = github_folder(options.import_skill, import_folder, pin=pin)
+                else:
+                    import_folder = Path(options.import_skill).expanduser().absolute()
+                    imported = {"owner": "user", "source_kind": options.source_kind or "local",
+                                "source": options.source or str(import_folder), "revision": options.revision or "",
+                                "source_path": options.source_path or import_folder.name}
+                candidate = candidate_skill(import_folder, vocabulary, observed)
+                if not options.import_skill.startswith("https://") and candidate.name != import_folder.name:
+                    raise ValueError("Imported folder name must equal its skill name")
+            elif registering:
+                import_folder = vault / sk.SKILLS_REL / options.register_skill
+                if options.source_kind != "workflow" or not options.source:
+                    raise ValueError("Workflow registration needs --source-kind workflow --source pasted (or its supplied source label)")
+                if previous and options.register_skill in previous["installed_skills"]:
+                    raise ValueError("A release-owned skill cannot be registered as a user import")
+                imported = {"owner": "user", "source_kind": "workflow", "source": options.source,
+                            "revision": options.revision or "", "source_path": options.source_path or options.register_skill}
+                candidate = candidate_skill(import_folder, vocabulary, observed, registering=True)
+                if candidate.name != options.register_skill:
+                    raise ValueError("Registered folder name must equal its skill name")
+            if candidate is not None:
+                imported["files"] = import_files(import_folder)
+                check_import_references(import_folder, candidate, available)
+                vocabulary, writing_group = imported_writing_group(vocabulary, candidate, options.writing_group)
+                available[candidate.name] = candidate
+            elif options.writing_group:
+                raise ValueError("--writing-group needs an imported or registered Writing skill")
+            imports = dict(previous["imports"]) if previous else {}
+            if candidate is not None:
+                imports[candidate.name] = imported
+            removed = set(previous["removed_skills"]) if previous else set()
+            if previous:
+                removed.update(name for name in set(previous["installed_skills"]) | set(previous["imports"]) if name not in active)
+            explicit_names = [name.strip() for name in (options.names or "").split(",") if name.strip()]
+            removed.difference_update(explicit_names)
+            choices = previous["choices"] if previous else {"systems": [], "research_groups": [], "skills": []}
+            systems = sorted(set(choices["systems"]) | {value.strip() for value in (options.systems or "").split(",") if value.strip()})
+            groups = sorted(set(choices["research_groups"]) | {value.strip() for value in (options.groups or "").split(",") if value.strip()})
+            names = sorted(set(choices["skills"]) | set(explicit_names))
+            if candidate is not None:
+                removed.discard(candidate.name)
+            imported_names = set(imports) - removed
+            selected = sk.selection_plan(available, vocabulary, systems, groups, sorted((set(names) | imported_names) - removed),
+                                         choices.get("include_multimodal", DEFAULT_INCLUDE_MULTIMODAL) and not options.no_multimodal,
+                                         removed_skills=removed)
+            installed = set(selected["installed_skills"]) - removed
+            for name in installed:
+                missing = set(available[name].dependencies) - installed
+                if missing:
+                    raise ValueError(name + " needs removed dependency " + ", ".join(sorted(missing)) + "; explicitly reselect it with --names")
+            selected["choices"]["skills"] = sorted(set(names) - set(imports))
+            state = {"schema_version": 1, "choices": selected["choices"],
+                     "installed_skills": sorted(installed - set(imports)),
+                     "required_helpers": {name: reasons for name, reasons in selected["required_helpers"].items()
+                                          if name in installed and name not in imports},
+                     "removed_skills": sorted(removed), "imports": imports}
+            sk._validate_selection_state(state)
+            request = {"options": request_options, "import": imported}
+            if pending is not None:
+                moved_before = verify_state(pending, request, vault / sk.CATALOG_REL, vault / sk.SKILLS_REL, vault)
+                if state_record(state_path) != (pending, pending_identity):
+                    return stop_install("The install-state record changed during recovery verification")
+                # A verified interrupted move can return to its original location,
+                # then the same approved command calculates its complete plan again.
+                for name in sorted(moved_before):
+                    (vault / sk.SKILLS_REL / name).rename(vault / sk.CATALOG_REL / name)
+                state_path.unlink()
+                catalog = sk.load_skills(str(vault), sk.CATALOG_REL)
+                active = sk.load_skills(str(vault))
+            install = sorted(installed & set(catalog))
+            print("Basics and chosen options: %d release skills, %d user imports" % (len(state["installed_skills"]), len(imported_names)))
             for name in install:
-                if name in moved:
-                    continue
-                src, dst = catalog_dir / name, live_dir / name
-                if os.path.lexists(dst):
-                    raise ValueError("Live destination is already occupied for %s" % name)
-                # Rename retains the recorded directory identity on the same filesystem.
-                src.rename(dst)
-            if verify_state(state, request, catalog_dir, live_dir, vault) != set(install):
-                raise ValueError("The selected folders did not all reach the live directory")
-        except (OSError, ValueError, KeyError, TypeError, RuntimeError) as error:
-            return stop_install(error)
-    print("verified %d skill folders in %s" % (len(install), sk.SKILLS_REL))
+                print("  + %s: %s" % (name, "; ".join(selected["reasons"][name])))
+            if candidate is not None:
+                print("  %s %s: %d complete supporting files; source %s; revision %s" %
+                      ("register" if registering else "import", candidate.name, len(imported["files"]), imported["source"], imported["revision"] or "local snapshot"))
+                if writing_group:
+                    print("  Writing group: " + writing_group)
+            if removed:
+                print("Deliberate removals preserved: " + ", ".join(sorted(removed)))
+            if options.none and previous:
+                print("Basics requested; existing recorded choices and custom folders are preserved.")
+            print("Unselected catalog remains available and inactive (%d folders)." % (len(set(catalog) - set(install))))
+            if options.remove_catalog:
+                print("Legacy --remove-catalog accepted; the available shelf is retained.")
+            if not options.apply:
+                print("Dry run; add --apply to install this plan.")
+                return 0
 
-    if not request["portable"] and not install:
-        try:
-            document_digest(vault, relocations, unavailable)
-        except (OSError, ValueError, RuntimeError) as error:
-            return stop_install(error)
-
-    if request["portable"]:
-        try:
-            changed, problems = sk.portable_vault_links(vault, relocations, unavailable)
-        except (OSError, ValueError) as error:
-            return stop_install(error)
-        if problems:
-            print("Portable link repair needs review; the catalog folder was kept:")
-            print("\n".join(problems))
-            return 1
-        print("updated portable links in %d documents" % len(changed))
-
-    # Rebuild the views and lint
-    here = os.path.dirname(os.path.abspath(__file__))
-    views = subprocess.run([sys.executable, os.path.join(here, "build_views.py"), "--vault", vault], check=False)
-    if views.returncode != 0:
-        print("view generation failed; the catalog folder was kept")
+            # Step 2. Snapshot only installation surfaces for ordinary failure rollback.
+            tracked = documents(vault) + [sk.SELECTION_REL]
+            originals = {relative: ((vault / relative).read_bytes(), stat.S_IMODE((vault / relative).stat().st_mode))
+                         for relative in tracked if (vault / relative).is_file()}
+            moved, created = [], None
+            journal = journal_identity = None
+            try:
+                if install:
+                    journal, journal_identity = start_state(state_path, request, vault / sk.CATALOG_REL,
+                                                            vault / sk.SKILLS_REL, vault, install, [])
+                # Step 3. Install exact folders; imported scripts remain unexecuted.
+                for name in install:
+                    source, target = vault / sk.CATALOG_REL / name, vault / sk.SKILLS_REL / name
+                    if source.is_symlink() or os.path.lexists(target):
+                        raise ValueError("Unsafe or colliding installation path: " + name)
+                    import_files(source)
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    source.rename(target)
+                    moved.append((source, target))
+                if journal is not None:
+                    if verify_state(journal, request, vault / sk.CATALOG_REL, vault / sk.SKILLS_REL, vault) != set(install):
+                        raise ValueError("The selected folders did not all reach the active directory")
+                    if state_record(state_path) != (journal, journal_identity):
+                        raise ValueError("The install-state record changed before document writes")
+                if candidate is not None and not registering:
+                    target = vault / sk.SKILLS_REL / candidate.name
+                    target.mkdir(exist_ok=False)
+                    created = target
+                    shutil.copytree(import_folder, created, dirs_exist_ok=True,
+                                    ignore=shutil.ignore_patterns(*SKIP_IMPORT))
+                    if import_files(created) != imported["files"]:
+                        raise ValueError("Imported source changed after its verified preview snapshot")
+                configured = sk.selection_vocabulary(vocabulary, set(active) | installed)
+                save_vocabulary(vault, configured)
+                relocations = {source.relative_to(vault).as_posix(): target.relative_to(vault).as_posix() for source, target in moved}
+                if sk.portable_links_enabled(configured):
+                    changed, problems = sk.portable_vault_links(vault, relocations, documents=documents(vault))
+                    if problems:
+                        raise ValueError("Portable link repair failed:\n" + "\n".join(problems))
+                if journal is not None and state_record(state_path) != (journal, journal_identity):
+                    raise ValueError("The install-state record changed before selection/view writes")
+                # Generated views consume choices as well as installed frontmatter.
+                # Publish this transaction's choices before generating those views;
+                # the ordinary failure path restores the prior record and documents.
+                sk.write_selection(vault, state)
+                here = Path(__file__).parent
+                for script in ("build_views.py", "lint.py"):
+                    command = [sys.executable, "-B", str(here / script), "--vault", str(vault)]
+                    if script == "lint.py" and options.assume_notes:
+                        command += ["--assume-notes", options.assume_notes]
+                    result = subprocess.run(command, capture_output=True, text=True)
+                    if result.returncode:
+                        raise ValueError(script + " failed:\n" + result.stdout + result.stderr)
+                if candidate is not None:
+                    state["imports"][candidate.name]["files"] = import_files(vault / sk.SKILLS_REL / candidate.name)
+                problems = sk.validate_selection(vault, state)
+                if problems:
+                    raise ValueError("Installation is incomplete:\n" + "\n".join(problems))
+                # Step 4. Save only the recipient-owned choices, after verification.
+                if journal is not None and state_record(state_path) != (journal, journal_identity):
+                    raise ValueError("The install-state record changed during installation")
+                sk.write_selection(vault, state)
+                consistency = subprocess.run([sys.executable, "-B", str(here / "build_views.py"), "--vault", str(vault), "--check"],
+                                             capture_output=True, text=True)
+                if consistency.returncode:
+                    raise ValueError("Generated views do not match the completed selection:\n" + consistency.stdout + consistency.stderr)
+                if journal is not None:
+                    state_path.unlink()
+            except BaseException:
+                if journal is not None and state_record(state_path) != (journal, journal_identity):
+                    raise ValueError("The install-state record changed; files and pending state were preserved for review")
+                for source, target in reversed(moved):
+                    if target.exists() and not source.exists():
+                        shutil.move(target, source)
+                if created is not None and created.exists():
+                    shutil.rmtree(created)
+                for relative, (content, mode) in originals.items():
+                    path = vault / relative
+                    path.parent.mkdir(parents=True, exist_ok=True)
+                    path.write_bytes(content)
+                    path.chmod(mode)
+                if sk.SELECTION_REL not in originals:
+                    (vault / sk.SELECTION_REL).unlink(missing_ok=True)
+                if journal is not None:
+                    state_path.unlink()
+                raise
+            print("Installed choices verified; selection.json saved. No native mounts were changed.")
+            return 0
+    except SystemExit as error:
+        return error.code
+    except (OSError, ValueError, TypeError, KeyError, zipfile.BadZipFile) as error:
+        print(str(error))
         return 1
-    lint = subprocess.run([sys.executable, os.path.join(here, "lint.py"), "--vault", vault] + (
-        ["--assume-notes", assume_notes] if assume_notes else []),
-        capture_output=True, text=True)
-    print(lint.stdout.strip().splitlines()[0] if lint.stdout.strip() else "lint produced no output")
-    if lint.returncode != 0:
-        print(lint.stdout)
-        print("lint reported errors; the catalog folder was kept")
-        return 1
-
-    try:
-        if state is not None and state_record(state_path) != (state, identity):
-            raise ValueError("The install-state record changed during the installation")
-        if request["remove_catalog"]:
-            if state is not None and (directory_identity(catalog_dir) != state["catalog_dir"]
-                    or any(os.path.lexists(catalog_dir / name) for name in install)
-                    or tree_digest(catalog_dir) != state["catalog_remaining"]):
-                raise ValueError("The remaining catalog changed before cleanup")
-            shutil.rmtree(catalog_dir)
-            print("removed %s (%d unselected skills remain available in the ASTORIA repository)" % (sk.CATALOG_REL, len(staying)))
-        if state is not None:
-            state_path.unlink()
-    except (OSError, ValueError) as error:
-        return stop_install(error)
-    return 0
 
 
 if __name__ == "__main__":

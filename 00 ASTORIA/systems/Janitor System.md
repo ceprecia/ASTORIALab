@@ -4,7 +4,7 @@ related:
   - "[[Productivity and Study System]]"
   - "[[Research Assistant System]]"
 created: 2026-01-01
-updated: 2026-11-02
+updated: 2026-11-23
 ---
 
 # Janitor System
@@ -21,6 +21,20 @@ It has three jobs:
 
 Janitors check both structure and meaning. A file can be present, linked, and valid while still carrying stale workflow instructions. The job is not done until active instructions agree with the current system behavior.
 
+## Organize existing work
+
+Choose **Keep my structure**, **Tidy selected folders**, or **Help propose an
+organization**. Keeping the structure leaves existing files in place. Tidying
+uses the selected folders and existing collections. A proposal starts with
+questions about the user's actual projects, ongoing responsibilities and
+reusable references, then shows a short before-and-after filing table.
+
+During setup, review consequential moves in the existing build read-back.
+Folder Janitor carries out approved moves and repairs their links and active
+paths together. It keeps ambiguous notes intact and reports their unresolved
+home. Completion means the approved files are findable, their contents and
+history are preserved, and their references have been checked.
+
 ## Skills
 
 Content filing has its own bounded owner:
@@ -30,7 +44,7 @@ Content filing has its own bounded owner:
 Each builder in the [ASTORIA System Builder](ASTORIA%20System%20Builder.md) has its janitor:
 
 - [vault-janitor](../skills/vault-janitor/SKILL.md) checks the layout reference against a fresh build from disk and the vocabulary, its rules against `me.md`, the active instructions for retired paths and footers, the links vault-wide, and log-preservation/selective-reading guidance (the full history stays on disk; newest entries and relevant older chunks supply current context). Pairs with vault-builder. It conditionally invokes installed Folder Janitor for concrete filing findings: audits preserve review-only mode, authorized cleanup carries its existing scope, and the child returns once to the current audit.
-- [skills-janitor](../skills/skills-janitor/SKILL.md) lints every skill folder against the skill-builder schema (`lint.py`), regenerates the Skill Map registry and the coordinator catalogs (`build_views.py`), compares related-skill contracts, and searches active instructions for stale wording. Its scripts also install specialized skills from the catalog and rename root folders with a cascade; repository release preparation is a separate task with its own authorized sources and destination. Pairs with skill-builder.
+- [skills-janitor](../skills/skills-janitor/SKILL.md) lints every skill folder against the skill-builder schema (`lint.py`), regenerates the Skill Map registry and the coordinator catalogs (`build_views.py`), compares related-skill contracts, and searches active instructions for stale wording. Its installer applies chosen systems and skill groups with their required helpers; selected systems and helper presence remain distinct. It also checks added skills and supports root-folder renaming with propagation. The private exporter owns starter-vault generation. Pairs with skill-builder.
 
 The propagation skill:
 

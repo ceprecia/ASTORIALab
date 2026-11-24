@@ -125,8 +125,8 @@ an automatic closeout dossier or a new log of every preservation check.
 - analysis-coordinator and the relevant technical owner resolve analysis,
   environment, QC and reproduction work without treating closeout as scientific approval.
 - chat-handoff prepares context for an explicitly named AI chat; this skill owns
-  the project handover record for a human recipient. capture-progress records
-  authorized progress; write-protocol documents established procedures.
+  the project handover record for a human recipient. Quick Capture files
+  supplied closeout notes on request; write-protocol documents established procedures.
 - folder-janitor handles an explicitly authorized filing or move task. Shared
   writers and artifact skills prepare requested reports from verified facts.
 - Return to the original invoking owner; institutional reports, account transfers

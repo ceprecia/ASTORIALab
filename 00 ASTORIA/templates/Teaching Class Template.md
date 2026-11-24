@@ -27,10 +27,9 @@ STRUCTURE
   sections in order. Include nested group links only where useful. Use a callout
   only in a selected or configured form that supports it. Omit optional
   navigation and its empty heading if the selected form leaves them out.
-- Add a local folder shortcut only when the user selects one and the receiving
-  app supports it. Verify the exact offering folder and use a file URI encoded
-  for the receiving app and operating system. Keep the folder in the existing
-  course-file grouping rather than creating another property or file index.
+- If the selected navigation benefits from a folder reference, show the
+  verified vault-relative offering folder in inline code. Keep it in the
+  existing course navigation rather than creating another property or file index.
 - Keep only useful, populated sections. Rename/group them to match the course.
   When the selected layout retains AI Notes and leaves its order open, place it
   last. Save source/version context and requested continuity only when authorized,

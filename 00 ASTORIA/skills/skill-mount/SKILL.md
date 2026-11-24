@@ -55,6 +55,8 @@ When mounting is requested on a new machine, preview the local mounts and refres
 
 A moved vault can leave registrations pointing to its previous absolute path. A shared vault-relative path does not establish which vault owns an entry. Explicitly review ownership before changing or removing those pointers, then refresh the confirmed entries when requested. The relative path helps locate the intended skill after that review; it does not authorize modifying another vault's registration.
 
+Review entries marked `different-vault pointer` by their exact name and previous target. Verify the entry and its owner in the platform before rebinding or retiring that specific registration. Open the canonical skill directly while ownership is unresolved.
+
 ## Registry platforms
 
 Read `./references/registry_adapters.md` only when a requested registry platform needs registration or refresh. It holds the manifest fields, pointer stub, refresh rules, and platform adapter. Registration uses the platform's supported interface and current consent requirements.

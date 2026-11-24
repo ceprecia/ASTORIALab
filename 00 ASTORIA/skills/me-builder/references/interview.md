@@ -68,7 +68,7 @@ After round 4, restate every answer and applied default for the proposed `me.md`
 - `Current Research Interests`: field and subfields as a list.
 - `Career Direction`: the role option as one sentence; no goal is invented.
 - `Current Tools`: devices, AI app, reference manager, code, software.
-- `Working Locations`: the vault path; the external folder path is added in setup Stage 4 once the user has pointed to it.
+- `Working Locations`: use the selected vault folder as the workspace root. In setup Stage 4, record a verified external folder path only when an accepted project needs it.
 - `Current Projects and Areas`: written in setup Stage 4 from the accepted PARA list; left as a heading with one line until then.
 - `Writing Standards` and `Code Preferences`: recipient-supplied choices and applicable project requirements. Do not turn inherited examples into personal preferences. Omit Code Preferences when the recipient does not write code. Research integrity requirements remain in force.
 

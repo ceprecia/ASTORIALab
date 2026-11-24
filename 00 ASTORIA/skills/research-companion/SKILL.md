@@ -59,7 +59,7 @@ It does not own:
 - publication-facing drafting and writing review, which use [writing-companion](../writing-companion/SKILL.md) and its distinct specialists; reporting completeness uses check-research-reporting and funding requirements use research-grant-advisor
 - detailed critique of constructs, measures, design, statistics, confounds, causal limits, generalizability, or reporting, which belongs to [research-critique](../research-critique/SKILL.md)
 - prospective stress testing of a user-supplied hypothesis and prediction, including falsifiability, counterexamples, and bounded novelty assessment, which belongs to [prediction-stress-test](../prediction-stress-test/SKILL.md)
-- PhD mentorship, authorship, milestones, sponsorship, or career planning, which belong to [phd-companion](../phd-companion/SKILL.md)
+- PhD mentorship, authorship, milestones, sponsorship, or career planning, which belong to [phd-companion](../../specialized_skills/phd-companion/SKILL.md)
 
 [research-critique](../research-critique/SKILL.md) owns detailed scientific critique.
 
@@ -347,7 +347,7 @@ Before writing, verify the proposed content, exact destination and any wiki-link
   session owner and send the loaded [research-coordinator](../research-coordinator/SKILL.md) one
   coordination request for the bounded continuity or routing decision.
 - **PhD or career boundary is reached:** offer a direct handoff to
-  [phd-companion](../phd-companion/SKILL.md). Do not ask Coordinator to route to another companion.
+  [phd-companion](../../specialized_skills/phd-companion/SKILL.md). Do not ask Coordinator to route to another companion.
 - **A worker finishes:** receive its evidence through the Coordinator and
   continue already authorized team dependencies. Do not start unrelated work
   or restore a separate Coordinator shell.
@@ -363,7 +363,7 @@ Before writing, verify the proposed content, exact destination and any wiki-link
 
 ## Handoffs
 
-When a visual map would help organize the current material, suggest it briefly. Keep unsaved maps or sketches in the selected response form. Use the requested [mindmap](../mindmap/SKILL.md) handoff for an authorized map save or revision. Pass the bounded workstream, relevant sources or idea notes, evidence-versus-inference labels, unresolved questions, and return point. Mindmap organizes and builds the visual representation with at most one brief checkpoint for missing information and no intermediate approvals; it does not generate hypotheses, decide scientific relationships, select conclusions, or replace the companion's strategy work.
+When a visual map would help organize the current material, suggest it briefly. Keep unsaved maps or sketches in the selected response form. Use the requested [mindmap](../../specialized_skills/mindmap/SKILL.md) handoff for an authorized map save or revision. Pass the bounded workstream, relevant sources or idea notes, evidence-versus-inference labels, unresolved questions, and return point. Mindmap organizes and builds the visual representation with at most one brief checkpoint for missing information and no intermediate approvals; it does not generate hypotheses, decide scientific relationships, select conclusions, or replace the companion's strategy work.
 
 Research Companion remains the visible session and return owner. Receive the checked artifact and its source or rendering limitations, then continue requested work and already assigned dependencies. Offer unrelated next work rather than starting it. Use the verified eligible destination selected for the task, then the applicable verified recipient or project placement policy. Where placement remains open, resolve the verified owner location. Keep Project or Area working material in its local `files/` or documented workspace. Use Resources for reusable references. Preserve established operational layouts. Follow Mindmap's format rules. Pass a note link location only when the scope includes that edit. Use the Coordinator for any chat reuse/dispatch and collection under the same
 bounded request; no new route-selection menu is needed. Mindmap remains optional,
@@ -389,7 +389,7 @@ helper group only when needed. It allocates the fixed project-wide chat names,
 reuses authorized workers, collects returns and updates affected assignments.
 Save useful team bindings and technical continuity only when authorized. Use
 the verified location selected for the task or established by the applicable
-project continuity policy. Progress logs use the capture skills; curated procedures use
+project continuity policy. Requested log entries use Quick Capture; curated procedures use
 Write Protocol under its existing review/save rules. Do not create another team
 hub, status file, copied skill catalog or automatic record of every message.
 

@@ -13,22 +13,22 @@ Practical support for college instructors, teaching assistants, and graders. The
 
 ## Entry and ownership
 
-Start with [teaching-companion](../skills/teaching-companion/SKILL.md). It keeps the conversation and requested weekly preparation together. The internal [teaching-coordinator](../skills/teaching-coordinator/SKILL.md) selects one specialist for each bounded task and returns its evidence and unresolved work. Direct requests to a named specialist do not need another intake.
+Start with [teaching-companion](../specialized_skills/teaching-companion/SKILL.md). It keeps the conversation and requested weekly preparation together. The internal [teaching-coordinator](../specialized_skills/teaching-coordinator/SKILL.md) selects one specialist for each bounded task and returns its evidence and unresolved work. Direct requests to a named specialist do not need another intake.
 
 | Specialist | Owns |
 | --- | --- |
-| [teaching-assistant-builder](../skills/teaching-assistant-builder/SKILL.md) | First setup, syllabus imports, existing-folder adoption, and new offerings. |
-| [teaching-grader](../skills/teaching-grader/SKILL.md) | Applying approved rubrics, proposed scores and feedback, participation and score reconciliation. |
-| [teaching-office-hours](../skills/teaching-office-hours/SKILL.md) | Student questions, correspondence triage, and drafts of replies, announcements, and class emails. |
-| [teaching-platform](../skills/teaching-platform/SKILL.md) | Authorized platform operations and verification of course groups, access, dates, content, assessments, and grade entry. |
-| [teaching-lecture-review](../skills/teaching-lecture-review/SKILL.md) | Lecture planning, assessment emphasis and section learning checks, plus clarity, corrections and agreement with approved references. |
-| [teaching-assessment](../skills/teaching-assessment/SKILL.md) | Quiz/exam design and review, supported answers and assessment-to-instruction maps for lecture planning. |
+| [teaching-assistant-builder](../specialized_skills/teaching-assistant-builder/SKILL.md) | First setup, syllabus imports, existing-folder adoption, and new offerings. |
+| [teaching-grader](../specialized_skills/teaching-grader/SKILL.md) | Applying approved rubrics, proposed scores and feedback, participation and score reconciliation. |
+| [teaching-office-hours](../specialized_skills/teaching-office-hours/SKILL.md) | Student questions, correspondence triage, and drafts of replies, announcements, and class emails. |
+| [teaching-platform](../specialized_skills/teaching-platform/SKILL.md) | Authorized platform operations and verification of course groups, access, dates, content, assessments, and grade entry. |
+| [teaching-lecture-review](../specialized_skills/teaching-lecture-review/SKILL.md) | Lecture planning, assessment emphasis and section learning checks, plus clarity, corrections and agreement with approved references. |
+| [teaching-assessment](../specialized_skills/teaching-assessment/SKILL.md) | Quiz/exam design and review, supported answers and assessment-to-instruction maps for lecture planning. |
 
 ## One teaching home
 
 Use the selected eligible Teaching Area arrangement, then its applicable verified convention. The default Area root has one MOC and one AGENTS.md. Keep each offering’s course note and supporting files together in the verified local files folder or documented external workspace. Use semester/course nesting only when it fits that convention. In authorized MOC edits, link verified offerings in actual term order independently of folder nesting. Each offering note holds its sources, responsibilities, policies and outstanding actions.
 
-Setup uses [Teaching MOC Template](../templates/Teaching%20MOC%20Template.md) and [Teaching Class Template](../templates/Teaching%20Class%20Template.md), reuses populated records, and asks only unanswered questions that affect the result. A new semester gets a distinct offering. Student coursework continues through [study-companion](../skills/study-companion/SKILL.md) and class-builder.
+Setup uses [Teaching MOC Template](../templates/Teaching%20MOC%20Template.md) and [Teaching Class Template](../templates/Teaching%20Class%20Template.md), reuses populated records, and asks only unanswered questions that affect the result. A new semester gets a distinct offering. Student coursework continues through [study-companion](../specialized_skills/study-companion/SKILL.md) and class-builder.
 
 ## Working agreement
 

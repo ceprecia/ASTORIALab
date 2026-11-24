@@ -1,0 +1,11 @@
+check_id,check,actual_value,unit,status,evidence_note
+E01,Exact LED identity and polarity,,,NOT MEASURED,No physical part inspected
+E02,Isolated resistor resistance,,ohm,NOT MEASURED,No meter reading supplied
+E03,Breadboard node map,,,NOT MEASURED,No continuity observations supplied
+E04,Switch behavior,,,NOT MEASURED,No continuity observations supplied
+E05,Disconnected source voltage,,V,NOT MEASURED,No source measurement supplied
+E06,Source current limit,,mA,NOT MEASURED,No instrument setting verification supplied
+E07,Powered behavior,,,NOT MEASURED,No circuit powered for this fixture
+E08,Resistor voltage,,V,NOT MEASURED,No meter reading supplied
+E09,Current derived from measured values,,mA,NOT MEASURED,Requires E02 and E08
+E10,LED visibility,,,NOT MEASURED,No physical observation supplied

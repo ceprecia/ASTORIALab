@@ -17,7 +17,7 @@ metadata:
   requires: ""
   gates: ""
   created: "2026-07-23"
-  updated: "2026-11-18"
+  updated: "2026-11-22"
 ---
 
 # Research Coordinator
@@ -103,7 +103,7 @@ Collect the actual deliverable, skill/guides and sources used, checks, limitatio
 
 Return results, evidence, limitations, actual worker states and the workstream return points to Research Companion for synthesis. Do not start an unrequested next part, scientific operation, save or external action. Existing authorization continues for unfinished requested work and corrections within scope.
 
-When a team continuity update is authorized, retain only the role, skill, actual chat or host IDs, scope, owned outputs and state needed to resume. Use the verified location selected for the task or established by the applicable project continuity policy. No new registry, hub, event log or automatic checkpoint. Use the canonical shared helper selected for a requested support task; its own source, review and save requirements remain in force. Capture helpers own Research Logs under the user's current capture preference. Write Protocol curates established work through its existing overview, detailed review and publication rules; a team result is not automatically a protocol.
+When a team continuity update is authorized, retain only the role, skill, actual chat or host IDs, scope, owned outputs and state needed to resume. Use the verified location selected for the task or established by the applicable project continuity policy. Maintain that workstream's current handoff in place using the MOC writing and reading defaults in `me.md`. No new registry, hub, event log or automatic checkpoint. Use the canonical shared helper selected for a requested support task; its own source, review and save requirements remain in force. Quick Capture files requested notes under the user's current capture preference. Write Protocol curates established work through its existing overview, detailed review and publication rules; a team result is not automatically a protocol.
 
 ## Assignment and Return Format
 

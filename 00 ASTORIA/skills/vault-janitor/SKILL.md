@@ -14,7 +14,7 @@ metadata:
   system: Janitor System
   dependencies: vault-builder
   created: "2026-09-24"
-  updated: "2026-11-18"
+  updated: "2026-11-23"
 ---
 
 # Vault Janitor
@@ -52,12 +52,18 @@ Read `./references/checks.md` for the check lists and the search patterns. Resol
 8. **Fix on approval.**
    - Layout: hand approved repairs to Vault Builder with the same read exclusions. Keep the generated page unchanged if rebuilding cannot honor them.
    - Rules: update `layout_rules` in the vocabulary to match `me.md` when authorized. Rebuild only within the generator’s allowed read scope. Report rules missing from `me.md` for the recipient.
-   - Instructions: correct a retired path when the current path is unambiguous; remove a footer; add a missing security section or loader paragraph from its template; report a stray instruction file, never create one. Drift that spans several files goes to [propagate](../propagate/SKILL.md) or [skills-janitor](../skills-janitor/SKILL.md).
+   - Instructions: correct a retired path when the current path is unambiguous; remove a footer; restore missing security guidance in the briefing or setup-pending loader from its template; report a stray instruction file, never create one. Drift that spans several files goes to [propagate](../propagate/SKILL.md) or [skills-janitor](../skills-janitor/SKILL.md).
    - Log reading: repair active guidance or templates that order count-based condensation. Keep every existing log entry verbatim. Working-context summaries never replace the originals.
    - Dated notes: move files only under an explicit user-selected archive scope, keeping their names and repairing links. Age or file count alone does not authorize a move.
 
 ### Folder Janitor handoff
 
+- **Organization choice:** carry Keep my structure, Tidy selected folders or
+  Help propose organization from setup or chat, together with answered ownership
+  questions. Keep means no existing-content moves. A proposal returns the
+  concrete grouped move map for setup's existing read-back; its later approval
+  covers only those moves and reference repairs. Do not treat setup's creation
+  of new folders as permission to reorganize the user's existing content.
 - **Report, audit, simulation or explicit read-only request:** invoke Folder Janitor in the same review-only mode. It returns findings and a finite proposed filing map; no files move and no MOC content is edited.
 - **Authorized fix, tidy or cleanup request:** invoke it for the already authorized, unambiguous filing operations. Carry the selected folder scope, owner-chosen structure and intake, approved move/dependency plan when present, write exclusions, holds, scientific-layout exceptions, and return owner. Folder Janitor assesses active path dependencies as well as links and uses its one brief approval checkpoint for very large moves or critical operational changes not already covered by the concrete approval. Do not add another approval round for the same approved scope.
 - **Missing or deliberately removed skill:** report that bounded capability gap and continue the remaining Vault Janitor audit. Do not recreate it or treat it as a mandatory dependency.
