@@ -1,49 +1,47 @@
-# Week 1 lesson and practice
+# Week 1: species counts and sampling effort
 
-Fictional tutorial input. Cedar Vale, its map and the closure below are invented. The rules define this exercise; the distances describe this fictional grid.
+Fictional course lesson. Every count below was invented for learning; no field observations were collected. Species A through D are labels used only in this exercise.
 
 ## Lesson
 
-### M1. Read the coordinate before choosing a route
+### S1. Individuals, richness and relative abundance
 
-The grid has columns A through D from west to east and rows 1 through 4 from south to north. North is up. A coordinate names the column first and row second.
+An individual count records how many organisms of one species were counted in a sample. The total number of individuals is the sum of those counts.
 
-```text
-                 NORTH
-                   ^
-       A      B      C      D
-4      .      .      .    Clinic
-3    Garden   .      .    Tower
-2      .      .      .      .
-1    Depot    .    Library  .
-```
+Observed species richness is the number of distinct species with a positive count. Count each species once, regardless of how many individuals it contributes.
 
-Depot is A1, Library is C1, Garden is A3, Tower is D3 and Clinic is D4. Every dot is a usable cell. A place name occupies one cell.
+Relative abundance is a species' count divided by the total number of individuals in that sample. Multiply by 100 to express it as a percentage. For example, 2 individuals out of 8 give 2 / 8 × 100 = 25%.
 
-### M2. Count edges to calculate distance
+### S2. Supplied count records
 
-A route moves between horizontally or vertically adjacent cells. Diagonal steps are outside this exercise's rules. Each permitted step crosses one edge and measures 200 metres.
+A quadrat is a bounded sampling area. For this exercise, each quadrat covers one square metre. The three quadrats do not overlap, and the records use the same counting method on the same fictional occasion.
 
-For example, D1 → D2 → D3 takes two northward steps. Its distance is 2 × 200 = 400 metres. Three cells appear in that route, but only two edges are crossed.
+| Quadrat | Habitat label | Area in square metres | Species A | Species B | Species C | Species D |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Q1 | Habitat A | 1 | 6 | 3 | 1 | 0 |
+| Q2 | Habitat A | 1 | 2 | 4 | 0 | 4 |
+| Q3 | Habitat B | 1 | 0 | 5 | 5 | 0 |
 
-### M3. Apply the closure in either direction
+### S3. Combining records
 
-The edge joining B1 and C1 is closed. A route cannot cross that edge from either side. Other edges joining adjacent grid cells are open. The closure blocks that connection, while B1 and C1 remain usable through their other neighbours.
+To pool Q1 and Q2, add the individual counts for each species across those two samples. Then calculate the total individuals and count the species with a positive pooled count.
 
-The overall direction from Depot to Library is east. The direct route A1 → B1 → C1 would cross the closed edge, so overall direction alone does not identify a valid route.
+Do not add the two richness values directly: a species present in both samples still counts as one species in the pooled record. State whether a total or percentage refers to one quadrat or to pooled samples.
 
-### M4. Keep the comparison criterion visible
+### S4. What the samples support
 
-The map supports distance comparisons. It supplies no walking speeds, waiting times or crowd information. Equal distances therefore support an equal-distance conclusion. They do not establish equal travel times.
+The supplied effort is two quadrats, or two square metres, in Habitat A and one quadrat, or one square metre, in Habitat B. A difference between those pooled records does not by itself establish which whole habitat contains more species.
+
+A zero means no individuals of that species were counted in that sample. It does not establish absence from the entire habitat. The table supplies no measured habitat conditions or evidence of ecological causes.
 
 ## Practice questions
 
-1. Give Library's coordinate and its overall direction from Depot. Explain why those facts alone do not establish a valid route.
-2. Give the direction and distance of Tower → Clinic.
-3. Find a shortest valid route from Depot to Library. Give its cell sequence, step count and distance, and explain why two steps will not work.
-4. Compare A1 → A2 → B2 → C2 → C1 with A1 → B1 → B2 → C2 → C1. Is either shorter? Can this source establish which is faster?
-5. A learner proposes A1 → B2 → C1 as a shortcut. Which rule decides whether it is valid?
-6. Starting at D1, move two cells north and then two cells west. Give the final coordinate and total distance. Check every step against the closure.
+1. How many individuals and how many observed species are in Q1? Show which counts enter each answer.
+2. What percentage of Q1's counted individuals belongs to Species B? Explain what that percentage describes.
+3. Pool Q1 and Q2. Give the four species counts, total individuals and observed richness. Why would adding the two separate richness values be misleading?
+4. Compare Q1 and Q2. Do they have the same observed richness? Which species has the largest individual count in each, including any tie?
+5. Someone concludes, “Habitat A contains more species than Habitat B.” Explain what the supplied records show and what makes that whole-habitat claim unsupported. Write a narrower statement.
+6. Species A has a zero count in Q3. Does that prove it is absent from Habitat B? Suggest a next observation that would make the comparison more informative, without claiming that it has been collected.
 
 ## Work before checking
 

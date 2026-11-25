@@ -44,15 +44,17 @@ After setup, ask a different assistant to read your me.md for vault-wide context
 
 **First-time setup**
 
-1. Download the starter vault ZIP from [ASTORIA Releases](https://github.com/ceprecia/ASTORIALab/releases) and extract it.
+1. Download **ASTORIA-starter-vault-v1.3.1.zip** from [ASTORIA Releases](https://github.com/ceprecia/ASTORIALab/releases/tag/v1.3.1) and extract it.
 2. Open that folder in your assistant and grant access. Show your existing Obsidian vault too, if using one.
 3. Say **Set up my vault**. Choose first-time setup and follow the questions and plan. Use Obsidian's **Open folder as vault** to open your chosen folder, or use a Markdown editor.
+
+The starter contains `AGENTS.md` and `00 ASTORIA/`; **Code → Download ZIP** contains the repository.
 
 **Update an existing ASTORIA vault**
 
 1. Download and extract the new starter ZIP.
 2. Open your working vault in the assistant and show it the new ZIP or extracted folder.
-3. Say **Set up my vault** and choose update. Review changes and janitor repairs before they are applied.
+3. Say **Set up my vault** and choose update. The assistant applies the update, then audits your vault. Review proposed repairs before they are applied.
 
 **Start with the basics** selects Research Assistant, Janitor and ASTORIA System Builder with required shared helpers. **Help me choose** offers other systems and skill groups. Offer a GitHub skill link, workflow instructions or a local skill folder, or skip additions. App mounting is optional.
 
@@ -66,7 +68,7 @@ None of this information is sent back to the github project. Your preferences ar
 - The folder structure and map notes you accepted, plus a Skill Map showing your selected tools.
 - The three basics and any additional systems or skills you chose.
 
-Follow the [eight-system tutorial](tutorial.md) for files, prompts and worked examples. See the [manual setup guide](00%20ASTORIA/skills/setup-my-vault/references/manual_setup.md) for detailed setup instructions.
+Read the [practical tutorial](tutorial.md) to get started, or download the [optional worked examples](https://github.com/ceprecia/ASTORIALab/releases/download/v1.3.1/ASTORIA-examples-v1.3.1.zip) for longer practice. See the [manual setup guide](00%20ASTORIA/skills/setup-my-vault/references/manual_setup.md) for detailed setup instructions.
 
 ## Try a workflow
 
@@ -110,7 +112,7 @@ This is your starting point. Build around the projects, habits and tools you alr
 
 **Connect your notes and results.** Use Obsidian to read, edit and link the same Markdown files your assistant works with. Give each project a MOC linking its notes, papers and outputs, then ask your assistant to save useful work in the appropriate note and link it back. Existing scientific files can keep their established layout. Obsidian's [internal links](https://obsidian.md/help/links) help you follow these connections, while the bundled templates give new notes a consistent starting point.
 
-**Keep it organized as it grows.** The [Janitor System](00%20ASTORIA/systems/Janitor%20System.md) has three maintenance skills. **Vault Janitor** checks layout, instructions and links. **Folder Janitor** organizes selected folders using your chosen structure and repairs affected links and paths while preserving MOC prose. **Skills Janitor** checks skill consistency and refreshes the generated maps and catalogs. Try “Check my vault for stale instructions and broken links” or “Organize these attachments using my folder rules.” After folder or template changes, [Vault Builder](00%20ASTORIA/skills/vault-builder/SKILL.md) refreshes the assistant's layout reference. Ask for these checks when needed; they run as requested tasks.
+**Keep it organized as it grows.** In the [Janitor System](00%20ASTORIA/systems/Janitor%20System.md), ask **Janitor Companion** to “Clean up my vault.” It routes checks and presents fixes for your approval. **Vault Janitor** checks layout, instructions and links. **Folder Janitor** organizes selected folders and repairs affected paths and links while preserving MOC prose. **Skills Janitor** checks skill consistency and generated views. **Agent Janitor** traces instruction drift and tests proposed fixes. After folder or template changes, [Vault Builder](00%20ASTORIA/skills/vault-builder/SKILL.md) refreshes the layout reference.
 
 ## License and sources
 

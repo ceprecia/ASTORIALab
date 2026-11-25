@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
-"""finish_setup.py: verify the build and write the full AGENTS.md loader, retaining README.md.
+"""finish_setup.py: verify the build and write the full AGENTS.md loader.
 
 Purpose: the last step of setup. It checks me.md, the layout, AI log, Skill Map,
 root folders and any recorded installed selection. A verified uninstalled
 catalog may remain. It replaces only the exact draft AGENTS.md with the loader from
-00 ASTORIA/templates/agents_loader_template.md, and retains README.md as the
-participant guide. Passing the core checks and installing the full loader
-mean setup is done; README presence is not a setup-state signal.
+00 ASTORIA/templates/agents_loader_template.md, leaving supplied guides, notices
+and user documents at their actual locations. Passing the core checks and
+installing the full loader mean setup is done; a root README, tutorial and
+example files are not required and their presence is not a setup-state signal.
 
 Language: Python 3 and PyYAML for the YAML vocabulary. Native skill mounting is not a completion condition.
 Author: ASTORIA System Builder. Date: 2026-09-24.
 
 Usage:
     python3 finish_setup.py            # dry run: the checks and what would change
-    python3 finish_setup.py --apply    # write the loader and retain the README
+    python3 finish_setup.py --apply    # write the loader; leave existing documents unchanged
     Add --vault PATH from outside the vault.
 """
 import os
@@ -90,7 +91,7 @@ def main(argv):
     for p in problems:
         print("  - %s" % p)
     print("AGENTS.md: %s" % ("draft, will be replaced" if agents_is_draft else "already the loader" if current == loader and current is not None else "custom or unsafe, preserved" if os.path.lexists(agents_path) else "missing, will be written"))
-    print("README.md: preserved; it is the participant guide, not setup state")
+    print("Existing guides, notices and user documents: unchanged; no root guide is required")
     if problems:
         print("fix the problems above before finishing")
         return 1
@@ -98,10 +99,10 @@ def main(argv):
         print("\ndry run; add --apply to finish")
         return 0
 
-    # Step 2: write the loader without changing the participant guide.
+    # Step 2: write the loader without changing existing documents.
     if current != loader:
         Path(agents_path).write_text(loader, encoding="utf-8")
-    print("AGENTS.md is now the loader; README.md retained. Setup finished.")
+    print("AGENTS.md is now the loader; existing documents unchanged. Setup finished.")
     return 0
 
 

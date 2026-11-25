@@ -2,6 +2,8 @@
 
 Use this procedure when setup scripts cannot run, or when you prefer a file manager and Markdown editor. Start through **Set up my vault** and use Setup My Vault's same interview, system choices, organization choices and two read-backs. Basics does not require Python, PyYAML, an AI account or native mounts. An assistant with file access can perform these actions without scripts.
 
+Documentation follows the selected product. Preserve supplied guides, complete notices, attribution and user documents at their actual locations. A root README, tutorial or example files are not required for setup; do not create a root guide or require a sample download or copying exercise. Do not delete older or customized documents because a newer download omits them. Keep this operational manual and the optional-skill shelf; online learning materials are separate from those setup resources.
+
 ## Check toolkit state
 
 Do this before setup writes or a fresh installer `--list` or preview. Use file
@@ -104,7 +106,7 @@ Basics contains the Research Assistant System, Janitor System and ASTORIA System
 
 Offer the same five optional systems: Writing, Study and productivity, Teaching, Engineering, and PhD and career, with Help me choose. Offer relevant research groups from the supplied catalog. Reuse the one optional add-skills question for GitHub, pasted instructions, a local folder, or skip, through Skill Builder and Skills Janitor. Do not invent a separate manual intake or installation engine.
 
-Teaching selection installs the support skills when accepted; actual course configuration belongs to the tutorial's later syllabus workflow.
+Teaching selection installs the support skills when accepted; actual course configuration is a separate syllabus-based task using the user's own materials. A tutorial or sample syllabus is optional.
 
 Keep `00 ASTORIA/specialized_skills/` as uninstalled reference material. Its presence activates nothing. Manually install an approved optional selection only if the complete skill folders, dependencies and matching generated views can be verified. Otherwise leave the exact choices pending in the setup result and briefing; do not call them installed or treat them as required routes. Preserve the shipped Basics and views. Later scripted installation can complete the pending choices.
 
@@ -129,7 +131,7 @@ For existing content, use Keep my structure, Tidy selected folders, or Help prop
 3. Verify the shipped Basics and six shared helpers above. Keep the shipped Skill Map and coordinator catalogs. For each optional choice, verify the complete dependency closure and matching views before treating it as installed; otherwise report it as pending. Do not hand-edit generated views to make a partial installation appear complete. Keep the uninstalled catalog so its reference links work.
 4. Create `00 ASTORIA/agent_notes/layout.md` with five sections: Folders, Files, Templates, Rules, Active projects and areas. Use the vocabulary's purposes, file kinds, and templates, your `me.md`, and the folders and installed skills you can verify. List only verified owning notes. For a project folder, use the single direct note marked `astoria_role: project_moc`. Without a marker, use the verified `MOC <project>.md` or a lone familiar MOC filename. If multiple explicit marks or unresolved legacy candidates remain, leave the row out and report the ambiguity. Preserve existing notes. For an Area folder, use its single direct note marked `astoria_role: area_moc`. If there is no marker, use its verified exact `<Area> MOC.md` only when it carries no conflicting role. Report missing or competing Area maps and leave that row out.
 5. Copy `00 ASTORIA/templates/ai_log_template.md` to `00 ASTORIA/agent_notes/ai_log.md` and fill its date and first entry. State that setup and the layout were manual and that scripted lint, generated-view checks, and native skill mounts did not run.
-6. Check that `me.md`, layout, AI log, Skill Map, every chosen root, and `00 ASTORIA/templates/agents_loader_template.md` exist. Check added paths, Basics' helper closure and any verified optional installations. Keep all other choices explicitly pending. Copy the loader template over the exact draft root `AGENTS.md`; preserve customized instructions for review. Keep the root `README.md`. The full loader and verified installed selection identify completed setup; catalog or README presence does not decide it.
+6. Check that `me.md`, layout, AI log, Skill Map, every chosen root, and `00 ASTORIA/templates/agents_loader_template.md` exist. Check added paths, Basics' helper closure and any verified optional installations. Keep all other choices explicitly pending. Copy the loader template over the exact draft root `AGENTS.md`; preserve customized instructions for review. Preserve supplied guides, notices and user documents at their actual locations. The full loader and verified installed selection identify completed setup; catalog presence and the presence or location of documentation do not decide it.
 
 Basics is now usable. Report the systems and skills actually installed, pending choices, and checks that did not run. These manual checks do not claim automated validation. Optional systems, research groups and native skill-menu links can be added later through the existing owners.
 

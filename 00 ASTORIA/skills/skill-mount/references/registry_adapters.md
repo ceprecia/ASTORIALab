@@ -47,17 +47,21 @@ only copy; do not reconstruct the procedure from this stub or from memory.
 
 ## How to run this skill
 
-1. Read this file completely and follow it: `{skill_md}`
-2. If that path does not exist, the vault may have moved. The durable location is
-   `{skill_md_relative}` inside the intended vault. Confirm which vault owns this pointer
-   before locating it there; the relative path alone does not establish ownership.
-3. If the path exists but cannot be read, the vault folder has not been granted to this
-   session. Request access to `{vault_root}` and then read the file.
-4. Check `requires` and `gates` in its frontmatter before running anything.
-5. Read its `references/`, `scripts/`, or `assets/` files only when it routes you there.
-6. Follow the vault's standing instructions in order: the vault-root `AGENTS.md`, then
-   `me.md`, then the project `AGENTS.md` when the task is inside a project folder. `me.md`
-   is the default and a project `AGENTS.md` supersedes it inside that project.
+1. Confirm the intended vault at `{vault_root}`. If it moved, confirm which vault owns
+   this pointer and identify its current root. A relative skill path alone does not
+   establish ownership.
+2. Read the confirmed vault's root `AGENTS.md` and `me.md` completely. If either is
+   unavailable, report the gap and stop before accessing other user files. Request
+   access to the confirmed vault if needed.
+3. Read the applicable project `AGENTS.md` when working in a project. Apply its scoped
+   constraints under the current `me.md`. If applicable project instructions cannot
+   be read, report the gap and stop before opening the skill.
+4. Use `{skill_md}` if it resolves to the canonical skill in the confirmed vault.
+   If that path is stale or outside the confirmed vault, resolve `{skill_md_relative}`
+   from its current root. Read the canonical skill completely. If it is unavailable,
+   report the gap and stop.
+5. Check the skill's `requires` and `gates` before running it. Open its supporting
+   files only when the canonical skill calls for them.
 ```
 
 ## Adapter: Claude Science

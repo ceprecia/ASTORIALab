@@ -41,7 +41,10 @@ import skillkit as sk
 
 OUT_REL = os.path.join("00 ASTORIA", "agent_notes", "layout.md")
 SKIP_DIRS = {".obsidian", ".trash", ".git", ".agents", ".claude", "__pycache__"}
-DATE_HEADING = re.compile(r"^#{2,4}\s+(\d{4}-\d{2}-\d{2})", re.M)
+TOP_LEVEL_HEADING = re.compile(r"^ {0,3}#(?:[ \t]+|$)")
+LOG_HEADING = re.compile(r"^ {0,3}#[ \t]+[^\w]*(?:Research[ \t]+)?Logs?(?:[ \t]+#+)?[ \t]*$", re.I)
+DATE_HEADING = re.compile(r"^ {0,3}#{2,4}[ \t]+(\d{4}-\d{2}-\d{2})")
+FENCE_LINE = re.compile(r"^ {0,3}(`{3,}|~{3,})(.*)$")
 # Spaces, punctuation, and underscores delimit the conventional MOC token.
 MOC_RE = re.compile(r"(?:^|[\W_])MOC(?:$|[\W_])", re.I)
 MOC_FRONTMATTER_LIMIT = 65536
@@ -163,10 +166,36 @@ def subfolders(path):
     return out
 
 
+def newest_log_date(text):
+    """Return the newest dated heading inside a top-level log section."""
+    dates = []
+    active_fence = ""
+    in_log = False
+    for line in text.splitlines():
+        fence = FENCE_LINE.match(line)
+        if fence:
+            marker, suffix = fence.groups()
+            if active_fence:
+                if marker.startswith(active_fence) and not suffix.strip():
+                    active_fence = ""
+            elif marker[0] == "~" or "`" not in suffix:
+                active_fence = marker
+            continue
+        if active_fence:
+            continue
+
+        if TOP_LEVEL_HEADING.match(line):
+            in_log = bool(LOG_HEADING.fullmatch(line))
+        elif in_log:
+            date = DATE_HEADING.match(line)
+            if date:
+                dates.append(date[1])
+    return max(dates, default="")
+
+
 def newest_date(path):
     with open(path, encoding="utf-8") as source:
-        dates = DATE_HEADING.findall(source.read())
-    return max(dates, default="")
+        return newest_log_date(source.read())
 
 
 def build(vault, vocab, installed, *, folder_errors=None):
@@ -297,7 +326,7 @@ def build(vault, vocab, installed, *, folder_errors=None):
     lines += ["", "## Rules", "", "Restated from `me.md`, which stays the authority.", ""]
     for r in vocab.get("layout_rules") or []:
         lines.append("- %s" % r)
-    lines += ["", "## Active projects and areas", "", "Verified project and Area MOCs, with the date of each newest dated heading. In each project or Area folder, the matching explicit role selects one direct note before the verified filename fallback. Follow the recipient's approved, applicable MOC reading policy in `me.md` within the current task scope. If no applicable policy governs the reading sequence, use the opening section and heading outline to orient, then read only the recent log entries and sections needed for the task.", ""]
+    lines += ["", "## Active projects and areas", "", "Verified project and Area MOCs, with the date of each newest log entry. In each project or Area folder, the matching explicit role selects one direct note before the verified filename fallback. Follow the recipient's approved, applicable MOC reading policy in `me.md` within the current task scope. If no applicable policy governs the reading sequence, use the opening section and heading outline to orient, then read only the recent log entries and sections needed for the task.", ""]
     lines += table(["Project or area", "MOC", "Newest dated entry"], proj_rows)
     lines += ["", "Built %s." % today, ""]
     return "\n".join(lines), report + folder_errors

@@ -1,10 +1,10 @@
 ---
 related: []
 created: "2026-11-23"
-course_code: "MAP 101"
-course_title: "Everyday Map Reasoning"
-term: "2031 Spring, four-week fictional course"
-instructor: "Nora Vale, fictional instructor"
+course_code: "ECO 101"
+course_title: "Foundations of Ecology"
+term: "2031 February, four-week fictional course"
+instructor: "Fictional teaching team"
 instructor_email:
 office_hours: "Wednesdays 14:00 to 14:30 UTC"
 meets: "Mondays and Wednesdays 10:00 to 10:50 UTC"
@@ -12,7 +12,7 @@ meets: "Mondays and Wednesdays 10:00 to 10:50 UTC"
 
 # Start Here
 
-Fictional student course note for optional tutorial practice. The course, people, timetable and map data were invented for this example. This folder is a learning resource.
+Fictional student course note for optional tutorial practice. The course, teaching team, timetable and count data were invented for this example. This folder is a learning resource.
 
 > Explore this class
 >
@@ -30,9 +30,9 @@ Read the [complete fictional syllabus](student_syllabus.md).
 
 All times use the fictional course's UTC clock.
 
-- 2031-02-06 at 18:00. Week 1 map exercise due.
+- 2031-02-06 at 18:00. Week 1 species-count exercise due.
 - 2031-02-07 from 12:00 to 18:00. Week 1 quiz window, with one 15-minute attempt.
-- 2031-02-28 at 18:00. Final route commentary due.
+- 2031-02-28 at 18:00. Final ecology evidence commentary due.
 
 # Course Files
 
@@ -41,9 +41,9 @@ All times use the fictional course's UTC clock.
 
 # Lectures
 
-## Week 1 map conventions
+## Week 1 species counts and sampling effort
 
-The [lesson](lesson_and_practice.md#lesson) defines the grid, distances, closure and route rules used by every practice answer.
+The [lesson](lesson_and_practice.md#lesson) defines individual counts, observed species richness, relative abundance and the limits of comparing the supplied samples.
 
 # AI Study Notes
 

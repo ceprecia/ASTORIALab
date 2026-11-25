@@ -22,7 +22,7 @@ SOFTWARE.
 
 # Third-party notices
 
-ASTORIA's original material is covered by the root MIT `LICENSE`. The following notices preserve upstream copyrights and permissions for adapted capability instructions. Individual skills retain source citations. Linked software, model weights, datasets and articles remain separate resources with their own terms.
+ASTORIA's original material is covered by the MIT license above. The following notices preserve upstream copyrights and permissions for adapted capability instructions. Individual skills retain source citations. Linked software, model weights, datasets and articles remain separate resources with their own terms.
 
 The adaptations integrate source material with ASTORIA's researcher-owned context, evidence checks, routing and organization. Source names below identify the cited projects; they do not imply that their software runtimes are included.
 
@@ -251,7 +251,7 @@ Provins, C., MacNicol, E., Seeley, S. H., Hagmann, P., & Esteban, O. (2023). Qua
 - `write-introduction` adapts MIT NSE Communication Lab's [Journal Article: Introduction](https://mitcommlab.mit.edu/nse/commkit/journal-article-introduction/). Source contributors: Xinyao “Anna” Liang, Steve Jepeal and Marina Dang.
 - `write-discussion` adapts Broad Research Communication Lab's [Journal Article: Discussion](https://mitcommlab.mit.edu/broad/commkit/journal-article-discussion/), MIT Communication Lab. The page names Suzanne Jacobs and states that its content was adapted from an article originally created by the MIT Biological Engineering Communication Lab.
 
-Both sources identify their CommKit content as licensed under [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/). Preserve attribution, source and license links, identify adaptations, and retain the noncommercial condition for the sourced material. The root MIT license covers ASTORIA's original material; it does not override these source-specific terms.
+Both sources identify their CommKit content as licensed under [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/). Preserve attribution, source and license links, identify adaptations, and retain the noncommercial condition for the sourced material. The MIT license above covers ASTORIA's original material; it does not override these source-specific terms.
 
 ASTORIA turns the source guidance into bounded Introduction and Discussion writing skills, adding user-owned argument/status, source verification, optional CERL/MEAL review when selected, separate review roles and cross-system handoffs. The capabilities retain their individual source citations. The source authors and institutions do not endorse ASTORIA through this adaptation.
 

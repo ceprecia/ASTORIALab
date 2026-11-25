@@ -5,19 +5,20 @@ created: 2026-11-23
 
 # Fictional student context
 
-This is an invented learning case. Read it with the [handbook](fictional_handbook.md) and [evidence record](completion_evidence.md), not as information about the vault owner.
+This invented learning case belongs with the [handbook](fictional_handbook.md) and [evidence record](completion_evidence.md). It does not describe the vault owner or an actual degree program.
 
-- **Exercise date:** 2028-01-10.
-- **Program/cohort:** Environmental Design PhD at the fictional North Quay Institute, entered September 2027.
-- **Research topic:** How reusable market-stall signs can make a public square easier to navigate. No data or research conclusions are supplied.
-- **Student report:** “I finished the first-term methods course.” No transcript has been provided.
-- **Current work:** A progress-memo outline exists. The written proposal is not yet drafted.
-- **Committee:** The advisor is core faculty and is willing to chair. A second core faculty member has said they are interested. The third member is undecided. No director approval has been received.
-- **Target:** The student would like to use 2028-04-12 for the proposal review. This is not confirmed with the full committee.
-- **Working time:** Five hours each week for these milestones: two hours on Tuesday and three hours on Friday. Other time is not assumed available.
-- **Upcoming meeting:** A fictional 25-minute advisor meeting is planned for 2028-01-24. The goal is to agree on the memo's scope, committee candidates and a feasible proposal timetable.
-- **Career interest:** Exploring research roles in civic design. The present request is milestone and meeting planning, not an opportunity search.
+- **Program/cohort:** Fictional Materials Science PhD, Cohort A.
+- **Exercise point:** Term 1 Week 7.
+- **Research direction:** Develop a pilot study asking how drying conditions relate to cracking in ceramic test tiles. No samples, measurements, procedure, operating parameters or scientific result are supplied.
+- **Training:** Classroom induction is recorded. The student has not supplied practical competency clearance for independent laboratory work.
+- **Rotations:** The first rotation, in a powder-processing group, has a signed completion record. The student says the second rotation, in a surface-finishing group, is finished; its supervisor has not signed the record.
+- **Portfolio:** A working draft contains the first rotation reflection and an outline of the second. No program-office receipt has been supplied.
+- **Project brief:** A draft describes the proposed comparison and questions to discuss. A potential supervisor has expressed interest but has not approved the brief.
+- **Preferred target:** Begin independent sample preparation for the project in Week 8. This is a student preference, not permission or a confirmed activity.
+- **Working capacity:** Four hours per week for these activities. Practical training time and supervisor turnaround are not yet known.
+- **Advisor discussion:** Prepare a 20-minute conversation about the next useful steps. No meeting date is supplied or booked.
+- **Longer-term choice:** Explore whether the prospective supervisor's ceramics group could become the student's home lab. No capacity confirmation or placement decision exists.
 
 ## Requested exercise
 
-Produce a requirement/evidence table, a short sequence of working targets, and a 25-minute advisor agenda. Cite handbook section IDs and evidence IDs. Identify missing evidence and questions for the meeting. Do not infer a completed requirement, schedule an appointment, send messages, or configure reminders.
+Work out what this student should do next. Produce a requirement/evidence table, a feasible short work plan and a 20-minute advisor agenda. Cite the handbook H IDs and evidence E IDs. Keep unconfirmed completion and approvals unresolved. The exercise involves no messages, submissions, laboratory work or scheduling.

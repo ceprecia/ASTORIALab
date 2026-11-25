@@ -4,7 +4,7 @@ related:
   - "[[Productivity and Study System]]"
   - "[[Research Assistant System]]"
 created: 2026-01-01
-updated: 2026-11-23
+updated: 2026-11-24
 ---
 
 # Janitor System
@@ -13,13 +13,20 @@ updated: 2026-11-23
 
 The Janitor System maintains system consistency and keeps requested content folders aligned with the owner's chosen organization.
 
-It has three jobs:
+It has four jobs:
 
+- Audit agent behavior and test corrections for drift, missed updates, and stale handoffs.
 - Propagate intentional changes, such as renames or convention changes.
 - Audit drift, such as stale map entries, deleted skill links, old template references, and broken workspace paths.
 - Organize requested content folders and repair links and active paths while preserving substantive MOC content and the owner's useful structure.
 
 Janitors check both structure and meaning. A file can be present, linked, and valid while still carrying stale workflow instructions. The job is not done until active instructions agree with the current system behavior.
+
+## Start a cleanup
+
+Use [Janitor Companion](../skills/janitor-companion/SKILL.md) for “janitor,” “fix my vault,” or other broad maintenance requests. Its [Coordinator](../skills/janitor-coordinator/SKILL.md) uses the installed skill catalog to select the checks. For an open-ended request, it offers a focused cleanup based on a brief check or a general audit across all applicable specialists.
+
+Review one consolidated proposal in the current request's reporting form, using applicable verified recipient policy for choices left open. Keep stable finding IDs. A numbered table with Issue found, Behavior, Fix and New behavior is an optional template when table output is selected. Approve only the finding IDs you want applied.
 
 ## Organize existing work
 
@@ -27,7 +34,7 @@ Choose **Keep my structure**, **Tidy selected folders**, or **Help propose an
 organization**. Keeping the structure leaves existing files in place. Tidying
 uses the selected folders and existing collections. A proposal starts with
 questions about the user's actual projects, ongoing responsibilities and
-reusable references, then shows a short before-and-after filing table.
+reusable references, then presents a short before-and-after filing plan in the selected reporting form.
 
 During setup, review consequential moves in the existing build read-back.
 Folder Janitor carries out approved moves and repairs their links and active
@@ -46,10 +53,16 @@ Each builder in the [ASTORIA System Builder](ASTORIA%20System%20Builder.md) has 
 - [vault-janitor](../skills/vault-janitor/SKILL.md) checks the layout reference against a fresh build from disk and the vocabulary, its rules against `me.md`, the active instructions for retired paths and footers, the links vault-wide, and log-preservation/selective-reading guidance (the full history stays on disk; newest entries and relevant older chunks supply current context). Pairs with vault-builder. It conditionally invokes installed Folder Janitor for concrete filing findings: audits preserve review-only mode, authorized cleanup carries its existing scope, and the child returns once to the current audit.
 - [skills-janitor](../skills/skills-janitor/SKILL.md) lints every skill folder against the skill-builder schema (`lint.py`), regenerates the Skill Map registry and the coordinator catalogs (`build_views.py`), compares related-skill contracts, and searches active instructions for stale wording. Its installer applies chosen systems and skill groups with their required helpers; selected systems and helper presence remain distinct. It also checks added skills and supports root-folder renaming with propagation. The private exporter owns starter-vault generation. Pairs with skill-builder.
 
-The propagation skill:
+### Agent behavior
+
+- [agent-janitor](../skills/agent-janitor/SKILL.md) traces what agents read, did, and saved. It reproduces failures in disposable test cases, compares candidate fixes, and checks the result after approved changes.
+
+### Targeted changes
 
 - [propagate](../skills/propagate/SKILL.md) carries one intended change through everything that depends on it: a rename (every link, path string, frontmatter value, and instruction follows, with `scripts/propagate_rename.py`) or a convention (sibling skills, the maps, and the spec that defines the pattern follow). It leaves history, capture logs, backups, and the archive alone, and hands drift it did not cause to the janitors.
 - [bridge-maker](../skills/bridge-maker/SKILL.md) audits, creates, or repairs only the requested `AGENTS.md`, pointing at the one vault-root `me.md` and preserving approved project instructions. It creates no other files and writes no maps.
+
+- [verify-removal](../skills/verify-removal/SKILL.md) checks the status of named apps or local items and verifies an explicitly scoped removal.
 
 ## Rules
 
@@ -85,4 +98,5 @@ The propagation skill:
 - "Audit my skills" runs skills-janitor and reports lint errors, stale generated views, trigger overlaps, and frontmatter drift.
 - "Audit the vault map" runs vault-janitor and compares the folder tree, the templates, the workspaces, and the links with the map.
 - "Audit bridges" runs bridge-maker to check requested `AGENTS.md` files and their central `me.md` pointers.
+- "Agents keep using old instructions" runs agent-janitor to trace the old procedure and test a correction.
 

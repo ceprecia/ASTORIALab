@@ -140,7 +140,8 @@ See [Writing System](../../../systems/Writing%20System.md) and the shared handof
 | Building or fixing a skill | `00 ASTORIA/skills/skill-builder/SKILL.md` |
 | Changing this file | `00 ASTORIA/skills/me-builder/SKILL.md` |
 | Rebuilding or refreshing the layout reference | `00 ASTORIA/skills/vault-builder/SKILL.md` |
-| Checking the vault or the skills for drift | `00 ASTORIA/skills/vault-janitor/SKILL.md` or `00 ASTORIA/skills/skills-janitor/SKILL.md` |
+| Janitor System, general vault cleanup, or agent behavior drift | `00 ASTORIA/skills/janitor-companion/SKILL.md` |
+| Focused checks of vault structure or skill consistency | `00 ASTORIA/skills/vault-janitor/SKILL.md` or `00 ASTORIA/skills/skills-janitor/SKILL.md` |
 | Setting up the vault or choosing additional systems and skills | `00 ASTORIA/skills/setup-my-vault/SKILL.md` |
 
 **When none of those fits,** read only the matching system section of the registry in `00 ASTORIA/Skill Map.md` (between the `registry` markers). It is grouped by system, and the Research Assistant System section shows its whole hierarchy: companions and coordination, then one section per part, 1 to 5, with the part coordinator first and the part's skills grouped by family:

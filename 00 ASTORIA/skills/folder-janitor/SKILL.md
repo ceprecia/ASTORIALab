@@ -162,9 +162,7 @@ Ask only if the choice is still unknown:
   Explain Projects, Areas and Resources briefly with examples from that batch.
   Names in an example are suggestions, not a required taxonomy.
 
-Show the resulting groups in one short table: **files/count**, **current
-location**, **proposed home**, and **reason or unresolved question**. Include
-affected references and held groups. A generic tree or a promise to organize
+Present the resulting groups in the current request's reporting form. For choices left open, follow the recipient's applicable verified reporting policy, with chat as the fallback. Retain **files/count**, **current location**, **proposed home**, and **reason or unresolved question** as move-plan information; use them as table columns only when table output is selected. Include affected references and held groups. A generic tree or a promise to organize
 later is not a filing proposal. For a setup handoff, return this concrete plan
 for its existing second read-back; after approval, execute the same scope
 without asking again. A new folder needs a present owner or browsing purpose.

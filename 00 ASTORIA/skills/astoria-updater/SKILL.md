@@ -10,7 +10,7 @@ metadata:
   system: ASTORIA System Builder
   dependencies: skills-janitor
   created: "2026-11-08"
-  updated: "2026-11-23"
+  updated: "2026-11-24"
 ---
 
 # ASTORIA Updater
@@ -34,8 +34,17 @@ after each audit. The audits start automatically after the update.
   original download or a verified official release snapshot.
   ASTORIA release v1.0.0 was tagged at `e68ddeb` even though its ZIP name
   contains `v0.1.0`. Treat an unidentified installation as unknown.
+  For the original v1.3.1 download, use immutable comparison commit
+  `92cf92853aea1828b2bb738e6b7a097be35c15c9` or the original ZIP with SHA-256
+  `96208407c26e6a0e7bb599c580269059027f7fb8ebe2588c81352b3252d5cbf5`.
+  Its replacement also uses `v1.3.1`; verify the installed variant and matching
+  baseline bytes rather than choosing the baseline from the tag or version alone.
 - Skills Janitor remains a required update dependency. Missing required support
   is an update prerequisite finding; removed optional audit skills are audit gaps.
+- Repository documentation and optional learning materials are separate from
+  the selected release's runtime files. A root README, tutorial, example files
+  or sample download are not update prerequisites; keep the operational update
+  and manual instructions available.
 - The working vault's `00 ASTORIA/selection.json`, when present, records its
   choices, release-owned skills, removals and user-owned imports. Use the verified
   incoming planner to interpret that record. An older vault without the record
@@ -99,17 +108,22 @@ after each audit. The audits start automatically after the update.
    Use the same assistant chat from either starting folder. If the assistant
    lacks the runtime or write access, give a read-only comparison and say what
    is needed to complete apply.
-5. **Janitor audit, pass 1.** Load the complete installed instructions for
-   [Skills Janitor](../skills-janitor/SKILL.md),
-   [Vault Janitor](../vault-janitor/SKILL.md), and
-   [Folder Janitor](../folder-janitor/SKILL.md). Invoke all three in audit-only
-   mode on the working vault, using its instructions, chosen structure, read
-   exclusions and holds. Audit skills and generated views, vault/layout and
-   instruction consistency, links and active paths, and Project/Area structure.
-   Limit content reading to what those checks need. Reuse Folder Janitor's
-   result if Vault Janitor already invoked it for the same scope in this pass.
-   If an optional janitor was deliberately removed or cannot run, report that gap and
-   continue the available checks without reinstalling it.
+5. **Janitor audit, pass 1.** Load the installed
+   [Janitor Companion](../janitor-companion/SKILL.md) and
+   [Janitor Coordinator](../janitor-coordinator/SKILL.md) completely. Request a
+   general audit of the working vault in audit-only mode, using its current
+   instructions, chosen structure, read exclusions and holds. The coordinator
+   uses its current Specialist Catalog and verified installed skills to run
+   every applicable check, including Agent Janitor's instruction and behavior
+   drift checks. Keep skills/views, vault/layout, links/active paths and
+   Project/Area structure in scope. Workflows requiring a concrete target run
+   only when that target is established; no audit authorizes filing, removal,
+   propagation or instruction repairs. Limit reading to the selected checks
+   and reuse duplicate specialist results within this pass.
+   Return the consolidated findings to this update session. If a routing entry
+   or optional specialist was deliberately removed or cannot run, report the
+   gap and run the available installed specialists directly without reinstalling
+   anything. Skills Janitor remains the required update dependency.
 
    Use `lint.py`, `build_views.py --check`, `build_layout.py --check` and the
    supported link audit with the verified target and exclusions. Run Python
@@ -118,8 +132,8 @@ after each audit. The audits start automatically after the update.
    unchanged, including its log. Do not rebuild views/layout, move files or
    repair instructions during the audit. The request to update does not
    authorize the newly discovered janitor repairs.
-6. **Approve and apply audit repairs.** Combine the findings from all three
-   janitors into one concrete proposal with affected paths, exact edits or
+6. **Approve and apply audit repairs.** Combine all specialist findings
+   into one concrete proposal with affected paths, exact edits or
    moves, and any uncertainty. Ask **"Can I make these changes?"** before
    implementing it. Apply only the selected repairs through their existing
    owners and verify those changes. If there are no repairs, continue without
@@ -133,8 +147,10 @@ after each audit. The audits start automatically after the update.
    or the user approves the new preview. Preserve declined repairs, deliberate
    deletions and local customizations. Do not use the second pass to bypass a
    decision or replace the original comparison with the updated vault.
-8. **Janitor audit, pass 2.** Run the same three audit-only checks again after
-   the second update check and any approved changes. Present new or remaining
+8. **Janitor audit, pass 2.** Repeat the routed general audit from step 5 after
+   the second update check and any approved changes. Recheck the current
+   installed catalog, retain exclusions and declined repairs, and report gaps.
+   Present new or remaining
    findings. Obtain approval for any additional proposed repairs before applying
    them, then verify the approved fixes. Finish with the status of both audit
    passes and unresolved or uninspected items. Stop after these two passes;
@@ -155,6 +171,12 @@ does not imply that the post-update audits ran.
 
 - Preserve `me.md`, root and project `AGENTS.md` files, notes, Obsidian settings,
   plugins and themes, and unrelated custom files.
+- Preserve supplied and user-authored guides, complete notices, attribution and
+  supporting files at their actual locations. Do not require or recreate a root
+  README, copy tutorial/examples into the vault, or move documents to match the
+  repository layout. Omission from a newer download does not authorize deleting
+  an older or customized guide. Follow only explicitly approved document changes
+  and preserve applicable notices with the files they cover.
 - Compare shipped files against the selected original release before replacing
   or retiring them. When local changes or intentional deletions are ambiguous,
   keep them and show the user the conflict. Keep optional toolkit choices.

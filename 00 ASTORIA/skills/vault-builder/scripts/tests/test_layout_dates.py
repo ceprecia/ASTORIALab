@@ -1,4 +1,4 @@
-"""Check generated dates are ignored without hiding current MOC or rule dates."""
+"""Check how the layout extracts and compares activity dates."""
 import contextlib
 import io
 import os
@@ -10,7 +10,7 @@ from pathlib import Path
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from build_layout import OUT_REL, comparison_text, main
+from build_layout import OUT_REL, comparison_text, main, newest_log_date
 
 
 class LayoutDateChecks(unittest.TestCase):
@@ -35,6 +35,33 @@ class LayoutDateChecks(unittest.TestCase):
         original = self.text + '\ncreated: 2026-01-04\n'
         updated = original.replace('2026-01-04', '2026-02-04')
         self.assertNotEqual(comparison_text(original), comparison_text(updated))
+
+    def test_newest_activity_comes_from_existing_log_headings(self):
+        for heading in ('Log', '🗓️ Logs', 'Research Log', '🗓️ Research Log'):
+            with self.subTest(heading=heading):
+                moc = (f'# {heading}\n'
+                       '## 2032-04-06 09:25 - Stock count\n'
+                       '### 2032-04-10 - Shelf repair\n'
+                       '# 🤖 AI Notes\n'
+                       '## 2032-04-12 - Excluded maintenance entry\n')
+                self.assertEqual(newest_log_date(moc), '2032-04-10')
+
+    def test_fenced_examples_do_not_supply_headings_or_close_the_log(self):
+        moc = ('# Log\n'
+               '## 2032-04-06 - Earlier event\n'
+               '````markdown\n'
+               '```\n'
+               '# AI Notes\n'
+               '## 2032-04-18 - Fenced example\n'
+               '````\n'
+               '## 2032-04-10 - Recent event\n'
+               '~~~markdown\n'
+               '## 2032-04-19 - Unclosed example\n')
+        self.assertEqual(newest_log_date(moc), '2032-04-10')
+
+    def test_dated_headings_without_a_top_level_log_are_ignored(self):
+        moc = '# Workbench\n## Research Log\n### 2032-04-10 - References\n'
+        self.assertEqual(newest_log_date(moc), '')
 
 
     def test_apply_writes_only_when_the_generated_layout_changes(self):

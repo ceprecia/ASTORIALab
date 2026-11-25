@@ -5,28 +5,28 @@ created: 2026-11-23
 
 # Fictional program handbook excerpts
 
-**Synthetic source for a tutorial.** North Quay Institute and its Environmental Design PhD are invented. These are not current university policies and must not be used for a real degree decision.
+**Synthetic source for a tutorial.** This Materials Science PhD program, Cohort A and all rules below are invented. They are not policies of an actual institution.
 
-## H1: Applicability and dates
+## H1: Applicability and the case clock
 
-This fixture is titled *Environmental Design PhD Handbook, 2027–2028*. It applies to students entering in September 2027. For this exercise, no later amendment or individual exception has been supplied. All stated cutoff times use the fictional campus time zone, America/New_York.
+These excerpts govern the fictional first-year Cohort A. Term 1 contains 12 numbered weeks; the exercise begins in Week 7. Week deadlines describe this case only and must not be converted into real program dates. No amendment or individual exception is supplied.
 
-## H2: First-year progress memo
+## H2: Induction and practical clearance
 
-The student must submit a progress memo to the program office by **2028-02-15 at 17:00**. It describes completed work, the proposed research question, and the next term's work. An advisor may review a draft, but the student's draft or advisor's review is not evidence of program-office receipt.
+Classroom induction and recorded practical competency clearance are separate requirements. A facility trainer must record practical clearance before the student undertakes independent laboratory work. An induction attendance or quiz record establishes induction only. Desk-based planning may continue while clearance is unresolved; this handbook supplies no instrument or training procedure.
 
-## H3: Committee approval
+## H3: Two rotation completion records
 
-The committee must contain three members, at least two of whom are core program faculty. The chair must be a core program faculty member. The student submits the proposed membership and each member's agreement to the program director. The director must approve the committee by **2028-03-01 at 17:00**. A person's willingness to serve does not itself establish director approval.
+The student must complete two first-year rotations and obtain a completion record signed by each rotation supervisor. Attendance, a student's report or a draft reflection does not establish the supervisor's completion decision. Both signed records must be on file before eligibility for the Week 12 review is established.
 
-## H4: Proposal review
+## H4: Portfolio submission
 
-The student must hold an oral proposal review with the approved committee by **2028-04-30**. The complete written proposal must reach all committee members at least **10 calendar days before** the review. The review cannot precede formal committee approval. An informal proposed meeting date is not a scheduled review or an extension of the deadline.
+The portfolio is due to the program office by the **end of Term 1 Week 10**. It contains a reflection on each rotation and a proposed mini-project brief. Rotation completion records may be filed separately. The program-office acknowledgment establishes receipt; an edited draft or advisor feedback alone does not.
 
-## H5: Completion record
+## H5: First-year review and home-lab selection
 
-After the proposal review, the chair supplies the outcome record to the program office within **7 calendar days**. The program-office acknowledgment is the evidence of a recorded milestone. A calendar invitation or a presentation file alone does not establish a completed or recorded review.
+The first-year review takes place in **Term 1 Week 12**. Eligibility requires both signed rotation records under H3 and the portfolio receipt under H4. The program office must record the review outcome before home-lab selection can proceed. Selection also requires written capacity confirmation from the prospective home-lab supervisor. An expression of interest or an intended review does not satisfy those conditions. No home-lab selection deadline or guaranteed placement is specified here.
 
-## H6: Changes and exceptions
+## H6: Project approval before sample preparation
 
-Only a written program-director approval can establish an individual exception for these requirements. It must name the affected requirement and revised condition or date. Advisor encouragement, a student's preferred target and an unsent request are not approved exceptions.
+A written supervisor-approved project brief must be recorded before **any sample preparation for the proposed study of drying conditions and cracking in ceramic test tiles**. Independent laboratory work also requires the practical clearance in H2. Interest in the topic, a draft brief or a preferred start week supplies neither permission. The brief can be developed on paper while those conditions remain unresolved. These excerpts specify approval requirements, not material properties, operating parameters or a laboratory procedure.

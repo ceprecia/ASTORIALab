@@ -5,31 +5,36 @@ created: 2026-11-23
 
 # Illustrative milestone reconciliation
 
-This is an example response for the fictional case, not a verified degree plan for a real student. The exercise date is 2028-01-10. Handbook references below point to the [synthetic source](../inputs/fictional_handbook.md); evidence IDs point to the [fictional evidence record](../inputs/completion_evidence.md).
+This example response concerns the fictional Materials Science case at Term 1 Week 7. It is not a degree plan or laboratory authorization for a real student. H IDs refer to the [synthetic handbook](../inputs/fictional_handbook.md); E IDs refer to the [fictional records](../inputs/completion_evidence.md).
 
-| Item | Source and date basis | Evidence-supported status | Next useful action |
+| Requirement or decision | Source | What the supplied evidence establishes | Useful next step |
 | --- | --- | --- | --- |
-| Applicable rules | H1, September 2027 cohort | Supplied fixture explicitly applies to this case | Reassess if an amendment or exception is supplied. |
-| Orientation | E1; no deadline specified in these excerpts | Completed according to the supplied office record | Retain E1; infer no other completed milestone from it. |
-| First-term methods course | Student report; E4 | User-reported completion, not transcript-verified | Obtain the course record if a later decision depends on it. |
-| Progress memo | H2: official cutoff 2028-02-15, 17:00 America/New_York | Outline only, E3; no submission receipt | Bring the outline to the January 24 meeting, then draft and submit with time to resolve problems. |
-| Committee | H3: official approval cutoff 2028-03-01, 17:00 America/New_York | Advisor willing, E2; full membership and director approval absent | Identify the third candidate, confirm each member's agreement, and submit the membership for director approval. |
-| Proposal circulation | H4: at least 10 calendar days before the actual review | No complete proposal or agreed date | If April 12 is agreed, use April 2 as the latest circulation date; choose an earlier working target. |
-| Oral proposal review | H4: official deadline 2028-04-30 | April 12 is a target, not a scheduled or completed review | Confirm availability after the committee approval path is clear. |
-| Outcome record | H5: within 7 calendar days after the actual review | No review has occurred in the supplied evidence | After the review, confirm the chair's filing and the program-office acknowledgment. |
+| Applicable rules | H1 | The fixture explicitly governs Cohort A at Week 7. | Use its week sequence without inventing actual calendar dates. |
+| Classroom induction and practical clearance | H2; E1 | Induction is recorded; practical clearance is not established. | Clarify the remaining competency requirements and trainer sign-off before undertaking independent laboratory work. |
+| Two rotation completions | H3; E2 | Rotation 1 has a signed record. Rotation 2 is student-reported and unsigned. | Identify what the second supervisor needs to make and record the completion decision. Do not label it complete with evidence yet. |
+| Portfolio receipt | H4; E4 | A draft exists; there is no office receipt. The official case deadline is the end of Week 10. | Finish both reflections and the proposed brief, then retain the office acknowledgment when submission actually occurs. |
+| Week 12 review eligibility | H5; E2, E4 | One required rotation record and the portfolio receipt are still missing from the supplied evidence. | Track those prerequisites separately. Neither attendance nor a portfolio draft establishes eligibility. |
+| Independent project sample preparation | H6 and H2; E1, E3, E5 | Supervisor interest and a draft brief exist; project approval and practical clearance do not. | Develop the question about drying conditions and cracking in ceramic test tiles on paper. The preferred Week 8 independent start is not authorized. |
+| Home-lab selection | H5; E3, E5 | There is no recorded review outcome or written capacity confirmation. | Discuss fit now, but keep placement unresolved until both conditions exist. No selection deadline is supplied. |
 
-## Proposed working targets
+## A feasible first week
 
-These are planning proposals, not handbook deadlines or evidence that anyone has accepted an action.
+The supplied budget is **four hours per week**. One proposed use of the next four hours is:
 
-- **January 24 meeting:** Settle memo scope, discuss eligible committee candidates and test the April target against the remaining work.
-- **February 5:** Have a complete memo draft for feedback.
-- **February 12:** Aim to submit the memo ahead of the official February 15 cutoff and retain the office receipt.
-- **February 9:** Aim to send the complete committee request, leaving time before the official March 1 approval cutoff. This does not guarantee the director's turnaround.
-- **March 29:** Proposed earlier circulation target if April 12 becomes the agreed review date. April 2 is the latest date under the 10-calendar-day rule for that date.
+- **Two hours:** Consolidate the portfolio and mark exactly what remains in the second rotation reflection.
+- **One hour:** Revise the project brief into a clear comparison question and scope for discussion, without adding unsupported results or a laboratory protocol.
+- **One hour:** Reconcile the missing records and prepare the advisor questions.
 
-Five hours per week is the supplied working budget. Before accepting these targets, ask the advisor what a sufficient memo and proposal look like, estimate the work, and reduce scope or revise the meeting target if necessary. Do not assume extra work time.
+These are working allocations, not program rules or accepted commitments. Practical training duration and supervisor turnaround remain unknown; no additional hours are assumed.
 
-## Unresolved questions
+## Targets and conditions
 
-Who is the third member? Will all members agree to serve and meet the membership rule? What is the director's approval turnaround? Is April 12 available? What form of office acknowledgment should be retained? No exception or extension has been supplied.
+Aim for a complete portfolio draft by the end of Week 9, leaving room before the official Week 10 deadline. That is a proposed working target, not a changed deadline or a guarantee of feedback.
+
+Reassess the preferred Week 8 independent sample-preparation target against both required conditions: recorded project approval and practical clearance. If either remains unresolved, continue desk-based planning rather than treating the target as permission.
+
+The Week 12 review requires both signed rotation records and portfolio receipt. Home-lab selection follows a recorded review outcome and written capacity confirmation. None of those later outcomes is established by this illustrative plan.
+
+## Remaining questions
+
+What is missing from the second rotation sign-off? Which practical competency checks remain? What portfolio scope is sufficient within the four-hour budget? What revisions would permit project approval? After review, could the prospective supervisor confirm capacity? These are questions for a future discussion, not messages sent or decisions made.

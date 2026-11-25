@@ -83,6 +83,9 @@ Only selected skills and required shared helpers are installed in this group. Th
 ![Janitor System](assets/banner_system_janitor.png)
 
 [Janitor System](systems/Janitor%20System.md): Maintain the vault and the AI system.
+- [janitor-companion](skills/janitor-companion/SKILL.md) (companion): Leads vault cleanup and audit sessions, routes checks through Janitor Coordinator, and turns findings into specific fixes for the user to approve. Triggers: load the janitor system, fix my vault, clean up my vault.
+- [janitor-coordinator](skills/janitor-coordinator/SKILL.md) (coordinator): Loads the installed specialists for a Janitor Companion request, coordinates evidence gathering and authorized repairs, and returns one owner per actionable fix.
+- [agent-janitor](skills/agent-janitor/SKILL.md): Audits agent behavior, traces where context or instructions drift, and tests candidate fixes before proposing live changes. Triggers: audit agent drift, agents keep using old instructions, test an agent handoff.
 - [bridge-maker](skills/bridge-maker/SKILL.md): Creates or updates a short project AGENTS.md pointing to the vault-root me.md. Triggers: make a project bridge, connect this project to obsidian, audit the project bridges, update this project AGENTS.md.
 - [folder-janitor](skills/folder-janitor/SKILL.md): Organizes the requested content folders outside the AI system root using the owner’s verified structure and approved placements. Triggers: organize this folder, sort my resource intake, tidy my area folders, file these attachments.
 - [propagate](skills/propagate/SKILL.md): Carries one change through everything that depends on it. Triggers: propagate this rename, I renamed this, propagate this convention, make the family match, update every reference to.

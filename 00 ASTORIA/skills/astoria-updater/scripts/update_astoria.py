@@ -114,7 +114,8 @@ def inventory(root):
                     continue
                 relative = (Path(parent) / name).relative_to(root)
                 files[relative] = read_file(root, relative)
-    for relative in (SKILL_MAP, ASTORIA / "Skills.md", VERSION):
+    for relative in (SKILL_MAP, ASTORIA / "Skills.md", VERSION,
+                     ASTORIA / "README.md", ASTORIA / "LICENSE"):
         content = read_file(root, relative)
         if content is not None:
             files[relative] = content
@@ -452,6 +453,15 @@ def merge_vocabulary(original, current, incoming, imported_skills=()):
     try:
         before, live, after = (content.data.decode("utf-8") for content in (original, current, incoming))
         configurations = [configuration(text) for text in (before, live, after)]
+        # The official installer reserializes this block without changing its
+        # surrounding document. Recognize only that exact baseline output;
+        # recipient edits/comments still use the preservation checks below.
+        installer_block = "```yaml\n" + yaml.safe_dump(
+            configurations[0], sort_keys=False, allow_unicode=True) + "```"
+        installed_original = re.sub(r"```yaml\n.*?\n```", lambda unused: installer_block,
+                                    before, count=1, flags=re.S)
+        if configurations[1] == configurations[0] and live == installed_original:
+            return File(incoming.data, current.mode), None
         sections = []
         for value in configurations:
             groups = value.get("system_sections")
@@ -578,7 +588,7 @@ def select_changes(current, source, baseline, imported_skills=()):
 
 
 def add_stage_placeholders(stage):
-    for name in ("me.md", "AGENTS.md", "README.md", "LICENSE"):
+    for name in ("me.md", "AGENTS.md"):
         (stage / name).touch()
     (stage / AI_LOG.parent).mkdir(exist_ok=True)
     (stage / AI_LOG).touch()
