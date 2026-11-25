@@ -8,7 +8,7 @@
 
 An Obsidian toolkit to make your research workspace feel like yours. Shape the toolkit around your work, keep your research connected, and bring along the AI assistant you prefer!
 
-[Tutorial](tutorial.md)
+[Tutorial](tutorials/tutorial.md)
 
 ## Why an Adaptable Scientific Toolkit?
 
@@ -68,7 +68,7 @@ None of this information is sent back to the github project. Your preferences ar
 - The folder structure and map notes you accepted, plus a Skill Map showing your selected tools.
 - The three basics and any additional systems or skills you chose.
 
-Read the [practical tutorial](tutorial.md) to get started, or download the [optional worked examples](https://github.com/ceprecia/ASTORIALab/releases/download/v1.3.1/ASTORIA-examples-v1.3.1.zip) for longer practice. See the [manual setup guide](00%20ASTORIA/skills/setup-my-vault/references/manual_setup.md) for detailed setup instructions.
+Read the [practical tutorial](tutorials/tutorial.md) to get started, or explore the [optional worked examples](tutorials/examples/README.md) for longer practice. See the [manual setup guide](00%20ASTORIA/skills/setup-my-vault/references/manual_setup.md) for detailed setup instructions.
 
 ## Try a workflow
 

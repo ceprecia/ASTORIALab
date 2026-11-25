@@ -1,6 +1,6 @@
 # Optional worked examples
 
-[Read the main tutorial online](https://github.com/ceprecia/ASTORIALab/blob/main/tutorial.md)
+[Read the main tutorial online](https://github.com/ceprecia/ASTORIALab/blob/main/tutorials/tutorial.md)
 
 These eight fictional projects are optional learning materials. You can follow
 the main tutorial and set up ASTORIA without them. Choose one example that

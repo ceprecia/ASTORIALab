@@ -84,7 +84,7 @@ A language model is one component in this arrangement. ASTORIA supplies durable
 context and portable workflows that can be used with replaceable assistants.
 The tool you use can change while your files remain yours.
 
-![Five layers of the researcher-owned workspace](00%20ASTORIA/assets/astoria_architecture.png)
+![Five layers of the researcher-owned workspace](../00%20ASTORIA/assets/astoria_architecture.png)
 
 At the center is **your researcher core**, including the preferences and working
 context recorded in `me.md`. Around it sit **the vault and evidence**, then
@@ -245,6 +245,6 @@ a different writing style or a different way of reviewing plans. Tell your
 assistant what should change, then read the updated briefing to check that
 it says what you intended.
 
-For longer practice, explore the [optional worked examples](tutorial_examples/README.md)
+For longer practice, explore the [optional worked examples](examples/README.md)
 for all eight systems. These fictional learning materials stay separate from
 your own projects and are not needed to follow this guide.
