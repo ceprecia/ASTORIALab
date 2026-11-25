@@ -7,7 +7,7 @@ the main tutorial and set up ASTORIA without them. Choose one example that
 interests you, try a conversation, then compare your result with an illustrative
 output. You do not need to work through every system.
 
-Read these examples online or [download the optional examples for v1.3.1](https://github.com/ceprecia/ASTORIALab/releases/download/v1.3.1/ASTORIA-examples-v1.3.1.zip).
+Read these examples online or [download the optional examples for v1.3.1](https://github.com/ceprecia/ASTORIALab/releases/download/v1.3.1/tutorial-examples-v1.3.1.zip).
 They are separate from the starter vault.
 
 ## Choose an example
